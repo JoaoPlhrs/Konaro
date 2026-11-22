@@ -21,6 +21,12 @@ aprovado ainda; a ordem reflete impacto para quem vem do Windows ou do macOS.
       progresso, no lugar do texto que rola durante a inicialização — build 4.
 - [x] **Iniciar em tela cheia (tecla Super)**, no estilo Launchpad/Windows 11 — build 5.
 
+## ⏳ Pedido do responsável — aguardando o comando (2026-11-22)
+- [ ] **Animação "Olá" mais longa na tela de entrada (splash do Plasma)**: cerca de 80% do
+      tempo mostrando "Olá" em várias línguas (incluindo novas: japonês, árabe, hindi, russo,
+      coreano, grego, hebraico, suaíli, tupi…), e só no fim "Welcome to Konaro". Hoje a tela
+      fica parada em "Welcome to Konaro" enquanto a área de trabalho carrega.
+
 ## Alta prioridade
 1. **"Voltar no tempo" (snapshots do sistema).** Instalar em Btrfs com Snapper e criar
    um ponto de restauração antes de cada atualização, com opção no menu de boot para
