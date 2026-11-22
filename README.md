@@ -34,7 +34,7 @@ Visual inspirado no macOS, jeito de usar familiar para quem vem do Windows.</p>
 | 0.1.0-dev1 · build 2 "Ferramentas" | 2026-11-22 | — | Loja, Atualizações, Drivers, Boas-vindas, navegadores, jogos | substituída pela build 3 |
 | 0.1.0-dev1 · build 1 "Fundação" | 2026-11-22 | — | Base Debian 13 + Plasma 6, instalador, identidade | substituída pela build 3 |
 
-Detalhes de cada versão em **[CHANGELOG.md](CHANGELOG.md)** · comparativo de desempenho com o Windows 11: **[docs/OTIMIZACAO.md](docs/OTIMIZACAO.md)**. SHA-256 da build 8:
+Site oficial: **[joaoplhrs.github.io/Konaro](https://joaoplhrs.github.io/Konaro/)** · Detalhes de cada versão em **[CHANGELOG.md](CHANGELOG.md)** · comparativo de desempenho com o Windows 11: **[docs/OTIMIZACAO.md](docs/OTIMIZACAO.md)**. SHA-256 da build 8:
 `5da6c147720f9e4d2272492014ec0e526f1e12cb4ae67c4d128b7e59e7655206`
 
 > ⚠️ **Build de desenvolvimento.** Teste primeiro numa máquina virtual. O que foi e o que

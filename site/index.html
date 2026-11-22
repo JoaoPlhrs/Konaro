@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Konaro OS</title>
+<meta name="description" content="Konaro OS — um Linux bonito e fácil para quem vem do Windows e do macOS. Baixe a ISO, veja as versões e aprenda a instalar.">
+<link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<style>
+:root{
+  --paper:#F5F5F7;--surface:#FFFFFF;--ink:#1D1D1F;--stone:#6E6E73;--hairline:#D2D2D7;--fill:#E8E8ED;
+  --red:#FF5F57;--yellow:#FEBC2E;--green:#28C840;--glass:rgba(255,255,255,.62);
+  --radius:22px;
+}
+@media (prefers-color-scheme:dark){:root{
+  --paper:#161618;--surface:#1F1F22;--ink:#F5F5F7;--stone:#A1A1A6;--hairline:#38383C;--fill:#2C2C30;--glass:rgba(40,40,44,.6);
+}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+img{max-width:100%;display:block}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+:focus-visible{outline:3px solid #0A84FF;outline-offset:3px;border-radius:8px}
+
+/* barra superior de vidro, como a do Konaro */
+.bar{position:sticky;top:0;z-index:10;background:var(--glass);backdrop-filter:blur(18px) saturate(1.8);-webkit-backdrop-filter:blur(18px) saturate(1.8);border-bottom:1px solid var(--hairline)}
+.bar .wrap{display:flex;align-items:center;gap:20px;height:56px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;text-decoration:none}
+.brand img{width:26px;height:26px}
+@media (prefers-color-scheme:dark){.brand img,.hero-logo{filter:invert(1)}}
+.bar nav{margin-left:auto;display:flex;gap:18px;font-size:14px}
+.bar nav a{text-decoration:none;color:var(--stone)}
+.bar nav a:hover{color:var(--ink)}
+@media (max-width:640px){.bar nav a.hide-sm{display:none}}
+
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:999px;font-weight:600;text-decoration:none;font-size:15px;border:1px solid transparent}
+.btn.primary{background:var(--ink);color:var(--paper)}
+.btn.secondary{background:var(--fill);color:var(--ink)}
+.btn:hover{filter:brightness(1.08)}
+
+/* destaque: a janela do Konaro com os botões semáforo */
+.hero{padding:72px 0 40px;text-align:center}
+.hero-logo{width:72px;height:72px;margin:0 auto 18px}
+.hero h1{font-size:clamp(40px,7vw,76px);line-height:1.02;letter-spacing:-.035em;margin:0 0 14px;font-weight:800}
+.hero p.lead{font-size:clamp(17px,2.2vw,21px);color:var(--stone);max-width:620px;margin:0 auto 28px}
+.cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.meta{margin-top:14px;font-size:13px;color:var(--stone)}
+.window{margin:48px auto 0;max-width:1000px;background:var(--surface);border:1px solid var(--hairline);border-radius:16px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.18)}
+.window .chrome{display:flex;gap:8px;padding:12px 14px;border-bottom:1px solid var(--hairline)}
+.window .chrome i{width:12px;height:12px;border-radius:50%;display:block}
+.window .chrome i:nth-child(1){background:var(--red)}.window .chrome i:nth-child(2){background:var(--yellow)}.window .chrome i:nth-child(3){background:var(--green)}
+
+section{padding:72px 0}
+h2{font-size:clamp(28px,4vw,42px);letter-spacing:-.025em;margin:0 0 10px;line-height:1.1}
+.sub{color:var(--stone);max-width:640px;margin:0 0 36px}
+
+/* recursos: mosaico com tamanhos diferentes */
+.mosaic{display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
+.tile{background:var(--surface);border:1px solid var(--hairline);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column}
+.tile img{border-bottom:1px solid var(--hairline);aspect-ratio:16/10;object-fit:cover;object-position:top}
+.tile div{padding:18px 20px 20px}
+.tile h3{margin:0 0 4px;font-size:18px}
+.tile p{margin:0;color:var(--stone);font-size:15px}
+.w3{grid-column:span 3}.w2{grid-column:span 2}
+@media (max-width:860px){.mosaic{grid-template-columns:1fr}.w3,.w2{grid-column:auto}}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
+.chips span{background:var(--fill);padding:6px 14px;border-radius:999px;font-size:14px}
+
+/* downloads */
+.release{background:var(--surface);border:1px solid var(--hairline);border-radius:var(--radius);padding:22px 24px;display:grid;grid-template-columns:1fr auto;gap:8px 24px;align-items:center;margin-bottom:12px}
+.release.current{border:2px solid var(--ink)}
+.release h3{margin:0;font-size:19px}
+.release .tag{display:inline-block;margin-left:8px;font-size:12px;font-weight:700;background:var(--green);color:#063;padding:2px 10px;border-radius:999px;vertical-align:2px}
+.release p{margin:2px 0 0;color:var(--stone);font-size:15px}
+.release code{font-size:12px;word-break:break-all;color:var(--stone)}
+.release .act{grid-row:1/span 3;grid-column:2}
+@media (max-width:640px){.release{grid-template-columns:1fr}.release .act{grid-row:auto;grid-column:auto}}
+.note{font-size:14px;color:var(--stone);margin-top:16px}
+
+/* manual */
+.steps{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+@media (max-width:860px){.steps{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--hairline);border-radius:var(--radius);padding:24px}
+.card h3{margin:0 0 10px;font-size:20px}
+.card ol{margin:0;padding-left:20px}.card li{margin:6px 0}
+.card .warn{margin-top:14px;padding:12px 14px;border-radius:12px;background:var(--fill);font-size:14px}
+kbd{background:var(--fill);border:1px solid var(--hairline);border-radius:6px;padding:1px 6px;font:13px Inter,sans-serif}
+
+footer{border-top:1px solid var(--hairline);padding:36px 0 48px;color:var(--stone);font-size:14px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;align-items:center}
+footer .made{margin-left:auto}
+</style>
+</head>
+<body>
+<header class="bar">
+  <div class="wrap">
+    <a class="brand" href="#"><img src="assets/logo.svg" alt="">Konaro OS</a>
+    <nav aria-label="Seções">
+      <a href="#recursos" class="hide-sm">Recursos</a>
+      <a href="#downloads">Downloads</a>
+      <a href="#instalar">Como instalar</a>
+      <a href="https://github.com/JoaoPlhrs/Konaro">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <img class="hero-logo" src="assets/logo.svg" alt="Logo do Konaro OS">
+      <h1>Konaro OS</h1>
+      <p class="lead">Um Linux bonito e fácil para quem vem do Windows e do macOS. Leve, sem telemetria e pronto para usar.</p>
+      <div class="cta">
+        <a class="btn primary" href="https://gofile.io/d/1wTmBC8V">Baixar o Konaro OS</a>
+        <a class="btn secondary" href="https://github.com/JoaoPlhrs/Konaro">Ver no GitHub</a>
+      </div>
+      <p class="meta">Versão de desenvolvimento 0.1.0-dev8 · 2,8 GB · Debian 13 + KDE Plasma 6 · BIOS, UEFI e Secure Boot</p>
+      <div class="window">
+        <div class="chrome" aria-hidden="true"><i></i><i></i><i></i></div>
+        <img src="assets/32-build6-desktop.png" alt="Área de trabalho do Konaro OS com widgets de relógio, calendário e notas, barra superior e dock" width="1280" height="800">
+      </div>
+    </div>
+  </section>
+
+  <section id="recursos">
+    <div class="wrap">
+      <h2>Tudo no lugar que você espera</h2>
+      <p class="sub">O visual vem do macOS, o jeito de usar vem do Windows, e a base é o Debian, um dos Linux mais estáveis do mundo.</p>
+      <div class="mosaic">
+        <article class="tile w3"><img src="assets/22-iniciar.png" alt="Iniciar em tela cheia com busca e apps" loading="lazy"><div><h3>Iniciar com a tecla Windows</h3><p>Busca, apps fixados e todos os apps em uma tela de vidro.</p></div></article>
+        <article class="tile w3"><img src="assets/13-loja-na-sessao.png" alt="Loja Konaro" loading="lazy"><div><h3>Loja Konaro</h3><p>Milhares de apps do Debian e do Flathub, instalados com um clique.</p></div></article>
+        <article class="tile w2"><img src="assets/23-tela-de-login.png" alt="Tela de login" loading="lazy"><div><h3>Login e bloqueio</h3><p>Hora grande, sua foto e a senha numa pílula de vidro.</p></div></article>
+        <article class="tile w2"><img src="assets/29-central-de-controle.png" alt="Central de controle" loading="lazy"><div><h3>Central de controle</h3><p>Wi-Fi, Bluetooth, modo escuro, energia, som e bateria.</p></div></article>
+        <article class="tile w2"><img src="assets/30-meu-avatar.png" alt="Editor Meu Avatar" loading="lazy"><div><h3>Meu Avatar</h3><p>Crie um personagem com a sua cara para o seu perfil.</p></div></article>
+      </div>
+      <div class="chips" aria-label="Mais recursos">
+        <span>Voltar no tempo antes de cada atualização</span><span>Migrar do Windows</span><span>Abrir .exe com dois cliques</span>
+        <span>Steam e jogos</span><span>Por que está lento?</span><span>Restaurar de fábrica</span><span>Gerenciador de senhas</span>
+        <span>Secure Boot</span><span>Sem telemetria</span><span>Português e inglês</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="downloads">
+    <div class="wrap">
+      <h2>Downloads</h2>
+      <p class="sub">Todas as versões, da mais nova para a mais antiga. Baixe sempre a mais recente. Cada ISO é um arquivo só; confira o código SHA-256 depois de baixar.</p>
+
+      <div class="release current">
+        <div><h3>0.1.0-dev8 · build 8 “Detalhes”<span class="tag">Atual</span></h3>
+        <p>Tela de bloqueio Konaro, fastfetch com logo, animações de janela, vidro mais transparente, som de inicialização, apps “Por que está lento?” e “Restaurar”, .exe com Wine automático e gerenciador de senhas. 2,8 GB · 22/11/2026</p></div>
+        <code>SHA-256 5da6c147720f9e4d2272492014ec0e526f1e12cb4ae67c4d128b7e59e7655206</code>
+        <a class="btn primary act" href="https://gofile.io/d/1wTmBC8V">Baixar</a>
+      </div>
+      <div class="release">
+        <div><h3>0.1.0-dev7 · build 7 “Avatares”</h3><p>Meu Avatar refeito: personagens com volume, cores em amostras e miniaturas de cada parte. 2,7 GB</p></div>
+        <code>SHA-256 3e03e19c9c534cfa1fa591833c99ebff36aeadbb51c49062bbe447a5c39b3974</code>
+        <a class="btn secondary act" href="https://gofile.io/d/O996OXic">Baixar</a>
+      </div>
+      <div class="release">
+        <div><h3>0.1.0-dev6 · build 6 “Leve”</h3><p>Sistema mínimo (só Firefox), Voltar no tempo, repositório próprio, Central de controle, Spotlight, firmware e modos de energia. 2,7 GB</p></div>
+        <code>SHA-256 6f03eddc48efe9e827a46808f67d25f2982aa39d7506d24392ac5b8b25e636f6</code>
+        <a class="btn secondary act" href="https://gofile.io/d/xAf862BJ">Baixar</a>
+      </div>
+      <div class="release">
+        <div><h3>0.1.0-dev1 · build 5 “Mac + Windows”</h3><p>Login estilo macOS, Iniciar em tela cheia, widgets, fontes, Ajuda, Migração do Windows, Loja completa e Secure Boot. 4,1 GB</p></div>
+        <code>SHA-256 f3b7559b656f749a0097962b444a06619799f9de65910c2aea6248b398f97fe9</code>
+        <a class="btn secondary act" href="https://gofile.io/d/IuvlFwTS">Baixar</a>
+      </div>
+      <div class="release">
+        <div><h3>0.1.0-dev1 · build 4 “Boot Konaro”</h3><p>Tela de carregamento com o logo Konaro. 4,0 GB</p></div>
+        <code>SHA-256 02a60c7cde3b21e81eb6a7327ca95e95e18d6ec40f6c26a3057cf1a2f24b113a</code>
+        <a class="btn secondary act" href="https://gofile.io/d/TgNSuXQ7">Baixar</a>
+      </div>
+      <p class="note">As builds 1 a 3 foram internas e não têm download público. Os arquivos ficam hospedados no Gofile; se um link deixar de funcionar, use a versão atual. Histórico completo no <a href="https://github.com/JoaoPlhrs/Konaro/blob/main/CHANGELOG.md">CHANGELOG</a>.</p>
+    </div>
+  </section>
+
+  <section id="instalar">
+    <div class="wrap">
+      <h2>Como instalar</h2>
+      <p class="sub">Comece testando numa máquina virtual ou pelo pendrive sem instalar: o Konaro roda direto do pendrive, e nada muda no seu computador até você clicar em “Instalar”.</p>
+      <div class="steps">
+        <div class="card">
+          <h3>1. Baixe e confira</h3>
+          <ol>
+            <li>Baixe a ISO da versão atual acima.</li>
+            <li>No Windows, abra o PowerShell na pasta do arquivo e rode <kbd>Get-FileHash arquivo.iso</kbd>. No Linux: <kbd>sha256sum arquivo.iso</kbd>.</li>
+            <li>O código precisa ser igual ao da versão. Se for diferente, baixe de novo.</li>
+          </ol>
+        </div>
+        <div class="card">
+          <h3>2. Crie o pendrive com o Rufus</h3>
+          <ol>
+            <li>Use um pendrive de 8 GB ou mais (ele será apagado).</li>
+            <li>Baixe o Rufus na <a href="https://rufus.ie/pt_BR/">página oficial do Rufus</a> e abra.</li>
+            <li>Em “Dispositivo”, escolha o pendrive; em “Seleção de boot”, a ISO do Konaro.</li>
+            <li>Clique em “Iniciar” e, quando perguntar, escolha <strong>gravar no modo Imagem DD</strong>.</li>
+          </ol>
+          <p class="warn">Confira duas vezes o dispositivo escolhido: tudo nele será apagado.</p>
+        </div>
+        <div class="card">
+          <h3>3. Inicie pelo pendrive</h3>
+          <ol>
+            <li>Com o pendrive conectado, reinicie o computador.</li>
+            <li>Abra o menu de boot (geralmente <kbd>F12</kbd>, <kbd>F11</kbd>, <kbd>F8</kbd> ou <kbd>Esc</kbd>) e escolha o pendrive.</li>
+            <li>No menu do Konaro, “Português (Brasil)” inicia sozinho em 5 segundos.</li>
+            <li>O Secure Boot pode ficar ligado.</li>
+          </ol>
+        </div>
+        <div class="card">
+          <h3>4. Instale</h3>
+          <ol>
+            <li>Na área de trabalho, clique em <strong>Instalar o Konaro OS</strong> (primeiro ícone do dock).</li>
+            <li>Siga os passos: idioma, fuso, teclado, disco, fonte e seu usuário.</li>
+            <li>Ao terminar, reinicie e remova o pendrive.</li>
+          </ol>
+          <p class="warn">Para manter o Windows junto, escolha “Instalar ao lado” na etapa do disco e faça backup antes.</p>
+        </div>
+        <div class="card">
+          <h3>Testar numa máquina virtual</h3>
+          <ol>
+            <li>No VirtualBox, crie uma VM: Linux / Debian 64-bit, 4 GB de RAM ou mais, 2 CPUs, disco de 40 GB.</li>
+            <li>Em Tela, use o controlador VMSVGA com 128 MB.</li>
+            <li>Coloque a ISO no drive óptico e inicie.</li>
+          </ol>
+        </div>
+        <div class="card">
+          <h3>Sessão de teste</h3>
+          <ol>
+            <li>Usuário: <kbd>konaro</kbd> · senha: <kbd>live</kbd>.</li>
+            <li>Requisitos: PC de 64 bits, 2 GB de RAM (4 GB recomendado), 25 GB de disco.</li>
+            <li>Dúvidas e sugestões: <a href="https://github.com/JoaoPlhrs/Konaro/issues">abra um tópico no GitHub</a>.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Konaro OS — criado por João Palhares</span>
+    <a href="https://github.com/JoaoPlhrs/Konaro">GitHub</a>
+    <a href="https://github.com/JoaoPlhrs/Konaro/blob/main/docs/OTIMIZACAO.md">Desempenho</a>
+    <span class="made">Feito no Brasil 🇧🇷 · Baseado em Debian e KDE Plasma</span>
+  </div>
+</footer>
+</body>
+</html>
