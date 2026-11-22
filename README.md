@@ -1,8 +1,8 @@
 <p align="center"><img src="docs/assets/banner.png" alt="Konaro OS" width="100%"></p>
 
 <p align="center">
-  <a href="https://gofile.io/d/xAf862BJ"><img src="https://img.shields.io/badge/⬇_Baixar-0.1.0--dev6-1d1d1f?style=for-the-badge" alt="Baixar"></a>
-  <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/Novidades-build_6-3a3a3c?style=for-the-badge" alt="Novidades"></a>
+  <a href="https://gofile.io/d/O996OXic"><img src="https://img.shields.io/badge/⬇_Baixar-0.1.0--dev7-1d1d1f?style=for-the-badge" alt="Baixar"></a>
+  <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/Novidades-build_7-3a3a3c?style=for-the-badge" alt="Novidades"></a>
   <a href="docs/STATUS.md"><img src="https://img.shields.io/badge/Testes-24%2F24-28c840?style=for-the-badge" alt="Testes"></a>
 </p>
 <p align="center">
@@ -25,15 +25,16 @@ Visual inspirado no macOS, jeito de usar familiar para quem vem do Windows.</p>
 
 | Versão | Data | Tamanho | O que mudou | Baixar |
 |---|---|---|---|---|
-| **0.1.0-dev6 · build 6** "Leve" | 2026-11-22 | **2,7 GB** | Sistema mínimo (só Firefox), Voltar no tempo, repositório próprio, Central de controle, Spotlight, firmware, modos de energia, Meu Avatar, papéis de parede novos | [**⬇ Baixar ISO inteira**](https://gofile.io/d/xAf862BJ) |
+| **0.1.0-dev7 · build 7** "Avatares" | 2026-11-22 | 2,7 GB | Meu Avatar refeito: personagens com volume, editor com amostras de cor e miniaturas de cada parte + tudo da build 6 | [**⬇ Baixar ISO inteira**](https://gofile.io/d/O996OXic) |
+| 0.1.0-dev6 · build 6 "Leve" | 2026-11-22 | 2,7 GB | Sistema mínimo, Voltar no tempo, repositório próprio, Central de controle, Spotlight, firmware, energia | substituída pela build 7 |
 | 0.1.0-dev1 · build 5 "Mac + Windows" | 2026-11-22 | 4,1 GB | Login estilo macOS, Iniciar, widgets, fontes, Ajuda, Migração, Loja completa, Secure Boot | substituída pela build 6 |
 | 0.1.0-dev1 · build 4 "Boot Konaro" | 2026-11-22 | 4,0 GB | Nova tela de carregamento com o logo Konaro | substituída pela build 5 |
 | 0.1.0-dev1 · build 3 "Visual elegante" | 2026-11-22 | 4,0 GB | Vidro, botões semáforo, dock animado, widgets, nova Loja e instalador | substituída pela build 4 |
 | 0.1.0-dev1 · build 2 "Ferramentas" | 2026-11-22 | — | Loja, Atualizações, Drivers, Boas-vindas, navegadores, jogos | substituída pela build 3 |
 | 0.1.0-dev1 · build 1 "Fundação" | 2026-11-22 | — | Base Debian 13 + Plasma 6, instalador, identidade | substituída pela build 3 |
 
-Detalhes de cada versão em **[CHANGELOG.md](CHANGELOG.md)** · comparativo de desempenho com o Windows 11: **[docs/OTIMIZACAO.md](docs/OTIMIZACAO.md)**. SHA-256 da build 6:
-`6f03eddc48efe9e827a46808f67d25f2982aa39d7506d24392ac5b8b25e636f6`
+Detalhes de cada versão em **[CHANGELOG.md](CHANGELOG.md)** · comparativo de desempenho com o Windows 11: **[docs/OTIMIZACAO.md](docs/OTIMIZACAO.md)**. SHA-256 da build 7:
+`3e03e19c9c534cfa1fa591833c99ebff36aeadbb51c49062bbe447a5c39b3974`
 
 > ⚠️ **Build de desenvolvimento.** Teste primeiro numa máquina virtual. O que foi e o que
 > não foi testado está em [docs/STATUS.md](docs/STATUS.md).
@@ -66,7 +67,7 @@ Detalhes de cada versão em **[CHANGELOG.md](CHANGELOG.md)** · comparativo de d
 </tr>
 <tr>
 <td><img src="docs/screenshots/29-central-de-controle.png" alt="Central de controle"><br><b>Central de controle</b> — Wi-Fi, Bluetooth, Não perturbe, modo escuro, energia, som e bateria.</td>
-<td><img src="docs/screenshots/30-meu-avatar.png" alt="Meu Avatar"><br><b>Meu Avatar</b> — crie seu rostinho e use como foto de perfil.</td>
+<td><img src="docs/screenshots/30-meu-avatar.png" alt="Meu Avatar"><br><b>Meu Avatar</b> — personagens com volume; cores em amostras e cada parte em miniatura ampliada.</td>
 </tr>
 <tr>
 <td colspan="2"><img src="docs/screenshots/31-papeis-de-parede.png" alt="Papéis de parede"><br><b>Papéis de parede novos</b> — Fluxo, Terminal e Anel.</td>

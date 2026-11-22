@@ -1,14 +1,25 @@
 # Histórico de versões
 
-Todas as versões do Konaro OS, da mais nova para a mais antiga. A ISO mais recente está inteira em [**https://gofile.io/d/xAf862BJ**](https://gofile.io/d/xAf862BJ).
+Todas as versões do Konaro OS, da mais nova para a mais antiga. A ISO mais recente está inteira em [**https://gofile.io/d/O996OXic**](https://gofile.io/d/O996OXic).
 
 Legenda: ✨ novo · 🎨 visual · 🐛 correção · ⚠️ limitação conhecida
 
 ---
 
-## 0.1.0-dev6 · build 6 — "Leve" · 2026-11-22 · **atual**
+## 0.1.0-dev7 · build 7 — "Avatares" · 2026-11-22 · **atual**
 
-ISO **inteira**: [**baixar no Gofile**](https://gofile.io/d/xAf862BJ) · `konaro-os-0.1.0-dev6-amd64.iso` · **2,7 GB** (antes 4,1 GB) · SHA-256
+ISO **inteira**: [**baixar no Gofile**](https://gofile.io/d/O996OXic) · `konaro-os-0.1.0-dev7-amd64.iso` · 2,7 GB · SHA-256
+`3e03e19c9c534cfa1fa591833c99ebff36aeadbb51c49062bbe447a5c39b3974`
+
+- 🎨 **Meu Avatar refeito** (arte original do Konaro): rosto com volume, olhos com íris colorida e brilho, sobrancelhas e cabelos com mechas, 11 penteados, 10 cores de cabelo, 8 tons de pele, 6 cores de olhos, 5 formatos de olhos, 6 expressões, barba, óculos, acessórios de cabeça, sardas/pinta/brincos, roupa e fundo.
+- ✨ Editor novo: **cores em amostras redondas** (dá para ver qual tom de pele está escolhido), **miniaturas ampliadas só da parte que muda** (olhos, boca, cabelo…), visto na opção escolhida e imagens desenhadas em segundo plano — sem travar.
+- 🐛 As miniaturas e a prévia mostravam sempre o avatar padrão (o endereço da imagem chegava codificado).
+- Quem tem a build 6 instalada recebe esta versão pelas **Atualizações do Konaro** (repositório próprio).
+- Testes: `verify-iso` OK · teste de sistema 19/19 · editor renderizado no sistema da imagem.
+
+## 0.1.0-dev6 · build 6 — "Leve" · 2026-11-22
+
+ISO **inteira**: (substituída pela build 7) · `konaro-os-0.1.0-dev6-amd64.iso` · **2,7 GB** (antes 4,1 GB) · SHA-256
 `6f03eddc48efe9e827a46808f67d25f2982aa39d7506d24392ac5b8b25e636f6`
 
 - ✨ **Sistema mínimo**: só o Firefox vem instalado. Brave, Ungoogled Chromium, Steam e o pacote "Jogos e apps do Windows" ficam a um clique na Loja. Saíram KDE Connect, Ajuda do KDE, gerenciador de partições, vim, entre outros. 1.819 pacotes (antes 2.100).
