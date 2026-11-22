@@ -1,0 +1,3 @@
+#!/bin/sh
+# Konaro OS — "neofetch" abre o fastfetch (o neofetch original foi descontinuado).
+exec fastfetch "$@"

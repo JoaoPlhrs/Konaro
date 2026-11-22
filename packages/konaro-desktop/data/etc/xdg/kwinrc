@@ -9,8 +9,28 @@ ButtonsOnRight=
 [Plugins]
 blurEnabled=true
 contrastEnabled=true
+# Animações: janelas "escorrem" para o dock ao minimizar (lâmpada mágica), crescem
+# suavemente ao abrir e se deformam de leve ao serem arrastadas (janelas gelatinosas)
+magiclampEnabled=true
+squashEnabled=false
+scaleEnabled=true
+wobblywindowsEnabled=true
 
 [Effect-blur]
 # Desfoque mais forte atrás do que flutua (barra, dock, menus, popups)
-BlurStrength=12
+BlurStrength=10
 NoiseStrength=0
+
+[Effect-wobblywindows]
+# deformação suave (não exagerada) ao arrastar janelas
+Drag=85
+Stiffness=10
+WobblyLevel=1
+MoveFactor=10
+
+[Effect-magiclamp]
+AnimationDuration=300
+
+[Compositing]
+# animações um pouco mais lentas e elegantes que o padrão
+AnimationDurationFactor=1.15

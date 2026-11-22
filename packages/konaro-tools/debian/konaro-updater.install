@@ -10,3 +10,9 @@ data/systemd/konaro-snapshot.timer usr/lib/systemd/system/
 data/systemd/konaro-snapshot-update.service usr/lib/systemd/system/
 data/systemd/konaro-snapshot-first-boot.service usr/lib/systemd/system/
 data/applications/konaro-timemachine.desktop usr/share/applications/
+bin/konaro-diagnose usr/bin/
+bin/konaro-restore usr/bin/
+data/applications/konaro-diagnose.desktop usr/share/applications/
+data/applications/konaro-restore.desktop usr/share/applications/
+data/snapshot/konaro-factory-restore usr/lib/konaro/
+data/snapshot/org.konaro.factory-restore.policy usr/share/polkit-1/actions/

@@ -4,3 +4,5 @@ data/icons/konaro-welcome.svg usr/share/icons/hicolor/scalable/apps/
 data/apt/konaro-archive-keyring.gpg usr/share/keyrings/
 data/apt/konaro.sources etc/apt/sources.list.d/
 bin/konaro-theme usr/bin/
+data/exe/konaro-open-exe usr/lib/konaro/
+data/applications/konaro-exe.desktop usr/share/applications/

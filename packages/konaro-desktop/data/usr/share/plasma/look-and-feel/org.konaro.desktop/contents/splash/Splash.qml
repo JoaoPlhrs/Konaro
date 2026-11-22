@@ -1,15 +1,17 @@
 /*
  * Konaro OS — tela de boas-vindas exibida enquanto a sessão Plasma carrega.
  *
- * Mostra rapidamente "olá" em vários idiomas e termina em "Welcome to Konaro".
+ * Enquanto o Plasma carrega, mostra "olá" em vários idiomas, em sequência contínua.
+ * "Welcome to Konaro" só aparece quando a área de trabalho termina de carregar
+ * (estágio 5 do ksplash), então os "olás" ocupam quase todo o tempo.
  * Por ser o splash do Plasma (ksplashqml), ela:
  *   - NÃO faz parte do boot nem da tela de login (não pode travar a inicialização);
  *   - fecha sozinha quando o Plasma termina de carregar, mesmo no meio da sequência;
  *   - pode ser desativada em Configurações > Aparência > Tela de abertura.
  * Se as animações estiverem desativadas no sistema, mostra apenas a mensagem final.
  *
- * A LISTA DE IDIOMAS É PROVISÓRIA (docs/PENDING.md). Ela usa apenas escritas
- * cobertas pelas fontes da imagem (latina, grega, cirílica).
+ * Os idiomas usam escritas cobertas pelas fontes da imagem (Noto: latina, grega,
+ * cirílica, árabe, hebraica, devanágari e tailandesa).
  *
  * Licença: pendente (ver docs/LICENSES.md).
  */
@@ -25,21 +27,26 @@ Rectangle {
     property int stage
 
     readonly property var greetings: [
-        "Olá", "Hello", "Hola", "Bonjour", "Ciao", "Hallo",
-        "Привет", "Γεια σου", "Merhaba", "Hej", "Cześć"
+        "Olá", "Hello", "Hola", "Bonjour", "Ciao", "Hallo", "Привет", "Γεια σου",
+        "مرحبا", "שלום", "नमस्ते", "สวัสดี", "Merhaba", "Hej", "Cześć", "Ahoj",
+        "Szia", "Salut", "Hei", "Jambo", "Sawubona", "Halo", "Xin chào", "Kamusta"
     ]
+    // a área de trabalho está pronta: hora do "Welcome to Konaro"
+    readonly property bool ready: stage >= 5
     readonly property string finalMessage: "Welcome to Konaro"
     readonly property bool animationsEnabled: Kirigami.Units.longDuration > 1
 
     property int index: -1
 
     function advance() {
-        if (index < greetings.length) {
-            index += 1;
-        } else {
+        if (ready) {
+            index = greetings.length;   // mensagem final
             ticker.stop();
+        } else {
+            index = (index + 1) % greetings.length;   // repete os olás até carregar
         }
     }
+    onReadyChanged: if (ready) advance()
 
     Component.onCompleted: {
         if (animationsEnabled) {
@@ -51,7 +58,7 @@ Rectangle {
 
     Timer {
         id: ticker
-        interval: 420
+        interval: 520
         repeat: true
         triggeredOnStart: true
         onTriggered: root.advance()

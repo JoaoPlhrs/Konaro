@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=Why is it slow?
+Name[pt_BR]=Por que está lento?
+Comment=Find out what is slowing the computer down
+Comment[pt_BR]=Descubra o que está deixando o computador lento
+Exec=konaro-diagnose
+Icon=speedometer
+Categories=Qt;KDE;System;
+Keywords=slow;performance;lento;desempenho;travando;memória;

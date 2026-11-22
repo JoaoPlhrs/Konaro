@@ -1,0 +1,11 @@
+#!/bin/sh
+# Konaro OS — volta o sistema ao ponto "Sistema recém-instalado" (Timeshift, Btrfs).
+# A pasta pessoal (/home, subvolume @home) não faz parte dos pontos: arquivos ficam.
+# Chamado pelo app "Restaurar o Konaro" via pkexec; termina pedindo reinício.
+set -eu
+[ "$(id -u)" -eq 0 ] || { echo "precisa ser administrador"; exit 1; }
+[ -f /etc/timeshift/timeshift.json ] || { echo "Voltar no tempo não está configurado (o sistema não foi instalado em Btrfs)."; exit 2; }
+SNAP="$(timeshift --list --scripted 2>/dev/null | awk '/Sistema recém-instalado/ {for (i=1;i<=NF;i++) if ($i ~ /^[0-9]{4}-[0-9]{2}-[0-9]{2}_[0-9]{2}-[0-9]{2}-[0-9]{2}$/) {print $i; exit}}')"
+[ -n "$SNAP" ] || { echo "O ponto de restauração de fábrica não foi encontrado."; exit 3; }
+echo "Restaurando $SNAP"
+timeshift --restore --snapshot "$SNAP" --scripted --yes

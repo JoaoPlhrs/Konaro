@@ -35,13 +35,30 @@ if (imeLanguages.indexOf(languageId) != -1) {
     top.addWidget("org.kde.plasma.kimpanel");
 }
 
-top.addWidget("org.kde.plasma.systemtray");
+// Bandeja do sistema enxuta: Wi-Fi, som, brilho, Bluetooth e bateria ficam na
+// Central de controle; na barra aparecem só avisos que exigem atenção.
+var tray = top.addWidget("org.kde.plasma.systemtray");
+var trayIds = tray.readConfig("SystrayContainmentId");
+if (trayIds) {
+    var trayContainment = desktopById(trayIds);
+    if (trayContainment) {
+        trayContainment.currentConfigGroup = ["General"];
+        trayContainment.writeConfig("hiddenItems", ["org.kde.plasma.networkmanagement", "org.kde.plasma.volume",
+            "org.kde.plasma.brightness", "org.kde.plasma.bluetooth", "org.kde.plasma.battery",
+            "org.kde.plasma.keyboardlayout", "org.kde.plasma.keyboardindicator", "org.kde.plasma.clipboard",
+            "org.kde.plasma.manage-inputmethod", "org.kde.kdeconnect", "org.kde.plasma.printmanager"]);
+        trayContainment.writeConfig("iconSpacing", "2");
+    }
+}
 // Central de controle (Wi-Fi, Bluetooth, Não perturbe, modo escuro, energia, tela, som, bateria)
 top.addWidget("org.konaro.controlcenter");
 var clock = top.addWidget("org.kde.plasma.digitalclock");
 clock.currentConfigGroup = ["Appearance"];
 clock.writeConfig("showDate", "true");
 clock.writeConfig("dateDisplayFormat", "1"); // 1 = BesideTime
+// como no macOS: "dom. 22 de nov.  16:09"
+clock.writeConfig("dateFormat", "custom");
+clock.writeConfig("customDateFormat", "ddd d 'de' MMM");
 
 // ----------------------------------------------------------------- dock inferior
 var dock = new Panel;

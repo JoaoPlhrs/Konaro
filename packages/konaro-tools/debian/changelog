@@ -1,3 +1,12 @@
+konaro-tools (0.1.0~dev8) trixie; urgency=medium
+
+  * fastfetch com logo Konaro, créditos, barra superior enxuta, vidro, animações,
+    som de inicialização, olás no carregamento, .exe com Wine automático, apps
+    Por que está lento? e Restaurar, ícones minimalistas, KeePassXC e tela de
+    bloqueio Konaro de verdade.
+
+ -- Konaro OS Project <maintainers@konaro.invalid>  Sun, 22 Nov 2026 21:54:28 +0000
+
 konaro-tools (0.1.0~dev7) trixie; urgency=medium
 
   * Meu Avatar refeito: personagens novos com volume, editor com amostras de cor,

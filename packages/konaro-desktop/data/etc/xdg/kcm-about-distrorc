@@ -3,5 +3,5 @@
 # scripts dependem dele para identificar a base do sistema.
 [General]
 LogoPath=/usr/share/konaro/konaro-logo.svg
-Variant=Konaro OS 0.1 (desenvolvimento)
-Website=https://www.debian.org
+Variant=Konaro OS 0.1 (desenvolvimento) — criado por João Palhares · Feito no Brasil
+Website=https://github.com/JoaoPlhrs/Konaro

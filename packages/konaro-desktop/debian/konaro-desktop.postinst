@@ -1,0 +1,14 @@
+#!/bin/sh
+# Konaro OS — a tela de bloqueio do Plasma passa a usar a interface do Konaro.
+# Só o arquivo de interface é trocado (dpkg-divert guarda o original do KDE como
+# .breeze); a autenticação continua sendo a do próprio bloqueador (PAM).
+set -e
+UI=/usr/share/plasma/shells/org.kde.plasma.desktop/contents/lockscreen/LockScreenUi.qml
+if [ "$1" = "configure" ]; then
+	dpkg-divert --package konaro-desktop --add --rename --divert "$UI.breeze" "$UI" >/dev/null
+	if [ -d "$(dirname "$UI")" ]; then
+		ln -sf /usr/share/konaro/lockscreen/LockScreenUi.qml "$UI"
+	fi
+fi
+#DEBHELPER#
+exit 0

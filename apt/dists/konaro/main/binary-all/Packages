@@ -1,18 +1,18 @@
 Package: konaro-common
 Architecture: all
-Version: 0.1.0~dev7
+Version: 0.1.0~dev8
 Priority: optional
 Section: admin
 Source: konaro-tools
 Maintainer: Konaro OS Project <maintainers@konaro.invalid>
-Installed-Size: 318
-Depends: python3, python3-pyqt6, python3-pyqt6.qtquick, python3-pyqt6.qtqml, qml6-module-qtquick, qml6-module-qtquick-controls, qml6-module-qtquick-layouts, qml6-module-qtquick-templates, qml6-module-qtquick-window, qml6-module-qtqml-workerscript, qml6-module-org-kde-kirigami, fonts-inter, python3-gi, gir1.2-packagekitglib-1.0, packagekit, flatpak, libkf6config-bin, kde-cli-tools, qdbus-qt6
-Filename: pool/main/konaro-common_0.1.0~dev7_all.deb
-Size: 65728
-MD5sum: 30dd0ecb502cee9af6b4449ae3f34400
-SHA1: 567f1fd4eb350270e8f44c7e104b0037733d2f7d
-SHA256: 91f509ebc123e6b1dd0481f256a330f4f3ca1b2c57047321e94e01812c906e78
-SHA512: 76a5b4c39ff07e7cbd4f6cd9df574b5a4a089fa1f3fb5e9ac07d8f4c58ceb1c680063843e731e35ca426985bae24e56e12c30ca8c67db9161a1f620678c46304
+Installed-Size: 356
+Depends: python3, python3-pyqt6, python3-pyqt6.qtquick, python3-pyqt6.qtqml, qml6-module-qtquick, qml6-module-qtquick-controls, qml6-module-qtquick-layouts, qml6-module-qtquick-templates, qml6-module-qtquick-window, qml6-module-qtqml-workerscript, qml6-module-org-kde-kirigami, fonts-inter, python3-gi, gir1.2-packagekitglib-1.0, packagekit, flatpak, libkf6config-bin, kde-cli-tools, qdbus-qt6, kdialog, packagekit-tools
+Filename: pool/main/konaro-common_0.1.0~dev8_all.deb
+Size: 72224
+MD5sum: 91df4b8c7f8b90cfd0691ae52b6ec2a1
+SHA1: ebe2b720aee4df4d1588f5be22931ce9eda764d8
+SHA256: 73e07f42e2c097484d40ff5bd0c4898152b842d04af50abf68cb05007f49bddd
+SHA512: c516320866754bc692f44a51c41a4683cebcc3d8b3c2f8aec6297c6b1f52775580e27739890d752e5cbfaec2cec135065d7ebccfa7492b27ae871ea324528814
 Description: Konaro OS - shared library for the graphical system tools
  Python library and QML design system shared by the Konaro Store, Updates,
  Drivers and Welcome tools. Package operations go through PackageKit (Debian packages, with
@@ -20,19 +20,19 @@ Description: Konaro OS - shared library for the graphical system tools
 
 Package: konaro-desktop
 Architecture: all
-Version: 0.1.0~dev7
+Version: 0.1.0~dev8
 Priority: optional
 Section: x11
 Maintainer: Konaro OS Project <maintainers@konaro.invalid>
-Installed-Size: 24587
+Installed-Size: 24915
 Depends: plasma-workspace (>= 4:6.3), plasma-desktop (>= 4:6.3), kde-style-breeze, kwin-style-breeze, breeze-cursor-theme, kf6-breeze-icon-theme, fonts-inter
 Recommends: sddm, sddm-theme-breeze, plymouth, qml6-module-qtquick-effects, qml6-module-qtquick-controls
-Filename: pool/main/konaro-desktop_0.1.0~dev7_all.deb
-Size: 24590768
-MD5sum: 93e3e7f38f1a95cfdbdcd232b555d9ea
-SHA1: 9638f24183a81811a1e6865b085357c9a43c7020
-SHA256: a822cef187c04c038788a01abfcca8d1a901b610618f508bafaad707631bbac1
-SHA512: 26f5bdb2dc9199a3bcfce0969ac54364b30e18fd7be1681ff6b4162a3e66fc72467baf652c7c7c046afa8d181a924a913eac1763cb1027fed0ac223b4393e0ba
+Filename: pool/main/konaro-desktop_0.1.0~dev8_all.deb
+Size: 24758384
+MD5sum: 13e77bab69d74af7606313b6b90f9432
+SHA1: 5561d665de4a313f76a7b69ccb7435e111093f08
+SHA256: dbe8203d58cd5746193185f945e6bfd0705696326bd548459107cf28ff19b353
+SHA512: 3fadef0227d2fabc1096e023d14d0472ef4277fb5335ea7fd7ce9d3e8bfb5846d80ca32b96b67f8b513a272b3c8a1fa98eb1b06fc8ded9133f058db12a33d47a
 Description: Konaro OS desktop identity for KDE Plasma
  Default look and feel of Konaro OS on top of KDE Plasma 6:
   - global themes "Konaro Light" and "Konaro Dark" (neutral palette);
@@ -46,20 +46,20 @@ Description: Konaro OS desktop identity for KDE Plasma
 
 Package: konaro-drivers
 Architecture: all
-Version: 0.1.0~dev7
+Version: 0.1.0~dev8
 Priority: optional
 Section: admin
 Source: konaro-tools
 Maintainer: Konaro OS Project <maintainers@konaro.invalid>
 Installed-Size: 17
-Depends: konaro-common (= 0.1.0~dev7), pciutils, isenkram-cli
+Depends: konaro-common (= 0.1.0~dev8), pciutils, isenkram-cli
 Recommends: nvidia-detect
-Filename: pool/main/konaro-drivers_0.1.0~dev7_all.deb
-Size: 2732
-MD5sum: 35afa1258c0aa7ddc960d0d1b5653c03
-SHA1: 3fc458805a13da3b61e1cc282c8363d25873575f
-SHA256: 5168b349a33f415aa444a0059f45d1dcc3975d79e5e947aabdfa33e00d2a40be
-SHA512: d9a58e9d49df9cea577843b7909d468baf599dd0680b7e86e59195a4a9f0fabfa8a5795f74e7424c08f0293002947da8028cc84c0dc0866f87fcd5085b233e9a
+Filename: pool/main/konaro-drivers_0.1.0~dev8_all.deb
+Size: 2912
+MD5sum: 5d6a52b788965b75530d083aabab2f61
+SHA1: 546f6231c79668e0be32504a5308e432d0fdfcbe
+SHA256: e48a17ad6c28ef0f6185746fc027bc379706cf0578c8bc2c3f5d2a5b7d37529d
+SHA512: 4f0fa97af8ab16373ee4b16bf8b5bfb4a16271fdf45ffe4fb6b5c9956f847b51c3134271c93ee3c4e73bf18acc1f34761557b87e8dc44dc0047028491f249c96
 Description: Konaro OS - driver manager
  Detects hardware and suggests drivers and firmware (NVIDIA proprietary
  driver, packages suggested by isenkram), asking permission before
@@ -67,7 +67,7 @@ Description: Konaro OS - driver manager
 
 Package: konaro-gaming
 Architecture: all
-Version: 0.1.0~dev7
+Version: 0.1.0~dev8
 Priority: optional
 Section: admin
 Source: konaro-tools
@@ -75,12 +75,12 @@ Maintainer: Konaro OS Project <maintainers@konaro.invalid>
 Installed-Size: 10
 Depends: wine, wine64, fonts-wine, gamemode, mangohud, mesa-vulkan-drivers, vulkan-tools, steam-devices
 Recommends: winetricks, lutris
-Filename: pool/main/konaro-gaming_0.1.0~dev7_all.deb
-Size: 2232
-MD5sum: 725a2e13338bc693d7bfba8bd82a242e
-SHA1: 3ef81977c1ecf70557f9591590bc613f936f68a5
-SHA256: 55c66032f57c2d48da35374eb99bcc04e4a0ad629dcba80e6be8eeb84f23872f
-SHA512: 7785137f1a1bbdb51a8efb43175040c04c25bdb51c209818a14b60b690ab720b4a098af34d9dfd130208b71653b6e9db71042a74404a85fd5448c4ccc7e44990
+Filename: pool/main/konaro-gaming_0.1.0~dev8_all.deb
+Size: 2408
+MD5sum: 1aacb7354161cfffe7a31ec398b53f18
+SHA1: 8166cb84a798b6b178c578d367f7fbb729fd0c9a
+SHA256: d40d4c838068d5ca20b44cef89779e771c53dc6d4f004c43208338224ed8e4f3
+SHA512: 872665fd288dab40cc858aa417fbbde56769d534183d88500068b3bbe5e22ebbd2088a7eb7eba7f6f87a4d6fecacc0cfddd7c495a57d5271fb456bbe7c23b000
 Description: Konaro OS - games and Windows apps
  Wine (double-click .exe files), Winetricks, GameMode, MangoHud, Vulkan
  drivers, Steam controller rules and Lutris. The live image also enables
@@ -88,18 +88,18 @@ Description: Konaro OS - games and Windows apps
 
 Package: konaro-installer
 Architecture: all
-Version: 0.1.0~dev7
+Version: 0.1.0~dev8
 Priority: optional
 Section: admin
 Maintainer: Konaro OS Project <maintainers@konaro.invalid>
 Installed-Size: 80
 Depends: calamares (>= 3.3), calamares-settings-debian (>= 13), konaro-common, konaro-store
-Filename: pool/main/konaro-installer_0.1.0~dev7_all.deb
-Size: 39192
-MD5sum: fd7998841918b13b2d80d056f7685885
-SHA1: ccc69c8631d920d70f8fdc833e2702b6d983c332
-SHA256: 00732236f5b961cf5d0228e7c21d894890253068ffcba527e25bc4728412e43d
-SHA512: bef494a391954a85e50bb4568e95cfeac5d049276b5b2de4e849a2be0b980ecc798e62e0cb0468ee4c48c79d8c562f326d428ffcf199a30ea4b8a12273a0cffc
+Filename: pool/main/konaro-installer_0.1.0~dev8_all.deb
+Size: 39384
+MD5sum: 64aae62ab064cc3c72e88a48022c504a
+SHA1: ea05bcc33960be2db1d082a7202cc6f31737d3e2
+SHA256: 81aa34d7ec06aca57f1642c1179cb5258cdee7ebaecaa4a2044d28fa32326b36
+SHA512: b6dc6d238e73b1fd58109b4e1037e6e8bf346c90bf4cc3507a6969ffd599c6c4c15914c7ebb7ab297ced707dcf8b5bef929e2aa69199c181a6e4f1bdebea24ec
 Description: Konaro OS branding for the Calamares installer (live session only)
  Visual identity and launcher for installing Konaro OS from the live
  session. The installation modules and flow are the ones maintained by
@@ -110,38 +110,38 @@ Description: Konaro OS branding for the Calamares installer (live session only)
 
 Package: konaro-store
 Architecture: all
-Version: 0.1.0~dev7
+Version: 0.1.0~dev8
 Priority: optional
 Section: admin
 Source: konaro-tools
 Maintainer: Konaro OS Project <maintainers@konaro.invalid>
 Installed-Size: 416
-Depends: konaro-common (= 0.1.0~dev7), gir1.2-appstream-1.0, appstream
-Filename: pool/main/konaro-store_0.1.0~dev7_all.deb
-Size: 367424
-MD5sum: 07e2ae03bb06c5030428e6a84e7ee327
-SHA1: 853d2cdd25b66e3323fd39f23a9b1047ce93a1a2
-SHA256: 4862c1a88bd98a6295690afe815723215b41bd8eab18e2eeb3d5cb24b7c7242f
-SHA512: 292b75b40f5a6e1b3bdec325550daeada19968b60e017987a8f4476555f8455a45f28ebbbf1290b82973da2b150d3ec1148849e2fca0876e869b790314ff45d3
+Depends: konaro-common (= 0.1.0~dev8), gir1.2-appstream-1.0, appstream
+Filename: pool/main/konaro-store_0.1.0~dev8_all.deb
+Size: 367620
+MD5sum: c889af0d905a260d8fd94eb8b0e0badf
+SHA1: 088a729d0fe4702d31eceae6f0597941d666cc70
+SHA256: acf728292b4bf2129e245e409b0c30fe3d5024b6f6fb10a8dad1ceb925ec3a69
+SHA512: 1e2ebbe00fcdb9412602fb0c57f1d91e82ff771c9eccef2907a3c954af6ed086e8240817da7efe7369e870b1ab0e3db885a239cf711bc8d920c12093bd76f39c
 Description: Konaro OS - app store
  Curated catalog of apps and games with categories, search, details
  (source, format and Flatpak permissions), install and removal.
 
 Package: konaro-updater
 Architecture: all
-Version: 0.1.0~dev7
+Version: 0.1.0~dev8
 Priority: optional
 Section: admin
 Source: konaro-tools
 Maintainer: Konaro OS Project <maintainers@konaro.invalid>
-Installed-Size: 39
-Depends: init-system-helpers (>= 1.52), konaro-common (= 0.1.0~dev7), libnotify-bin, timeshift, btrfs-progs
-Filename: pool/main/konaro-updater_0.1.0~dev7_all.deb
-Size: 5240
-MD5sum: d23ee9845899d61c572461dd0b8b361d
-SHA1: b8136ddf73df28ec61e7f278ef244a933ff64e10
-SHA256: 38dac798fb901b8eb9a733782926e92cf6a9a3aca00b663c61f15c4ec6c24c22
-SHA512: bbd87a05cc045dc41b8331a35d70000d6c861a3dc8d781f96cc07ac45338143a7de54dacf64bc94587ca123dde157233c679cf667218d00abc58f20d8b80b760
+Installed-Size: 46
+Depends: init-system-helpers (>= 1.52), konaro-common (= 0.1.0~dev8), libnotify-bin, timeshift, btrfs-progs
+Filename: pool/main/konaro-updater_0.1.0~dev8_all.deb
+Size: 6592
+MD5sum: fba26c19516bf12532a7da5763fe3c9a
+SHA1: fb9ecf41e45ebd14a2d87040ed23c5f89f8ac1ee
+SHA256: ea0b6f8dfc8a310841a39a810845b0cd50aa67494ce46a9c030ac8249d7b2273
+SHA512: f782e58f4d4c5338213d71fcdc55082950814d0f88de5dd90ec88b58d290fcf27beb853d85ef7a7804648db481b62c851f8868785ef0a6e16b61b37840a44f02
 Description: Konaro OS - update notifier and installer
  Shows available updates grouped as security, system, Konaro and Flatpak,
  and installs them only when the user asks. A user systemd timer checks
@@ -149,20 +149,20 @@ Description: Konaro OS - update notifier and installer
 
 Package: konaro-welcome
 Architecture: all
-Version: 0.1.0~dev7
+Version: 0.1.0~dev8
 Priority: optional
 Section: admin
 Source: konaro-tools
 Maintainer: Konaro OS Project <maintainers@konaro.invalid>
 Installed-Size: 23
-Depends: konaro-common (= 0.1.0~dev7), network-manager, udisks2, xdg-user-dirs, python3-pyqt6.qtsvg
+Depends: konaro-common (= 0.1.0~dev8), network-manager, udisks2, xdg-user-dirs, python3-pyqt6.qtsvg
 Recommends: konaro-store, konaro-updater, konaro-drivers, plasma-widgets-addons
-Filename: pool/main/konaro-welcome_0.1.0~dev7_all.deb
-Size: 3356
-MD5sum: b63d02fa37e218503fb480f5153354db
-SHA1: acbfeb60d230441c31ae9b7d39856f8c5ec9d5dc
-SHA256: c2c60280fb6290e6f6f60b9fe74f7b200f2384a4ab69fb7c4d790d0300de785e
-SHA512: b1b06eb850acf5d247558c5af9a5cfa016dc9b2386f1b0b5a85dea74e957a86ac249d2db5c5768018b9cc7ac7502400a86e3fc6c00c654d2c23ae69b5e6c05a4
+Filename: pool/main/konaro-welcome_0.1.0~dev8_all.deb
+Size: 3540
+MD5sum: 1220900655d67b19017098a8781616c6
+SHA1: e874485c6cc67418ceb6460f30d0a25058684193
+SHA256: 9b49261483bc3ecb4887564ec212fdb165d5a3b2aa75980604984d86339ad406
+SHA512: a55f612ccc6b19a24e86f70d3a6f0ba387b29e228f5d92fe4fcb7fdd6243aeab30671d2de97100b17064c322da37a972d4f02562d937d1ed082ee8b5dfc79b77
 Description: Konaro OS - first-run welcome and help
  Guided first login: language, light/dark appearance, network, privacy,
  updates, drivers, games and tips. In the live session it also offers

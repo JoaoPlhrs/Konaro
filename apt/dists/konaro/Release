@@ -1,32 +1,32 @@
 Architectures: amd64 all
 Codename: konaro
 Components: main
-Date: Sun, 22 Nov 2026 20:32:22 +0000
+Date: Sun, 22 Nov 2026 21:56:05 +0000
 Description: Konaro OS packages
 Label: Konaro OS
 Origin: Konaro OS
 Suite: konaro
 MD5Sum:
- 963918bc32c0319116d2d7456a219b8a              178 Release
- 177a7600f828d0b57a70dfb4b4926c24             8067 main/binary-all/Packages
- 8d09bb7cb8490fb2fe4532d2ea60d26a             3450 main/binary-all/Packages.gz
- 177a7600f828d0b57a70dfb4b4926c24             8067 main/binary-amd64/Packages
- 8d09bb7cb8490fb2fe4532d2ea60d26a             3450 main/binary-amd64/Packages.gz
+ 5be470ac0ba8a407d41e0528e4ea7cd6              178 Release
+ 1823a8d92bf2f3c2519f5f630bcb8da0             8094 main/binary-all/Packages
+ 4721ae53e63002b8a320b2ccc6bf50f8             3456 main/binary-all/Packages.gz
+ 1823a8d92bf2f3c2519f5f630bcb8da0             8094 main/binary-amd64/Packages
+ 4721ae53e63002b8a320b2ccc6bf50f8             3456 main/binary-amd64/Packages.gz
 SHA1:
- 942e580ad61e9c3765b1864a4d08877c5b9e4ab1              178 Release
- ebb64b6d47d15d9262366bdc4cac3faf534edbba             8067 main/binary-all/Packages
- 6f43e6b9fee4ac3a0ed131082fc9a4485f8f4e71             3450 main/binary-all/Packages.gz
- ebb64b6d47d15d9262366bdc4cac3faf534edbba             8067 main/binary-amd64/Packages
- 6f43e6b9fee4ac3a0ed131082fc9a4485f8f4e71             3450 main/binary-amd64/Packages.gz
+ cfe476f68391e35502944b7ddc05020f2e9c7841              178 Release
+ 80d107a6d06783eca852486e7f97c748d8b95755             8094 main/binary-all/Packages
+ eedc1724d9546eb348baa96fe31ca3dbba9f5738             3456 main/binary-all/Packages.gz
+ 80d107a6d06783eca852486e7f97c748d8b95755             8094 main/binary-amd64/Packages
+ eedc1724d9546eb348baa96fe31ca3dbba9f5738             3456 main/binary-amd64/Packages.gz
 SHA256:
- 02075a45c94490059a69f57dafb84d1784eb07feb8c6655f8802f8769813230e              178 Release
- 1c0e0956eb3d0226fcb939ae0238f5097123d232732bac089c42aca65a8409b2             8067 main/binary-all/Packages
- e198806ae1db8f2cd2b4095793d5055430b051cf4111bb382b0f631f3f48b528             3450 main/binary-all/Packages.gz
- 1c0e0956eb3d0226fcb939ae0238f5097123d232732bac089c42aca65a8409b2             8067 main/binary-amd64/Packages
- e198806ae1db8f2cd2b4095793d5055430b051cf4111bb382b0f631f3f48b528             3450 main/binary-amd64/Packages.gz
+ 25d40a64d96838c7a8a7d9eaa50f9ee2004cfd4a41828d7203c07bba66daf128              178 Release
+ bfd9fa7cadb1e724ce62087b8b62332811f43451e42e02309ddc8089c69520aa             8094 main/binary-all/Packages
+ f324b99fa3218e54a637a7fb1ce32f1a6d196d561799d68d38b49f6e2a1f3b4a             3456 main/binary-all/Packages.gz
+ bfd9fa7cadb1e724ce62087b8b62332811f43451e42e02309ddc8089c69520aa             8094 main/binary-amd64/Packages
+ f324b99fa3218e54a637a7fb1ce32f1a6d196d561799d68d38b49f6e2a1f3b4a             3456 main/binary-amd64/Packages.gz
 SHA512:
- eed1d37874e0148ac402b6a73897bccbe4b6936f91162ca1fb0d30afc3f74b95672f66ba4cf2d885d9a163e1d02a1d834c2a2858018f9d79520ff8fbb08432a1              178 Release
- 82834547c36e2a1a8cafff981d9194f5b7510492f31291832fcb521add55d4bc473ccaa99e5060e2500f5f3f21f0870b7363c1ceca3795989907956bc5e460fd             8067 main/binary-all/Packages
- 99812f77625028bd24fe73cf526b6ad5e9ea73acbc0a8c4f998e3bce611c0acd970d0bd484890e690234002830d5438412e357d56a59ba7a8601d7abf4fc1d99             3450 main/binary-all/Packages.gz
- 82834547c36e2a1a8cafff981d9194f5b7510492f31291832fcb521add55d4bc473ccaa99e5060e2500f5f3f21f0870b7363c1ceca3795989907956bc5e460fd             8067 main/binary-amd64/Packages
- 99812f77625028bd24fe73cf526b6ad5e9ea73acbc0a8c4f998e3bce611c0acd970d0bd484890e690234002830d5438412e357d56a59ba7a8601d7abf4fc1d99             3450 main/binary-amd64/Packages.gz
+ beaeca9ba0fda8ac9ad5497b0e39ab29fbc0e39b5daeca86277fd4ee3fed9ea19404a93b2190c3cce81a98c1bde03d1f6e846fb4f8c31796821d8662dfd83fed              178 Release
+ 26baaabe56d218d22e56f9863d9e6904e24e2cba287b9b5af83a8ef9586f544a6dc9a27d445e2e08753ed8186dc630320e29857de0b9997ff9364f0c2cb012b9             8094 main/binary-all/Packages
+ 5b5b3f4a841cad3dfe18c702069ac9aa4016843c2b89669cf116631f19afcf66e4770e9e824cdc3f97f751e1967e442d7f10ee6cd8c6adaea2dfdf53c8860279             3456 main/binary-all/Packages.gz
+ 26baaabe56d218d22e56f9863d9e6904e24e2cba287b9b5af83a8ef9586f544a6dc9a27d445e2e08753ed8186dc630320e29857de0b9997ff9364f0c2cb012b9             8094 main/binary-amd64/Packages
+ 5b5b3f4a841cad3dfe18c702069ac9aa4016843c2b89669cf116631f19afcf66e4770e9e824cdc3f97f751e1967e442d7f10ee6cd8c6adaea2dfdf53c8860279             3456 main/binary-amd64/Packages.gz

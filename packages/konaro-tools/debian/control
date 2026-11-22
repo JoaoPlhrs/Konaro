@@ -13,7 +13,7 @@ Depends: ${misc:Depends}, python3, python3-pyqt6, python3-pyqt6.qtquick, python3
          qml6-module-qtquick-templates, qml6-module-qtquick-window, qml6-module-qtqml-workerscript,
          qml6-module-org-kde-kirigami, fonts-inter, python3-gi,
          gir1.2-packagekitglib-1.0, packagekit, flatpak,
-         libkf6config-bin, kde-cli-tools, qdbus-qt6
+         libkf6config-bin, kde-cli-tools, qdbus-qt6, kdialog, packagekit-tools
 Description: Konaro OS - shared library for the graphical system tools
  Python library and QML design system shared by the Konaro Store, Updates,
  Drivers and Welcome tools. Package operations go through PackageKit (Debian packages, with

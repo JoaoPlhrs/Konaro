@@ -1,0 +1,26 @@
+#!/bin/sh
+# Konaro OS — abre programas do Windows (.exe/.msi) com dois cliques.
+# Se o Wine ainda não estiver instalado, oferece instalar o pacote "Jogos e apps do
+# Windows" (konaro-gaming) na hora e, em seguida, abre o programa.
+FILE="$1"
+[ -n "$FILE" ] || exit 1
+
+if ! command -v wine >/dev/null 2>&1; then
+	kdialog --title "Programa do Windows" --yes-label "Instalar e abrir" --no-label "Cancelar" \
+		--yesno "Para abrir programas do Windows, o Konaro precisa do Wine.\n\nInstalar agora o pacote \"Jogos e apps do Windows\"? Leva alguns minutos e precisa de internet." \
+		|| exit 0
+	kdialog --title "Programa do Windows" --passivepopup "Instalando o suporte a programas do Windows… o programa abre sozinho ao terminar." 10 &
+	if ! pkcon install -y konaro-gaming >/tmp/konaro-open-exe.log 2>&1; then
+		kdialog --title "Programa do Windows" --error "Não foi possível instalar o Wine. Verifique a internet e tente de novo pela Loja Konaro (Apps do Windows)."
+		exit 1
+	fi
+fi
+
+# primeira vez: o Wine prepara a "pasta C:" do usuário (pode levar um minuto)
+if [ ! -d "${WINEPREFIX:-$HOME/.wine}" ]; then
+	kdialog --title "Programa do Windows" --passivepopup "Preparando o Wine pela primeira vez…" 8 &
+fi
+case "$FILE" in
+	*.msi|*.MSI) exec wine msiexec /i "$FILE" ;;
+	*) exec wine start /unix "$FILE" ;;
+esac

@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=Restore Konaro
+Name[pt_BR]=Restaurar o Konaro
+Comment=Fix the system without losing your files
+Comment[pt_BR]=Conserte o sistema sem perder seus arquivos
+Exec=konaro-restore
+Icon=edit-reset
+Categories=Qt;KDE;System;
+Keywords=restore;reset;factory;restaurar;fábrica;formatar;consertar;

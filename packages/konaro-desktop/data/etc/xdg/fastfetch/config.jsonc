@@ -1,0 +1,35 @@
+// Konaro OS — configuração padrão do fastfetch (comando "fastfetch" ou "neofetch").
+// Cada usuário pode criar a própria em ~/.config/fastfetch/config.jsonc.
+{
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+  "logo": {
+    "type": "file",
+    "source": "/usr/share/konaro/fastfetch/logo.txt",
+    "color": { "1": "white", "2": "blue" },
+    "padding": { "right": 3 }
+  },
+  "display": { "separator": "  ", "color": { "keys": "blue" } },
+  "modules": [
+    "title",
+    "separator",
+    { "type": "command", "key": "Sistema", "text": "echo \"Konaro OS $(cat /usr/share/konaro/version 2>/dev/null) · base Debian $(cat /etc/debian_version)\"" },
+    { "type": "host", "key": "Computador" },
+    { "type": "kernel", "key": "Kernel" },
+    { "type": "uptime", "key": "Ligado há" },
+    { "type": "packages", "key": "Pacotes" },
+    { "type": "de", "key": "Área de trabalho" },
+    { "type": "wm", "key": "Janelas" },
+    { "type": "icons", "key": "Ícones" },
+    { "type": "font", "key": "Fonte" },
+    { "type": "shell", "key": "Shell" },
+    { "type": "terminal", "key": "Terminal" },
+    { "type": "cpu", "key": "Processador" },
+    { "type": "gpu", "key": "Vídeo" },
+    { "type": "memory", "key": "Memória" },
+    { "type": "disk", "key": "Disco" },
+    { "type": "battery", "key": "Bateria" },
+    "break",
+    { "type": "custom", "format": "Feito no Brasil · criado por João Palhares" },
+    "colors"
+  ]
+}

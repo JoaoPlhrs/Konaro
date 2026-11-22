@@ -11,6 +11,11 @@ LF  := $(GEN)/usr/share/plasma/look-and-feel
 	dh $@
 
 override_dh_auto_build:
+	# versão do Konaro (mostrada pelo fastfetch e em Sobre este sistema)
+	mkdir -p $(GEN)/usr/share/konaro
+	dpkg-parsechangelog -S Version | sed 's/~/-/' > $(GEN)/usr/share/konaro/version
+	# som de inicialização (composição original, sintetizada)
+	python3 $(ART)/sounds/make-sounds.py $(GEN)/usr/share/sounds/konaro
 	mkdir -p $(WP)/images $(WP)/images_dark \
 	         $(LF)/org.konaro.desktop/contents/previews \
 	         $(LF)/org.konaro.desktop.dark/contents/previews \

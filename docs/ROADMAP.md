@@ -27,6 +27,11 @@ aprovado ainda; a ordem reflete impacto para quem vem do Windows ou do macOS.
       coreano, grego, hebraico, suaíli, tupi…), e só no fim "Welcome to Konaro". Hoje a tela
       fica parada em "Welcome to Konaro" enquanto a área de trabalho carrega.
 
+## Nomes das versões (decisão do responsável, 2026-11-22)
+Cada versão oficial (release) recebe o nome de uma constelação. A primeira versão oficial
+será a **Fênix** (Phoenix). O nome ainda **não** é aplicado nas builds de desenvolvimento;
+entra só no lançamento.
+
 ## Alta prioridade
 1. **"Voltar no tempo" (snapshots do sistema).** Instalar em Btrfs com Snapper e criar
    um ponto de restauração antes de cada atualização, com opção no menu de boot para

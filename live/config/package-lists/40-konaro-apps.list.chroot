@@ -8,3 +8,7 @@ ark
 gwenview
 okular
 kde-spectacle
+
+# Informações do sistema no terminal (fastfetch / neofetch) e cofre de senhas
+fastfetch
+keepassxc-full

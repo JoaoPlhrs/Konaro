@@ -20,6 +20,7 @@ ApplicationWindow {
     property int step: Math.min(startPage, pages.count - 1)
     property bool darkChosen: welcome.dark
     property string fontChosen: welcome.font
+    property string iconsChosen: "breeze"
     readonly property int total: pages.count
 
     // ---------------------------------------------------------------- componentes de página
@@ -135,6 +136,29 @@ ApplicationWindow {
                             Accessible.name: modelData.label
                         }
                         KText { text: modelData.label; font.weight: parent.chosen ? Font.DemiBold : Font.Normal; Layout.alignment: Qt.AlignHCenter }
+                    }
+                }
+            }
+            KText { text: t("Icons"); font.weight: Font.DemiBold; Layout.topMargin: Theme.s4 }
+            Flow {
+                Layout.fillWidth: true
+                spacing: Theme.s2
+                Repeater {
+                    model: welcome.iconThemes
+                    Rectangle {
+                        readonly property bool chosen: modelData.id === win.iconsChosen
+                        width: iconLabel.implicitWidth + 32
+                        height: 40
+                        radius: height / 2
+                        color: chosen ? Theme.ink : Theme.fill
+                        KText { id: iconLabel; anchors.centerIn: parent; text: modelData.name; color: parent.chosen ? Theme.inverse : Theme.ink }
+                        MouseArea {
+                            anchors.fill: parent
+                            cursorShape: Qt.PointingHandCursor
+                            onClicked: { win.iconsChosen = modelData.id; welcome.setIconTheme(modelData.id) }
+                        }
+                        Accessible.role: Accessible.RadioButton
+                        Accessible.name: modelData.name
                     }
                 }
             }

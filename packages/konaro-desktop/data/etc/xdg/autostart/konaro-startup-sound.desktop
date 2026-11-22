@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Konaro startup sound
+Name[pt_BR]=Som de inicialização do Konaro
+Exec=/usr/share/konaro/startup-sound
+NoDisplay=true
+X-KDE-autostart-phase=1
+OnlyShowIn=KDE;

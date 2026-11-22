@@ -1,0 +1,12 @@
+#!/bin/sh
+# Konaro OS — toca o som de inicialização uma vez ao entrar na sessão.
+# Para desligar: crie ~/.config/konaro/no-startup-sound (ou desligue nas Boas-vindas).
+[ -e "${XDG_CONFIG_HOME:-$HOME/.config}/konaro/no-startup-sound" ] && exit 0
+SOUND=/usr/share/sounds/konaro/startup.wav
+[ -f "$SOUND" ] || exit 0
+sleep 1
+if command -v pw-play >/dev/null 2>&1; then
+	exec pw-play --volume 0.6 "$SOUND"
+elif command -v paplay >/dev/null 2>&1; then
+	exec paplay "$SOUND"
+fi

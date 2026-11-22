@@ -1,0 +1,12 @@
+#!/bin/sh
+# Konaro OS — devolve a tela de bloqueio original do KDE ao remover o pacote.
+set -e
+UI=/usr/share/plasma/shells/org.kde.plasma.desktop/contents/lockscreen/LockScreenUi.qml
+if [ "$1" = "remove" ] || [ "$1" = "purge" ]; then
+	if [ -L "$UI" ]; then
+		rm -f "$UI"
+	fi
+	dpkg-divert --package konaro-desktop --remove --rename --divert "$UI.breeze" "$UI" >/dev/null || true
+fi
+#DEBHELPER#
+exit 0

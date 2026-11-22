@@ -18,17 +18,17 @@ import sys
 
 # opacidade do fundo de cada superfície (Breeze usa ~0,85–0,9)
 TARGETS = {
-    "translucent/dialogs/background.svgz": 0.74,        # popups, menus do Plasma, lançador
-    "translucent/widgets/panel-background.svgz": 0.62,  # barra superior e dock
-    "translucent/widgets/background.svgz": 0.66,        # widgets na área de trabalho
+    "translucent/dialogs/background.svgz": 0.58,        # popups, menus do Plasma, lançador
+    "translucent/widgets/panel-background.svgz": 0.48,  # barra superior e dock
+    "translucent/widgets/background.svgz": 0.55,        # widgets na área de trabalho
     "translucent/widgets/tooltip.svgz": 0.82,           # dicas
 }
 
 PLASMARC = """[ContrastEffect]
 enabled=true
-contrast=0.25
-intensity=1.0
-saturation=1.9
+contrast=0.32
+intensity=1.25
+saturation=2.4
 
 [BlurBehindEffect]
 enabled=true

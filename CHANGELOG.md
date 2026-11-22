@@ -1,14 +1,33 @@
 # Histórico de versões
 
-Todas as versões do Konaro OS, da mais nova para a mais antiga. A ISO mais recente está inteira em [**https://gofile.io/d/O996OXic**](https://gofile.io/d/O996OXic).
+Todas as versões do Konaro OS, da mais nova para a mais antiga. A ISO mais recente está inteira em [**https://gofile.io/d/1wTmBC8V**](https://gofile.io/d/1wTmBC8V).
 
 Legenda: ✨ novo · 🎨 visual · 🐛 correção · ⚠️ limitação conhecida
 
 ---
 
-## 0.1.0-dev7 · build 7 — "Avatares" · 2026-11-22 · **atual**
+## 0.1.0-dev8 · build 8 — "Detalhes" · 2026-11-22 · **atual**
 
-ISO **inteira**: [**baixar no Gofile**](https://gofile.io/d/O996OXic) · `konaro-os-0.1.0-dev7-amd64.iso` · 2,7 GB · SHA-256
+ISO **inteira**: [**baixar no Gofile**](https://gofile.io/d/1wTmBC8V) · `konaro-os-0.1.0-dev8-amd64.iso` · 2,8 GB · SHA-256
+`5da6c147720f9e4d2272492014ec0e526f1e12cb4ae67c4d128b7e59e7655206`
+
+- ✨ **Tela de bloqueio Konaro de verdade**: é a tela do sistema ao bloquear e ao voltar da suspensão — data e hora grandes, foto, nome e senha em pílula de vidro, sobre o papel de parede do sistema. A autenticação continua sendo a do KDE.
+- ✨ Tela de login usa o **papel de parede do sistema** (dá para trocar em Configurações > Tela de login).
+- ✨ **fastfetch** (também pelo comando `neofetch`) com o **logo do Konaro**.
+- ✨ **Animações**: janelas crescem ao abrir, "escorrem" para o dock ao minimizar (lâmpada mágica) e se deformam de leve ao serem arrastadas.
+- ✨ **Vidro** mais transparente e com mais cor por trás (painéis, menus, widgets).
+- ✨ **Som de inicialização** (composição original).
+- ✨ Tela de entrada: os **"olás" em 24 idiomas** se repetem durante todo o carregamento; "Welcome to Konaro" só quando a área de trabalho fica pronta.
+- ✨ Apps novos: **Por que está lento?** e **Restaurar o Konaro** (configurações, Voltar no tempo e restauração de fábrica mantendo os arquivos).
+- ✨ **.exe com dois cliques**: se o Wine não estiver instalado, o Konaro oferece instalar na hora e abre o programa.
+- ✨ **Gerenciador de senhas** (KeePassXC) e tema de ícones **Minimalista** (Papirus), escolhível nas Boas-vindas.
+- 🎨 Barra superior enxuta (Wi-Fi, som, brilho e bateria ficam na Central de controle) e relógio no estilo "dom. 22 de nov.".
+- 🇧🇷 Créditos: criado por João Palhares · Feito no Brasil (Sobre este sistema e fastfetch).
+- Testes: `verify-iso` OK · teste de sistema 19/19 · boot em VM com Secure Boot · bloqueio e desbloqueio testados na VM.
+
+## 0.1.0-dev7 · build 7 — "Avatares" · 2026-11-22
+
+ISO **inteira**: (substituída pela build 8) · `konaro-os-0.1.0-dev7-amd64.iso` · 2,7 GB · SHA-256
 `3e03e19c9c534cfa1fa591833c99ebff36aeadbb51c49062bbe447a5c39b3974`
 
 - 🎨 **Meu Avatar refeito** (arte original do Konaro): rosto com volume, olhos com íris colorida e brilho, sobrancelhas e cabelos com mechas, 11 penteados, 10 cores de cabelo, 8 tons de pele, 6 cores de olhos, 5 formatos de olhos, 6 expressões, barba, óculos, acessórios de cabeça, sardas/pinta/brincos, roupa e fundo.

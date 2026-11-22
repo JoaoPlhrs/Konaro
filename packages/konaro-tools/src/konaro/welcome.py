@@ -149,6 +149,17 @@ class WelcomeBridge(QObject):
     def font(self):
         return fonts.current_user()
 
+    @pyqtProperty("QVariantList", constant=True)
+    def iconThemes(self):
+        themes = [{"id": "breeze", "name": _("Konaro (default)")},
+                  {"id": "Papirus", "name": _("Minimalist")},
+                  {"id": "Papirus-Dark", "name": _("Minimalist dark")}]
+        return [t for t in themes if t["id"] == "breeze" or os.path.isdir("/usr/share/icons/" + t["id"])]
+
+    @pyqtSlot(str)
+    def setIconTheme(self, theme):
+        _run(CHANGEICONS, theme)
+
     @pyqtSlot(str)
     def setFont(self, font_id):
         fonts.apply_user(font_id)

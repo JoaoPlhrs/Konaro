@@ -50,3 +50,6 @@ fonts-roboto
 # "Voltar no tempo": pontos de restauração do sistema (Btrfs + Timeshift)
 btrfs-progs
 timeshift
+
+# Tema de ícones minimalista (escolhível nas Boas-vindas)
+papirus-icon-theme

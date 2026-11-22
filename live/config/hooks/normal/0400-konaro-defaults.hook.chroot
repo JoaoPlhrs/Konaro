@@ -10,7 +10,7 @@ text/html=firefox-esr.desktop
 application/xhtml+xml=firefox-esr.desktop
 x-scheme-handler/http=firefox-esr.desktop
 x-scheme-handler/https=firefox-esr.desktop
-application/x-ms-dos-executable=konaro-wine.desktop
-application/x-msi=konaro-wine.desktop
-application/vnd.microsoft.portable-executable=konaro-wine.desktop
+application/x-ms-dos-executable=konaro-exe.desktop
+application/x-msi=konaro-exe.desktop
+application/vnd.microsoft.portable-executable=konaro-exe.desktop
 EOF
