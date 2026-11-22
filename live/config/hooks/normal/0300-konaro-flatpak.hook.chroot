@@ -27,6 +27,8 @@ fi
 # build; os aplicativos são instalados mesmo assim e os caches são refeitos abaixo.
 # shellcheck disable=SC2086  # lista de apps separada por espaços, de propósito
 flatpak install --system -y --noninteractive flathub $APPS || true
+# Catálogo do Flathub (AppStream) para a busca completa da Loja funcionar offline
+flatpak update --system --appstream flathub || true
 
 if [ -n "$PROXY" ]; then
 	flatpak remote-modify --system --url=https://dl.flathub.org/repo/ flathub

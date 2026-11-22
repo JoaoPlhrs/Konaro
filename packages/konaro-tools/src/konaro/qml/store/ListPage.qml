@@ -11,13 +11,18 @@ KScrollPage {
 
     readonly property var items: {
         const all = ctl.apps
+        const curated = all.filter(a => !a.full)
         if (category === "search") {
             const q = query.trim().toLowerCase()
-            return all.filter(a => a.name.toLowerCase().includes(q) || a.summaryText.toLowerCase().includes(q)
+            const key = "search:" + q
+            const mine = curated.filter(a => a.name.toLowerCase().includes(q) || a.summaryText.toLowerCase().includes(q)
                                    || a.categoryText.toLowerCase().includes(q) || a.id.toLowerCase().includes(q))
+            // resultados do catálogo completo para esta mesma busca
+            return mine.concat(all.filter(a => a.full && a.source === key))
         }
         if (category === "installed") return all.filter(a => a.state === "installed")
-        return all.filter(a => a.category === category)
+        return curated.filter(a => a.category === category)
+                      .concat(all.filter(a => a.full && a.source === "browse:" + category))
     }
     readonly property string heading: {
         if (category === "search") return i18n.tr("Results for “{q}”").replace("{q}", query.trim())
@@ -33,7 +38,7 @@ KScrollPage {
         KText {
             text: root.category === "installed"
                   ? i18n.tr("Apps from the Store that are on this computer.")
-                  : i18n.tr("{n} apps").replace("{n}", root.items.length)
+                  : i18n.tr("{n} apps").replace("{n}", root.items.length) + (store.loadingMore ? " · " + i18n.tr("searching the full catalog…") : "")
             secondary: true
             Layout.fillWidth: true
         }

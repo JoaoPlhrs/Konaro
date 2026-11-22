@@ -1,0 +1,59 @@
+#!/usr/bin/python3
+"""Konaro OS — gera as imagens da página "Fonte" do instalador: cada cartão mostra
+o nome da fonte e um texto de exemplo escrito nela."""
+
+import os
+import sys
+
+os.environ.setdefault("QT_QPA_PLATFORM", "offscreen")
+
+from PyQt6.QtCore import QRectF, Qt  # noqa: E402
+from PyQt6.QtGui import QColor, QFont, QGuiApplication, QImage, QPainter  # noqa: E402
+
+from konaro import fonts  # noqa: E402
+
+OUT = "/usr/share/konaro/installer"
+SAMPLE = "Olá! Bem-vindo ao Konaro.\nAa Bb Cc 0123456789"
+
+
+def card(family, name):
+    image = QImage(640, 360, QImage.Format.Format_ARGB32_Premultiplied)
+    image.fill(QColor(0, 0, 0, 0))
+    p = QPainter(image)
+    p.setRenderHint(QPainter.RenderHint.Antialiasing)
+    p.setRenderHint(QPainter.RenderHint.TextAntialiasing)
+    p.setPen(Qt.PenStyle.NoPen)
+    p.setBrush(QColor("#F5F5F7"))
+    p.drawRoundedRect(QRectF(20, 20, 600, 320), 28, 28)
+    big = QFont(family)
+    big.setPixelSize(96)
+    big.setWeight(QFont.Weight.DemiBold)
+    p.setFont(big)
+    p.setPen(QColor("#1D1D1F"))
+    p.drawText(QRectF(60, 50, 520, 120), Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignVCenter, "Aa")
+    title = QFont(family)
+    title.setPixelSize(30)
+    title.setWeight(QFont.Weight.Bold)
+    p.setFont(title)
+    p.drawText(QRectF(60, 170, 520, 44), Qt.AlignmentFlag.AlignLeft, name)
+    body = QFont(family)
+    body.setPixelSize(22)
+    p.setFont(body)
+    p.setPen(QColor("#6E6E73"))
+    p.drawText(QRectF(60, 220, 520, 100), Qt.AlignmentFlag.AlignLeft, SAMPLE)
+    p.end()
+    return image
+
+
+def main():
+    app = QGuiApplication(sys.argv)  # noqa: F841 (precisa existir para desenhar texto)
+    os.makedirs(OUT, exist_ok=True)
+    for f in fonts.FONTS:
+        path = os.path.join(OUT, "font-%s.png" % f["id"])
+        card(f["family"], f["name"]).save(path)
+        print("cartão", path)
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

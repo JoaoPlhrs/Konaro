@@ -1,15 +1,15 @@
 <p align="center"><img src="docs/assets/banner.png" alt="Konaro OS" width="100%"></p>
 
 <p align="center">
-  <a href="https://gofile.io/d/TgNSuXQ7"><img src="https://img.shields.io/badge/⬇_Baixar-0.1.0--dev1-1d1d1f?style=for-the-badge" alt="Baixar"></a>
-  <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/Novidades-build_4-3a3a3c?style=for-the-badge" alt="Novidades"></a>
+  <a href="https://gofile.io/d/IuvlFwTS"><img src="https://img.shields.io/badge/⬇_Baixar-0.1.0--dev1-1d1d1f?style=for-the-badge" alt="Baixar"></a>
+  <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/Novidades-build_5-3a3a3c?style=for-the-badge" alt="Novidades"></a>
   <a href="docs/STATUS.md"><img src="https://img.shields.io/badge/Testes-24%2F24-28c840?style=for-the-badge" alt="Testes"></a>
 </p>
 <p align="center">
   <img src="https://img.shields.io/badge/Debian-13_trixie-A81D33?logo=debian&logoColor=white" alt="Debian 13">
   <img src="https://img.shields.io/badge/KDE_Plasma-6.3-1D99F3?logo=kde&logoColor=white" alt="KDE Plasma 6.3">
   <img src="https://img.shields.io/badge/arquitetura-amd64-555" alt="amd64">
-  <img src="https://img.shields.io/badge/boot-BIOS_%2B_UEFI-555" alt="BIOS + UEFI">
+  <img src="https://img.shields.io/badge/boot-BIOS_%2B_UEFI_%2B_Secure_Boot-555" alt="BIOS + UEFI + Secure Boot">
   <img src="https://img.shields.io/badge/idiomas-pt--BR_%7C_en-555" alt="Idiomas">
   <img src="https://img.shields.io/badge/estado-desenvolvimento-FEBC2E" alt="Em desenvolvimento">
 </p>
@@ -25,18 +25,34 @@ Visual inspirado no macOS, jeito de usar familiar para quem vem do Windows.</p>
 
 | Versão | Data | Tamanho | O que mudou | Baixar |
 |---|---|---|---|---|
-| **0.1.0-dev1 · build 4** "Boot Konaro" | 2026-11-22 | 4,0 GB | Nova tela de carregamento com o logo Konaro + tudo da build 3 | [**⬇ Baixar ISO inteira**](https://gofile.io/d/TgNSuXQ7) |
+| **0.1.0-dev1 · build 5** "Mac + Windows" | 2026-11-22 | 4,1 GB | Tela de login estilo macOS, Iniciar em tela cheia (tecla Super), widgets em cartões, fontes, Ajuda "Onde está…?", Migração do Windows, Loja com catálogo completo, **Secure Boot** | [**⬇ Baixar ISO inteira**](https://gofile.io/d/IuvlFwTS) |
+| 0.1.0-dev1 · build 4 "Boot Konaro" | 2026-11-22 | 4,0 GB | Nova tela de carregamento com o logo Konaro | substituída pela build 5 |
 | 0.1.0-dev1 · build 3 "Visual elegante" | 2026-11-22 | 4,0 GB | Vidro, botões semáforo, dock animado, widgets, nova Loja e instalador | substituída pela build 4 |
 | 0.1.0-dev1 · build 2 "Ferramentas" | 2026-11-22 | — | Loja, Atualizações, Drivers, Boas-vindas, navegadores, jogos | substituída pela build 3 |
 | 0.1.0-dev1 · build 1 "Fundação" | 2026-11-22 | — | Base Debian 13 + Plasma 6, instalador, identidade | substituída pela build 3 |
 
-Detalhes de cada versão em **[CHANGELOG.md](CHANGELOG.md)**. SHA-256 da build 4:
-`02a60c7cde3b21e81eb6a7327ca95e95e18d6ec40f6c26a3057cf1a2f24b113a`
+Detalhes de cada versão em **[CHANGELOG.md](CHANGELOG.md)**. SHA-256 da build 5:
+`f3b7559b656f749a0097962b444a06619799f9de65910c2aea6248b398f97fe9`
 
 > ⚠️ **Build de desenvolvimento.** Teste primeiro numa máquina virtual. O que foi e o que
 > não foi testado está em [docs/STATUS.md](docs/STATUS.md).
 
 ## ✨ Destaques
+
+<table>
+<tr>
+<td width="50%"><img src="docs/screenshots/23-tela-de-login.png" alt="Login"><br><b>Tela de login</b> — data e hora grandes, foto e senha em pílula de vidro.</td>
+<td width="50%"><img src="docs/screenshots/22-iniciar.png" alt="Iniciar"><br><b>Iniciar (tecla Windows)</b> — busca, fixados e todos os apps em tela cheia.</td>
+</tr>
+<tr>
+<td><img src="docs/screenshots/24-widgets.png" alt="Widgets"><br><b>Widgets em cartões</b> — relógio, calendário, notas e sistema.</td>
+<td><img src="docs/screenshots/25-ajuda.png" alt="Ajuda"><br><b>Ajuda "Onde está…?"</b> — o nome do Windows e onde fica no Konaro.</td>
+</tr>
+<tr>
+<td><img src="docs/screenshots/26-migracao.png" alt="Migração"><br><b>Migrar do Windows</b> — documentos, fotos, músicas e favoritos, sem alterar o Windows.</td>
+<td><img src="docs/screenshots/27-loja-catalogo.png" alt="Loja"><br><b>Loja com catálogo completo</b> — Debian + Flathub.</td>
+</tr>
+</table>
 
 <table>
 <tr>
@@ -74,9 +90,8 @@ Detalhes de cada versão em **[CHANGELOG.md](CHANGELOG.md)**. SHA-256 da build 4
 
 ## 🗺️ Próximos passos
 
-Planejados e aguardando aprovação: Secure Boot, assistente de migração do Windows,
-tela de login e boot com a identidade Konaro, widgets no estilo do macOS, novas fontes,
-Loja com catálogo completo, novos papéis de parede e o app de ajuda "Onde está…?".
+Tudo da lista aprovada já está na build 5. Próximas ideias: "voltar no tempo" (snapshots),
+repositório próprio, central de controle, impressoras sem configuração e mais.
 Veja **[docs/ROADMAP.md](docs/ROADMAP.md)**.
 
 ## 🛠️ Para desenvolvedores

@@ -84,6 +84,11 @@ def _installed(names):
     return {line.split()[0] for line in out.splitlines() if line.endswith(" installed")}
 
 
+def secure_boot_enabled():
+    """True se o Secure Boot estiver ligado (mokutil --sb-state)."""
+    return "SecureBoot enabled" in _output(["mokutil", "--sb-state"])
+
+
 def scan(progress=None):
     devices = parse_lspci(_output(["lspci", "-nnk"]))
     interesting = [d for d in devices if kind(d) != "Other"]
@@ -95,7 +100,8 @@ def scan(progress=None):
         pkgs = pkgs + ["firmware-misc-nonfree", "linux-headers-amd64"]
         recommendations.append({
             "title": _("Proprietary NVIDIA driver"),
-            "reason": _("Your NVIDIA graphics card ({device}) works better and faster in games with the official NVIDIA driver.").format(device=nvidia[0]["name"]),
+            "reason": _("Your NVIDIA graphics card ({device}) works better and faster in games with the official NVIDIA driver.").format(device=nvidia[0]["name"])
+                      + ((" " + _("Secure Boot is on: after installing, you will be asked to create a one-time password and, on the next restart, choose \"Enroll MOK\" on the blue screen and type it.")) if secure_boot_enabled() else ""),
             "origin": _("Debian non-free (proprietary, redistributable)"),
             "packages": pkgs,
             "restart": True,

@@ -1,0 +1,13 @@
+[Desktop Entry]
+Type=Application
+Name=Bring from Windows
+Name[pt_BR]=Migrar do Windows
+GenericName=Windows migration
+GenericName[pt_BR]=Migração do Windows
+Comment=Copy documents, photos, music, bookmarks and wallpaper from Windows
+Comment[pt_BR]=Copie documentos, fotos, músicas, favoritos e papel de parede do Windows
+Exec=konaro-migrate
+Icon=folder-windows
+Categories=Qt;KDE;System;Utility;
+Keywords=windows;migrate;migration;import;files;migrar;importar;arquivos;
+Keywords[pt_BR]=windows;migrar;migração;importar;arquivos;documentos;fotos;

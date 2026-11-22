@@ -1,0 +1,15 @@
+{
+    "KPlugin": {
+        "Authors": [
+            {
+                "Name": "Konaro OS Project"
+            }
+        ],
+        "Id": "KonaroSerra",
+        "License": "Pending (see docs/LICENSES.md)",
+        "Name": "Serra",
+        "Name[pt_BR]": "Serra",
+        "Description": "Mountains at dawn",
+        "Description[pt_BR]": "Serras ao amanhecer"
+    }
+}

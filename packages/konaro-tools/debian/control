@@ -21,7 +21,7 @@ Description: Konaro OS - shared library for the graphical system tools
 
 Package: konaro-store
 Architecture: all
-Depends: ${misc:Depends}, konaro-common (= ${source:Version})
+Depends: ${misc:Depends}, konaro-common (= ${source:Version}), gir1.2-appstream-1.0, appstream
 Description: Konaro OS - app store
  Curated catalog of apps and games with categories, search, details
  (source, format and Flatpak permissions), install and removal.
@@ -45,9 +45,9 @@ Description: Konaro OS - driver manager
 
 Package: konaro-welcome
 Architecture: all
-Depends: ${misc:Depends}, konaro-common (= ${source:Version}), network-manager
+Depends: ${misc:Depends}, konaro-common (= ${source:Version}), network-manager, udisks2, xdg-user-dirs
 Recommends: konaro-store, konaro-updater, konaro-drivers, plasma-widgets-addons
-Description: Konaro OS - first-run welcome
+Description: Konaro OS - first-run welcome and help
  Guided first login: language, light/dark appearance, network, privacy,
  updates, drivers, games and tips. In the live session it also offers
  to install the system.

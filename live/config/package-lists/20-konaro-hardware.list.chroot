@@ -17,3 +17,10 @@ amd64-microcode
 bluez
 udisks2
 upower
+
+# Secure Boot: cadeia assinada do Debian (shim da Microsoft → GRUB e kernel assinados
+# pelo Debian). O instalador copia isso para o sistema instalado; mokutil serve para
+# registrar a chave de drivers compilados localmente (ex.: NVIDIA via DKMS).
+shim-signed
+grub-efi-amd64-signed
+mokutil

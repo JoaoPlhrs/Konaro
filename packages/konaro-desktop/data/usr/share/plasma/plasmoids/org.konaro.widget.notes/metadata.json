@@ -1,0 +1,16 @@
+{
+    "KPackageStructure": "Plasma/Applet",
+    "KPlugin": {
+        "Authors": [{ "Name": "Konaro OS Project" }],
+        "Category": "Date and Time",
+        "Description": "A quick note",
+        "Description[pt_BR]": "Uma nota rápida",
+        "EnabledByDefault": true,
+        "Icon": "knotes",
+        "Id": "org.konaro.widget.notes",
+        "License": "Pending (see docs/LICENSES.md)",
+        "Name": "Konaro Notes",
+        "Name[pt_BR]": "Notas (Konaro)"
+    },
+    "X-Plasma-API-Minimum-Version": "6.0"
+}

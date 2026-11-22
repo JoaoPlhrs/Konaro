@@ -1,14 +1,30 @@
 # Histórico de versões
 
-Todas as versões do Konaro OS, da mais nova para a mais antiga. A ISO mais recente está inteira em [**https://gofile.io/d/TgNSuXQ7**](https://gofile.io/d/TgNSuXQ7).
+Todas as versões do Konaro OS, da mais nova para a mais antiga. A ISO mais recente está inteira em [**https://gofile.io/d/IuvlFwTS**](https://gofile.io/d/IuvlFwTS).
 
 Legenda: ✨ novo · 🎨 visual · 🐛 correção · ⚠️ limitação conhecida
 
 ---
 
-## 0.1.0-dev1 · build 4 — "Boot Konaro" · 2026-11-22 · **atual**
+## 0.1.0-dev1 · build 5 — "Mac + Windows" · 2026-11-22 · **atual**
 
-ISO **inteira** (um único arquivo): [**baixar no Gofile**](https://gofile.io/d/TgNSuXQ7) · `konaro-os-0.1.0-dev1-amd64.iso` · 4,0 GB · SHA-256
+ISO **inteira**: [**baixar no Gofile**](https://gofile.io/d/IuvlFwTS) · `konaro-os-0.1.0-dev1-build5-amd64.iso` · 4,1 GB · SHA-256
+`f3b7559b656f749a0097962b444a06619799f9de65910c2aea6248b398f97fe9`
+
+- ✨ **Tela de login no estilo do macOS** (tema próprio do SDDM): data e hora grandes, foto/inicial, nome e senha em pílula de vidro; teclado e menu de energia no canto.
+- ✨ **Iniciar em tela cheia** pela tecla Super/Windows (mistura de Launchpad e Iniciar do Windows 11): busca, fixados, todos os apps, usuário e energia.
+- ✨ **Widgets em cartões** no estilo do macOS: relógio analógico, calendário do mês, notas editáveis e sistema (CPU, memória, disco).
+- ✨ **Escolha da fonte** na instalação e nas Boas-vindas: Inter (padrão, parecida com a do macOS), Noto Sans, Manrope e Roboto.
+- ✨ **Ajuda "Onde está…?"**: o nome que você conhece do Windows e onde fica no Konaro, com botão para abrir; atalhos e perguntas frequentes.
+- ✨ **Migrar do Windows**: copia documentos, fotos, músicas, vídeos, favoritos dos navegadores e o papel de parede, abrindo o Windows só para leitura.
+- ✨ **Loja com catálogo completo** (Debian + Flathub) na busca e nas categorias.
+- ✨ **Secure Boot**: cadeia assinada do Debian; testado em VM com Secure Boot ligado. Drivers NVIDIA explicam o registro da chave (MOK).
+- 🎨 Novos papéis de parede: **Serra**, **Dunas** e **Pinguim** (mascote original do Konaro).
+- ⚠️ Não testados ainda: instalação em disco, migração com um disco NTFS real, hardware físico.
+
+## 0.1.0-dev1 · build 4 — "Boot Konaro" · 2026-11-22
+
+ISO **inteira** (um único arquivo): (substituída pela build 5) · `konaro-os-0.1.0-dev1-amd64.iso` · 4,0 GB · SHA-256
 `02a60c7cde3b21e81eb6a7327ca95e95e18d6ec40f6c26a3057cf1a2f24b113a`
 
 - 🎨 **Tela de carregamento do sistema (Plymouth)**: logo Konaro branco no fundo preto, com três pontos pulsando — sem texto rolando durante o boot. Também mostra o pedido de senha de discos criptografados.

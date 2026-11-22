@@ -1,0 +1,15 @@
+{
+    "KPlugin": {
+        "Authors": [
+            {
+                "Name": "Konaro OS Project"
+            }
+        ],
+        "Id": "KonaroDunas",
+        "License": "Pending (see docs/LICENSES.md)",
+        "Name": "Dunas",
+        "Name[pt_BR]": "Dunas",
+        "Description": "Dunes",
+        "Description[pt_BR]": "Dunas"
+    }
+}

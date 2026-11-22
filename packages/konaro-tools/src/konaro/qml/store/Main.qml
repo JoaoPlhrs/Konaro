@@ -84,6 +84,8 @@ ApplicationWindow {
     function go(target) { search.text = ""; page = target }
 
     onAppsChanged: if (currentApp) currentApp = appById(currentApp.id)
+    // categorias: além dos apps curados, mostra o catálogo completo daquela categoria
+    onPageChanged: if (categories.some(c => c.id === page && c.id !== "home" && c.id !== "windows")) store.browseCategory(page)
 
     Component.onCompleted: {
         if (startup.app && appById(startup.app)) showApp(appById(startup.app))
@@ -165,8 +167,10 @@ ApplicationWindow {
                     anchors.centerIn: parent
                     width: Math.min(560, parent.width - 96)
                     placeholder: i18n.tr("Search apps and games")
-                    onTextChanged: if (text !== "") win.currentApp = null
+                    onTextChanged: { if (text !== "") win.currentApp = null; fullSearch.restart() }
                 }
+                // busca no catálogo completo (Debian + Flathub) depois que a pessoa para de digitar
+                Timer { id: fullSearch; interval: 350; onTriggered: if (search.text.trim().length >= 2) store.searchAll(search.text) }
                 Shortcut { sequences: [StandardKey.Find]; onActivated: search.focusField() }
             }
 

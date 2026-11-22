@@ -17,6 +17,21 @@ Três níveis de teste:
    efêmero) e testa serviços, PackageKit, Flatpak, jogos e as interfaces. **24/24 ok.**
 3. **`test-vm.sh`** — boot completo da ISO no QEMU (UEFI), com capturas de tela.
 
+## Build 5 (2026-11-22) — login, Iniciar, widgets, fontes, Ajuda, Migração, Loja completa, Secure Boot
+
+| Item | Estado | Como foi verificado |
+|---|---|---|
+| Secure Boot (shim + GRUB + kernel assinados) | ✅ | `verify-iso`: bootx64.efi é o shim assinado pela Microsoft; **boot completo na VM com firmware Secure Boot ligado** (OVMF com chaves da Microsoft) até a área de trabalho. Sistema instalado: depende da instalação real (não executada) |
+| Tela de login (tema SDDM "konaro") | ✅ | `sddm-greeter --test-mode` no sistema da imagem: data, hora, inicial do usuário, campo de senha. Login de verdade só depois de instalar (a sessão live entra sozinha) |
+| Iniciar em tela cheia (tecla Super) | ✅ | Sessão Plasma real (contêiner) e **VM**: abre pela tecla, busca, fixados, todos os apps, energia |
+| Widgets em cartões (relógio, calendário, notas, sistema) | ✅ | Sessão Plasma real e VM |
+| Papéis de parede Serra, Dunas, Pinguim | ✅ | Renderizados no build do pacote |
+| Fonte escolhida no instalador / Boas-vindas | 🟡 | Página e cartões gerados; função de gravar testada (teste unitário). Troca na instalação real não executada |
+| Ajuda "Onde está…?" | ✅ | Renderização no sistema da imagem, busca |
+| Migração do Windows | 🟡 | Lógica testada com uma árvore falsa do Windows (cópia sem sobrescrever, favoritos em HTML, origem intacta). **Montar um disco NTFS real não foi testado** |
+| Loja com catálogo completo | ✅ | Busca e categorias no sistema da imagem (ex.: 89 jogos, GIMP). Ícones de apps não instalados dependem de internet/índice de ícones |
+| Teste de sistema | ✅ | 24/24 |
+
 ## Rodada "visual elegante" (2026-11-22)
 
 | Item | Estado | Como foi verificado |
@@ -99,7 +114,6 @@ Ainda **não confirmado** em hardware real ou VM acelerada.
 - **ISO de 4,0 GB** — o Flatpak (Ungoogled Chromium + Steam + runtimes 32 bits) responde por boa parte.
 - A Loja mostra um catálogo curado (47 apps), não todo o Debian/Flathub; sem capturas de tela de apps.
 - Sem repositório Konaro: os pacotes `konaro-*` do sistema instalado não recebem atualizações.
-- Secure Boot não suportado (desative no firmware).
 - Broadcom b43 antigo sem firmware automático.
 - Steam: licença proprietária da Valve, aceita pelo usuário no primeiro uso.
 - **Firefox desenha a própria barra de título** (abas na barra) com botões cinza no estilo

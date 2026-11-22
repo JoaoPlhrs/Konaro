@@ -67,6 +67,9 @@ class StoreBridge(QObject):
         self._busy_id = ""
         self._progress = -1.0
         self._pool = WorkerPool()
+        self._extra = []            # apps do catálogo completo (busca/categorias)
+        self._extra_key = ""
+        self._loading_more = False
 
     # ------------------------------------------------------------ estado
     def _state(self, app):
@@ -79,12 +82,12 @@ class StoreBridge(QObject):
         return "installed" if self._apt.get(app["packages"][0]) else "available"
 
     def _find(self, app_id):
-        return next((a for a in self._apps if a["id"] == app_id), None)
+        return next((a for a in self._apps + self._extra if a["id"] == app_id), None)
 
     @pyqtProperty("QVariantList", notify=appsChanged)
     def apps(self):
         result = []
-        for app in self._apps:
+        for app in self._apps + self._extra:
             item = dict(app)
             item["state"] = self._state(app)
             item["canOpen"] = app["backend"] == "flatpak" or bool(app.get("desktop"))
@@ -181,6 +184,68 @@ class StoreBridge(QObject):
         worker = Worker(flatpak.permissions, app["app"], parent=self, with_progress=False)
         self._pool.start(worker, ok=lambda perms: self.permissionsReady.emit(
             app_id, perms if perms is not None else [_("Could not read the permissions (are you online?).")]))
+
+    # ------------------------------------------------- catálogo completo
+    @pyqtProperty(str, notify=appsChanged)
+    def extraKey(self):
+        return self._extra_key
+
+    @pyqtProperty(bool, notify=busyChanged)
+    def loadingMore(self):
+        return self._loading_more
+
+    def _load_extra(self, key, func, *args):
+        if key == self._extra_key:
+            return
+        self._extra_key = key
+        self._loading_more = True
+        self.busyChanged.emit()
+        skip = set()
+        for a in self._apps:
+            skip.add(a["id"])
+            if a["backend"] == "apt":
+                skip.add(a["packages"][0])
+            else:
+                skip.add(a["app"])
+
+        def work(progress=None):
+            from . import catalog
+            apps = func(*args, skip=skip)
+            names = [a["packages"][0] for a in apps if a["backend"] == "apt"]
+            try:
+                installed = {n: v["installed"] for n, v in packagekit.resolve(names).items()} if names else {}
+            except packagekit.PackageError:
+                installed = {}
+            return key, apps, installed
+
+        def done(result):
+            k, apps, installed = result
+            if k != self._extra_key:
+                return     # o usuário já buscou outra coisa
+            for a in apps:
+                a["source"] = k
+            self._extra = apps
+            if self._apt is not None:
+                self._apt.update(installed)
+            self._loading_more = False
+            self.busyChanged.emit()
+            self.appsChanged.emit()
+
+        def fail(message, details):
+            self._loading_more = False
+            self.busyChanged.emit()
+
+        self._pool.start(Worker(work, parent=self), ok=done, fail=fail)
+
+    @pyqtSlot(str)
+    def searchAll(self, query):
+        from . import catalog
+        self._load_extra("search:" + query.strip().lower(), catalog.search, query)
+
+    @pyqtSlot(str)
+    def browseCategory(self, category):
+        from . import catalog
+        self._load_extra("browse:" + category, catalog.browse, category)
 
     @pyqtSlot()
     def openUpdater(self):

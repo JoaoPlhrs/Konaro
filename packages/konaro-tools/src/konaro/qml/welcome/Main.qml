@@ -19,6 +19,7 @@ ApplicationWindow {
 
     property int step: Math.min(startPage, pages.count - 1)
     property bool darkChosen: welcome.dark
+    property string fontChosen: welcome.font
     readonly property int total: pages.count
 
     // ---------------------------------------------------------------- componentes de página
@@ -134,6 +135,37 @@ ApplicationWindow {
                             Accessible.name: modelData.label
                         }
                         KText { text: modelData.label; font.weight: parent.chosen ? Font.DemiBold : Font.Normal; Layout.alignment: Qt.AlignHCenter }
+                    }
+                }
+            }
+            // fonte do sistema: cada opção aparece escrita na própria fonte
+            KText { text: t("System font"); font.weight: Font.DemiBold; Layout.topMargin: Theme.s4 }
+            Flow {
+                Layout.fillWidth: true
+                spacing: Theme.s2
+                Repeater {
+                    model: welcome.fonts
+                    Rectangle {
+                        readonly property bool chosen: modelData.id === win.fontChosen
+                        width: fontLabel.implicitWidth + 32
+                        height: 40
+                        radius: height / 2
+                        color: chosen ? Theme.ink : Theme.fill
+                        Text {
+                            id: fontLabel
+                            anchors.centerIn: parent
+                            text: modelData.name
+                            font.family: modelData.family
+                            font.pixelSize: 15
+                            color: parent.chosen ? Theme.inverse : Theme.ink
+                        }
+                        MouseArea {
+                            anchors.fill: parent
+                            cursorShape: Qt.PointingHandCursor
+                            onClicked: { win.fontChosen = modelData.id; welcome.setFont(modelData.id) }
+                        }
+                        Accessible.role: Accessible.RadioButton
+                        Accessible.name: modelData.name
                     }
                 }
             }

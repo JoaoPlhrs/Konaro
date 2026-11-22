@@ -1,0 +1,15 @@
+{
+    "KPlugin": {
+        "Authors": [
+            {
+                "Name": "Konaro OS Project"
+            }
+        ],
+        "Id": "KonaroPinguim",
+        "License": "Pending (see docs/LICENSES.md)",
+        "Name": "Pinguim",
+        "Name[pt_BR]": "Pinguim",
+        "Description": "Penguin",
+        "Description[pt_BR]": "Pinguim"
+    }
+}

@@ -20,12 +20,13 @@ set -eu
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 VMDIR="$ROOT/build/vm"
-UEFI=0; DISK=""; BOOT_DISK=0; RAM=4096; HEADLESS=0
+UEFI=0; SECURE=0; DISK=""; BOOT_DISK=0; RAM=4096; HEADLESS=0
 SHOTS="$VMDIR/shots"; INTERVAL=30; DURATION=900; ISO=""
 
 while [ $# -gt 0 ]; do
 	case "$1" in
 		--uefi) UEFI=1 ;;
+		--secure-boot) UEFI=1; SECURE=1 ;;
 		--disk) DISK="$2"; shift ;;
 		--boot-disk) BOOT_DISK=1 ;;
 		--ram) RAM="$2"; shift ;;
@@ -67,11 +68,23 @@ if [ "$UEFI" -eq 1 ]; then
 	for v in /usr/share/OVMF/OVMF_VARS_4M.fd /usr/share/OVMF/OVMF_VARS.fd; do
 		[ -f "$v" ] && { VARS_TEMPLATE="$v"; break; }
 	done
+	if [ "${SECURE:-0}" -eq 1 ]; then
+		# firmware com Secure Boot ligado e as chaves da Microsoft já registradas
+		CODE=/usr/share/OVMF/OVMF_CODE_4M.secboot.fd; VARS_TEMPLATE=/usr/share/OVMF/OVMF_VARS_4M.ms.fd
+		if [ ! -f "$CODE" ] || [ ! -f "$VARS_TEMPLATE" ]; then
+			echo "ERRO: OVMF com Secure Boot não encontrado." >&2; exit 1
+		fi
+		rm -f "$VMDIR/OVMF_VARS.fd"; cp "$VARS_TEMPLATE" "$VMDIR/OVMF_VARS.fd"
+		set -- "$@" -machine q35,smm=on -global driver=cfi.pflash01,property=secure,value=on \
+			-drive if=pflash,format=raw,unit=0,readonly=on,file="$CODE" \
+			-drive if=pflash,format=raw,unit=1,file="$VMDIR/OVMF_VARS.fd"
+	else
 	[ -n "$CODE" ] || { echo "ERRO: OVMF não encontrado (apt install ovmf)." >&2; exit 1; }
 	[ -f "$VMDIR/OVMF_VARS.fd" ] || cp "$VARS_TEMPLATE" "$VMDIR/OVMF_VARS.fd"
 	set -- "$@" -machine q35 \
 		-drive if=pflash,format=raw,readonly=on,file="$CODE" \
 		-drive if=pflash,format=raw,file="$VMDIR/OVMF_VARS.fd"
+	fi
 else
 	set -- "$@" -machine q35
 fi

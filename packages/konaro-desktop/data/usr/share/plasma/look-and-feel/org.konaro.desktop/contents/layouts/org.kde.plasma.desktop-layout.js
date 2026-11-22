@@ -18,7 +18,8 @@ top.floating = false;
 top.hiding = "none";
 top.opacity = "translucent";   // vidro: o que flutua fica translúcido com desfoque
 
-var launcher = top.addWidget("org.kde.plasma.kickoff");
+// Iniciar do Konaro (tela cheia, abre com a tecla Super/Windows)
+var launcher = top.addWidget("org.konaro.launcher");
 launcher.currentConfigGroup = ["General"];
 launcher.writeConfig("icon", "konaro-start");
 
@@ -87,9 +88,10 @@ for (var j = 0; j < desktopsArray.length; j++) {
 // removê-los (botão direito) ou ligar/desligar cada um — e outros, como o uso de
 // memória — nas Boas-vindas. Mesmas posições usadas por konaro/desktopwidgets.py.
 var cornerWidgets = [
-    ["org.kde.plasma.analogclock", "top-left", 200, 200],
-    ["org.kde.plasma.calendar", "top-right", 400, 290],
-    ["org.kde.plasma.notes", "bottom-right", 280, 240]
+    // widgets do Konaro em cartões (estilo dos widgets do macOS): pequeno 180, médio 370x180
+    ["org.konaro.widget.clock", "top-left", 180, 180],
+    ["org.konaro.widget.calendar", "top-right", 370, 180],
+    ["org.konaro.widget.notes", "bottom-right", 180, 180]
 ];
 for (var k = 0; k < desktopsArray.length; k++) {
     var d = desktopsArray[k];
@@ -100,12 +102,7 @@ for (var k = 0; k < desktopsArray.length; k++) {
         if (spec[1].indexOf("right") !== -1) x = g.width - 32 - spec[2];
         if (spec[1].indexOf("bottom") !== -1) y = g.height - 120 - spec[3];
         if (d.widgets(spec[0]).length === 0) {
-            var added = d.addWidget(spec[0], x, y, spec[2], spec[3]);
-            if (added && spec[0] === "org.kde.plasma.notes") {
-                // nota branca, combinando com a paleta neutra
-                added.currentConfigGroup = ["General"];
-                added.writeConfig("color", "white");
-            }
+            d.addWidget(spec[0], x, y, spec[2], spec[3]);
         }
     }
 }

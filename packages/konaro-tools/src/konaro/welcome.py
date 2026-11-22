@@ -12,7 +12,7 @@ import sys
 
 from PyQt6.QtCore import QObject, pyqtProperty, pyqtSignal, pyqtSlot
 
-from . import desktopwidgets, i18n
+from . import desktopwidgets, fonts, i18n
 from .i18n import _
 from .launcher import launch
 
@@ -139,6 +139,19 @@ class WelcomeBridge(QObject):
     @pyqtSlot(bool)
     def setDark(self, dark):
         apply_theme(dark)
+
+    @pyqtProperty("QVariantList", constant=True)
+    def fonts(self):
+        return [{"id": f["id"], "family": f["family"], "name": f["name"], "description": _(f["description"])}
+                for f in fonts.FONTS]
+
+    @pyqtProperty(str, constant=True)
+    def font(self):
+        return fonts.current_user()
+
+    @pyqtSlot(str)
+    def setFont(self, font_id):
+        fonts.apply_user(font_id)
 
     @pyqtSlot(bool)
     def setReducedAnimations(self, reduced):

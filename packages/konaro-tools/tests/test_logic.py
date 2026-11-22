@@ -125,6 +125,85 @@ class CatalogTest(unittest.TestCase):
                 self.assertTrue(app["app"].count(".") >= 2, app["id"])
 
 
+class MigrateTest(unittest.TestCase):
+    """Migração do Windows com uma árvore falsa (sem montar disco nenhum)."""
+
+    def _fake_windows(self, root):
+        os.makedirs(os.path.join(root, "Windows", "System32"))
+        user = os.path.join(root, "Users", "Ana")
+        for d in ("Documents/Trabalho", "Pictures", "Desktop"):
+            os.makedirs(os.path.join(user, d))
+        os.makedirs(os.path.join(root, "Users", "Public"))
+        with open(os.path.join(user, "Documents", "Trabalho", "relatorio.txt"), "w") as fh:
+            fh.write("x" * 100)
+        with open(os.path.join(user, "Documents", "desktop.ini"), "w") as fh:
+            fh.write("ignorar")
+        with open(os.path.join(user, "Pictures", "foto.jpg"), "wb") as fh:
+            fh.write(b"\xff" * 50)
+        edge = os.path.join(user, "AppData", "Local", "Microsoft", "Edge", "User Data", "Default")
+        os.makedirs(edge)
+        import json
+        with open(os.path.join(edge, "Bookmarks"), "w") as fh:
+            json.dump({"roots": {"bookmark_bar": {"type": "folder", "name": "Barra", "children": [
+                {"type": "url", "name": "Konaro <site>", "url": "https://example.org/?a=1&b=2"}]}}}, fh)
+        return user
+
+    def test_scan_and_copy(self):
+        import tempfile
+        from konaro import migrate
+        with tempfile.TemporaryDirectory() as win, tempfile.TemporaryDirectory() as home:
+            self._fake_windows(win)
+            self.assertTrue(migrate.is_windows(win))
+            self.assertEqual(migrate.windows_users(win), ["Ana"])
+            items = migrate.scan_user(win, "Ana")
+            ids = [i["id"] for i in items]
+            self.assertIn("documents", ids)
+            self.assertIn("pictures", ids)
+            self.assertIn("bookmarks", ids)
+            self.assertNotIn("desktop", ids)  # pasta vazia não aparece
+
+            def dest(kind):
+                path = os.path.join(home, kind)
+                os.makedirs(path, exist_ok=True)
+                return path
+            # um arquivo com o mesmo nome já existe: não pode ser sobrescrito
+            os.makedirs(os.path.join(home, "DOCUMENTS", "Do Windows", "Trabalho"))
+            with open(os.path.join(home, "DOCUMENTS", "Do Windows", "Trabalho", "relatorio.txt"), "w") as fh:
+                fh.write("meu")
+            result = migrate.copy_items(items, home=home, dest_for=dest)
+            self.assertEqual(result["copied"], 2)
+            docs = os.path.join(home, "DOCUMENTS", "Do Windows", "Trabalho")
+            self.assertEqual(open(os.path.join(docs, "relatorio.txt")).read(), "meu")
+            self.assertTrue(os.path.exists(os.path.join(docs, "relatorio (2).txt")))
+            self.assertFalse(os.path.exists(os.path.join(home, "DOCUMENTS", "Do Windows", "desktop.ini")))
+            html_file = os.path.join(home, "DOCUMENTS", "Favoritos do Windows.html")
+            with open(html_file, encoding="utf-8") as fh:
+                content = fh.read()
+            self.assertIn("https://example.org/?a=1&amp;b=2", content)
+            self.assertIn("Konaro &lt;site&gt;", content)
+            # o "Windows" de origem continua intacto
+            self.assertTrue(os.path.exists(os.path.join(win, "Users", "Ana", "Documents", "Trabalho", "relatorio.txt")))
+
+
+class FontsTest(unittest.TestCase):
+    def test_apply_system(self):
+        import tempfile
+        from konaro import fonts
+        with tempfile.TemporaryDirectory() as root:
+            os.makedirs(os.path.join(root, "etc/xdg"))
+            os.makedirs(os.path.join(root, "etc/sddm.conf.d"))
+            with open(os.path.join(root, "etc/xdg/kdeglobals"), "w") as fh:
+                fh.write("[General]\nfont=Inter,10\nsmallestReadableFont=Inter,8\n")
+            with open(os.path.join(root, "etc/sddm.conf.d/10-konaro.conf"), "w") as fh:
+                fh.write("[Theme]\nFont=Inter,10\n")
+            self.assertEqual(fonts.apply_system(root, "manrope"), "manrope")
+            kg = open(os.path.join(root, "etc/xdg/kdeglobals")).read()
+            self.assertIn("font=Manrope,10", kg)
+            self.assertIn("smallestReadableFont=Manrope,8", kg)
+            self.assertIn("Font=Manrope,10", open(os.path.join(root, "etc/sddm.conf.d/10-konaro.conf")).read())
+            self.assertEqual(fonts.apply_system(root, "nao-existe"), "inter")
+
+
 class I18nTest(unittest.TestCase):
     def test_all_used_strings_translated(self):
         import ast

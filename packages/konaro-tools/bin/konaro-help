@@ -1,0 +1,6 @@
+#!/usr/bin/python3
+import sys
+
+from konaro.help import main
+
+sys.exit(main())

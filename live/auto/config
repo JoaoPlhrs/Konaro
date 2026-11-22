@@ -39,7 +39,7 @@ lb config noauto \
 	--apt-recommends true \
 	--binary-image iso-hybrid \
 	--bootloaders "grub-pc grub-efi" \
-	--uefi-secure-boot disable \
+	--uefi-secure-boot enable \
 	--debian-installer none \
 	--firmware-chroot true \
 	--firmware-binary false \

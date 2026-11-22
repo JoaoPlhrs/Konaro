@@ -1,0 +1,15 @@
+[SddmGreeterTheme]
+Name=Konaro
+Name[pt_BR]=Konaro
+Description=Konaro OS login screen
+Description[pt_BR]=Tela de login do Konaro OS
+Author=Konaro OS Project
+License=Pending (see docs/LICENSES.md)
+Type=sddm-theme
+Version=0.1
+Screenshot=background.png
+MainScript=Main.qml
+ConfigFile=theme.conf
+Theme-Id=konaro
+Theme-API=2.0
+QtVersion=6

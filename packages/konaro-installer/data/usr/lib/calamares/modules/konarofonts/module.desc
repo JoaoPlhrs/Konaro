@@ -1,0 +1,6 @@
+# Konaro OS — aplica a fonte escolhida no instalador.
+---
+type:       "job"
+name:       "konarofonts"
+interface:  "python"
+script:     "main.py"

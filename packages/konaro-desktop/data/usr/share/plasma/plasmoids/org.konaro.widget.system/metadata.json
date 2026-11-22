@@ -1,0 +1,16 @@
+{
+    "KPackageStructure": "Plasma/Applet",
+    "KPlugin": {
+        "Authors": [{ "Name": "Konaro OS Project" }],
+        "Category": "Date and Time",
+        "Description": "CPU, memory and disk usage",
+        "Description[pt_BR]": "Uso de CPU, memória e disco",
+        "EnabledByDefault": true,
+        "Icon": "utilities-system-monitor",
+        "Id": "org.konaro.widget.system",
+        "License": "Pending (see docs/LICENSES.md)",
+        "Name": "Konaro System",
+        "Name[pt_BR]": "Sistema (Konaro)"
+    },
+    "X-Plasma-API-Minimum-Version": "6.0"
+}

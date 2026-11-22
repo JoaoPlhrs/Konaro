@@ -10,17 +10,17 @@ import subprocess
 
 # id, plugin do Plasma, canto, largura, altura, ligado por padrão
 WIDGETS = [
-    {"id": "clock", "plugin": "org.kde.plasma.analogclock", "corner": "top-left",
-     "width": 200, "height": 200, "default": True,
+    {"id": "clock", "plugin": "org.konaro.widget.clock", "corner": "top-left",
+     "width": 180, "height": 180, "default": True,
      "name": "Clock", "description": "An analog clock in the top left corner.", "icon": "preferences-system-time"},
-    {"id": "calendar", "plugin": "org.kde.plasma.calendar", "corner": "top-right",
-     "width": 400, "height": 290, "default": True,
+    {"id": "calendar", "plugin": "org.konaro.widget.calendar", "corner": "top-right",
+     "width": 370, "height": 180, "default": True,
      "name": "Calendar", "description": "This month at a glance, in the top right corner.", "icon": "view-calendar"},
-    {"id": "monitor", "plugin": "org.kde.plasma.systemmonitor.memory", "corner": "bottom-left",
-     "width": 280, "height": 180, "default": False,
-     "name": "Memory usage", "description": "How much memory your apps are using.", "icon": "utilities-system-monitor"},
-    {"id": "notes", "plugin": "org.kde.plasma.notes", "corner": "bottom-right",
-     "width": 280, "height": 240, "default": True,
+    {"id": "monitor", "plugin": "org.konaro.widget.system", "corner": "bottom-left",
+     "width": 180, "height": 180, "default": False,
+     "name": "System", "description": "CPU, memory and disk usage at a glance.", "icon": "utilities-system-monitor"},
+    {"id": "notes", "plugin": "org.konaro.widget.notes", "corner": "bottom-right",
+     "width": 180, "height": 180, "default": True,
      "name": "Notes", "description": "A sticky note for quick reminders.", "icon": "knotes"},
     {"id": "media", "plugin": "org.kde.plasma.mediacontroller", "corner": "bottom-left-high",
      "width": 300, "height": 140, "default": False,
@@ -35,12 +35,7 @@ function konaroPlace(d, plugin, corner, w, h) {
     if (corner.indexOf("right") !== -1) x = g.width - side - w;
     if (corner.indexOf("bottom") !== -1) y = g.height - bottom - h;
     if (corner === "bottom-left-high") y = g.height - bottom - h - 200;
-    var added = d.addWidget(plugin, x, y, w, h);
-    if (added && plugin === "org.kde.plasma.notes") {
-        added.currentConfigGroup = ["General"];
-        added.writeConfig("color", "white");
-    }
-    return added;
+    return d.addWidget(plugin, x, y, w, h);
 }
 """
 

@@ -32,6 +32,18 @@ Loja, como fazem as lojas de apps do Linux. Não fazem parte da licença do Kona
 Decorações de janela Aurorae "Konaro"/"Konaro Dark" (botões semáforo), Dock Konaro
 (`org.konaro.dock`), ícones Loja/Atualizações/Drivers/Boas-vindas, sistema de design QML.
 
+## Build 5: novos componentes
+- **Papéis de parede Serra, Dunas e Pinguim**: arte original, gerada por
+  `packages/konaro-desktop/artwork/make-wallpapers.py`. O pinguim é um mascote original do
+  Konaro (não é a arte do Tux de Larry Ewing).
+- **Tela de login (tema SDDM "konaro")**, **Iniciar**, **widgets** e **apps Ajuda/Migração**:
+  código original do projeto (licença pendente). O Iniciar usa os modelos de apps do Plasma
+  (`org.kde.plasma.private.kicker`) como biblioteca, sem copiar código do KDE.
+- **Fontes oferecidas**: Inter, Noto Sans e Manrope (SIL Open Font License 1.1) e
+  Roboto (Apache 2.0), todas dos pacotes do Debian.
+- **Secure Boot**: `shim-signed` (assinado pela Microsoft) e `grub-efi-amd64-signed` /
+  kernel do Debian (assinados pelo Debian), sem modificação.
+
 ## Componentes de terceiros incluídos na ISO
 Todos vêm dos repositórios oficiais do Debian e mantêm suas licenças originais; o texto
 de cada uma fica em `/usr/share/doc/<pacote>/copyright` dentro do sistema. A lista

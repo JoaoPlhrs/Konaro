@@ -1,3 +1,7 @@
 bin/konaro-welcome usr/bin/
 data/applications/konaro-welcome.desktop usr/share/applications/
 data/autostart/konaro-welcome.desktop etc/xdg/autostart/
+bin/konaro-help usr/bin/
+data/applications/konaro-help.desktop usr/share/applications/
+bin/konaro-migrate usr/bin/
+data/applications/konaro-migrate.desktop usr/share/applications/

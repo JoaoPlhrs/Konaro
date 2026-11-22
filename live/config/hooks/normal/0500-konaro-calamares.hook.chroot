@@ -30,6 +30,21 @@ grep -q '^  - packagechooser@browsers$' "$SETTINGS"
 grep -q '^  - konarobrowsers$' "$SETTINGS"
 test -f /usr/lib/calamares/modules/konarobrowsers/main.py
 
+# 2b. Página "Fonte" (logo após Navegadores) + módulo que grava a fonte escolhida
+if ! grep -q 'packagechooser@fonts' "$SETTINGS"; then
+	sed -i 's/^  - packagechooser@browsers$/  - packagechooser@browsers\n  - packagechooser@fonts/' "$SETTINGS"
+	sed -i 's/^  - konarobrowsers$/  - konarobrowsers\n  - konarofonts/' "$SETTINGS"
+	cat >> "$SETTINGS" <<'EOF2'
+- id:       fonts
+  module:   packagechooser
+  config:   packagechooser-fonts.conf
+EOF2
+fi
+grep -q '^  - packagechooser@fonts$' "$SETTINGS"
+grep -q '^  - konarofonts$' "$SETTINGS"
+/usr/lib/konaro/installer/make-font-cards
+test -f /usr/share/konaro/installer/font-inter.png
+
 # Imagens da página de navegadores: cartões com o ícone de cada navegador
 # (gerados a partir dos ícones realmente instalados; ver konaro-installer)
 /usr/lib/konaro/installer/make-browser-cards

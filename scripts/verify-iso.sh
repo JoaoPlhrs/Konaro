@@ -26,6 +26,16 @@ for f in /live/filesystem.squashfs /live/vmlinuz /live/initrd.img /boot/grub/gru
 done
 xorriso -indev "$ISO" -report_el_torito plain 2>/dev/null | grep -qi "BIOS" && ok "El Torito BIOS" || bad "sem boot BIOS"
 xorriso -indev "$ISO" -report_el_torito plain 2>/dev/null | grep -qi "UEFI" && ok "El Torito UEFI" || bad "sem boot UEFI"
+# Secure Boot: o carregador UEFI da ISO tem que ser o shim assinado (não um GRUB sem assinatura)
+TMPEFI=$(mktemp -d)
+xorriso -osirrox on -indev "$ISO" -extract /EFI/boot "$TMPEFI/boot" >/dev/null 2>&1 || true
+if [ -f "$TMPEFI/boot/bootx64.efi" ] && grep -aq "Microsoft Corporation UEFI CA" "$TMPEFI/boot/bootx64.efi"; then
+	ok "Secure Boot: bootx64.efi é o shim assinado pela Microsoft"
+else
+	bad "Secure Boot: bootx64.efi não é o shim assinado"
+fi
+[ -f "$TMPEFI/boot/grubx64.efi" ] && ok "Secure Boot: GRUB assinado presente (grubx64.efi)" || bad "Secure Boot: grubx64.efi ausente"
+rm -r "$TMPEFI"
 
 echo "==> Extraindo arquivos selecionados do squashfs"
 xorriso -osirrox on -indev "$ISO" -extract /live/filesystem.squashfs "$TMP/fs.sqfs" >/dev/null 2>&1

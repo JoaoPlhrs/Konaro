@@ -1,0 +1,17 @@
+{
+    "KPackageStructure": "Plasma/Applet",
+    "KPlugin": {
+        "Authors": [{ "Name": "Konaro OS Project" }],
+        "Category": "Application Launchers",
+        "Description": "Full-screen app launcher with search, pinned apps and all apps",
+        "Description[pt_BR]": "Iniciar em tela cheia: busca, apps fixados e todos os apps",
+        "EnabledByDefault": true,
+        "Icon": "konaro-start",
+        "Id": "org.konaro.launcher",
+        "License": "Pending (see docs/LICENSES.md)",
+        "Name": "Konaro Launcher",
+        "Name[pt_BR]": "Iniciar do Konaro"
+    },
+    "X-Plasma-API-Minimum-Version": "6.0",
+    "X-Plasma-Provides": ["org.kde.plasma.launchermenu"]
+}

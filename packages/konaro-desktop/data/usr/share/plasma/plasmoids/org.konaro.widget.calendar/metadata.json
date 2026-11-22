@@ -1,0 +1,16 @@
+{
+    "KPackageStructure": "Plasma/Applet",
+    "KPlugin": {
+        "Authors": [{ "Name": "Konaro OS Project" }],
+        "Category": "Date and Time",
+        "Description": "Today and this month",
+        "Description[pt_BR]": "Hoje e o mês",
+        "EnabledByDefault": true,
+        "Icon": "view-calendar",
+        "Id": "org.konaro.widget.calendar",
+        "License": "Pending (see docs/LICENSES.md)",
+        "Name": "Konaro Calendar",
+        "Name[pt_BR]": "Calendário (Konaro)"
+    },
+    "X-Plasma-API-Minimum-Version": "6.0"
+}

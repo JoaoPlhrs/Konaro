@@ -42,3 +42,7 @@ fonts-noto-color-emoji
 
 # Tela de carregamento do sistema com o logo Konaro
 plymouth
+
+# Fontes que o usuário pode escolher na instalação e nas Boas-vindas
+fonts-manrope
+fonts-roboto

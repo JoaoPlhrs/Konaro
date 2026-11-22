@@ -23,6 +23,21 @@ override_dh_auto_build:
 	  rsvg-convert -w $$w -h $$h $(ART)/wallpaper-dark.svg  -o $(WP)/images_dark/$$size.png; \
 	done
 	rsvg-convert -w 400 -h 225 $(ART)/wallpaper-light.svg -o $(WP)/screenshot.png
+	# Coleção de papéis de parede (Serra, Dunas, Pinguim), gerada em SVG e renderizada.
+	# Os SVGs intermediários ficam em debian/generated/wp-svg (não são instalados).
+	python3 $(ART)/make-wallpapers.py $(GEN)/wp-svg
+	set -e; for pair in KonaroSerra:serra:serra-noite KonaroDunas:dunas:dunas-noite KonaroPinguim:pinguim:; do \
+	  id=$${pair%%:*}; rest=$${pair#*:}; light=$${rest%%:*}; dark=$${rest#*:}; \
+	  d=$(GEN)/usr/share/wallpapers/$$id/contents; mkdir -p $$d/images; \
+	  for size in 1920x1080 3840x2160; do w=$${size%x*}; h=$${size#*x}; \
+	    rsvg-convert -w $$w -h $$h $(GEN)/wp-svg/$$light.svg -o $$d/images/$$size.png; \
+	    if [ -n "$$dark" ]; then mkdir -p $$d/images_dark; rsvg-convert -w $$w -h $$h $(GEN)/wp-svg/$$dark.svg -o $$d/images_dark/$$size.png; fi; \
+	  done; \
+	  rsvg-convert -w 400 -h 225 $(GEN)/wp-svg/$$light.svg -o $$d/screenshot.png; \
+	done
+	# Fundo da tela de login (SDDM): a Serra ao amanhecer
+	mkdir -p $(GEN)/usr/share/sddm/themes/konaro
+	rsvg-convert -w 2560 -h 1440 $(GEN)/wp-svg/serra.svg -o $(GEN)/usr/share/sddm/themes/konaro/background.png
 	# Prévias dos temas globais
 	rsvg-convert -w 400 -h 225 $(ART)/wallpaper-light.svg -o $(LF)/org.konaro.desktop/contents/previews/preview.png
 	rsvg-convert -w 400 -h 225 $(ART)/wallpaper-dark.svg  -o $(LF)/org.konaro.desktop.dark/contents/previews/preview.png

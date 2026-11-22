@@ -2,7 +2,7 @@ Source: konaro-desktop
 Section: x11
 Priority: optional
 Maintainer: Konaro OS Project <maintainers@konaro.invalid>
-Build-Depends: debhelper-compat (= 13), librsvg2-bin
+Build-Depends: debhelper-compat (= 13), librsvg2-bin, python3:any
 Standards-Version: 4.7.2
 Rules-Requires-Root: no
 
@@ -16,7 +16,7 @@ Depends: ${misc:Depends},
          breeze-cursor-theme,
          kf6-breeze-icon-theme,
          fonts-inter
-Recommends: sddm, sddm-theme-breeze, plymouth
+Recommends: sddm, sddm-theme-breeze, plymouth, qml6-module-qtquick-effects, qml6-module-qtquick-controls
 Description: Konaro OS desktop identity for KDE Plasma
  Default look and feel of Konaro OS on top of KDE Plasma 6:
   - global themes "Konaro Light" and "Konaro Dark" (neutral palette);

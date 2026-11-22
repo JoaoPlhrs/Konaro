@@ -1,0 +1,13 @@
+[Desktop Entry]
+Type=Application
+Name=Konaro Help
+Name[pt_BR]=Ajuda do Konaro
+GenericName=Where is…?
+GenericName[pt_BR]=Onde está…?
+Comment=Find where things you know from Windows are in Konaro
+Comment[pt_BR]=Descubra onde ficam no Konaro as coisas que você conhece do Windows
+Exec=konaro-help
+Icon=help-browser
+Categories=Qt;KDE;System;Documentation;
+Keywords=help;where;windows;control panel;task manager;ajuda;onde;painel de controle;gerenciador de tarefas;
+Keywords[pt_BR]=ajuda;onde está;windows;painel de controle;gerenciador de tarefas;explorador;bloco de notas;

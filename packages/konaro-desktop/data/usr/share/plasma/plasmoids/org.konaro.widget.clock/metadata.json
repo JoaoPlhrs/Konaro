@@ -1,0 +1,16 @@
+{
+    "KPackageStructure": "Plasma/Applet",
+    "KPlugin": {
+        "Authors": [{ "Name": "Konaro OS Project" }],
+        "Category": "Date and Time",
+        "Description": "An analog clock card",
+        "Description[pt_BR]": "Relógio analógico em cartão",
+        "EnabledByDefault": true,
+        "Icon": "preferences-system-time",
+        "Id": "org.konaro.widget.clock",
+        "License": "Pending (see docs/LICENSES.md)",
+        "Name": "Konaro Clock",
+        "Name[pt_BR]": "Relógio (Konaro)"
+    },
+    "X-Plasma-API-Minimum-Version": "6.0"
+}
