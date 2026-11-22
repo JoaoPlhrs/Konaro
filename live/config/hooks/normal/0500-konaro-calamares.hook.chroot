@@ -15,10 +15,8 @@ test -f /usr/share/calamares/branding/konaro/branding.desc
 
 # 2. Página "Fonte" (antes do resumo) + módulo que grava a fonte escolhida
 if ! grep -q 'packagechooser@fonts' "$SETTINGS"; then
-	sed -i 's/^  - summary$/  - packagechooser@fonts
-  - summary/' "$SETTINGS"
-	sed -i 's/^  - packages$/  - packages
-  - konarofonts/' "$SETTINGS"
+	sed -i 's/^  - summary$/  - packagechooser@fonts\n  - summary/' "$SETTINGS"
+	sed -i 's/^  - packages$/  - packages\n  - konarofonts/' "$SETTINGS"
 	cat >> "$SETTINGS" <<'EOF2'
 
 # Konaro OS: instância da página de escolha da fonte

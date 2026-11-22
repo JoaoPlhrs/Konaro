@@ -42,7 +42,7 @@ done
 
 # Imagem mínima: só o Firefox de navegador e nada que o KDE puxaria sem pedirmos
 for p in chromium konqueror falkon epiphany-browser plasma-discover plasma-welcome brave-browser \
-	kate kdeconnect khelpcenter partitionmanager qsynth vim kwalletmanager kfind; do
+	kdeconnect khelpcenter partitionmanager qsynth vim kwalletmanager kfind; do
 	if dpkg-query -W -f '${Status}\n' "$p" 2>/dev/null | grep -q 'install ok installed'; then
 		echo "konaro-checks: AVISO: pacote indesejado instalado: $p" >&2
 	fi

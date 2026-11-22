@@ -21,6 +21,6 @@ Pin-Priority: -1
 
 # Imagem mínima (decisão do responsável): só o essencial vem instalado; o resto
 # está a um clique na Loja Konaro.
-Package: kate kdeconnect khelpcenter partitionmanager qsynth vim kwalletmanager kfind
+Package: kdeconnect khelpcenter partitionmanager qsynth vim kwalletmanager kfind
 Pin: release *
 Pin-Priority: -1

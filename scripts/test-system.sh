@@ -72,7 +72,7 @@ echo "   unidades com falha: $(wc -l < "$OUT/failed-units.txt") (lista em $OUT/f
 if [ -n "$PROXY" ]; then
 	run sh -c "echo 'Acquire::http::Proxy \"$PROXY\";' > /etc/apt/apt.conf.d/99konaro-test-proxy
 		sed -i 's#https://deb.debian.org#http://deb.debian.org#; s#https://security.debian.org#http://security.debian.org#' /etc/apt/sources.list /etc/apt/sources.list.d/*.list /etc/apt/sources.list.d/*.sources 2>/dev/null || true
-		sed -i 's#https://brave-browser-apt-release#http://brave-browser-apt-release#' /etc/apt/sources.list.d/*.list 2>/dev/null || true
+		sed -i 's#https://raw.githubusercontent.com#http://raw.githubusercontent.com#' /etc/apt/sources.list.d/*.sources 2>/dev/null || true
 		# No contêiner o NetworkManager não gerencia a rede e o PackageKit se acha offline;
 		# sem ele, o PackageKit usa a detecção de rede do kernel.
 		systemctl stop NetworkManager; systemctl restart packagekit; sleep 5"

@@ -1,14 +1,30 @@
 # Histórico de versões
 
-Todas as versões do Konaro OS, da mais nova para a mais antiga. A ISO mais recente está inteira em [**https://gofile.io/d/IuvlFwTS**](https://gofile.io/d/IuvlFwTS).
+Todas as versões do Konaro OS, da mais nova para a mais antiga. A ISO mais recente está inteira em [**https://gofile.io/d/xAf862BJ**](https://gofile.io/d/xAf862BJ).
 
 Legenda: ✨ novo · 🎨 visual · 🐛 correção · ⚠️ limitação conhecida
 
 ---
 
-## 0.1.0-dev1 · build 5 — "Mac + Windows" · 2026-11-22 · **atual**
+## 0.1.0-dev6 · build 6 — "Leve" · 2026-11-22 · **atual**
 
-ISO **inteira**: [**baixar no Gofile**](https://gofile.io/d/IuvlFwTS) · `konaro-os-0.1.0-dev1-build5-amd64.iso` · 4,1 GB · SHA-256
+ISO **inteira**: [**baixar no Gofile**](https://gofile.io/d/xAf862BJ) · `konaro-os-0.1.0-dev6-amd64.iso` · **2,7 GB** (antes 4,1 GB) · SHA-256
+`6f03eddc48efe9e827a46808f67d25f2982aa39d7506d24392ac5b8b25e636f6`
+
+- ✨ **Sistema mínimo**: só o Firefox vem instalado. Brave, Ungoogled Chromium, Steam e o pacote "Jogos e apps do Windows" ficam a um clique na Loja. Saíram KDE Connect, Ajuda do KDE, gerenciador de partições, vim, entre outros. 1.819 pacotes (antes 2.100).
+- ✨ **Voltar no tempo**: o sistema é instalado em Btrfs e o Timeshift vem configurado — ponto de restauração ao terminar a instalação, todo dia e **antes de cada atualização**. App "Voltar no tempo" para restaurar.
+- ✨ **Repositório próprio do Konaro** (assinado), servido por este GitHub em `apt/`: as ferramentas, temas e correções do Konaro agora chegam pelas Atualizações.
+- ✨ **Central de controle** na barra superior: Wi-Fi, Bluetooth, modo avião, Não perturbe, modo escuro, modo de energia (Economia/Equilibrado/Desempenho), tela, som e bateria com a saúde dela.
+- ✨ **Spotlight**: Alt + Espaço abre a busca no centro da tela.
+- ✨ **Firmware** (BIOS/UEFI, SSD, periféricos) nas Atualizações do Konaro (fwupd/LVFS).
+- ✨ **Meu Avatar**: crie um avatar personalizado (pele, cabelo, olhos, boca, barba, óculos, chapéu, fundo) que vira sua foto no login, no Iniciar e nas Configurações. Arte original do Konaro.
+- 🎨 Papéis de parede **Fluxo**, **Terminal** e **Anel**.
+- Testes: `verify-iso` OK · teste de sistema 19/19 · boot completo em VM **com Secure Boot ligado**.
+- ⚠️ Não testados ainda: instalação em disco (Btrfs/Timeshift na prática), restauração de um ponto, atualização de firmware em hardware real.
+
+## 0.1.0-dev1 · build 5 — "Mac + Windows" · 2026-11-22
+
+ISO **inteira**: (substituída pela build 6) · `konaro-os-0.1.0-dev1-build5-amd64.iso` · 4,1 GB · SHA-256
 `f3b7559b656f749a0097962b444a06619799f9de65910c2aea6248b398f97fe9`
 
 - ✨ **Tela de login no estilo do macOS** (tema próprio do SDDM): data e hora grandes, foto/inicial, nome e senha em pílula de vidro; teclado e menu de energia no canto.
