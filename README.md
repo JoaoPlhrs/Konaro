@@ -32,7 +32,7 @@ Visual inspirado no macOS, jeito de usar familiar para quem vem do Windows.</p>
 | 0.1.0-dev1 · build 2 "Ferramentas" | 2026-11-22 | — | Loja, Atualizações, Drivers, Boas-vindas, navegadores, jogos | substituída pela build 3 |
 | 0.1.0-dev1 · build 1 "Fundação" | 2026-11-22 | — | Base Debian 13 + Plasma 6, instalador, identidade | substituída pela build 3 |
 
-Detalhes de cada versão em **[CHANGELOG.md](CHANGELOG.md)**. SHA-256 da build 6:
+Detalhes de cada versão em **[CHANGELOG.md](CHANGELOG.md)** · comparativo de desempenho com o Windows 11: **[docs/OTIMIZACAO.md](docs/OTIMIZACAO.md)**. SHA-256 da build 6:
 `6f03eddc48efe9e827a46808f67d25f2982aa39d7506d24392ac5b8b25e636f6`
 
 > ⚠️ **Build de desenvolvimento.** Teste primeiro numa máquina virtual. O que foi e o que
