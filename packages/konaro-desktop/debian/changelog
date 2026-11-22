@@ -1,3 +1,10 @@
+konaro-desktop (0.1.0~dev7) trixie; urgency=medium
+
+  * Meu Avatar refeito: personagens novos com volume, editor com amostras de cor,
+    miniaturas ampliadas de cada parte e carregamento sem travar.
+
+ -- Konaro OS Project <maintainers@konaro.invalid>  Sun, 22 Nov 2026 20:30:45 +0000
+
 konaro-desktop (0.1.0~dev6) trixie; urgency=medium
 
   * Build 6: imagem mínima, Voltar no tempo, repositório Konaro, Central de
