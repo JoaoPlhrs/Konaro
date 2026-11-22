@@ -1,56 +1,16 @@
-<p align="center"><img src="docs/assets/banner.png" alt="Konaro OS" width="100%"></p>
+# Konaro OS
 
-<p align="center">
-  <a href="https://github.com/JoaoPlhrs/Konaro/releases/latest"><img src="https://img.shields.io/badge/⬇_Baixar-0.1.0--dev1-1d1d1f?style=for-the-badge" alt="Baixar"></a>
-  <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/Novidades-build_3-3a3a3c?style=for-the-badge" alt="Novidades"></a>
-  <a href="docs/STATUS.md"><img src="https://img.shields.io/badge/Testes-24%2F24-28c840?style=for-the-badge" alt="Testes"></a>
-</p>
-<p align="center">
-  <img src="https://img.shields.io/badge/Debian-13_trixie-A81D33?logo=debian&logoColor=white" alt="Debian 13">
-  <img src="https://img.shields.io/badge/KDE_Plasma-6.3-1D99F3?logo=kde&logoColor=white" alt="KDE Plasma 6.3">
-  <img src="https://img.shields.io/badge/arquitetura-amd64-555" alt="amd64">
-  <img src="https://img.shields.io/badge/boot-BIOS_%2B_UEFI-555" alt="BIOS + UEFI">
-  <img src="https://img.shields.io/badge/idiomas-pt--BR_%7C_en-555" alt="Idiomas">
-  <img src="https://img.shields.io/badge/estado-desenvolvimento-FEBC2E" alt="Em desenvolvimento">
-</p>
+Distribuição Linux para desktop baseada em **Debian 13 "trixie"** e **KDE Plasma 6**,
+com identidade própria, experiência inspirada no macOS e foco em quem nunca usou Linux.
 
-<p align="center"><b>Um Linux bonito e fácil para quem nunca usou Linux.</b><br>
-Visual inspirado no macOS, jeito de usar familiar para quem vem do Windows.</p>
+> **Estado: build de desenvolvimento 0.1.0~dev1.** Ainda não é uma versão para uso diário.
+> O que foi testado, e como, está em [docs/STATUS.md](docs/STATUS.md).
 
-<p align="center"><img src="docs/assets/tour.gif" alt="Tour pelo Konaro OS" width="88%"></p>
+A referência central do projeto é o [documento mestre](docs/KONARO_OS_MASTER_SPEC.md).
+Decisões técnicas ficam em [docs/decisions/](docs/decisions/), e o que ainda depende do
+responsável pelo projeto em [docs/PENDING.md](docs/PENDING.md).
 
----
-
-## ⬇️ Download rápido
-
-| Versão | Data | Tamanho | O que mudou | Baixar |
-|---|---|---|---|---|
-| **0.1.0-dev1 · build 3** "Visual elegante" | 2026-11-22 | 4,0 GB | Vidro, botões semáforo, dock animado, widgets, nova Loja e instalador | [**Release**](https://github.com/JoaoPlhrs/Konaro/releases/latest) · [como juntar as partes](docs/DOWNLOAD.md) |
-| 0.1.0-dev1 · build 2 "Ferramentas" | 2026-11-22 | — | Loja, Atualizações, Drivers, Boas-vindas, navegadores, jogos | substituída pela build 3 |
-| 0.1.0-dev1 · build 1 "Fundação" | 2026-11-22 | — | Base Debian 13 + Plasma 6, instalador, identidade | substituída pela build 3 |
-
-Detalhes de cada versão em **[CHANGELOG.md](CHANGELOG.md)**. SHA-256 da build 3:
-`c05bdb082686a78581a3181b439a989dd7157b45342b624748e9f744d0f071b9`
-
-> ⚠️ **Build de desenvolvimento.** Teste primeiro numa máquina virtual. O que foi e o que
-> não foi testado está em [docs/STATUS.md](docs/STATUS.md).
-
-## ✨ Destaques
-
-<table>
-<tr>
-<td width="50%"><img src="docs/screenshots/11-area-de-trabalho-widgets.png" alt="Área de trabalho"><br><b>Área de trabalho</b> — widgets nos cantos, barra superior e dock de vidro.</td>
-<td width="50%"><img src="docs/screenshots/20-janela-semaforo.png" alt="Janela"><br><b>Janelas</b> — botões semáforo e menu global na barra superior.</td>
-</tr>
-<tr>
-<td><img src="docs/screenshots/13-loja-na-sessao.png" alt="Loja"><br><b>Loja Konaro</b> — fácil como a Microsoft Store, com apps do Debian e do Flathub.</td>
-<td><img src="docs/screenshots/10-boas-vindas-semaforo.png" alt="Boas-vindas"><br><b>Boas-vindas</b> — 9 passos: idioma, tema, widgets, internet, privacidade, drivers e jogos.</td>
-</tr>
-</table>
-
-<p align="center"><img src="docs/assets/dock.gif" alt="Dock" width="70%"><br><i>O dock: o ícone sob o ponteiro sobe e cresce.</i></p>
-
-## 📦 O que vem no sistema
+## O que o sistema traz
 
 | Área | Implementação |
 |---|---|
@@ -69,16 +29,23 @@ Detalhes de cada versão em **[CHANGELOG.md](CHANGELOG.md)**. SHA-256 da build 3
 | Segurança | Firewall `ufw` ativo (bloqueia entrada) + módulo gráfico |
 | Hardware | Firmware livre e `non-free-firmware` do Debian, microcódigo Intel/AMD |
 
-## 🗺️ Próximos passos
+**Ainda não existe** (por decisão do responsável): repositório APT próprio do Konaro,
+Secure Boot, licença definida, assistente de IA. Próximos recursos sugeridos:
+[docs/ROADMAP.md](docs/ROADMAP.md).
 
-Planejados e aguardando aprovação: Secure Boot, assistente de migração do Windows,
-tela de login e boot com a identidade Konaro, widgets no estilo do macOS, novas fontes,
-Loja com catálogo completo, novos papéis de parede e o app de ajuda "Onde está…?".
-Veja **[docs/ROADMAP.md](docs/ROADMAP.md)**.
+## Capturas de tela
 
-## 🛠️ Para desenvolvedores
+| Loja (sessão real, botões semáforo) | Loja no escuro | Página do app |
+|---|---|---|
+| ![Loja](docs/screenshots/13-loja-na-sessao.png) | ![Loja escura](docs/screenshots/14-loja-escuro.png) | ![App](docs/screenshots/15-loja-pagina-do-app.png) |
+| **Área de trabalho com widgets** | **Menu de vidro** | **Boas-vindas** |
+| ![Desktop](docs/screenshots/11-area-de-trabalho-widgets.png) | ![Menu](docs/screenshots/12-menu-vidro.png) | ![Boas-vindas](docs/screenshots/10-boas-vindas-semaforo.png) |
+| **Atualizações** | **Drivers** | **Dock: ícones sobem sob o ponteiro** |
+| ![Atualizações](docs/screenshots/16-atualizacoes.png) | ![Drivers](docs/screenshots/17-drivers.png) | ![Dock](docs/screenshots/19-dock-hover.png) |
+| **Janela com botões semáforo** | | |
+| ![Janela](docs/screenshots/20-janela-semaforo.png) | | |
 
-### Compilar e testar
+## Início rápido
 
 ```sh
 ./scripts/lint.sh                              # verificações estáticas + testes
@@ -110,11 +77,7 @@ scripts/                 build, chroot de build, verificação da ISO, teste de 
 docs/                    documento mestre, decisões, pendências, licenças, status
 ```
 
-Documento mestre: [docs/KONARO_OS_MASTER_SPEC.md](docs/KONARO_OS_MASTER_SPEC.md) ·
-decisões: [docs/decisions/](docs/decisions/) · pendências: [docs/PENDING.md](docs/PENDING.md) ·
-design: [docs/design/DESIGN.md](docs/design/DESIGN.md).
+## Licença
 
-## 📄 Licença
-
-Ainda **não definida** para os componentes originais (veja [docs/LICENSES.md](docs/LICENSES.md)).
-Os pacotes do Debian, do KDE e dos apps mantêm as próprias licenças.
+**Pendente.** A licença dos componentes originais ainda não foi escolhida; veja
+[docs/LICENSES.md](docs/LICENSES.md). Até lá, não publique ISOs ou pacotes.

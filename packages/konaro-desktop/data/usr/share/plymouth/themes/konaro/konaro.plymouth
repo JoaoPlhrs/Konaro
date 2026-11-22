@@ -1,0 +1,8 @@
+[Plymouth Theme]
+Name=Konaro
+Description=Konaro OS boot screen: logo on black with a quiet progress indicator
+ModuleName=script
+
+[script]
+ImageDir=/usr/share/plymouth/themes/konaro
+ScriptFile=/usr/share/plymouth/themes/konaro/konaro.script

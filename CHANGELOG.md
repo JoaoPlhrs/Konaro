@@ -1,14 +1,21 @@
 # Histórico de versões
 
-Todas as versões do Konaro OS, da mais nova para a mais antiga. Os downloads ficam em
-[**Releases**](https://github.com/JoaoPlhrs/Konaro/releases). Cada ISO é dividida em partes
-(limite de tamanho por arquivo do GitHub); veja [como juntar](docs/DOWNLOAD.md).
+Todas as versões do Konaro OS, da mais nova para a mais antiga. A ISO mais recente está inteira em [**https://gofile.io/d/TgNSuXQ7**](https://gofile.io/d/TgNSuXQ7).
 
 Legenda: ✨ novo · 🎨 visual · 🐛 correção · ⚠️ limitação conhecida
 
 ---
 
-## 0.1.0-dev1 · build 3 — "Visual elegante" · 2026-11-22 · **atual**
+## 0.1.0-dev1 · build 4 — "Boot Konaro" · 2026-11-22 · **atual**
+
+ISO **inteira** (um único arquivo): [**baixar no Gofile**](https://gofile.io/d/TgNSuXQ7) · `konaro-os-0.1.0-dev1-amd64.iso` · 4,0 GB · SHA-256
+`02a60c7cde3b21e81eb6a7327ca95e95e18d6ec40f6c26a3057cf1a2f24b113a`
+
+- 🎨 **Tela de carregamento do sistema (Plymouth)**: logo Konaro branco no fundo preto, com três pontos pulsando — sem texto rolando durante o boot. Também mostra o pedido de senha de discos criptografados.
+- Inclui tudo da build 3.
+- Testes: `verify-iso` OK · boot em VM com a nova tela confirmado.
+
+## 0.1.0-dev1 · build 3 — "Visual elegante" · 2026-11-22 · 
 
 ISO: `konaro-os-0.1.0-dev1-amd64.iso` · 4,0 GB · SHA-256
 `c05bdb082686a78581a3181b439a989dd7157b45342b624748e9f744d0f071b9`

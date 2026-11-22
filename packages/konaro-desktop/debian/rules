@@ -32,6 +32,12 @@ override_dh_auto_build:
 	install -m 0644 $(ART)/konaro-logo.svg  $(GEN)/usr/share/konaro/konaro-logo.svg
 	sed 's/#1c1c1e/#f5f5f7/g' $(ART)/konaro-logo.svg > $(GEN)/usr/share/konaro/konaro-logo-white.svg
 	install -m 0644 $(ART)/grub-splash.svg  $(GEN)/usr/share/konaro/grub-splash.svg
+	# Tela de carregamento do sistema (Plymouth): logo branco e ponto do indicador
+	mkdir -p $(GEN)/usr/share/plymouth/themes/konaro
+	rsvg-convert -w 256 -h 256 $(GEN)/usr/share/konaro/konaro-logo-white.svg -o $(GEN)/usr/share/plymouth/themes/konaro/logo.png
+	printf '<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"><circle cx="6" cy="6" r="5" fill="#f5f5f7"/></svg>' > $(GEN)/dot.svg
+	rsvg-convert $(GEN)/dot.svg -o $(GEN)/usr/share/plymouth/themes/konaro/dot.png
+	rm $(GEN)/dot.svg
 
 override_dh_auto_clean:
 	rm -rf debian/generated

@@ -39,3 +39,6 @@ kde-config-flatpak
 fonts-inter
 fonts-noto-core
 fonts-noto-color-emoji
+
+# Tela de carregamento do sistema com o logo Konaro
+plymouth

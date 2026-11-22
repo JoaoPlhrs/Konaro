@@ -1,0 +1,65 @@
+# Konaro OS — tela de carregamento do sistema (Plymouth). Arte original do projeto.
+# Fundo preto, logo branco ao centro e três pontos que pulsam devagar embaixo.
+# Também mostra o pedido de senha de discos criptografados e mensagens do sistema.
+
+Window.SetBackgroundTopColor(0, 0, 0);
+Window.SetBackgroundBottomColor(0, 0, 0);
+
+W = Window.GetWidth(); H = Window.GetHeight();
+X0 = Window.GetX(); Y0 = Window.GetY();
+
+logo.image = Image("logo.png");
+size = Math.Min(W, H) * 0.16;
+if (size > logo.image.GetWidth()) size = logo.image.GetWidth();
+logo.image = logo.image.Scale(size, size);
+logo.sprite = Sprite(logo.image);
+logo.x = X0 + W / 2 - size / 2;
+logo.y = Y0 + H / 2 - size / 2 - H * 0.04;
+logo.sprite.SetPosition(logo.x, logo.y, 1);
+
+dot.image = Image("dot.png");
+gap = dot.image.GetWidth() * 2.2;
+for (i = 0; i < 3; i++) {
+    dots[i] = Sprite(dot.image);
+    dots[i].SetPosition(X0 + W / 2 - gap + i * gap - dot.image.GetWidth() / 2,
+                        logo.y + size + H * 0.09, 1);
+    dots[i].SetOpacity(0.25);
+}
+
+t = 0;
+fun refresh() {
+    t++;
+    for (i = 0; i < 3; i++) {
+        phase = (t / 18 - i * 0.55);
+        dots[i].SetOpacity(0.25 + 0.75 * (Math.Sin(phase) + 1) / 2 * (Math.Sin(phase) + 1) / 2);
+    }
+}
+Plymouth.SetRefreshFunction(refresh);
+
+# --- senha (disco criptografado) ---
+fun show_password(prompt, bullets) {
+    for (i = 0; i < 3; i++) dots[i].SetOpacity(0);
+    question.image = Image.Text(prompt, 1, 1, 1, 1, "Inter 13");
+    question.sprite = Sprite(question.image);
+    question.sprite.SetPosition(X0 + W / 2 - question.image.GetWidth() / 2, logo.y + size + H * 0.07, 2);
+    text = "";
+    for (i = 0; i < bullets; i++) text += "•";
+    if (text == "") text = " ";
+    field.image = Image.Text(text, 1, 1, 1, 1, "Inter 18");
+    field.sprite = Sprite(field.image);
+    field.sprite.SetPosition(X0 + W / 2 - field.image.GetWidth() / 2, logo.y + size + H * 0.11, 2);
+}
+Plymouth.SetDisplayPasswordFunction(show_password);
+
+fun back_to_normal() {
+    question.sprite = NULL; field.sprite = NULL;
+}
+Plymouth.SetDisplayNormalFunction(back_to_normal);
+
+# --- mensagens do sistema (ex.: verificação de disco) ---
+fun show_message(text) {
+    msg.image = Image.Text(text, 0.7, 0.7, 0.72, 1, "Inter 11");
+    msg.sprite = Sprite(msg.image);
+    msg.sprite.SetPosition(X0 + W / 2 - msg.image.GetWidth() / 2, Y0 + H - H * 0.08, 2);
+}
+Plymouth.SetMessageFunction(show_message);

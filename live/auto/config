@@ -55,6 +55,6 @@ lb config noauto \
 	--iso-publisher "Konaro OS Project" \
 	--iso-preparer "live-build; see konaro-os/docs/BUILDING.md" \
 	--iso-volume "KONARO_OS_${KONARO_VERSION_FS}" \
-	--bootappend-live "boot=live components quiet hostname=konaro username=konaro user-fullname=Konaro locales=${KONARO_LIVE_LOCALE} keyboard-layouts=${KONARO_LIVE_KEYBOARD} timezone=${KONARO_LIVE_TIMEZONE}" \
+	--bootappend-live "boot=live components quiet splash hostname=konaro username=konaro user-fullname=Konaro locales=${KONARO_LIVE_LOCALE} keyboard-layouts=${KONARO_LIVE_KEYBOARD} timezone=${KONARO_LIVE_TIMEZONE}" \
 	--bootappend-live-failsafe "boot=live components memtest noapic noapm nodma nomce nosmp nosplash vga=788 hostname=konaro username=konaro" \
 	"$@"

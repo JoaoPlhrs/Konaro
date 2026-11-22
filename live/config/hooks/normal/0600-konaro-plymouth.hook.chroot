@@ -1,0 +1,7 @@
+#!/bin/sh
+# Konaro OS — tela de carregamento do sistema (Plymouth) com a identidade Konaro.
+# O tema vem do pacote konaro-desktop. O Calamares acrescenta "splash" à linha do
+# kernel do sistema instalado quando o Plymouth está presente.
+set -e
+plymouth-set-default-theme konaro
+update-initramfs -u -k all

@@ -3,23 +3,6 @@
 Lista proposta pelo Claude Code em 2026-11-22, a pedido do responsável. Nada aqui foi
 aprovado ainda; a ordem reflete impacto para quem vem do Windows ou do macOS.
 
-## ⏳ Aprovados pelo responsável — aguardando o comando para começar (2026-11-22)
-- [ ] **Secure Boot** (shim + GRUB + kernel assinados pelo Debian).
-- [ ] **Assistente de migração do Windows** (documentos, fotos, músicas, favoritos, papel de parede).
-- [ ] **Fontes escolhíveis já na instalação**, com padrão igual ou parecido com a do macOS
-      (a SF Pro da Apple não pode ser redistribuída; candidatas livres: Inter — já usada —,
-      Geist, Manrope; decisão pendente).
-- [ ] **Widgets no estilo do macOS** (cartões arredondados de vidro, mesmo desenho dos widgets do macOS).
-- [ ] **Loja com catálogo completo** (AppStream do Debian + Flathub).
-- [ ] **Novos papéis de parede exclusivos**, incluindo um com o mascote Tux (usar arte com
-      licença livre e registrar a fonte em docs/LICENSES.md).
-- [ ] **App de ajuda "Onde está…?"** para quem vem do Windows.
-- [ ] **Tela de login idêntica à do macOS** (referência enviada): fundo com o papel de parede,
-      data e hora grandes no topo, foto do usuário, nome e campo de senha em pílula de vidro
-      embaixo, idioma/bateria/Wi-Fi no canto superior direito. Tema próprio do SDDM.
-- [ ] **Tela de boot do sistema** (Plymouth): logo Konaro centralizado com indicador de
-      progresso, no lugar do texto que rola durante a inicialização.
-
 ## Alta prioridade
 1. **"Voltar no tempo" (snapshots do sistema).** Instalar em Btrfs com Snapper e criar
    um ponto de restauração antes de cada atualização, com opção no menu de boot para

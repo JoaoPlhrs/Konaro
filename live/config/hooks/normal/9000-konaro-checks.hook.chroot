@@ -23,7 +23,7 @@ for f in \
 	/usr/lib/live/config/2000-konaro-live /etc/dpkg/dpkg.cfg.d/50-konaro-languages \
 	/usr/share/plasma/plasmoids/org.konaro.dock/contents/ui/main.qml \
 	/usr/share/plasma/desktoptheme/konaro/plasmarc \
-	/usr/share/aurorae/themes/Konaro/decoration.svg /usr/share/aurorae/themes/KonaroDark/decoration.svg \
+	/usr/share/plymouth/themes/konaro/konaro.script /usr/share/plymouth/themes/konaro/logo.png /usr/share/aurorae/themes/Konaro/decoration.svg /usr/share/aurorae/themes/KonaroDark/decoration.svg \
 	/usr/share/plasma/plasmoids/org.kde.plasma.notes/metadata.json \
 	/usr/lib/python3/dist-packages/konaro/qml/store/Main.qml \
 	/usr/share/konaro/store/icons/com.valvesoftware.Steam.png \

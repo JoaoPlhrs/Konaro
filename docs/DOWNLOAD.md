@@ -1,13 +1,10 @@
 # Download e instalação
 
-1. Abra a [versão mais recente](https://github.com/JoaoPlhrs/Konaro/releases/latest) e baixe **todas** as partes `konaro-os-…iso.partNN`.
-2. Junte as partes na mesma pasta:
-   - **Windows** (Prompt de Comando): `copy /b konaro-os-0.1.0-dev1-amd64.iso.part00+konaro-os-0.1.0-dev1-amd64.iso.part01+… konaro-os-0.1.0-dev1-amd64.iso` (todas as partes, em ordem)
-   - **Linux / macOS**: `cat konaro-os-0.1.0-dev1-amd64.iso.part* > konaro-os-0.1.0-dev1-amd64.iso`
-3. Confira o SHA-256 (tem que ser igual ao da release):
+1. Baixe a ISO inteira (um arquivo só, 4,0 GB): **[https://gofile.io/d/TgNSuXQ7](https://gofile.io/d/TgNSuXQ7)**
+2. (Opcional) confira o SHA-256 — tem que dar `02a60c7cde3b21e81eb6a7327ca95e95e18d6ec40f6c26a3057cf1a2f24b113a`:
    - Windows (PowerShell): `Get-FileHash konaro-os-0.1.0-dev1-amd64.iso -Algorithm SHA256`
    - Linux: `sha256sum konaro-os-0.1.0-dev1-amd64.iso`
-4. **Máquina virtual (recomendado)**: VirtualBox → Linux / Debian 64-bit, 4 GB+ de RAM, 2 CPUs, disco de 30 GB, vídeo VMSVGA com 128 MB.
+3. **Máquina virtual (recomendado)**: VirtualBox → Linux / Debian 64-bit, 4 GB+ de RAM, 2 CPUs, disco de 30 GB, vídeo VMSVGA com 128 MB.
 5. **Pendrive**: Ventoy, Rufus (modo DD) ou balenaEtcher. ⚠️ Escolher o disco errado apaga os dados dele. Desative o Secure Boot.
 
 Sessão live: usuário `konaro`, senha `live`.
