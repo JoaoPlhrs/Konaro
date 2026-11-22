@@ -1,0 +1,18 @@
+Source: konaro-installer
+Section: admin
+Priority: optional
+Maintainer: Konaro OS Project <maintainers@konaro.invalid>
+Build-Depends: debhelper-compat (= 13), librsvg2-bin
+Standards-Version: 4.7.2
+Rules-Requires-Root: no
+
+Package: konaro-installer
+Architecture: all
+Depends: ${misc:Depends}, calamares (>= 3.3), calamares-settings-debian (>= 13), konaro-common, konaro-store
+Description: Konaro OS branding for the Calamares installer (live session only)
+ Visual identity and launcher for installing Konaro OS from the live
+ session. The installation modules and flow are the ones maintained by
+ Debian in calamares-settings-debian.
+ .
+ The live image switches Calamares to this branding at build time; the
+ package is removed from the installed system by the installer.

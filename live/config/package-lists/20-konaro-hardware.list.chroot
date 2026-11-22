@@ -1,0 +1,19 @@
+# Konaro OS — suporte a hardware (firmware e microcódigo).
+# Todos vêm de "main" ou "non-free-firmware" do Debian; ver docs/LICENSES.md.
+firmware-linux-free
+firmware-misc-nonfree
+firmware-amd-graphics
+firmware-intel-graphics
+firmware-iwlwifi
+firmware-realtek
+firmware-atheros
+firmware-brcm80211
+firmware-intel-sound
+firmware-sof-signed
+intel-microcode
+amd64-microcode
+
+# Bluetooth e impressão básica de energia/discos
+bluez
+udisks2
+upower

@@ -1,0 +1,44 @@
+#!/bin/sh
+# Konaro OS — aplicativos Flatpak pré-instalados (do Flathub):
+#   - Ungoogled Chromium (navegador escolhível no instalador);
+#   - Steam (jogos; o Proton roda jogos do Windows).
+# O Flatpak verifica as assinaturas GPG do Flathub em qualquer transporte.
+set -e
+
+REPO_FILE=/usr/share/konaro/flatpak/flathub.flatpakrepo
+APPS="io.github.ungoogled_software.ungoogled_chromium com.valvesoftware.Steam"
+
+flatpak remote-add --system --if-not-exists flathub "$REPO_FILE"
+# Traduções só dos idiomas da 1ª versão (reduz o tamanho)
+flatpak config --system --set languages "en;pt"
+
+# Se o build usa um proxy APT HTTP (KONARO_APT_PROXY), usa-o também para o Flathub.
+# O live-build repassa esse proxy aos hooks pela variável http_proxy.
+PROXY="${http_proxy:-}"
+if [ -z "$PROXY" ]; then
+	eval "$(apt-config shell PROXY Acquire::http::Proxy)"
+fi
+if [ -n "$PROXY" ]; then
+	flatpak remote-modify --system --url=http://dl.flathub.org/repo/ flathub
+	export http_proxy="$PROXY"
+fi
+
+# Os "triggers" do Flatpak usam bubblewrap, que pode falhar dentro do chroot de
+# build; os aplicativos são instalados mesmo assim e os caches são refeitos abaixo.
+# shellcheck disable=SC2086  # lista de apps separada por espaços, de propósito
+flatpak install --system -y --noninteractive flathub $APPS || true
+
+if [ -n "$PROXY" ]; then
+	flatpak remote-modify --system --url=https://dl.flathub.org/repo/ flathub
+fi
+unset http_proxy
+
+for app in $APPS; do
+	flatpak info --system "$app" >/dev/null || { echo "konaro-flatpak: ERRO: $app não instalado" >&2; exit 1; }
+done
+flatpak remotes --system -d | grep -q 'https://dl.flathub.org/repo/'
+
+update-desktop-database /var/lib/flatpak/exports/share/applications || true
+if command -v gtk-update-icon-cache >/dev/null 2>&1; then
+	gtk-update-icon-cache -f -t /var/lib/flatpak/exports/share/icons/hicolor || true
+fi

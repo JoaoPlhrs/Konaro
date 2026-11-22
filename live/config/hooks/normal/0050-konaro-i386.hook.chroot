@@ -1,0 +1,29 @@
+#!/bin/sh
+# Konaro OS — suporte a 32 bits (i386) para jogos e programas do Windows.
+# Wine (programas Windows de 32 bits), Steam e Proton precisam das bibliotecas
+# gráficas i386. Executado durante o build, com as fontes APT do build.
+set -e
+
+dpkg --add-architecture i386
+apt-get update -q
+DEBIAN_FRONTEND=noninteractive apt-get install -y -q --no-install-recommends \
+	wine32:i386 \
+	libgl1-mesa-dri:i386 \
+	mesa-vulkan-drivers:i386 \
+	libgamemode0:i386 \
+	libgamemodeauto0:i386
+
+# Lutris e Winetricks estão na seção contrib.
+# A seção contrib NÃO é usada no build inteiro porque o live-build incluiria
+# pacotes que baixam firmware de fora do Debian (ex.: firmware-b43-installer).
+MIRROR="$(cat /etc/apt/sources.list /etc/apt/sources.list.d/*.list 2>/dev/null | awk '$1 == "deb" && $3 == "trixie" {print $2; exit}')"
+echo "deb ${MIRROR:-http://deb.debian.org/debian} trixie contrib" > /etc/apt/sources.list.d/konaro-build-contrib.list
+apt-get update -q
+DEBIAN_FRONTEND=noninteractive apt-get install -y -q lutris winetricks
+rm -f /etc/apt/sources.list.d/konaro-build-contrib.list
+apt-get update -q
+
+dpkg --print-foreign-architectures | grep -qx i386
+for p in wine32:i386 lutris winetricks; do
+	dpkg-query -W -f '${Status}\n' "$p" | grep -q 'install ok installed'
+done

@@ -1,0 +1,58 @@
+#!/bin/sh
+# Konaro OS — verificações de sanidade dentro do chroot. Falha o build cedo
+# se algo essencial da identidade Konaro não estiver no lugar.
+set -e
+
+fail() { echo "konaro-checks: ERRO: $*" >&2; exit 1; }
+
+for f in \
+	/usr/share/plasma/look-and-feel/org.konaro.desktop/metadata.json \
+	/usr/share/plasma/look-and-feel/org.konaro.desktop/contents/layouts/org.kde.plasma.desktop-layout.js \
+	/usr/share/plasma/look-and-feel/org.konaro.desktop/contents/splash/Splash.qml \
+	/usr/share/plasma/look-and-feel/org.konaro.desktop.dark/contents/layouts/org.kde.plasma.desktop-layout.js \
+	/usr/share/color-schemes/KonaroLight.colors \
+	/usr/share/color-schemes/KonaroDark.colors \
+	/usr/share/wallpapers/Konaro/contents/images/3840x2160.png \
+	/usr/share/wallpapers/Konaro/contents/images_dark/3840x2160.png \
+	/usr/share/icons/hicolor/scalable/apps/konaro-start.svg \
+	/usr/share/calamares/branding/konaro/branding.desc \
+	/usr/share/applications/konaro-install.desktop \
+	/etc/xdg/kdeglobals /etc/xdg/ksplashrc /etc/sddm.conf.d/10-konaro.conf \
+	/usr/bin/konaro-store /usr/bin/konaro-updater /usr/bin/konaro-drivers /usr/bin/konaro-welcome \
+	/usr/share/konaro/store/catalog.json /usr/lib/calamares/modules/konarobrowsers/main.py \
+	/usr/lib/live/config/2000-konaro-live /etc/dpkg/dpkg.cfg.d/50-konaro-languages \
+	/usr/share/plasma/plasmoids/org.konaro.dock/contents/ui/main.qml \
+	/usr/share/plasma/desktoptheme/konaro/plasmarc \
+	/usr/share/aurorae/themes/Konaro/decoration.svg /usr/share/aurorae/themes/KonaroDark/decoration.svg \
+	/usr/share/plasma/plasmoids/org.kde.plasma.notes/metadata.json \
+	/usr/lib/python3/dist-packages/konaro/qml/store/Main.qml \
+	/usr/share/konaro/store/icons/com.valvesoftware.Steam.png \
+	/usr/share/konaro/installer/browser-firefox.png /usr/share/konaro/installer/browser-brave.png \
+	/usr/share/konaro/installer/browser-ungoogled.png /usr/share/calamares/branding/konaro/stylesheet.qss
+do
+	[ -e "$f" ] || fail "arquivo ausente: $f"
+done
+
+grep -q '^LookAndFeelPackage=org.konaro.desktop$' /etc/xdg/kdeglobals || fail "kdeglobals sem tema Konaro"
+
+# Componentes que o layout/tema exigem
+for p in plasma-workspace plasma-desktop kwin-wayland sddm dolphin calamares fonts-inter \
+	konaro-store konaro-updater konaro-drivers konaro-welcome konaro-gaming packagekit \
+	firefox-esr brave-browser wine wine32:i386 lutris steam-devices; do
+	dpkg-query -W -f '${Status}\n' "$p" 2>/dev/null | grep -q 'install ok installed' || fail "pacote não instalado: $p"
+done
+
+# Navegadores fora da lista decidida (Firefox, Brave, Ungoogled Chromium)
+for p in chromium konqueror falkon epiphany-browser plasma-discover plasma-welcome; do
+	if dpkg-query -W -f '${Status}\n' "$p" 2>/dev/null | grep -q 'install ok installed'; then
+		echo "konaro-checks: AVISO: pacote indesejado instalado: $p" >&2
+	fi
+done
+
+for app in io.github.ungoogled_software.ungoogled_chromium com.valvesoftware.Steam; do
+	flatpak info --system "$app" >/dev/null 2>&1 || fail "Flatpak ausente: $app"
+done
+grep -q 'packagechooser@browsers' /etc/calamares/settings.conf || fail "página de navegadores ausente no Calamares"
+[ -f /usr/share/keyrings/brave-browser-archive-keyring.gpg ] || fail "keyring do Brave ausente"
+
+echo "konaro-checks: OK"

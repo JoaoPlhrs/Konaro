@@ -1,0 +1,4 @@
+# Konaro OS — estilo dos aplicativos (Breeze).
+# Menus translúcidos com desfoque por trás (só os menus, que flutuam; janelas seguem opacas).
+[Style]
+MenuOpacity=78

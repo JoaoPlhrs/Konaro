@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=Konaro Drivers
+Name[pt_BR]=Drivers do Konaro
+Comment=Find drivers for your hardware
+Comment[pt_BR]=Encontre drivers para o seu hardware
+Exec=konaro-drivers
+Icon=konaro-drivers
+Terminal=false
+Categories=Qt;System;HardwareSettings;
+Keywords=drivers;nvidia;firmware;hardware;placa;vídeo;

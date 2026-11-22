@@ -1,0 +1,8 @@
+#!/usr/bin/make -f
+# Konaro OS — konaro-tools (módulo Python puro + dados)
+
+%:
+	dh $@
+
+override_dh_installsystemduser:
+	dh_installsystemduser -pkonaro-updater konaro-update-check.timer

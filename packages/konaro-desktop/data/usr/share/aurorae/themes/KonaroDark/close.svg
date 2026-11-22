@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Konaro OS — botão close (arte original). -->
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+<g id="active-center"><rect width="16" height="16" fill="none"/><circle cx="8" cy="8" r="6" fill="#FF5F57" stroke="#E0443E" stroke-width="0.6"/></g>
+<g id="hover-center"><rect width="16" height="16" fill="none"/><circle cx="8" cy="8" r="6" fill="#FF5F57" stroke="#E0443E" stroke-width="0.6"/><path d="M5.6,5.6 L10.4,10.4 M10.4,5.6 L5.6,10.4" stroke="#4D0000" stroke-opacity="0.75" stroke-width="1.3" stroke-linecap="round"/></g>
+<g id="pressed-center"><rect width="16" height="16" fill="none"/><circle cx="8" cy="8" r="6" fill="#FF5F57" stroke="#E0443E" stroke-width="0.6"/><circle cx="8" cy="8" r="6" fill="#000" opacity="0.15"/><path d="M5.6,5.6 L10.4,10.4 M10.4,5.6 L5.6,10.4" stroke="#4D0000" stroke-opacity="0.75" stroke-width="1.3" stroke-linecap="round"/></g>
+<g id="inactive-center"><rect width="16" height="16" fill="none"/><circle cx="8" cy="8" r="6" fill="#4A4A4F" stroke="#5A5A5F" stroke-width="0.6"/></g>
+<g id="deactivated-center"><rect width="16" height="16" fill="none"/><circle cx="8" cy="8" r="6" fill="#4A4A4F" stroke="#5A5A5F" stroke-width="0.6"/></g>
+</svg>

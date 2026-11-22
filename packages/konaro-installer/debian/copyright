@@ -1,0 +1,11 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: konaro-installer
+Comment: A licença do código e da arte originais do Konaro OS ainda NÃO foi
+ escolhida (ver konaro-os/docs/LICENSES.md). Este pacote não deve ser
+ publicado fora do ambiente de desenvolvimento até essa decisão.
+
+Files: *
+Copyright: 2026 Konaro OS Project
+License: Konaro-pending
+ Licença pendente de decisão do responsável pelo projeto.
+

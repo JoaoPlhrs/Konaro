@@ -1,0 +1,3 @@
+bin/konaro-drivers usr/bin/
+data/applications/konaro-drivers.desktop usr/share/applications/
+data/icons/konaro-drivers.svg usr/share/icons/hicolor/scalable/apps/

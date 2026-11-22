@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=Konaro Updates
+Name[pt_BR]=Atualizações do Konaro
+Comment=Check and install system updates
+Comment[pt_BR]=Verifique e instale atualizações do sistema
+Exec=konaro-updater
+Icon=konaro-updater
+Terminal=false
+Categories=Qt;System;
+Keywords=update;upgrade;security;atualizar;atualização;segurança;

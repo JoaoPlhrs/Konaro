@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=Welcome to Konaro
+Name[pt_BR]=Boas-vindas do Konaro
+Comment=Get started with Konaro OS
+Comment[pt_BR]=Primeiros passos no Konaro OS
+Exec=konaro-welcome
+Icon=konaro-welcome
+Terminal=false
+Categories=Qt;System;
+Keywords=welcome;tour;start;boas-vindas;começar;

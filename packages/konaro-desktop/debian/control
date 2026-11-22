@@ -1,0 +1,29 @@
+Source: konaro-desktop
+Section: x11
+Priority: optional
+Maintainer: Konaro OS Project <maintainers@konaro.invalid>
+Build-Depends: debhelper-compat (= 13), librsvg2-bin
+Standards-Version: 4.7.2
+Rules-Requires-Root: no
+
+Package: konaro-desktop
+Architecture: all
+Depends: ${misc:Depends},
+         plasma-workspace (>= 4:6.3),
+         plasma-desktop (>= 4:6.3),
+         kde-style-breeze,
+         kwin-style-breeze,
+         breeze-cursor-theme,
+         kf6-breeze-icon-theme,
+         fonts-inter
+Recommends: sddm, sddm-theme-breeze
+Description: Konaro OS desktop identity for KDE Plasma
+ Default look and feel of Konaro OS on top of KDE Plasma 6:
+  - global themes "Konaro Light" and "Konaro Dark" (neutral palette);
+  - top bar (launcher, global menu, system tray, clock) and a floating,
+    centered bottom dock;
+  - welcome splash ("hello" in several languages, then "Welcome to Konaro");
+  - wallpapers, color schemes, icons and SDDM/lock screen defaults.
+ .
+ Defaults are installed in /etc/xdg and apply to users that have not
+ customized their own settings.

@@ -1,0 +1,45 @@
+#!/bin/sh
+# Konaro OS — ajustes exclusivos da sessão live (executado pelo live-config no boot).
+# Este script só existe na mídia live: o pacote konaro-installer é removido
+# do sistema instalado pelo Calamares.
+#
+# - sem bloqueio automático de tela (o usuário live não conhece a senha);
+# - sem desligar o monitor nem suspender por inatividade.
+set -e
+
+LIVE_USERNAME="user"
+read -r CMDLINE < /proc/cmdline
+for _PARAMETER in ${CMDLINE}; do
+	case "${_PARAMETER}" in
+		live-config.username=*|username=*) LIVE_USERNAME="${_PARAMETER#*username=}" ;;
+	esac
+done
+
+HOME_DIR="$(getent passwd "${LIVE_USERNAME}" | cut -d: -f6)"
+[ -n "${HOME_DIR}" ] && [ -d "${HOME_DIR}" ] || exit 0
+CONFIG_DIR="${HOME_DIR}/.config"
+mkdir -p "${CONFIG_DIR}"
+
+cat > "${CONFIG_DIR}/kscreenlockerrc" <<'EOC'
+[Daemon]
+Autolock=false
+LockOnResume=false
+EOC
+
+cat > "${CONFIG_DIR}/powerdevilrc" <<'EOC'
+[AC][Display]
+DimDisplayWhenIdle=false
+TurnOffDisplayWhenIdle=false
+
+[AC][SuspendAndShutdown]
+AutoSuspendAction=0
+
+[Battery][Display]
+DimDisplayWhenIdle=false
+TurnOffDisplayWhenIdle=false
+
+[Battery][SuspendAndShutdown]
+AutoSuspendAction=0
+EOC
+
+chown -R "${LIVE_USERNAME}:" "${CONFIG_DIR}"

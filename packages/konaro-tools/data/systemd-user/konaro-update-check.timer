@@ -1,0 +1,10 @@
+[Unit]
+Description=Konaro: verificação periódica de atualizações
+
+[Timer]
+OnStartupSec=15min
+OnUnitActiveSec=12h
+RandomizedDelaySec=10min
+
+[Install]
+WantedBy=timers.target

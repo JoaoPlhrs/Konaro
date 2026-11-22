@@ -1,0 +1,5 @@
+bin/konaro-store usr/bin/
+data/store/catalog.json usr/share/konaro/store/
+data/applications/konaro-store.desktop usr/share/applications/
+data/icons/konaro-store.svg usr/share/icons/hicolor/scalable/apps/
+data/store/icons usr/share/konaro/store/

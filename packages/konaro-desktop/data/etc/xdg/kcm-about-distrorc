@@ -1,0 +1,7 @@
+# Konaro OS — "Sobre este sistema" (Central de informações / Configurações).
+# O /etc/os-release continua sendo o do Debian, de propósito: ferramentas e
+# scripts dependem dele para identificar a base do sistema.
+[General]
+LogoPath=/usr/share/konaro/konaro-logo.svg
+Variant=Konaro OS 0.1 (desenvolvimento)
+Website=https://www.debian.org

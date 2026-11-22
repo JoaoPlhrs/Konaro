@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Konaro OS — imagem da página de boas-vindas do instalador. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 260" width="600" height="260">
+  <g transform="translate(250 25) scale(1.5625)">
+    <circle cx="32" cy="32" r="27" fill="none" stroke="#1c1c1e" stroke-width="4"/>
+    <path d="M24 18 V46 M41 18 L27 32 L41 46" fill="none" stroke="#1c1c1e" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <text x="300" y="195" text-anchor="middle" font-family="Inter, DejaVu Sans, sans-serif" font-size="44" font-weight="600" fill="#1c1c1e">Konaro OS</text>
+</svg>

@@ -1,0 +1,42 @@
+# Konaro OS — identidade visual do instalador Calamares.
+# Os módulos e o fluxo de instalação continuam sendo os do pacote
+# calamares-settings-debian (mantido pelo Debian); aqui só muda a aparência.
+---
+componentName:  konaro
+
+welcomeStyleCalamares:   false
+welcomeExpandingLogo:   true
+
+windowExpanding:    normal
+windowSize: 1024px,680px
+windowPlacement: center
+
+strings:
+    productName:         Konaro OS
+    shortProductName:    Konaro
+    version:             0.1 (desenvolvimento)
+    shortVersion:        0.1
+    versionedName:       Konaro OS 0.1
+    shortVersionedName:  Konaro 0.1
+    bootloaderEntryName: Konaro
+    productUrl:          https://www.debian.org
+    supportUrl:          https://www.debian.org/support
+    knownIssuesUrl:      https://bugs.debian.org
+    releaseNotesUrl:     https://www.debian.org/releases/trixie/releasenotes
+
+sidebar: widget
+navigation: widget
+
+images:
+    productLogo:         "konaro-logo-white.png"
+    productIcon:         "konaro-logo.png"
+    productWelcome:      "welcome.png"
+
+slideshow:               "show.qml"
+slideshowAPI: 2
+
+style:
+   SidebarBackground:        "#1D1D1F"
+   SidebarText:              "#A1A1A6"
+   SidebarTextCurrent:       "#FFFFFF"
+   SidebarBackgroundCurrent: "#2C2C2E"

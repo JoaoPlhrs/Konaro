@@ -1,0 +1,17 @@
+{
+    "KPackageStructure": "Plasma/Applet",
+    "KPlugin": {
+        "Authors": [{ "Name": "Konaro OS Project" }],
+        "Category": "Windows and Tasks",
+        "Description": "Dock with launchers and open apps; icons rise and grow under the pointer",
+        "Description[pt_BR]": "Dock com atalhos e apps abertos; os ícones sobem e crescem sob o ponteiro",
+        "EnabledByDefault": true,
+        "Icon": "preferences-system-windows",
+        "Id": "org.konaro.dock",
+        "License": "Pending (see konaro-os/docs/LICENSES.md)",
+        "Name": "Konaro Dock",
+        "Name[pt_BR]": "Dock do Konaro"
+    },
+    "X-Plasma-API-Minimum-Version": "6.0",
+    "X-Plasma-Provides": ["org.kde.plasma.multitasking"]
+}

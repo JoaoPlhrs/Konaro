@@ -1,0 +1,16 @@
+#!/bin/sh
+# Konaro OS — padrões do sistema que dependem de vários pacotes juntos.
+set -e
+
+# Navegador padrão da sessão live: Firefox. No sistema instalado, o Calamares
+# (módulo konarobrowsers) troca para o primeiro navegador escolhido.
+cat > /etc/xdg/mimeapps.list <<'EOF'
+[Default Applications]
+text/html=firefox-esr.desktop
+application/xhtml+xml=firefox-esr.desktop
+x-scheme-handler/http=firefox-esr.desktop
+x-scheme-handler/https=firefox-esr.desktop
+application/x-ms-dos-executable=konaro-wine.desktop
+application/x-msi=konaro-wine.desktop
+application/vnd.microsoft.portable-executable=konaro-wine.desktop
+EOF

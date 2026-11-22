@@ -1,0 +1,12 @@
+{
+    "KPlugin": {
+        "Authors": [
+            {
+                "Name": "Konaro OS Project"
+            }
+        ],
+        "Id": "Konaro",
+        "License": "Pending (see konaro-os/docs/LICENSES.md)",
+        "Name": "Konaro"
+    }
+}

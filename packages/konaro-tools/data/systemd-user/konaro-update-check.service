@@ -1,0 +1,8 @@
+[Unit]
+Description=Konaro: verificar atualizações disponíveis (somente aviso, nunca instala)
+# Não roda na sessão live
+ConditionKernelCommandLine=!boot=live
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/konaro-updater --check-notify

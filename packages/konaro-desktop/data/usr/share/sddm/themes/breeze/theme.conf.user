@@ -1,0 +1,8 @@
+# Konaro OS — personalização do tema Breeze do SDDM.
+# Fornecido pelo pacote konaro-desktop. Pode ser sobrescrito pelo módulo
+# "Tela de login (SDDM)" das Configurações do Sistema.
+[General]
+type=image
+background=/usr/share/wallpapers/Konaro/contents/images_dark/3840x2160.png
+showlogo=shown
+logo=/usr/share/konaro/konaro-logo-white.svg

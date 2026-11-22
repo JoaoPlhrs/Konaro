@@ -1,0 +1,10 @@
+# Konaro OS — aplicativos pré-instalados.
+# DECISÃO: "apenas os essenciais". A SELEÇÃO ABAIXO É PROVISÓRIA (docs/PENDING.md).
+# Navegador: NÃO incluído de propósito — decisão pendente.
+dolphin
+konsole
+kwrite
+ark
+gwenview
+okular
+kde-spectacle

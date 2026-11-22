@@ -1,0 +1,19 @@
+{
+    "KPackageStructure": "Plasma/LookAndFeel",
+    "KPlugin": {
+        "Authors": [
+            {
+                "Name": "Konaro OS Project"
+            }
+        ],
+        "Category": "",
+        "Description": "Konaro OS desktop: top bar, centered dock and neutral palette (light)",
+        "Description[pt_BR]": "Área de trabalho Konaro: barra superior, dock centralizado e paleta neutra (claro)",
+        "Id": "org.konaro.desktop",
+        "License": "Pending (see konaro-os/docs/LICENSES.md)",
+        "Name": "Konaro Light",
+        "Name[pt_BR]": "Konaro Claro"
+    },
+    "Keywords": "Desktop;Workspace;Appearance;Look and Feel;Konaro;",
+    "X-Plasma-APIVersion": "2"
+}

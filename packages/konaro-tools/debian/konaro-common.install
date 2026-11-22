@@ -1,0 +1,3 @@
+src/konaro usr/lib/python3/dist-packages/
+data/flathub.flatpakrepo usr/share/konaro/flatpak/
+data/icons/konaro-welcome.svg usr/share/icons/hicolor/scalable/apps/

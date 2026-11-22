@@ -1,0 +1,4 @@
+data/usr /
+branding/konaro usr/share/calamares/branding/
+debian/generated/konaro/* usr/share/calamares/branding/konaro/
+data/etc /

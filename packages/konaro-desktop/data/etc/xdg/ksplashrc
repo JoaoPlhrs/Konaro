@@ -1,0 +1,5 @@
+# Konaro OS — tela de boas-vindas durante o carregamento da sessão.
+# O usuário pode trocar ou desativar em Configurações > Aparência > Tela de abertura.
+[KSplash]
+Engine=KSplashQML
+Theme=org.konaro.desktop

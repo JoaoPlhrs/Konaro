@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kcfg xmlns="http://www.kde.org/standards/kcfg/1.0"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.kde.org/standards/kcfg/1.0 http://www.kde.org/standards/kcfg/1.0/kcfg.xsd">
+  <kcfgfile name=""/>
+  <group name="General">
+    <entry name="launchers" type="StringList">
+      <label>Apps pinned to the dock (.desktop URLs; preferred:// URLs are supported).</label>
+      <default>applications:org.kde.dolphin.desktop,preferred://browser,applications:systemsettings.desktop</default>
+    </entry>
+    <entry name="magnification" type="Int">
+      <label>How much an icon grows under the pointer, in percent (0 turns the effect off).</label>
+      <default>30</default>
+      <min>0</min>
+      <max>60</max>
+    </entry>
+  </group>
+</kcfg>

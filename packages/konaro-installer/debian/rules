@@ -1,0 +1,19 @@
+#!/usr/bin/make -f
+# Konaro OS — konaro-installer (identidade do Calamares)
+
+GEN := debian/generated/konaro
+
+%:
+	dh $@
+
+override_dh_auto_build:
+	mkdir -p $(GEN)
+	rsvg-convert -w 256 -h 256 artwork/konaro-logo.svg -o $(GEN)/konaro-logo.png
+	# versão clara do logo para a barra lateral grafite do instalador
+	sed 's/#1c1c1e/#f5f5f7/g' artwork/konaro-logo.svg > $(GEN)/logo-white.svg
+	rsvg-convert -w 256 -h 256 $(GEN)/logo-white.svg -o $(GEN)/konaro-logo-white.png
+	rm -f $(GEN)/logo-white.svg
+	rsvg-convert -w 600 -h 260 artwork/welcome.svg -o $(GEN)/welcome.png
+
+override_dh_auto_clean:
+	rm -rf debian/generated

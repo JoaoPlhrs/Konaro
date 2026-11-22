@@ -1,0 +1,10 @@
+#!/bin/sh
+# Konaro OS — firewall ativo por padrão (DECISÃO: segurança equilibrada).
+# Política padrão do ufw no Debian: bloquear entrada, permitir saída.
+# A escolha do ufw (vs. firewalld) é PROVISÓRIA; ver docs/decisions/0005.
+set -e
+
+sed -i 's/^ENABLED=.*/ENABLED=yes/' /etc/ufw/ufw.conf
+grep -q '^DEFAULT_INPUT_POLICY="DROP"' /etc/default/ufw
+grep -q '^DEFAULT_OUTPUT_POLICY="ACCEPT"' /etc/default/ufw
+systemctl enable ufw.service

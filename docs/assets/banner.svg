@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="520" viewBox="0 0 1600 520">
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2a2a2e"/><stop offset="1" stop-color="#0b0b0c"/></linearGradient>
+<radialGradient id="r" cx="0.78" cy="0.2" r="0.6"><stop offset="0" stop-color="#5a5a62" stop-opacity="0.55"/><stop offset="1" stop-color="#5a5a62" stop-opacity="0"/></radialGradient></defs>
+<rect width="1600" height="520" rx="28" fill="url(#g)"/><rect width="1600" height="520" rx="28" fill="url(#r)"/>
+<path d="M0,400 C400,330 800,470 1600,340" stroke="#fff" stroke-opacity="0.10" stroke-width="2" fill="none"/>
+<path d="M0,430 C420,360 820,500 1600,370" stroke="#fff" stroke-opacity="0.07" stroke-width="2" fill="none"/>
+<circle cx="250" cy="250" r="110" fill="none" stroke="#fff" stroke-width="14"/>
+<path d="M222,190 V310 M222,255 L292,190 M240,240 L295,310" stroke="#fff" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+<text x="420" y="240" font-family="Inter Display" font-weight="700" font-size="104" fill="#fff">Konaro OS</text>
+<text x="424" y="310" font-family="Inter" font-size="34" fill="#c7c7cc">Elegante e simples · feito para quem vem do Windows e do macOS</text>
+<text x="424" y="370" font-family="Inter" font-weight="600" font-size="26" fill="#8e8e93">Debian 13 · KDE Plasma 6 · amd64 · BIOS + UEFI</text>
+</svg>

@@ -1,0 +1,79 @@
+#!/bin/sh
+# Konaro OS — integra o Konaro ao Calamares da sessão live.
+# O fluxo e os módulos de instalação continuam sendo os do calamares-settings-debian;
+# aqui mudamos a identidade, adicionamos a página "Navegadores" e as fontes APT finais.
+set -e
+
+SETTINGS=/etc/calamares/settings.conf
+PACKAGES=/etc/calamares/modules/packages.conf
+
+# 1. Identidade Konaro
+sed -i 's/^branding:.*/branding: konaro/' "$SETTINGS"
+grep -q '^branding: konaro$' "$SETTINGS"
+test -f /usr/share/calamares/branding/konaro/branding.desc
+
+# 2. Página "Navegadores" (antes do resumo) + módulo que aplica a escolha
+#    (depois do módulo packages, que remove os pacotes da sessão live).
+if ! grep -q 'packagechooser@browsers' "$SETTINGS"; then
+	sed -i 's/^  - summary$/  - packagechooser@browsers\n  - summary/' "$SETTINGS"
+	sed -i 's/^  - packages$/  - packages\n  - konarobrowsers/' "$SETTINGS"
+	cat >> "$SETTINGS" <<'EOF'
+
+# Konaro OS: instância da página de escolha de navegadores
+instances:
+- id:       browsers
+  module:   packagechooser
+  config:   packagechooser-browsers.conf
+EOF
+fi
+grep -q '^  - packagechooser@browsers$' "$SETTINGS"
+grep -q '^  - konarobrowsers$' "$SETTINGS"
+test -f /usr/lib/calamares/modules/konarobrowsers/main.py
+
+# Imagens da página de navegadores: cartões com o ícone de cada navegador
+# (gerados a partir dos ícones realmente instalados; ver konaro-installer)
+/usr/lib/konaro/installer/make-browser-cards
+
+# 3. Remover também o pacote de identidade do instalador no sistema instalado
+if ! grep -q "'konaro-installer'" "$PACKAGES"; then
+	sed -i "s/^\( *\)- 'calamares-settings-debian'/\1- 'calamares-settings-debian'\n\1- 'konaro-installer'/" "$PACKAGES"
+fi
+grep -q "'konaro-installer'" "$PACKAGES"
+
+# 4. Fontes APT do sistema instalado: Debian oficial via HTTPS, com contrib e
+#    non-free (Steam, drivers NVIDIA) além de main e non-free-firmware.
+cat > /usr/share/calamares/helpers/calamares-sources-final <<'EOF'
+#!/bin/sh
+# Konaro OS — fontes APT finais do sistema instalado.
+CHROOT=$(mount | grep proc | grep calamares | awk '{print $3}' | sed -e "s#/proc##g")
+cat > "$CHROOT/etc/apt/sources.list" <<'EOS'
+# Konaro OS: as fontes do Debian estão em /etc/apt/sources.list.d/debian.sources
+EOS
+cat > "$CHROOT/etc/apt/sources.list.d/debian.sources" <<'EOS'
+Types: deb
+URIs: https://deb.debian.org/debian
+Suites: trixie trixie-updates
+Components: main contrib non-free non-free-firmware
+Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg
+
+Types: deb
+URIs: https://security.debian.org/debian-security
+Suites: trixie-security
+Components: main contrib non-free non-free-firmware
+Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg
+EOS
+exit 0
+EOF
+chmod 0755 /usr/share/calamares/helpers/calamares-sources-final
+
+# 5. Atalho "Instalar o Konaro OS" no lugar do "Install Debian"
+sed -i 's/calamares-install-debian\.desktop/konaro-install.desktop/g' /usr/bin/add-calamares-desktop-icon
+if ! grep -q '^NoDisplay=true' /usr/share/applications/calamares-install-debian.desktop; then
+	echo 'NoDisplay=true' >> /usr/share/applications/calamares-install-debian.desktop
+fi
+# O atalho de instalação já é o 1º ícone do dock e um cartão nas Boas-vindas. O ícone
+# extra na área de trabalho ficava embaixo do widget de relógio (canto superior esquerdo).
+AUTOSTART_ICON=/etc/xdg/autostart/calamares-desktop-icon.desktop
+if [ -f "$AUTOSTART_ICON" ] && ! grep -q '^Hidden=true' "$AUTOSTART_ICON"; then
+	echo 'Hidden=true' >> "$AUTOSTART_ICON"
+fi

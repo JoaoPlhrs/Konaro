@@ -1,0 +1,9 @@
+#!/bin/sh
+# Konaro OS — chamado por `lb clean`. Remove artefatos gerados, preservando
+# a configuração versionada (auto/, config/package-lists, config/hooks, ...).
+set -e
+
+lb clean noauto "$@"
+
+rm -f config/binary config/bootstrap config/chroot config/common config/source
+rm -f build.log

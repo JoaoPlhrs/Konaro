@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Konaro OS — botão minimize (arte original). -->
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+<g id="active-center"><rect width="16" height="16" fill="none"/><circle cx="8" cy="8" r="6" fill="#FEBC2E" stroke="#DEA123" stroke-width="0.6"/></g>
+<g id="hover-center"><rect width="16" height="16" fill="none"/><circle cx="8" cy="8" r="6" fill="#FEBC2E" stroke="#DEA123" stroke-width="0.6"/><path d="M5,8 H11" stroke="#5A3A00" stroke-opacity="0.75" stroke-width="1.4" stroke-linecap="round"/></g>
+<g id="pressed-center"><rect width="16" height="16" fill="none"/><circle cx="8" cy="8" r="6" fill="#FEBC2E" stroke="#DEA123" stroke-width="0.6"/><circle cx="8" cy="8" r="6" fill="#000" opacity="0.15"/><path d="M5,8 H11" stroke="#5A3A00" stroke-opacity="0.75" stroke-width="1.4" stroke-linecap="round"/></g>
+<g id="inactive-center"><rect width="16" height="16" fill="none"/><circle cx="8" cy="8" r="6" fill="#4A4A4F" stroke="#5A5A5F" stroke-width="0.6"/></g>
+<g id="deactivated-center"><rect width="16" height="16" fill="none"/><circle cx="8" cy="8" r="6" fill="#4A4A4F" stroke="#5A5A5F" stroke-width="0.6"/></g>
+</svg>

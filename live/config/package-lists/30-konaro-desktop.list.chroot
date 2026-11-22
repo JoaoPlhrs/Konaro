@@ -1,0 +1,41 @@
+# Konaro OS — KDE Plasma (DECISÃO) + componentes de integração do desktop
+kde-plasma-desktop
+plasma-workspace
+kwin-wayland
+kwin-x11
+sddm
+sddm-theme-breeze
+kde-config-sddm
+
+# Widgets extras (notas, etc.) para os cantos da área de trabalho
+plasma-widgets-addons
+
+# Controles gráficos essenciais (rede, áudio, Bluetooth, energia, telas)
+plasma-nm
+plasma-pa
+bluedevil
+powerdevil
+kscreen
+systemsettings
+kinfocenter
+kde-config-gtk-style
+breeze-gtk-theme
+xdg-desktop-portal-kde
+
+# Áudio
+pipewire-audio
+wireplumber
+
+# Segurança (DECISÃO de direção: firewall). Escolha ufw é PROVISÓRIA.
+ufw
+plasma-firewall
+
+# Formatos de aplicativos (DECISÃO: Flatpak suportado). Nenhum repositório
+# remoto é configurado ainda: isso depende da decisão sobre a loja.
+flatpak
+kde-config-flatpak
+
+# Tipografia: Inter (OFL) como fonte de interface; Noto para cobertura e emoji
+fonts-inter
+fonts-noto-core
+fonts-noto-color-emoji

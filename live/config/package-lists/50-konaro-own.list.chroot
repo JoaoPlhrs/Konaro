@@ -1,0 +1,9 @@
+# Konaro OS — pacotes próprios do projeto (construídos de packages/ e
+# copiados para config/packages.chroot por scripts/build-iso.sh)
+konaro-desktop
+konaro-common
+konaro-store
+konaro-updater
+konaro-drivers
+konaro-welcome
+konaro-gaming

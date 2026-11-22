@@ -1,0 +1,3 @@
+# Konaro OS — tela de bloqueio usa o papel de parede Konaro.
+[Greeter][Wallpaper][org.kde.image][General]
+Image=file:///usr/share/wallpapers/Konaro/

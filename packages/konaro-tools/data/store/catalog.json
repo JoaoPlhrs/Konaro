@@ -1,0 +1,700 @@
+{
+ "version": 1,
+ "apps": [
+  {
+   "id": "com.valvesoftware.Steam",
+   "name": "Steam",
+   "summary": {
+    "en": "The biggest PC game store. Proton runs Windows games.",
+    "pt": "A maior loja de jogos para PC. O Proton roda jogos do Windows."
+   },
+   "category": "games",
+   "backend": "flatpak",
+   "app": "com.valvesoftware.Steam",
+   "icon": "steam",
+   "featured": true
+  },
+  {
+   "id": "lutris",
+   "name": "Lutris",
+   "summary": {
+    "en": "Play games from Epic, GOG, Battle.net, emulators and more.",
+    "pt": "Jogue títulos da Epic, GOG, Battle.net, emuladores e mais."
+   },
+   "category": "games",
+   "backend": "apt",
+   "packages": [
+    "lutris"
+   ],
+   "desktop": "net.lutris.Lutris.desktop",
+   "icon": "net.lutris.Lutris",
+   "featured": true
+  },
+  {
+   "id": "com.heroicgameslauncher.hgl",
+   "name": "Heroic Games Launcher",
+   "summary": {
+    "en": "Epic Games, GOG and Amazon Prime Gaming games.",
+    "pt": "Jogos da Epic Games, GOG e Amazon Prime Gaming."
+   },
+   "category": "games",
+   "backend": "flatpak",
+   "app": "com.heroicgameslauncher.hgl",
+   "icon": "com.heroicgameslauncher.hgl",
+   "featured": true
+  },
+  {
+   "id": "net.davidotek.pupgui2",
+   "name": "ProtonUp-Qt",
+   "summary": {
+    "en": "Install extra Proton/Wine versions (GE-Proton).",
+    "pt": "Instale versões extras de Proton/Wine (GE-Proton)."
+   },
+   "category": "games",
+   "backend": "flatpak",
+   "app": "net.davidotek.pupgui2",
+   "icon": "net.davidotek.pupgui2",
+   "featured": false
+  },
+  {
+   "id": "org.prismlauncher.PrismLauncher",
+   "name": "Prism Launcher",
+   "summary": {
+    "en": "Minecraft launcher with mods and multiple instances.",
+    "pt": "Launcher de Minecraft com mods e várias instâncias."
+   },
+   "category": "games",
+   "backend": "flatpak",
+   "app": "org.prismlauncher.PrismLauncher",
+   "icon": "org.prismlauncher.PrismLauncher",
+   "featured": false
+  },
+  {
+   "id": "org.libretro.RetroArch",
+   "name": "RetroArch",
+   "summary": {
+    "en": "Emulators for classic consoles in one app.",
+    "pt": "Emuladores de consoles clássicos em um só app."
+   },
+   "category": "games",
+   "backend": "flatpak",
+   "app": "org.libretro.RetroArch",
+   "icon": "org.libretro.RetroArch",
+   "featured": false
+  },
+  {
+   "id": "goverlay",
+   "name": "GOverlay",
+   "summary": {
+    "en": "Configure MangoHud (FPS overlay) and vkBasalt.",
+    "pt": "Configure o MangoHud (FPS na tela) e o vkBasalt."
+   },
+   "category": "games",
+   "backend": "apt",
+   "packages": [
+    "goverlay"
+   ],
+   "desktop": "goverlay.desktop",
+   "icon": "goverlay",
+   "featured": false
+  },
+  {
+   "id": "supertuxkart",
+   "name": "SuperTuxKart",
+   "summary": {
+    "en": "Free kart racing game.",
+    "pt": "Jogo de corrida de kart gratuito."
+   },
+   "category": "games",
+   "backend": "apt",
+   "packages": [
+    "supertuxkart"
+   ],
+   "desktop": "supertuxkart.desktop",
+   "icon": "supertuxkart",
+   "featured": false
+  },
+  {
+   "id": "0ad",
+   "name": "0 A.D.",
+   "summary": {
+    "en": "Free historical real-time strategy game.",
+    "pt": "Jogo de estratégia histórica em tempo real gratuito."
+   },
+   "category": "games",
+   "backend": "apt",
+   "packages": [
+    "0ad"
+   ],
+   "desktop": "0ad.desktop",
+   "icon": "0ad",
+   "featured": false
+  },
+  {
+   "id": "com.usebottles.bottles",
+   "name": "Bottles",
+   "summary": {
+    "en": "Run Windows programs in isolated, easy-to-manage environments.",
+    "pt": "Rode programas do Windows em ambientes isolados e fáceis de gerenciar."
+   },
+   "category": "windows",
+   "backend": "flatpak",
+   "app": "com.usebottles.bottles",
+   "icon": "com.usebottles.bottles",
+   "featured": true
+  },
+  {
+   "id": "wine",
+   "name": "Wine",
+   "summary": {
+    "en": "Runs Windows programs: double-click a .exe file.",
+    "pt": "Executa programas do Windows: dê dois cliques em um arquivo .exe."
+   },
+   "category": "windows",
+   "backend": "apt",
+   "packages": [
+    "wine",
+    "wine64"
+   ],
+   "desktop": "konaro-wine.desktop",
+   "icon": "wine",
+   "featured": false
+  },
+  {
+   "id": "winetricks",
+   "name": "Winetricks",
+   "summary": {
+    "en": "Installs Windows libraries and fonts into Wine.",
+    "pt": "Instala bibliotecas e fontes do Windows no Wine."
+   },
+   "category": "windows",
+   "backend": "apt",
+   "packages": [
+    "winetricks"
+   ],
+   "desktop": "winetricks.desktop",
+   "icon": "winetricks",
+   "featured": false
+  },
+  {
+   "id": "firefox-esr",
+   "name": "Firefox",
+   "summary": {
+    "en": "Fast, private web browser from Mozilla.",
+    "pt": "Navegador rápido e privado da Mozilla."
+   },
+   "category": "internet",
+   "backend": "apt",
+   "packages": [
+    "firefox-esr",
+    "firefox-esr-l10n-pt-br"
+   ],
+   "desktop": "firefox-esr.desktop",
+   "icon": "firefox-esr",
+   "featured": true
+  },
+  {
+   "id": "brave-browser",
+   "name": "Brave",
+   "summary": {
+    "en": "Browser with built-in ad and tracker blocking.",
+    "pt": "Navegador com bloqueio de anúncios e rastreadores."
+   },
+   "category": "internet",
+   "backend": "apt",
+   "packages": [
+    "brave-browser"
+   ],
+   "desktop": "brave-browser.desktop",
+   "icon": "brave-browser",
+   "origin": "brave",
+   "featured": true
+  },
+  {
+   "id": "io.github.ungoogled_software.ungoogled_chromium",
+   "name": "Ungoogled Chromium",
+   "summary": {
+    "en": "Chromium without Google services.",
+    "pt": "Chromium sem os serviços do Google."
+   },
+   "category": "internet",
+   "backend": "flatpak",
+   "app": "io.github.ungoogled_software.ungoogled_chromium",
+   "icon": "io.github.ungoogled_software.ungoogled_chromium",
+   "featured": true
+  },
+  {
+   "id": "thunderbird",
+   "name": "Thunderbird",
+   "summary": {
+    "en": "Email, calendar and contacts.",
+    "pt": "E-mail, agenda e contatos."
+   },
+   "category": "internet",
+   "backend": "apt",
+   "packages": [
+    "thunderbird",
+    "thunderbird-l10n-pt-br"
+   ],
+   "desktop": "thunderbird.desktop",
+   "icon": "thunderbird",
+   "featured": false
+  },
+  {
+   "id": "org.telegram.desktop",
+   "name": "Telegram",
+   "summary": {
+    "en": "Messaging app.",
+    "pt": "Aplicativo de mensagens."
+   },
+   "category": "internet",
+   "backend": "flatpak",
+   "app": "org.telegram.desktop",
+   "icon": "org.telegram.desktop",
+   "featured": false
+  },
+  {
+   "id": "com.discordapp.Discord",
+   "name": "Discord",
+   "summary": {
+    "en": "Voice, video and text chat for communities and games.",
+    "pt": "Chat de voz, vídeo e texto para comunidades e jogos."
+   },
+   "category": "internet",
+   "backend": "flatpak",
+   "app": "com.discordapp.Discord",
+   "icon": "com.discordapp.Discord",
+   "featured": true
+  },
+  {
+   "id": "org.signal.Signal",
+   "name": "Signal",
+   "summary": {
+    "en": "Private messaging.",
+    "pt": "Mensagens privadas."
+   },
+   "category": "internet",
+   "backend": "flatpak",
+   "app": "org.signal.Signal",
+   "icon": "org.signal.Signal",
+   "featured": false
+  },
+  {
+   "id": "us.zoom.Zoom",
+   "name": "Zoom",
+   "summary": {
+    "en": "Video meetings.",
+    "pt": "Reuniões por vídeo."
+   },
+   "category": "internet",
+   "backend": "flatpak",
+   "app": "us.zoom.Zoom",
+   "icon": "us.zoom.Zoom",
+   "featured": false
+  },
+  {
+   "id": "qbittorrent",
+   "name": "qBittorrent",
+   "summary": {
+    "en": "BitTorrent client.",
+    "pt": "Cliente BitTorrent."
+   },
+   "category": "internet",
+   "backend": "apt",
+   "packages": [
+    "qbittorrent"
+   ],
+   "desktop": "org.qbittorrent.qBittorrent.desktop",
+   "icon": "qbittorrent",
+   "featured": false
+  },
+  {
+   "id": "kdeconnect",
+   "name": "KDE Connect",
+   "summary": {
+    "en": "Connect your phone to the computer.",
+    "pt": "Conecte seu celular ao computador."
+   },
+   "category": "internet",
+   "backend": "apt",
+   "packages": [
+    "kdeconnect"
+   ],
+   "desktop": "org.kde.kdeconnect.app.desktop",
+   "icon": "kdeconnect",
+   "featured": false
+  },
+  {
+   "id": "libreoffice",
+   "name": "LibreOffice",
+   "summary": {
+    "en": "Office suite: documents, spreadsheets and presentations.",
+    "pt": "Pacote de escritório: documentos, planilhas e apresentações."
+   },
+   "category": "productivity",
+   "backend": "apt",
+   "packages": [
+    "libreoffice",
+    "libreoffice-l10n-pt-br",
+    "libreoffice-kf6"
+   ],
+   "desktop": "libreoffice-startcenter.desktop",
+   "icon": "libreoffice-startcenter",
+   "featured": true
+  },
+  {
+   "id": "org.onlyoffice.desktopeditors",
+   "name": "ONLYOFFICE",
+   "summary": {
+    "en": "Office suite highly compatible with Microsoft Office files.",
+    "pt": "Pacote de escritório muito compatível com arquivos do Microsoft Office."
+   },
+   "category": "productivity",
+   "backend": "flatpak",
+   "app": "org.onlyoffice.desktopeditors",
+   "icon": "org.onlyoffice.desktopeditors",
+   "featured": false
+  },
+  {
+   "id": "md.obsidian.Obsidian",
+   "name": "Obsidian",
+   "summary": {
+    "en": "Notes and knowledge base.",
+    "pt": "Notas e base de conhecimento."
+   },
+   "category": "productivity",
+   "backend": "flatpak",
+   "app": "md.obsidian.Obsidian",
+   "icon": "md.obsidian.Obsidian",
+   "featured": false
+  },
+  {
+   "id": "net.cozic.joplin_desktop",
+   "name": "Joplin",
+   "summary": {
+    "en": "Notes and to-do lists with sync.",
+    "pt": "Notas e listas de tarefas com sincronização."
+   },
+   "category": "productivity",
+   "backend": "flatpak",
+   "app": "net.cozic.joplin_desktop",
+   "icon": "net.cozic.joplin_desktop",
+   "featured": false
+  },
+  {
+   "id": "keepassxc",
+   "name": "KeePassXC",
+   "summary": {
+    "en": "Password manager.",
+    "pt": "Gerenciador de senhas."
+   },
+   "category": "productivity",
+   "backend": "apt",
+   "packages": [
+    "keepassxc"
+   ],
+   "desktop": "org.keepassxc.KeePassXC.desktop",
+   "icon": "keepassxc",
+   "featured": false
+  },
+  {
+   "id": "vlc",
+   "name": "VLC",
+   "summary": {
+    "en": "Plays almost any video or audio file.",
+    "pt": "Reproduz quase qualquer arquivo de vídeo ou áudio."
+   },
+   "category": "multimedia",
+   "backend": "apt",
+   "packages": [
+    "vlc"
+   ],
+   "desktop": "vlc.desktop",
+   "icon": "vlc",
+   "featured": true
+  },
+  {
+   "id": "com.spotify.Client",
+   "name": "Spotify",
+   "summary": {
+    "en": "Music streaming.",
+    "pt": "Streaming de música."
+   },
+   "category": "multimedia",
+   "backend": "flatpak",
+   "app": "com.spotify.Client",
+   "icon": "com.spotify.Client",
+   "featured": true
+  },
+  {
+   "id": "haruna",
+   "name": "Haruna",
+   "summary": {
+    "en": "Simple video player.",
+    "pt": "Reprodutor de vídeo simples."
+   },
+   "category": "multimedia",
+   "backend": "apt",
+   "packages": [
+    "haruna"
+   ],
+   "desktop": "org.kde.haruna.desktop",
+   "icon": "haruna",
+   "featured": false
+  },
+  {
+   "id": "elisa",
+   "name": "Elisa",
+   "summary": {
+    "en": "Music player.",
+    "pt": "Reprodutor de música."
+   },
+   "category": "multimedia",
+   "backend": "apt",
+   "packages": [
+    "elisa"
+   ],
+   "desktop": "org.kde.elisa.desktop",
+   "icon": "elisa",
+   "featured": false
+  },
+  {
+   "id": "com.obsproject.Studio",
+   "name": "OBS Studio",
+   "summary": {
+    "en": "Screen recording and live streaming.",
+    "pt": "Gravação de tela e transmissões ao vivo."
+   },
+   "category": "multimedia",
+   "backend": "flatpak",
+   "app": "com.obsproject.Studio",
+   "icon": "com.obsproject.Studio",
+   "featured": true
+  },
+  {
+   "id": "kdenlive",
+   "name": "Kdenlive",
+   "summary": {
+    "en": "Video editor.",
+    "pt": "Editor de vídeo."
+   },
+   "category": "multimedia",
+   "backend": "apt",
+   "packages": [
+    "kdenlive"
+   ],
+   "desktop": "org.kde.kdenlive.desktop",
+   "icon": "kdenlive",
+   "featured": false
+  },
+  {
+   "id": "audacity",
+   "name": "Audacity",
+   "summary": {
+    "en": "Audio editor and recorder.",
+    "pt": "Editor e gravador de áudio."
+   },
+   "category": "multimedia",
+   "backend": "apt",
+   "packages": [
+    "audacity"
+   ],
+   "desktop": "audacity.desktop",
+   "icon": "audacity",
+   "featured": false
+  },
+  {
+   "id": "fr.handbrake.ghb",
+   "name": "HandBrake",
+   "summary": {
+    "en": "Convert videos between formats.",
+    "pt": "Converta vídeos entre formatos."
+   },
+   "category": "multimedia",
+   "backend": "flatpak",
+   "app": "fr.handbrake.ghb",
+   "icon": "fr.handbrake.ghb",
+   "featured": false
+  },
+  {
+   "id": "gimp",
+   "name": "GIMP",
+   "summary": {
+    "en": "Photo editing and image manipulation.",
+    "pt": "Edição de fotos e imagens."
+   },
+   "category": "graphics",
+   "backend": "apt",
+   "packages": [
+    "gimp"
+   ],
+   "desktop": "gimp.desktop",
+   "icon": "gimp",
+   "featured": true
+  },
+  {
+   "id": "krita",
+   "name": "Krita",
+   "summary": {
+    "en": "Digital painting and illustration.",
+    "pt": "Pintura digital e ilustração."
+   },
+   "category": "graphics",
+   "backend": "apt",
+   "packages": [
+    "krita"
+   ],
+   "desktop": "org.kde.krita.desktop",
+   "icon": "krita",
+   "featured": false
+  },
+  {
+   "id": "inkscape",
+   "name": "Inkscape",
+   "summary": {
+    "en": "Vector graphics editor.",
+    "pt": "Editor de gráficos vetoriais."
+   },
+   "category": "graphics",
+   "backend": "apt",
+   "packages": [
+    "inkscape"
+   ],
+   "desktop": "org.inkscape.Inkscape.desktop",
+   "icon": "org.inkscape.Inkscape",
+   "featured": false
+  },
+  {
+   "id": "org.blender.Blender",
+   "name": "Blender",
+   "summary": {
+    "en": "3D modeling, animation and rendering.",
+    "pt": "Modelagem 3D, animação e renderização."
+   },
+   "category": "graphics",
+   "backend": "flatpak",
+   "app": "org.blender.Blender",
+   "icon": "org.blender.Blender",
+   "featured": false
+  },
+  {
+   "id": "com.vscodium.codium",
+   "name": "VSCodium",
+   "summary": {
+    "en": "Code editor (Visual Studio Code without telemetry).",
+    "pt": "Editor de código (Visual Studio Code sem telemetria)."
+   },
+   "category": "development",
+   "backend": "flatpak",
+   "app": "com.vscodium.codium",
+   "icon": "com.vscodium.codium",
+   "featured": false
+  },
+  {
+   "id": "kate",
+   "name": "Kate",
+   "summary": {
+    "en": "Advanced text and code editor.",
+    "pt": "Editor de texto e código avançado."
+   },
+   "category": "development",
+   "backend": "apt",
+   "packages": [
+    "kate"
+   ],
+   "desktop": "org.kde.kate.desktop",
+   "icon": "kate",
+   "featured": false
+  },
+  {
+   "id": "git",
+   "name": "Git",
+   "summary": {
+    "en": "Version control (command line).",
+    "pt": "Controle de versão (linha de comando)."
+   },
+   "category": "development",
+   "backend": "apt",
+   "packages": [
+    "git"
+   ],
+   "desktop": "",
+   "icon": "git",
+   "featured": false
+  },
+  {
+   "id": "org.godotengine.Godot",
+   "name": "Godot Engine",
+   "summary": {
+    "en": "Game engine for 2D and 3D games.",
+    "pt": "Motor para criar jogos 2D e 3D."
+   },
+   "category": "development",
+   "backend": "flatpak",
+   "app": "org.godotengine.Godot",
+   "icon": "org.godotengine.Godot",
+   "featured": false
+  },
+  {
+   "id": "com.github.tchx84.Flatseal",
+   "name": "Flatseal",
+   "summary": {
+    "en": "Review and change permissions of Flatpak apps.",
+    "pt": "Veja e altere as permissões dos apps Flatpak."
+   },
+   "category": "utilities",
+   "backend": "flatpak",
+   "app": "com.github.tchx84.Flatseal",
+   "icon": "com.github.tchx84.Flatseal",
+   "featured": true
+  },
+  {
+   "id": "kcalc",
+   "name": "KCalc",
+   "summary": {
+    "en": "Calculator.",
+    "pt": "Calculadora."
+   },
+   "category": "utilities",
+   "backend": "apt",
+   "packages": [
+    "kcalc"
+   ],
+   "desktop": "org.kde.kcalc.desktop",
+   "icon": "accessories-calculator",
+   "featured": false
+  },
+  {
+   "id": "filelight",
+   "name": "Filelight",
+   "summary": {
+    "en": "See what is using your disk space.",
+    "pt": "Veja o que está ocupando seu disco."
+   },
+   "category": "utilities",
+   "backend": "apt",
+   "packages": [
+    "filelight"
+   ],
+   "desktop": "org.kde.filelight.desktop",
+   "icon": "filelight",
+   "featured": false
+  },
+  {
+   "id": "partitionmanager",
+   "name": "KDE Partition Manager",
+   "summary": {
+    "en": "Manage disks and partitions (advanced).",
+    "pt": "Gerencie discos e partições (avançado)."
+   },
+   "category": "utilities",
+   "backend": "apt",
+   "packages": [
+    "partitionmanager"
+   ],
+   "desktop": "org.kde.partitionmanager.desktop",
+   "icon": "partitionmanager",
+   "featured": false
+  }
+ ]
+}

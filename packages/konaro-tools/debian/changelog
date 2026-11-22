@@ -1,0 +1,5 @@
+konaro-tools (0.1.0~dev1) trixie; urgency=medium
+
+  * Primeira versão: Loja, Atualizações, Drivers, Boas-vindas e suporte a jogos
+
+ -- Konaro OS Project <maintainers@konaro.invalid>  Sun, 22 Nov 2026 00:00:00 +0000

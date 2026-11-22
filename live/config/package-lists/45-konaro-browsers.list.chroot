@@ -1,0 +1,7 @@
+# Konaro OS — navegadores (DECISÃO do responsável: Firefox, Brave e Ungoogled Chromium,
+# escolhidos no instalador). O Ungoogled Chromium é instalado via Flatpak pelo hook
+# 0300-konaro-flatpak; o Brave vem do repositório oficial do Brave (config/archives).
+firefox-esr
+firefox-esr-l10n-pt-br
+brave-browser
+brave-keyring

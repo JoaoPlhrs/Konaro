@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Konaro OS — ícone de aplicativo (arte original). -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#48484a"/>
+      <stop offset="1" stop-color="#1c1c1e"/>
+    </linearGradient>
+  </defs>
+  <rect x="4" y="4" width="56" height="56" rx="14" fill="url(#bg)"/>
+  <g fill="none" stroke="#f5f5f7" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="21" y="21" width="22" height="22" rx="3"/>
+    <path d="M27 21 V15 M37 21 V15 M27 49 V43 M37 49 V43 M21 27 H15 M21 37 H15 M49 27 H43 M49 37 H43"/>
+  </g>
+</svg>

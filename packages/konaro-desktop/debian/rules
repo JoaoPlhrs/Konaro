@@ -1,0 +1,37 @@
+#!/usr/bin/make -f
+# Konaro OS — konaro-desktop
+# A arte é versionada em SVG (artwork/) e renderizada aqui, no build do pacote.
+
+ART := artwork
+GEN := debian/generated
+WP  := $(GEN)/usr/share/wallpapers/Konaro/contents
+LF  := $(GEN)/usr/share/plasma/look-and-feel
+
+%:
+	dh $@
+
+override_dh_auto_build:
+	mkdir -p $(WP)/images $(WP)/images_dark \
+	         $(LF)/org.konaro.desktop/contents/previews \
+	         $(LF)/org.konaro.desktop.dark/contents/previews \
+	         $(GEN)/usr/share/icons/hicolor/scalable/apps \
+	         $(GEN)/usr/share/konaro
+	# Papéis de parede (claro e escuro) em duas resoluções
+	for size in 1920x1080 3840x2160; do \
+	  w=$${size%x*}; h=$${size#*x}; \
+	  rsvg-convert -w $$w -h $$h $(ART)/wallpaper-light.svg -o $(WP)/images/$$size.png; \
+	  rsvg-convert -w $$w -h $$h $(ART)/wallpaper-dark.svg  -o $(WP)/images_dark/$$size.png; \
+	done
+	rsvg-convert -w 400 -h 225 $(ART)/wallpaper-light.svg -o $(WP)/screenshot.png
+	# Prévias dos temas globais
+	rsvg-convert -w 400 -h 225 $(ART)/wallpaper-light.svg -o $(LF)/org.konaro.desktop/contents/previews/preview.png
+	rsvg-convert -w 400 -h 225 $(ART)/wallpaper-dark.svg  -o $(LF)/org.konaro.desktop.dark/contents/previews/preview.png
+	# Ícones e logotipos
+	install -m 0644 $(ART)/konaro-start.svg $(GEN)/usr/share/icons/hicolor/scalable/apps/konaro-start.svg
+	install -m 0644 $(ART)/konaro-logo.svg  $(GEN)/usr/share/icons/hicolor/scalable/apps/konaro.svg
+	install -m 0644 $(ART)/konaro-logo.svg  $(GEN)/usr/share/konaro/konaro-logo.svg
+	sed 's/#1c1c1e/#f5f5f7/g' $(ART)/konaro-logo.svg > $(GEN)/usr/share/konaro/konaro-logo-white.svg
+	install -m 0644 $(ART)/grub-splash.svg  $(GEN)/usr/share/konaro/grub-splash.svg
+
+override_dh_auto_clean:
+	rm -rf debian/generated

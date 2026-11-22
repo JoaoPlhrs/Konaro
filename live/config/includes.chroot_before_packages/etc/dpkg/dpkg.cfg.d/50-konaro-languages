@@ -1,0 +1,28 @@
+# Konaro OS — idiomas da primeira versão: português (Brasil) e inglês.
+# (Decisão do responsável: "na primeira build apenas dois idiomas".)
+# O dpkg não instala traduções, ajuda e páginas de manual de outros idiomas,
+# o que reduz bastante o tamanho do sistema.
+# Para voltar a ter todos os idiomas: remova este arquivo e reinstale os pacotes.
+path-exclude=/usr/share/locale/*
+path-include=/usr/share/locale/locale.alias
+path-include=/usr/share/locale/en/*
+path-include=/usr/share/locale/en_US/*
+path-include=/usr/share/locale/en_GB/*
+path-include=/usr/share/locale/pt/*
+path-include=/usr/share/locale/pt_BR/*
+path-exclude=/usr/share/qt6/translations/*
+path-include=/usr/share/qt6/translations/*_en.qm
+path-include=/usr/share/qt6/translations/*_pt*.qm
+path-exclude=/usr/share/qt5/translations/*
+path-include=/usr/share/qt5/translations/*_en.qm
+path-include=/usr/share/qt5/translations/*_pt*.qm
+path-exclude=/usr/share/help/*
+path-include=/usr/share/help/C/*
+path-include=/usr/share/help/en/*
+path-include=/usr/share/help/pt_BR/*
+path-exclude=/usr/share/man/??/*
+path-exclude=/usr/share/man/??_*/*
+path-include=/usr/share/man/pt_BR/*
+path-exclude=/usr/share/doc/kde/HTML/*
+path-include=/usr/share/doc/kde/HTML/en/*
+path-include=/usr/share/doc/kde/HTML/pt_BR/*

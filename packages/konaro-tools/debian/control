@@ -1,0 +1,63 @@
+Source: konaro-tools
+Section: admin
+Priority: optional
+Maintainer: Konaro OS Project <maintainers@konaro.invalid>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.7.2
+Rules-Requires-Root: no
+
+Package: konaro-common
+Architecture: all
+Depends: ${misc:Depends}, python3, python3-pyqt6, python3-pyqt6.qtquick, python3-pyqt6.qtqml,
+         qml6-module-qtquick, qml6-module-qtquick-controls, qml6-module-qtquick-layouts,
+         qml6-module-qtquick-templates, qml6-module-qtquick-window, qml6-module-qtqml-workerscript,
+         qml6-module-org-kde-kirigami, fonts-inter, python3-gi,
+         gir1.2-packagekitglib-1.0, packagekit, flatpak,
+         libkf6config-bin, kde-cli-tools, qdbus-qt6
+Description: Konaro OS - shared library for the graphical system tools
+ Python library and QML design system shared by the Konaro Store, Updates,
+ Drivers and Welcome tools. Package operations go through PackageKit (Debian packages, with
+ polkit authorization) and Flatpak (Flathub). Also configures Flathub.
+
+Package: konaro-store
+Architecture: all
+Depends: ${misc:Depends}, konaro-common (= ${source:Version})
+Description: Konaro OS - app store
+ Curated catalog of apps and games with categories, search, details
+ (source, format and Flatpak permissions), install and removal.
+
+Package: konaro-updater
+Architecture: all
+Depends: ${misc:Depends}, konaro-common (= ${source:Version}), libnotify-bin
+Description: Konaro OS - update notifier and installer
+ Shows available updates grouped as security, system, Konaro and Flatpak,
+ and installs them only when the user asks. A user systemd timer checks
+ periodically and shows a notification.
+
+Package: konaro-drivers
+Architecture: all
+Depends: ${misc:Depends}, konaro-common (= ${source:Version}), pciutils, isenkram-cli
+Recommends: nvidia-detect
+Description: Konaro OS - driver manager
+ Detects hardware and suggests drivers and firmware (NVIDIA proprietary
+ driver, packages suggested by isenkram), asking permission before
+ installing.
+
+Package: konaro-welcome
+Architecture: all
+Depends: ${misc:Depends}, konaro-common (= ${source:Version}), network-manager
+Recommends: konaro-store, konaro-updater, konaro-drivers, plasma-widgets-addons
+Description: Konaro OS - first-run welcome
+ Guided first login: language, light/dark appearance, network, privacy,
+ updates, drivers, games and tips. In the live session it also offers
+ to install the system.
+
+Package: konaro-gaming
+Architecture: all
+Depends: ${misc:Depends}, wine, wine64, fonts-wine, gamemode,
+         mangohud, mesa-vulkan-drivers, vulkan-tools, steam-devices
+Recommends: winetricks, lutris
+Description: Konaro OS - games and Windows apps
+ Wine (double-click .exe files), Winetricks, GameMode, MangoHud, Vulkan
+ drivers, Steam controller rules and Lutris. The live image also enables
+ 32-bit (i386) support for Wine, Steam and Proton.

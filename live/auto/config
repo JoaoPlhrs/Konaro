@@ -1,0 +1,60 @@
+#!/bin/sh
+# Konaro OS — configuração do Debian Live Build.
+# Chamado por `lb config`. Não edite os arquivos gerados em config/ (binary,
+# bootstrap, chroot, common, source): eles são recriados a partir daqui.
+#
+# Variáveis de ambiente opcionais:
+#   KONARO_MIRROR           mirror Debian usado DURANTE o build
+#   KONARO_SECURITY_MIRROR  mirror de segurança usado DURANTE o build
+#   KONARO_APT_PROXY        proxy HTTP para o APT durante o build (ex.: apt-cacher-ng)
+# O sistema gerado sempre aponta para os mirrors oficiais via HTTPS.
+set -e
+
+VERSION_FILE="$(dirname "$0")/../../VERSION"
+KONARO_VERSION="$(cat "$VERSION_FILE" 2>/dev/null || echo dev)"
+# Nome de arquivo sem caracteres problemáticos (~ vira -)
+KONARO_VERSION_FS="$(echo "$KONARO_VERSION" | tr '~' '-')"
+
+KONARO_MIRROR="${KONARO_MIRROR:-http://deb.debian.org/debian}"
+KONARO_SECURITY_MIRROR="${KONARO_SECURITY_MIRROR:-http://security.debian.org/debian-security}"
+
+# PROVISÓRIO (ver docs/PENDING.md): idioma/teclado/fuso padrão da sessão live.
+KONARO_LIVE_LOCALE="${KONARO_LIVE_LOCALE:-pt_BR.UTF-8}"
+KONARO_LIVE_KEYBOARD="${KONARO_LIVE_KEYBOARD:-br}"
+KONARO_LIVE_TIMEZONE="${KONARO_LIVE_TIMEZONE:-America/Sao_Paulo}"
+
+set -- "$@"
+if [ -n "${KONARO_APT_PROXY:-}" ]; then
+	set -- "$@" --apt-http-proxy "${KONARO_APT_PROXY}"
+fi
+
+lb config noauto \
+	--mode debian \
+	--distribution trixie \
+	--architectures amd64 \
+	--linux-flavours amd64 \
+	--archive-areas "main non-free non-free-firmware" \
+	--security true \
+	--updates true \
+	--apt-recommends true \
+	--binary-image iso-hybrid \
+	--bootloaders "grub-pc grub-efi" \
+	--uefi-secure-boot disable \
+	--debian-installer none \
+	--firmware-chroot true \
+	--firmware-binary false \
+	--cache true \
+	--chroot-squashfs-compression-type zstd \
+	--mirror-bootstrap "${KONARO_MIRROR}" \
+	--mirror-chroot "${KONARO_MIRROR}" \
+	--mirror-chroot-security "${KONARO_SECURITY_MIRROR}" \
+	--mirror-binary "https://deb.debian.org/debian" \
+	--mirror-binary-security "https://security.debian.org/debian-security" \
+	--image-name "konaro-os-${KONARO_VERSION_FS}" \
+	--iso-application "Konaro OS" \
+	--iso-publisher "Konaro OS Project" \
+	--iso-preparer "live-build; see konaro-os/docs/BUILDING.md" \
+	--iso-volume "KONARO_OS_${KONARO_VERSION_FS}" \
+	--bootappend-live "boot=live components quiet hostname=konaro username=konaro user-fullname=Konaro locales=${KONARO_LIVE_LOCALE} keyboard-layouts=${KONARO_LIVE_KEYBOARD} timezone=${KONARO_LIVE_TIMEZONE}" \
+	--bootappend-live-failsafe "boot=live components memtest noapic noapm nodma nomce nosmp nosplash vga=788 hostname=konaro username=konaro" \
+	"$@"

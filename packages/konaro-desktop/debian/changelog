@@ -1,0 +1,7 @@
+konaro-desktop (0.1.0~dev1) trixie; urgency=medium
+
+  * Primeira versão de desenvolvimento: tema global claro/escuro, layout com
+    barra superior e dock, splash de boas-vindas, papéis de parede, esquemas
+    de cor neutros e padrões de SDDM/tela de bloqueio.
+
+ -- Konaro OS Project <maintainers@konaro.invalid>  Sun, 22 Nov 2026 00:00:00 +0000

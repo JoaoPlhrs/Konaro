@@ -1,0 +1,18 @@
+# Saídas de build (nunca versionar ISOs, pacotes gerados ou caches)
+/build/
+/live/config/packages.chroot/
+/live/.build/
+/live/cache/
+/live/chroot/
+/live/binary/
+/live/*.iso
+/live/*.log
+packages/*/debian/generated/
+packages/*/debian/.debhelper/
+packages/*/debian/debhelper-build-stamp
+packages/*/debian/files
+packages/*/debian/*.substvars
+packages/*/debian/konaro-*/
+/deliver/
+__pycache__/
+*.pyc

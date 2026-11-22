@@ -1,0 +1,16 @@
+# Konaro OS — gerenciador de janelas.
+[org.kde.kdecoration2]
+# Decoração Konaro (Aurorae): botões "semáforo" à esquerda — fechar, minimizar, maximizar
+library=org.kde.kwin.aurorae
+theme=__aurorae__svg__Konaro
+ButtonsOnLeft=XIA
+ButtonsOnRight=
+
+[Plugins]
+blurEnabled=true
+contrastEnabled=true
+
+[Effect-blur]
+# Desfoque mais forte atrás do que flutua (barra, dock, menus, popups)
+BlurStrength=12
+NoiseStrength=0

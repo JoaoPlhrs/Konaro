@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=Konaro Store
+Name[pt_BR]=Loja Konaro
+Comment=Install and remove apps and games
+Comment[pt_BR]=Instale e remova aplicativos e jogos
+Exec=konaro-store
+Icon=konaro-store
+Terminal=false
+Categories=Qt;System;PackageManager;
+Keywords=store;apps;install;games;loja;aplicativos;instalar;jogos;

@@ -1,0 +1,16 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=Install Konaro OS
+Name[pt_BR]=Instalar o Konaro OS
+GenericName=System Installer
+GenericName[pt_BR]=Instalador do sistema
+Comment=Install Konaro OS on this computer
+Comment[pt_BR]=Instalar o Konaro OS neste computador
+Exec=calamares-install-debian
+Icon=konaro
+Terminal=false
+Categories=Qt;System;
+Keywords=install;installer;calamares;konaro;instalar;instalador;
+StartupWMClass=calamares
+StartupNotify=true

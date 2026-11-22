@@ -1,0 +1,5 @@
+bin/konaro-updater usr/bin/
+data/applications/konaro-updater.desktop usr/share/applications/
+data/icons/konaro-updater.svg usr/share/icons/hicolor/scalable/apps/
+data/systemd-user/konaro-update-check.service usr/lib/systemd/user/
+data/systemd-user/konaro-update-check.timer usr/lib/systemd/user/

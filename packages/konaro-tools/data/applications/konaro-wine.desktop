@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Name=Windows program (Wine)
+Name[pt_BR]=Programa do Windows (Wine)
+Comment=Run Windows programs
+Comment[pt_BR]=Executar programas do Windows
+Exec=wine start /unix %f
+Icon=wine
+Terminal=false
+NoDisplay=true
+MimeType=application/x-ms-dos-executable;application/x-msdownload;application/x-msi;application/x-ms-shortcut;application/vnd.microsoft.portable-executable;
+Categories=System;

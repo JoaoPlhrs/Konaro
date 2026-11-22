@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Konaro Welcome
+Name[pt_BR]=Boas-vindas do Konaro
+Exec=konaro-welcome --autostart
+Icon=konaro-welcome
+NoDisplay=true
+X-KDE-autostart-phase=2
+X-GNOME-Autostart-enabled=true

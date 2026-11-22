@@ -1,0 +1,20 @@
+{
+    "KPlugin": {
+        "Authors": [
+            {
+                "Name": "Konaro OS Project"
+            },
+            {
+                "Name": "KDE Visual Design Group (Breeze)"
+            }
+        ],
+        "Category": "",
+        "Description": "Konaro glass: translucent, blurred panels, popups and widgets",
+        "Description[pt_BR]": "Vidro Konaro: painéis, popups e widgets translúcidos com desfoque",
+        "Id": "konaro",
+        "License": "LGPL",
+        "Name": "Konaro",
+        "Version": "0.1"
+    },
+    "X-Plasma-API": "5.0"
+}

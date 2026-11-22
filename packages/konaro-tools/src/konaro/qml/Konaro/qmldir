@@ -1,0 +1,17 @@
+module Konaro
+singleton Theme 1.0 Theme.qml
+KButton 1.0 KButton.qml
+KIcon 1.0 KIcon.qml
+KSearchField 1.0 KSearchField.qml
+KNavItem 1.0 KNavItem.qml
+KAppTile 1.0 KAppTile.qml
+KAppRow 1.0 KAppRow.qml
+KSpotlight 1.0 KSpotlight.qml
+KSectionTitle 1.0 KSectionTitle.qml
+KSwitch 1.0 KSwitch.qml
+KCard 1.0 KCard.qml
+KToast 1.0 KToast.qml
+KDialog 1.0 KDialog.qml
+KChip 1.0 KChip.qml
+KScrollPage 1.0 KScrollPage.qml
+KText 1.0 KText.qml

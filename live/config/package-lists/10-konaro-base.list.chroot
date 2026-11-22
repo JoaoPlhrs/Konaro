@@ -1,0 +1,18 @@
+# Konaro OS — sistema-base (além do que o debootstrap/live-build já instalam)
+# Sessão live (removidos pelo instalador; ver 90-konaro-live.list.chroot_live)
+live-boot
+live-config
+live-config-systemd
+
+# Localização e entrada
+locales
+console-setup
+keyboard-configuration
+tzdata
+
+# Administração gráfica precisa de sudo/polkit
+sudo
+polkitd
+
+# Rede
+network-manager

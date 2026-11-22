@@ -1,0 +1,45 @@
+/* Konaro OS — estilo do instalador (mesmo sistema de design das ferramentas Konaro). */
+QWidget {
+    font-family: "Inter";
+}
+QPushButton {
+    background: #E8E8ED;
+    color: #1D1D1F;
+    border: none;
+    border-radius: 15px;
+    padding: 7px 20px;
+    min-height: 18px;
+    font-weight: 600;
+}
+QPushButton:hover { background: #DCDCE1; }
+QPushButton:pressed { background: #D2D2D7; }
+QPushButton:default { background: #1D1D1F; color: #FFFFFF; }
+QPushButton:default:hover { background: #3A3A3C; }
+QPushButton:disabled { background: #F0F0F3; color: #A1A1A6; }
+QPushButton:focus { border: 2px solid #6E6E73; }
+
+QLineEdit, QComboBox, QSpinBox {
+    border: 1px solid #D2D2D7;
+    border-radius: 8px;
+    padding: 5px 9px;
+    background: #FFFFFF;
+    selection-background-color: #1D1D1F;
+    selection-color: #FFFFFF;
+}
+QLineEdit:focus, QComboBox:focus { border: 2px solid #6E6E73; }
+
+QProgressBar {
+    border: none;
+    background: #E8E8ED;
+    border-radius: 4px;
+    min-height: 8px;
+    max-height: 8px;
+    text-align: center;
+    color: transparent;
+}
+QProgressBar::chunk { background: #1D1D1F; border-radius: 4px; }
+
+/* Listas e a barra lateral usam o estilo padrão + cores da identidade (branding.desc):
+   uma regra genérica para QListView também mudaria a barra lateral. */
+
+QRadioButton, QCheckBox { spacing: 8px; }

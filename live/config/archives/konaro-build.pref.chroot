@@ -1,0 +1,20 @@
+# Konaro OS — preferências do APT usadas SOMENTE durante o build (não vão para a ISO).
+# O metapacote kde-baseapps recomenda o Konqueror. Os navegadores do Konaro são
+# Firefox, Brave e Ungoogled Chromium (decisão do responsável), então o Konqueror
+# não é pré-instalado. Usuários continuam podendo instalá-lo depois.
+Package: konqueror
+Pin: release *
+Pin-Priority: -1
+
+
+# A loja do sistema é a Loja Konaro; o Plasma Discover (recomendado pelo
+# plasma-desktop) apareceria como uma segunda loja e confundiria o usuário.
+Package: plasma-discover plasma-discover-backend-fwupd plasma-discover-backend-flatpak plasma-discover-backend-packagekit
+Pin: release *
+Pin-Priority: -1
+
+# O "Centro de boas-vindas" do KDE (plasma-welcome) abriria junto com as
+# Boas-vindas do Konaro no primeiro login; o Konaro tem o próprio assistente.
+Package: plasma-welcome
+Pin: release *
+Pin-Priority: -1

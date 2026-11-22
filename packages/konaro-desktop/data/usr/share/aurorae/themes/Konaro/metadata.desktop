@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Konaro
+Name[pt_BR]=Konaro
+Comment=Konaro OS window decoration with traffic-light buttons
+Comment[pt_BR]=Decoração de janela do Konaro OS com botões semáforo
+X-KDE-PluginInfo-Author=Konaro OS Project
+X-KDE-PluginInfo-Name=Konaro
+X-KDE-PluginInfo-Version=0.1
+X-KDE-PluginInfo-Category=
+X-KDE-PluginInfo-License=Pending
+X-KDE-PluginInfo-EnabledByDefault=true

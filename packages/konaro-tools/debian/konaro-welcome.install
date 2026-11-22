@@ -1,0 +1,3 @@
+bin/konaro-welcome usr/bin/
+data/applications/konaro-welcome.desktop usr/share/applications/
+data/autostart/konaro-welcome.desktop etc/xdg/autostart/
