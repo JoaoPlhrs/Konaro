@@ -1,0 +1,13 @@
+[Unit]
+Description=Konaro: primeiro ponto de restauração (sistema recém-instalado)
+ConditionPathExists=/etc/timeshift/timeshift.json
+ConditionPathExists=!/var/lib/konaro/first-snapshot-done
+After=local-fs.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/lib/konaro/konaro-snapshot "Sistema recém-instalado" O
+ExecStartPost=/bin/sh -c 'mkdir -p /var/lib/konaro && touch /var/lib/konaro/first-snapshot-done'
+
+[Install]
+WantedBy=multi-user.target

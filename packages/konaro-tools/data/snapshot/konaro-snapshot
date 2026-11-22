@@ -1,0 +1,8 @@
+#!/bin/sh
+# Konaro OS — cria um ponto de restauração ("Voltar no tempo") com o Timeshift.
+# Uso: konaro-snapshot "<descrição>" [D|O|B]   (D = diário, O = sob demanda, B = boot)
+# Só funciona se o sistema foi instalado em Btrfs (/etc/timeshift/timeshift.json).
+set -eu
+[ -f /etc/timeshift/timeshift.json ] || { echo "Voltar no tempo não configurado (raiz não é Btrfs)"; exit 0; }
+command -v timeshift >/dev/null 2>&1 || exit 0
+exec timeshift --create --scripted --comments "${1:-Konaro}" --tags "${2:-O}"

@@ -19,7 +19,7 @@ for f in \
 	/usr/share/applications/konaro-install.desktop \
 	/etc/xdg/kdeglobals /etc/xdg/ksplashrc /etc/sddm.conf.d/10-konaro.conf \
 	/usr/bin/konaro-store /usr/bin/konaro-updater /usr/bin/konaro-drivers /usr/bin/konaro-welcome \
-	/usr/share/konaro/store/catalog.json /usr/lib/calamares/modules/konarobrowsers/main.py \
+	/usr/share/konaro/store/catalog.json /usr/lib/calamares/modules/konarofonts/main.py \
 	/usr/lib/live/config/2000-konaro-live /etc/dpkg/dpkg.cfg.d/50-konaro-languages \
 	/usr/share/plasma/plasmoids/org.konaro.dock/contents/ui/main.qml \
 	/usr/share/plasma/desktoptheme/konaro/plasmarc \
@@ -27,8 +27,7 @@ for f in \
 	/usr/share/plasma/plasmoids/org.kde.plasma.notes/metadata.json \
 	/usr/lib/python3/dist-packages/konaro/qml/store/Main.qml \
 	/usr/share/konaro/store/icons/com.valvesoftware.Steam.png \
-	/usr/share/konaro/installer/browser-firefox.png /usr/share/konaro/installer/browser-brave.png \
-	/usr/share/konaro/installer/browser-ungoogled.png /usr/share/calamares/branding/konaro/stylesheet.qss
+	/usr/share/konaro/installer/font-inter.png /usr/share/calamares/branding/konaro/stylesheet.qss
 do
 	[ -e "$f" ] || fail "arquivo ausente: $f"
 done
@@ -37,22 +36,18 @@ grep -q '^LookAndFeelPackage=org.konaro.desktop$' /etc/xdg/kdeglobals || fail "k
 
 # Componentes que o layout/tema exigem
 for p in plasma-workspace plasma-desktop kwin-wayland sddm dolphin calamares fonts-inter \
-	konaro-store konaro-updater konaro-drivers konaro-welcome konaro-gaming packagekit \
-	firefox-esr brave-browser wine wine32:i386 lutris steam-devices; do
+	konaro-store konaro-updater konaro-drivers konaro-welcome packagekit firefox-esr; do
 	dpkg-query -W -f '${Status}\n' "$p" 2>/dev/null | grep -q 'install ok installed' || fail "pacote não instalado: $p"
 done
 
-# Navegadores fora da lista decidida (Firefox, Brave, Ungoogled Chromium)
-for p in chromium konqueror falkon epiphany-browser plasma-discover plasma-welcome; do
+# Imagem mínima: só o Firefox de navegador e nada que o KDE puxaria sem pedirmos
+for p in chromium konqueror falkon epiphany-browser plasma-discover plasma-welcome brave-browser \
+	kate kdeconnect khelpcenter partitionmanager qsynth vim kwalletmanager kfind; do
 	if dpkg-query -W -f '${Status}\n' "$p" 2>/dev/null | grep -q 'install ok installed'; then
 		echo "konaro-checks: AVISO: pacote indesejado instalado: $p" >&2
 	fi
 done
 
-for app in io.github.ungoogled_software.ungoogled_chromium com.valvesoftware.Steam; do
-	flatpak info --system "$app" >/dev/null 2>&1 || fail "Flatpak ausente: $app"
-done
-grep -q 'packagechooser@browsers' /etc/calamares/settings.conf || fail "página de navegadores ausente no Calamares"
-[ -f /usr/share/keyrings/brave-browser-archive-keyring.gpg ] || fail "keyring do Brave ausente"
+grep -q 'packagechooser@fonts' /etc/calamares/settings.conf || fail "página de fontes ausente no Calamares"
 
 echo "konaro-checks: OK"

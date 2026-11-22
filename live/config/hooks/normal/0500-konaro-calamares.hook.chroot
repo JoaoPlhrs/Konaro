@@ -12,29 +12,17 @@ sed -i 's/^branding:.*/branding: konaro/' "$SETTINGS"
 grep -q '^branding: konaro$' "$SETTINGS"
 test -f /usr/share/calamares/branding/konaro/branding.desc
 
-# 2. Página "Navegadores" (antes do resumo) + módulo que aplica a escolha
-#    (depois do módulo packages, que remove os pacotes da sessão live).
-if ! grep -q 'packagechooser@browsers' "$SETTINGS"; then
-	sed -i 's/^  - summary$/  - packagechooser@browsers\n  - summary/' "$SETTINGS"
-	sed -i 's/^  - packages$/  - packages\n  - konarobrowsers/' "$SETTINGS"
-	cat >> "$SETTINGS" <<'EOF'
 
-# Konaro OS: instância da página de escolha de navegadores
-instances:
-- id:       browsers
-  module:   packagechooser
-  config:   packagechooser-browsers.conf
-EOF
-fi
-grep -q '^  - packagechooser@browsers$' "$SETTINGS"
-grep -q '^  - konarobrowsers$' "$SETTINGS"
-test -f /usr/lib/calamares/modules/konarobrowsers/main.py
-
-# 2b. Página "Fonte" (logo após Navegadores) + módulo que grava a fonte escolhida
+# 2. Página "Fonte" (antes do resumo) + módulo que grava a fonte escolhida
 if ! grep -q 'packagechooser@fonts' "$SETTINGS"; then
-	sed -i 's/^  - packagechooser@browsers$/  - packagechooser@browsers\n  - packagechooser@fonts/' "$SETTINGS"
-	sed -i 's/^  - konarobrowsers$/  - konarobrowsers\n  - konarofonts/' "$SETTINGS"
+	sed -i 's/^  - summary$/  - packagechooser@fonts
+  - summary/' "$SETTINGS"
+	sed -i 's/^  - packages$/  - packages
+  - konarofonts/' "$SETTINGS"
 	cat >> "$SETTINGS" <<'EOF2'
+
+# Konaro OS: instância da página de escolha da fonte
+instances:
 - id:       fonts
   module:   packagechooser
   config:   packagechooser-fonts.conf
@@ -45,9 +33,28 @@ grep -q '^  - konarofonts$' "$SETTINGS"
 /usr/lib/konaro/installer/make-font-cards
 test -f /usr/share/konaro/installer/font-inter.png
 
+# 3. "Voltar no tempo": raiz em Btrfs com os subvolumes @ e @home (layout que o
+#    Timeshift entende) + módulo que configura o Timeshift no sistema instalado.
+MOUNT=/etc/calamares/modules/mount.conf
+if ! grep -q '^btrfsSubvolumes:' "$MOUNT"; then
+	cat >> "$MOUNT" <<'EOF3'
+
+btrfsSubvolumes:
+    - mountPoint: /
+      subvolume: /@
+    - mountPoint: /home
+      subvolume: /@home
+btrfsSwapSubvol: /@swap
+EOF3
+fi
+if ! grep -q '^  - konarosnapshots$' "$SETTINGS"; then
+	sed -i 's/^  - bootloader$/  - bootloader\n  - konarosnapshots/' "$SETTINGS"
+fi
+grep -q '^  - konarosnapshots$' "$SETTINGS"
+grep -q 'subvolume: /@home' "$MOUNT"
+
 # Imagens da página de navegadores: cartões com o ícone de cada navegador
 # (gerados a partir dos ícones realmente instalados; ver konaro-installer)
-/usr/lib/konaro/installer/make-browser-cards
 
 # 3. Remover também o pacote de identidade do instalador no sistema instalado
 if ! grep -q "'konaro-installer'" "$PACKAGES"; then

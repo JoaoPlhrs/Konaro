@@ -28,7 +28,7 @@ Description: Konaro OS - app store
 
 Package: konaro-updater
 Architecture: all
-Depends: ${misc:Depends}, konaro-common (= ${source:Version}), libnotify-bin
+Depends: ${misc:Depends}, konaro-common (= ${source:Version}), libnotify-bin, timeshift, btrfs-progs
 Description: Konaro OS - update notifier and installer
  Shows available updates grouped as security, system, Konaro and Flatpak,
  and installs them only when the user asks. A user systemd timer checks
@@ -45,7 +45,7 @@ Description: Konaro OS - driver manager
 
 Package: konaro-welcome
 Architecture: all
-Depends: ${misc:Depends}, konaro-common (= ${source:Version}), network-manager, udisks2, xdg-user-dirs
+Depends: ${misc:Depends}, konaro-common (= ${source:Version}), network-manager, udisks2, xdg-user-dirs, python3-pyqt6.qtsvg
 Recommends: konaro-store, konaro-updater, konaro-drivers, plasma-widgets-addons
 Description: Konaro OS - first-run welcome and help
  Guided first login: language, light/dark appearance, network, privacy,

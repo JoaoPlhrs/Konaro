@@ -1,0 +1,16 @@
+{
+    "KPackageStructure": "Plasma/Applet",
+    "KPlugin": {
+        "Authors": [{ "Name": "Konaro OS Project" }],
+        "Category": "System Information",
+        "Description": "Wi-Fi, Bluetooth, Do Not Disturb, dark mode, power mode, display, sound and battery in one place",
+        "Description[pt_BR]": "Wi-Fi, Bluetooth, Não perturbe, modo escuro, modo de energia, tela, som e bateria num só lugar",
+        "EnabledByDefault": true,
+        "Icon": "preferences-system",
+        "Id": "org.konaro.controlcenter",
+        "License": "Pending (see docs/LICENSES.md)",
+        "Name": "Control Center",
+        "Name[pt_BR]": "Central de controle"
+    },
+    "X-Plasma-API-Minimum-Version": "6.0"
+}

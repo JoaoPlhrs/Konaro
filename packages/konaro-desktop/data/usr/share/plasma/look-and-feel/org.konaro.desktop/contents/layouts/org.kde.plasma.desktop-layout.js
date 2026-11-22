@@ -36,6 +36,8 @@ if (imeLanguages.indexOf(languageId) != -1) {
 }
 
 top.addWidget("org.kde.plasma.systemtray");
+// Central de controle (Wi-Fi, Bluetooth, Não perturbe, modo escuro, energia, tela, som, bateria)
+top.addWidget("org.konaro.controlcenter");
 var clock = top.addWidget("org.kde.plasma.digitalclock");
 clock.currentConfigGroup = ["Appearance"];
 clock.writeConfig("showDate", "true");

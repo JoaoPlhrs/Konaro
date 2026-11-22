@@ -1,0 +1,13 @@
+[Desktop Entry]
+Type=Application
+Name=My Avatar
+Name[pt_BR]=Meu Avatar
+GenericName=Avatar creator
+GenericName[pt_BR]=Criador de avatar
+Comment=Create a custom avatar for your profile picture
+Comment[pt_BR]=Crie um avatar personalizado para a sua foto de perfil
+Exec=konaro-avatar
+Icon=user-identity
+Categories=Qt;KDE;Settings;
+Keywords=avatar;profile;picture;face;emoji;perfil;foto;rosto;
+Keywords[pt_BR]=avatar;perfil;foto de perfil;rosto;emoji;personagem;

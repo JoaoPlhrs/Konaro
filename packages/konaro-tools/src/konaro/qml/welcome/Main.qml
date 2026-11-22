@@ -258,7 +258,7 @@ ApplicationWindow {
         // 7. jogos e Windows
         Page {
             title: t("Games and Windows apps")
-            subtitle: t("Steam with Proton runs thousands of Windows games. Lutris and Bottles help with other launchers and Windows programs. Wine is already installed: double-click a .exe file to run it.")
+            subtitle: t("Konaro comes light: games and Windows programs are installed only if you want. In the Store, install Steam (Proton runs thousands of Windows games) and the Windows apps package (Wine), which lets you double-click .exe files.")
             Row {
                 spacing: Theme.s4
                 Repeater {
@@ -304,7 +304,11 @@ ApplicationWindow {
         Page {
             title: t("All set!")
             subtitle: t("Enjoy Konaro OS. You can open this welcome again from the app menu.")
-            KButton { text: t("Open the Store"); onClicked: welcome.openTool("store") }
+            RowLayout {
+                spacing: Theme.s2
+                KButton { text: t("Create your avatar"); kind: "primary"; onClicked: welcome.openTool("konaro-avatar") }
+                KButton { text: t("Open the Store"); onClicked: welcome.openTool("store") }
+            }
             RowLayout {
                 spacing: Theme.s3
                 KSwitch { id: again }

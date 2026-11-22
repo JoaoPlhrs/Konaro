@@ -1,0 +1,15 @@
+{
+    "KPlugin": {
+        "Authors": [
+            {
+                "Name": "Konaro OS Project"
+            }
+        ],
+        "Id": "KonaroAnel",
+        "License": "Pending (see docs/LICENSES.md)",
+        "Name": "Anel",
+        "Name[pt_BR]": "Anel",
+        "Description": "Ring of light over a lake",
+        "Description[pt_BR]": "Anel de luz sobre o lago"
+    }
+}

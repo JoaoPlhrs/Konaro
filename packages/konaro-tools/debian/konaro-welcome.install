@@ -5,3 +5,5 @@ bin/konaro-help usr/bin/
 data/applications/konaro-help.desktop usr/share/applications/
 bin/konaro-migrate usr/bin/
 data/applications/konaro-migrate.desktop usr/share/applications/
+bin/konaro-avatar usr/bin/
+data/applications/konaro-avatar.desktop usr/share/applications/

@@ -1,12 +1,10 @@
 #!/bin/sh
-# Konaro OS — aplicativos Flatpak pré-instalados (do Flathub):
-#   - Ungoogled Chromium (navegador escolhível no instalador);
-#   - Steam (jogos; o Proton roda jogos do Windows).
+# Konaro OS — Flathub configurado (imagem mínima: nenhum app Flatpak pré-instalado;
+# Steam, Ungoogled Chromium, Brave etc. são instalados pela Loja).
 # O Flatpak verifica as assinaturas GPG do Flathub em qualquer transporte.
 set -e
 
 REPO_FILE=/usr/share/konaro/flatpak/flathub.flatpakrepo
-APPS="io.github.ungoogled_software.ungoogled_chromium com.valvesoftware.Steam"
 
 flatpak remote-add --system --if-not-exists flathub "$REPO_FILE"
 # Traduções só dos idiomas da 1ª versão (reduz o tamanho)
@@ -23,21 +21,14 @@ if [ -n "$PROXY" ]; then
 	export http_proxy="$PROXY"
 fi
 
-# Os "triggers" do Flatpak usam bubblewrap, que pode falhar dentro do chroot de
-# build; os aplicativos são instalados mesmo assim e os caches são refeitos abaixo.
-# shellcheck disable=SC2086  # lista de apps separada por espaços, de propósito
-flatpak install --system -y --noninteractive flathub $APPS || true
 # Catálogo do Flathub (AppStream) para a busca completa da Loja funcionar offline
-flatpak update --system --appstream flathub || true
+flatpak update --system --appstream flathub
 
 if [ -n "$PROXY" ]; then
 	flatpak remote-modify --system --url=https://dl.flathub.org/repo/ flathub
 fi
 unset http_proxy
 
-for app in $APPS; do
-	flatpak info --system "$app" >/dev/null || { echo "konaro-flatpak: ERRO: $app não instalado" >&2; exit 1; }
-done
 flatpak remotes --system -d | grep -q 'https://dl.flathub.org/repo/'
 
 update-desktop-database /var/lib/flatpak/exports/share/applications || true

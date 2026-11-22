@@ -46,3 +46,7 @@ plymouth
 # Fontes que o usuário pode escolher na instalação e nas Boas-vindas
 fonts-manrope
 fonts-roboto
+
+# "Voltar no tempo": pontos de restauração do sistema (Btrfs + Timeshift)
+btrfs-progs
+timeshift

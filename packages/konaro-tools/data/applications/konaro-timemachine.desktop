@@ -1,0 +1,13 @@
+[Desktop Entry]
+Type=Application
+Name=Back in Time
+Name[pt_BR]=Voltar no tempo
+GenericName=System restore points
+GenericName[pt_BR]=Pontos de restauração do sistema
+Comment=Restore the system to how it was before an update
+Comment[pt_BR]=Volte o sistema para como estava antes de uma atualização
+Exec=timeshift-launcher
+Icon=timeshift
+Categories=System;
+Keywords=restore;snapshot;backup;timeshift;restaurar;restauração;voltar;
+Keywords[pt_BR]=restaurar;restauração do sistema;voltar no tempo;ponto de restauração;timeshift;

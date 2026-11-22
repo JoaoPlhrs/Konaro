@@ -178,7 +178,7 @@ class WelcomeBridge(QObject):
 
     @pyqtSlot(str)
     def openTool(self, name):
-        if name in ("konaro-updater", "konaro-drivers"):
+        if name in ("konaro-updater", "konaro-drivers", "konaro-avatar"):
             launch(name)
         elif name.startswith("store"):
             category = name.partition(":")[2]

@@ -4,6 +4,9 @@
 - serra:    amanhecer com serras em camadas e neblina nos vales (usado na tela de login)
 - serra-noite: a mesma paisagem à noite
 - dunas:    ondas suaves de cor, abstrato
+- fluxo:    faixas fluidas (laranja, marinho, ardósia, creme)
+- terminal: minimalista escuro com o símbolo de terminal do Konaro
+- anel:     noite estrelada sobre um lago com um anel de luz
 - pinguim:  mascote original do Konaro (pinguim de gorro) numa placa de gelo sob a aurora
 Uso: make-wallpapers.py <dir de saída>
 Arte original do projeto.
@@ -177,10 +180,90 @@ def penguin():
     return "\n".join(out)
 
 
+def flow():
+    """Faixas fluidas em laranja, azul-marinho, ardósia e creme (composição procedural)."""
+    pal = ["#0E1726", "#F2542D", "#E8DCC4", "#3E6A8A", "#B8321E", "#13233A", "#F6EBD9"]
+    rnd = random.Random(42)
+    out = ['<svg xmlns="http://www.w3.org/2000/svg" width="%d" height="%d" viewBox="0 0 %d %d">' % (W, H, W, H),
+           '<defs><filter id="grain" x="0" y="0" width="100%%" height="100%%"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="3"/>'
+           '<feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.06 0"/></filter></defs>',
+           '<rect width="%d" height="%d" fill="%s"/>' % (W, H, pal[0])]
+    bands = 26
+    for i in range(bands):
+        y0 = -300 + i * (H + 600) / bands
+        amp = rnd.uniform(160, 420)
+        ph = rnd.uniform(0, 6.28)
+        fr = rnd.uniform(1.2, 2.4)
+        pts = []
+        for k in range(0, 41):
+            x = -200 + k * (W + 400) / 40
+            y = y0 + math.sin(k / 40 * fr * 6.28 + ph) * amp + math.sin(k / 40 * 3.1 * 6.28 + ph * 2) * amp * 0.18
+            pts.append((x, y))
+        d = "M%.0f,%.0f " % pts[0] + " ".join("L%.0f,%.0f" % p for p in pts[1:])
+        color = pal[1 + (i * 3 + rnd.randrange(3)) % (len(pal) - 1)]
+        width = rnd.uniform(140, 300)
+        out.append('<path d="%s" fill="none" stroke="#0A0F18" stroke-width="%.0f" stroke-linejoin="round" stroke-linecap="round"/>' % (d, width + 18))
+        out.append('<path d="%s" fill="none" stroke="%s" stroke-width="%.0f" stroke-linejoin="round" stroke-linecap="round"/>' % (d, color, width))
+        if rnd.random() < 0.5:   # fio fino de luz dentro da faixa
+            out.append('<path d="%s" fill="none" stroke="#F6EBD9" stroke-opacity="0.55" stroke-width="3" transform="translate(0,%.0f)"/>' % (d, rnd.uniform(-width / 3, width / 3)))
+    out.append('<rect width="%d" height="%d" filter="url(#grain)"/>' % (W, H))
+    out.append('</svg>')
+    return "\n".join(out)
+
+
+def terminal():
+    """Minimalista escuro com o símbolo de terminal do Konaro (K num quadrado com cursor)."""
+    cx, cy, s = W / 2, H / 2, 300
+    return ('<svg xmlns="http://www.w3.org/2000/svg" width="%d" height="%d" viewBox="0 0 %d %d">' % (W, H, W, H)
+            + '<rect width="%d" height="%d" fill="#272C35"/>' % (W, H)
+            + '<rect x="%.0f" y="%.0f" width="%d" height="%d" rx="70" fill="none" stroke="#ECEFF4" stroke-width="22"/>' % (cx - s / 2, cy - s / 2, s, s)
+            + '<path d="M%.0f,%.0f l70,60 l-70,60" fill="none" stroke="#ECEFF4" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>' % (cx - 85, cy - 70)
+            + '<rect x="%.0f" y="%.0f" width="90" height="22" rx="11" fill="#7BD88F"/>' % (cx + 5, cy + 50)
+            + '</svg>')
+
+
+def ring():
+    """Noite estrelada sobre um lago, serras escuras e um anel de luz refletido na água."""
+    horizon = H * 0.66
+    rnd = random.Random(11)
+    out = ['<svg xmlns="http://www.w3.org/2000/svg" width="%d" height="%d" viewBox="0 0 %d %d">' % (W, H, W, H),
+           '<defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1B1F4A"/>'
+           '<stop offset="0.7" stop-color="#4A4F8C"/><stop offset="1" stop-color="#8C86B8"/></linearGradient>'
+           '<linearGradient id="lake" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3A3E6E"/><stop offset="1" stop-color="#0E1028"/></linearGradient>'
+           '<filter id="glow" x="-20%%" y="-20%%" width="140%%" height="140%%"><feGaussianBlur stdDeviation="18"/></filter>'
+           '<filter id="mist" filterUnits="userSpaceOnUse" x="0" y="0" width="%d" height="%d"><feGaussianBlur stdDeviation="40"/></filter>'
+           '<clipPath id="above"><rect width="%d" height="%.0f"/></clipPath></defs>' % (W, H, W, horizon),
+           '<rect width="%d" height="%.0f" fill="url(#sky)"/>' % (W, horizon)]
+    for _ in range(700):
+        out.append('<circle cx="%.0f" cy="%.0f" r="%.1f" fill="#fff" opacity="%.2f"/>'
+                   % (rnd.uniform(0, W), rnd.uniform(0, horizon * 0.95), rnd.uniform(0.6, 2.4), rnd.uniform(0.25, 0.95)))
+    far = smooth(ridge(5, horizon - 120, 90, points=33))
+    near = smooth(ridge(9, horizon - 30, 60, points=33))
+    peak = "M%.0f,%.0f L%.0f,%.0f L%.0f,%.0f Z" % (W * 0.42, horizon - 40, W * 0.5, horizon - 330, W * 0.58, horizon - 40)
+    r = H * 0.25
+    ringc = (W / 2, horizon - r * 0.55)
+    scene = [
+        '<path d="%s" fill="#5B5A8E"/>' % peak,
+        '<path d="M%.0f,%.0f L%.0f,%.0f L%.0f,%.0f Z" fill="#E6E4F2" opacity="0.85"/>' % (W * 0.475, horizon - 250, W * 0.5, horizon - 330, W * 0.525, horizon - 250),
+        '<path d="%s" fill="#2C2D55"/>' % path(far, bottom=horizon + 2),
+        '<path d="%s" fill="#14152E"/>' % path(near, bottom=horizon + 2),
+    ]
+    ring_svg = ('<circle cx="%.0f" cy="%.0f" r="%.0f" fill="none" stroke="#FFFFFF" stroke-width="30" opacity="0.6" filter="url(#glow)"/>'
+                '<circle cx="%.0f" cy="%.0f" r="%.0f" fill="none" stroke="#FFFFFF" stroke-width="22"/>' % (ringc + (r,) + ringc + (r,)))
+    out += scene
+    out.append('<g clip-path="url(#above)">%s</g>' % ring_svg)
+    out.append('<rect y="%.0f" width="%d" height="%.0f" fill="url(#lake)"/>' % (horizon, W, H - horizon))
+    out.append('<g transform="translate(0,%.0f) scale(1,-1)" opacity="0.35">%s<g clip-path="url(#above)">%s</g></g>'
+               % (2 * horizon, "".join(scene), ring_svg))
+    out.append('<rect y="%.0f" width="%d" height="120" fill="#9AA0D8" opacity="0.25" filter="url(#mist)"/>' % (horizon - 40, W))
+    out.append('</svg>')
+    return "\n".join(out)
+
+
 def main(out):
     os.makedirs(out, exist_ok=True)
     jobs = {"serra": landscape(False), "serra-noite": landscape(True), "dunas": dunes(False), "dunas-noite": dunes(True),
-            "pinguim": penguin()}
+            "pinguim": penguin(), "fluxo": flow(), "terminal": terminal(), "anel": ring()}
     for name, svg in jobs.items():
         with open(os.path.join(out, name + ".svg"), "w", encoding="utf-8") as fh:
             fh.write(svg)

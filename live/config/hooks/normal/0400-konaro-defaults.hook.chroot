@@ -3,7 +3,7 @@
 set -e
 
 # Navegador padrão da sessão live: Firefox. No sistema instalado, o Calamares
-# (módulo konarobrowsers) troca para o primeiro navegador escolhido.
+# (o usuário pode trocar o padrão nas Configurações do sistema).
 cat > /etc/xdg/mimeapps.list <<'EOF'
 [Default Applications]
 text/html=firefox-esr.desktop

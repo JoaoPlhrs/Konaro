@@ -1,3 +1,10 @@
+konaro-desktop (0.1.0~dev6) trixie; urgency=medium
+
+  * Build 6: imagem mínima, Voltar no tempo, repositório Konaro, Central de
+    controle, Spotlight, firmware, bateria, avatares e novos papéis de parede.
+
+ -- Konaro OS Project <maintainers@konaro.invalid>  Sun, 22 Nov 2026 17:56:31 +0000
+
 konaro-desktop (0.1.0~dev1) trixie; urgency=medium
 
   * Primeira versão de desenvolvimento: tema global claro/escuro, layout com

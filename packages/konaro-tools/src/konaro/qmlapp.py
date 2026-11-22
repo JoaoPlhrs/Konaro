@@ -103,7 +103,7 @@ class GlowProvider(QQuickImageProvider):
         return image, image.size()
 
 
-def run(app_id, title, qml_file, context=None, screenshot=None, size=None):
+def run(app_id, title, qml_file, context=None, screenshot=None, size=None, providers=None):
     """Cria a aplicação, publica os objetos de `context` no QML e executa."""
     if os.environ.get("QT_QPA_PLATFORM") == "offscreen":
         QQuickWindow.setGraphicsApi(QSGRendererInterface.GraphicsApi.Software)
@@ -119,6 +119,8 @@ def run(app_id, title, qml_file, context=None, screenshot=None, size=None):
     engine = QQmlApplicationEngine()
     engine.addImportPath(QML_DIR)
     engine.addImageProvider("glow", GlowProvider())
+    for pname, provider in (providers or {}).items():
+        engine.addImageProvider(pname, provider)
     translator = Translator()
     engine.rootContext().setContextProperty("i18n", translator)
     for name, obj in (context or {}).items():

@@ -1,0 +1,6 @@
+# Konaro OS — configura o "Voltar no tempo" (Timeshift) no sistema instalado.
+---
+type:       "job"
+name:       "konarosnapshots"
+interface:  "python"
+script:     "main.py"

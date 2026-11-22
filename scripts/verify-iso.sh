@@ -77,30 +77,23 @@ grep -q '^ENABLED=yes' "$R/etc/ufw/ufw.conf" && ok "ufw habilitado" || bad "ufw.
 [ -L "$R/etc/systemd/system/multi-user.target.wants/ufw.service" ] && ok "ufw.service ativo" || bad "ufw.service"
 [ -f "$TMP/grub/splash.png" ] && ok "fundo do menu de boot" || bad "grub splash.png"
 
-echo "==> Navegadores, jogos e ferramentas"
-grep -qs "signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg\] https://brave-browser-apt-release.s3.brave.com" "$R"/etc/apt/sources.list.d/*.list \
-	&& ok "repositório oficial do Brave (HTTPS + signed-by)" || bad "lista do Brave"
-[ -f "$R/usr/share/keyrings/brave-browser-archive-keyring.gpg" ] && ok "chave do Brave" || bad "chave do Brave"
-for app in io.github.ungoogled_software.ungoogled_chromium com.valvesoftware.Steam; do
-	grep -q "var/lib/flatpak/app/$app/" "$TMP/fs.list" && ok "Flatpak $app" || bad "Flatpak ausente: $app"
-done
+echo "==> Navegador, Flathub e ferramentas"
 grep -qx i386 "$R/var/lib/dpkg/arch" && ok "arquitetura i386 (Wine/Steam 32 bits)" || bad "i386 não habilitado"
-grep -q 'packagechooser@browsers' "$R/etc/calamares/settings.conf" && ok "instalador: página Navegadores" || bad "página Navegadores"
-grep -q '^  - konarobrowsers$' "$R/etc/calamares/settings.conf" && ok "instalador: aplica escolha de navegadores" || bad "konarobrowsers"
+grep -q 'packagechooser@fonts' "$R/etc/calamares/settings.conf" && ok "instalador: página Fonte" || bad "página Fonte"
+grep -q '^  - konarofonts$' "$R/etc/calamares/settings.conf" && ok "instalador: aplica a fonte" || bad "konarofonts"
 grep -q 'contrib non-free non-free-firmware' "$R/usr/share/calamares/helpers/calamares-sources-final" && ok "fontes finais com contrib/non-free" || bad "sources-final"
 [ -f "$R/usr/lib/systemd/user/konaro-update-check.timer" ] && ok "timer de verificação de atualizações" || bad "timer do atualizador"
 
 echo "==> Visual Konaro"
 for f in usr/share/plasma/plasmoids/org.konaro.dock/contents/ui/main.qml usr/share/plasma/desktoptheme/konaro/plasmarc \
 	usr/share/aurorae/themes/Konaro/decoration.svg usr/share/plasma/plasmoids/org.kde.plasma.notes/metadata.json \
-	usr/lib/python3/dist-packages/konaro/qml/store/Main.qml usr/share/konaro/installer/browser-brave.png; do
+	usr/lib/python3/dist-packages/konaro/qml/store/Main.qml usr/share/konaro/installer/font-inter.png; do
 	grep -q "$f" "$TMP/fs.list" && ok "$f" || bad "ausente: $f"
 done
 
 echo "==> Pacotes"
-for p in konaro-desktop konaro-installer konaro-common konaro-store konaro-updater konaro-drivers konaro-welcome konaro-gaming \
-	plasma-workspace kwin-wayland sddm calamares dolphin linux-image-amd64 packagekit \
-	firefox-esr brave-browser wine lutris steam-devices gamemode mangohud; do
+for p in konaro-desktop konaro-installer konaro-common konaro-store konaro-updater konaro-drivers konaro-welcome \
+	plasma-workspace kwin-wayland sddm calamares dolphin linux-image-amd64 packagekit firefox-esr; do
 	if awk -v p="$p" '$1=="Package:"{n=$2} $1=="Status:" && n==p && /installed/{f=1} END{exit !f}' "$R/var/lib/dpkg/status"; then
 		ok "$p"
 	else

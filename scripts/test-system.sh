@@ -99,17 +99,12 @@ fi
 
 echo "== Flatpak"
 check "Flathub configurado (HTTPS)" "flatpak remotes --system -d | grep -q 'https://dl.flathub.org/repo/'"
-check "Ungoogled Chromium instalado" "flatpak info --system io.github.ungoogled_software.ungoogled_chromium"
-check "Steam instalado" "flatpak info --system com.valvesoftware.Steam"
-check "biblioteca Konaro lista apps Flatpak" "python3 -c 'from konaro import flatpak; a = flatpak.installed_apps(); print(a); assert \"com.valvesoftware.Steam\" in a'"
+check "biblioteca Konaro lista apps Flatpak" "python3 -c 'from konaro import flatpak; a = flatpak.installed_apps(); print(a); assert a == {} or isinstance(a, dict)'"
+check "catálogo do Flathub (AppStream) presente" "test -d /var/lib/flatpak/appstream/flathub/x86_64/active"
+check "imagem mínima: só o Firefox de navegador" "! dpkg -s brave-browser >/dev/null 2>&1 && ! flatpak info --system com.valvesoftware.Steam >/dev/null 2>&1"
 
-echo "== Jogos e Windows"
-check "Wine 64 bits" "wine --version"
-check "Wine 32 bits (i386) instalado" "dpkg-query -W -f '\${Status}' wine32:i386 | grep -q 'install ok installed'"
-check "Vulkan i386 instalado" "dpkg-query -W -f '\${Status}' mesa-vulkan-drivers:i386 | grep -q 'install ok installed'"
-check "duplo clique em .exe abre o Wine" "grep -q 'application/x-ms-dos-executable=konaro-wine.desktop' /etc/xdg/mimeapps.list"
-check "Lutris instalado" "test -x /usr/games/lutris || test -x /usr/bin/lutris"
-check "regras de controle do Steam" "test -f /usr/lib/udev/rules.d/60-steam-input.rules"
+echo "== 32 bits pronto para jogos"
+check "arquitetura i386 habilitada" "dpkg --print-foreign-architectures | grep -qx i386"
 
 echo "== Drivers"
 check "análise de hardware (konaro-drivers --list)" "konaro-drivers --list"

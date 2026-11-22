@@ -24,3 +24,7 @@ upower
 shim-signed
 grub-efi-amd64-signed
 mokutil
+
+# Atualização de firmware (BIOS/UEFI, SSD, periféricos) e modos de energia/bateria
+fwupd
+power-profiles-daemon

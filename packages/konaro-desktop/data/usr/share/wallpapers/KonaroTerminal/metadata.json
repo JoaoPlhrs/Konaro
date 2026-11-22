@@ -1,0 +1,15 @@
+{
+    "KPlugin": {
+        "Authors": [
+            {
+                "Name": "Konaro OS Project"
+            }
+        ],
+        "Id": "KonaroTerminal",
+        "License": "Pending (see docs/LICENSES.md)",
+        "Name": "Terminal",
+        "Name[pt_BR]": "Terminal",
+        "Description": "Minimal terminal",
+        "Description[pt_BR]": "Terminal minimalista"
+    }
+}

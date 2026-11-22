@@ -1,0 +1,10 @@
+#!/usr/bin/python3
+"""konaro-theme light|dark — troca claro/escuro sem mexer no layout (usado pela Central de controle)."""
+import sys
+
+from konaro.welcome import apply_theme
+
+if len(sys.argv) != 2 or sys.argv[1] not in ("light", "dark"):
+    print("uso: konaro-theme light|dark", file=sys.stderr)
+    sys.exit(2)
+apply_theme(sys.argv[1] == "dark")

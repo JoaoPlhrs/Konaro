@@ -57,12 +57,6 @@ cp -a "$ROOT/live/config" "$WORK/config"
 cp "$ROOT/VERSION" "$ROOT/build/VERSION"
 mkdir -p "$WORK/config/packages.chroot"
 cp "$ROOT"/build/packages/*.deb "$WORK/config/packages.chroot/"
-# Repositório oficial do Brave: lista de build (pode usar um mirror/proxy HTTP via
-# KONARO_BRAVE_MIRROR) e lista final do sistema (sempre HTTPS + signed-by).
-BRAVE_URL="${KONARO_BRAVE_MIRROR:-https://brave-browser-apt-release.s3.brave.com}"
-echo "deb [arch=amd64] ${BRAVE_URL}/ stable main" > "$WORK/config/archives/brave.list.chroot"
-echo "deb [arch=amd64 signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main" \
-	> "$WORK/config/archives/brave.list.binary"
 # A splash do menu de boot vem do pacote konaro-desktop (fonte única da arte)
 cp "$ROOT/packages/konaro-desktop/artwork/grub-splash.svg" "$WORK/config/bootloaders/splash.svg"
 

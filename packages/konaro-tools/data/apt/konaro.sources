@@ -1,0 +1,8 @@
+# Konaro OS — repositório oficial do Konaro (Loja, temas, ferramentas e correções).
+# Assinado com a chave "Konaro OS Archive Signing Key"
+# (CD4D DF98 3E99 F644 925B  0965 AD29 5A04 EFAC 9F1F).
+Types: deb
+URIs: https://raw.githubusercontent.com/JoaoPlhrs/Konaro/main/apt/
+Suites: konaro
+Components: main
+Signed-By: /usr/share/keyrings/konaro-archive-keyring.gpg

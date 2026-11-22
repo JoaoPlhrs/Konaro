@@ -1,0 +1,15 @@
+{
+    "KPlugin": {
+        "Authors": [
+            {
+                "Name": "Konaro OS Project"
+            }
+        ],
+        "Id": "KonaroFluxo",
+        "License": "Pending (see docs/LICENSES.md)",
+        "Name": "Fluxo",
+        "Name[pt_BR]": "Fluxo",
+        "Description": "Flowing bands",
+        "Description[pt_BR]": "Faixas fluidas"
+    }
+}

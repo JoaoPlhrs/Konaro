@@ -18,7 +18,7 @@ import time
 
 from PyQt6.QtCore import QObject, pyqtProperty, pyqtSignal, pyqtSlot
 
-from . import flatpak, packagekit
+from . import firmware, flatpak, packagekit
 from .i18n import _
 from .worker import Worker, WorkerPool
 
@@ -30,10 +30,11 @@ GROUPS = [
     ("konaro", "Konaro components", "Konaro OS's own tools and appearance.", "konaro-start"),
     ("system", "System updates", "Bug fixes and improvements for the system and its programs.", "system-software-update"),
     ("flatpak", "Apps (Flatpak)", "Apps installed from Flathub.", "flatpak-discover"),
+    ("firmware", "Firmware", "BIOS/UEFI, disks and devices, from the manufacturers (LVFS). May require a restart.", "cpu"),
 ]
 
 
-def classify(pkg_updates, flatpak_updates):
+def classify(pkg_updates, flatpak_updates, firmware_updates=()):
     groups = {key: [] for key, *_rest in GROUPS}
     for upd in pkg_updates:
         if upd["security"]:
@@ -43,13 +44,14 @@ def classify(pkg_updates, flatpak_updates):
         else:
             groups["system"].append(upd)
     groups["flatpak"] = list(flatpak_updates)
+    groups["firmware"] = list(firmware_updates)
     return groups
 
 
 def check(refresh=True, progress=None):
     if refresh:
         packagekit.refresh(progress=progress)
-    return classify(packagekit.get_updates(progress=progress), flatpak.updates())
+    return classify(packagekit.get_updates(progress=progress), flatpak.updates(), firmware.updates())
 
 
 def _load_state():
@@ -96,6 +98,23 @@ def check_and_notify():
 
 
 # ---------------------------------------------------------------- interface
+def snapshot_before_update():
+    """"Voltar no tempo": cria um ponto de restauração antes de atualizar o sistema.
+
+    Só faz algo se o sistema estiver em Btrfs com o Timeshift configurado pelo
+    instalador; nunca impede a atualização se falhar.
+    """
+    import os
+    import subprocess
+    if not os.path.exists("/etc/timeshift/timeshift.json"):
+        return False
+    try:
+        return subprocess.run(["systemctl", "start", "konaro-snapshot-update.service"],
+                              capture_output=True, timeout=900).returncode == 0
+    except (OSError, subprocess.SubprocessError):
+        return False
+
+
 class UpdaterBridge(QObject):
     changed = pyqtSignal()
     failed = pyqtSignal(str, str)
@@ -166,16 +185,22 @@ class UpdaterBridge(QObject):
     @pyqtSlot("QVariantList")
     def install(self, keys):
         keys = list(keys)
-        pk_ids = [u["id"] for k in keys if k != "flatpak" for u in self._groups.get(k, [])]
-        names = [u.get("name", "") for k in keys if k != "flatpak" for u in self._groups.get(k, [])]
+        pk_ids = [u["id"] for k in keys if k not in ("flatpak", "firmware") for u in self._groups.get(k, [])]
+        names = [u.get("name", "") for k in keys if k not in ("flatpak", "firmware") for u in self._groups.get(k, [])]
         do_flatpak = "flatpak" in keys and bool(self._groups.get("flatpak"))
-        if not pk_ids and not do_flatpak:
+        do_firmware = "firmware" in keys and bool(self._groups.get("firmware"))
+        if not pk_ids and not do_flatpak and not do_firmware:
             return
 
         def work(progress=None):
+            if pk_ids:
+                snapshot_before_update()
             restart = packagekit.update(pk_ids, progress=progress) if pk_ids else False
             if do_flatpak:
                 flatpak.update_all(progress=progress)
+            if do_firmware:
+                firmware.update_all(progress=progress)
+                restart = True
             return restart or packagekit.may_need_restart(names)
 
         def progress(pct, _status):

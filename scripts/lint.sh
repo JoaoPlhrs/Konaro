@@ -21,7 +21,7 @@ dups="$(grep -hv '^#' live/config/package-lists/*.list.* | grep -v '^$' | sort |
 [ -z "$dups" ] || { echo "Duplicados: $dups"; rc=1; }
 
 echo "==> Python: compilação e testes das ferramentas Konaro"
-python3 -m py_compile packages/konaro-tools/src/konaro/*.py packages/konaro-installer/data/usr/lib/calamares/modules/konarobrowsers/main.py || rc=1
+python3 -m py_compile packages/konaro-tools/src/konaro/*.py packages/konaro-installer/data/usr/lib/calamares/modules/konarofonts/main.py || rc=1
 if python3 -c 'import gi; gi.require_version("PackageKitGlib", "1.0")' 2>/dev/null; then
 	PYTHONPATH=packages/konaro-tools/src python3 -m unittest discover -s packages/konaro-tools/tests -q || rc=1
 else

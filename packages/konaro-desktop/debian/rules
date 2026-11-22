@@ -26,7 +26,7 @@ override_dh_auto_build:
 	# Coleção de papéis de parede (Serra, Dunas, Pinguim), gerada em SVG e renderizada.
 	# Os SVGs intermediários ficam em debian/generated/wp-svg (não são instalados).
 	python3 $(ART)/make-wallpapers.py $(GEN)/wp-svg
-	set -e; for pair in KonaroSerra:serra:serra-noite KonaroDunas:dunas:dunas-noite KonaroPinguim:pinguim:; do \
+	set -e; for pair in KonaroSerra:serra:serra-noite KonaroDunas:dunas:dunas-noite KonaroPinguim:pinguim: KonaroFluxo:fluxo: KonaroTerminal:terminal: KonaroAnel:anel:; do \
 	  id=$${pair%%:*}; rest=$${pair#*:}; light=$${rest%%:*}; dark=$${rest#*:}; \
 	  d=$(GEN)/usr/share/wallpapers/$$id/contents; mkdir -p $$d/images; \
 	  for size in 1920x1080 3840x2160; do w=$${size%x*}; h=$${size#*x}; \

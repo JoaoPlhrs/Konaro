@@ -1,0 +1,7 @@
+[Unit]
+Description=Konaro: ponto de restauração antes da atualização
+ConditionPathExists=/etc/timeshift/timeshift.json
+
+[Service]
+Type=oneshot
+ExecStart=/usr/lib/konaro/konaro-snapshot "Antes da atualização" O

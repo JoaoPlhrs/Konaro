@@ -6,7 +6,7 @@
   <group name="General">
     <entry name="icon" type="String"><default>konaro-start</default></entry>
     <entry name="favoriteApps" type="StringList">
-      <default>firefox-esr.desktop,org.kde.dolphin.desktop,konaro-store.desktop,systemsettings.desktop,org.kde.konsole.desktop,org.kde.okular.desktop,org.kde.gwenview.desktop,org.kde.kwrite.desktop,com.valvesoftware.Steam.desktop,konaro-help.desktop</default>
+      <default>firefox-esr.desktop,org.kde.dolphin.desktop,konaro-store.desktop,systemsettings.desktop,org.kde.konsole.desktop,org.kde.okular.desktop,org.kde.gwenview.desktop,org.kde.kwrite.desktop,konaro-help.desktop</default>
     </entry>
     <entry name="favoritesPorted" type="Bool"><default>false</default></entry>
   </group>

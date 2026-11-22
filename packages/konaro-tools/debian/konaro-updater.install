@@ -3,3 +3,10 @@ data/applications/konaro-updater.desktop usr/share/applications/
 data/icons/konaro-updater.svg usr/share/icons/hicolor/scalable/apps/
 data/systemd-user/konaro-update-check.service usr/lib/systemd/user/
 data/systemd-user/konaro-update-check.timer usr/lib/systemd/user/
+data/snapshot/konaro-snapshot usr/lib/konaro/
+data/snapshot/50-konaro-snapshot.rules usr/share/polkit-1/rules.d/
+data/systemd/konaro-snapshot.service usr/lib/systemd/system/
+data/systemd/konaro-snapshot.timer usr/lib/systemd/system/
+data/systemd/konaro-snapshot-update.service usr/lib/systemd/system/
+data/systemd/konaro-snapshot-first-boot.service usr/lib/systemd/system/
+data/applications/konaro-timemachine.desktop usr/share/applications/

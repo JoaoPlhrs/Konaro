@@ -1,0 +1,9 @@
+[Unit]
+Description=Konaro: ponto de restauração diário
+ConditionPathExists=/etc/timeshift/timeshift.json
+
+[Service]
+Type=oneshot
+Nice=10
+IOSchedulingClass=idle
+ExecStart=/usr/lib/konaro/konaro-snapshot "Ponto diário" D

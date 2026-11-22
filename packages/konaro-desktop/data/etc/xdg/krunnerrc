@@ -1,0 +1,6 @@
+# Konaro OS — "Spotlight": a busca do sistema (KRunner) abre no centro da tela,
+# flutuando, como o Spotlight do macOS. Atalho: Alt + Espaço (ou Alt + F2).
+[General]
+FreeFloating=true
+ActivityAware=true
+historyBehavior=CompletionSuggestion

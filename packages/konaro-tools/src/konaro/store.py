@@ -23,6 +23,7 @@ CATALOG = os.environ.get("KONARO_STORE_CATALOG", "/usr/share/konaro/store/catalo
 ORIGINS = {
     "debian": "Debian (official)",
     "brave": "Brave (official repository)",
+    "konaro": "Konaro OS (official)",
     "flathub": "Flathub (community)",
 }
 CATEGORY_NAMES = {

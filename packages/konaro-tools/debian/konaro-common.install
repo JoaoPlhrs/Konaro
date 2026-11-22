@@ -1,3 +1,6 @@
 src/konaro usr/lib/python3/dist-packages/
 data/flathub.flatpakrepo usr/share/konaro/flatpak/
 data/icons/konaro-welcome.svg usr/share/icons/hicolor/scalable/apps/
+data/apt/konaro-archive-keyring.gpg usr/share/keyrings/
+data/apt/konaro.sources etc/apt/sources.list.d/
+bin/konaro-theme usr/bin/
