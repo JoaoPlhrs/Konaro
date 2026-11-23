@@ -117,12 +117,35 @@ class CatalogTest(unittest.TestCase):
         ids = [a["id"] for a in apps]
         self.assertEqual(len(ids), len(set(ids)), "ids duplicados")
         for app in apps:
-            self.assertIn(app["backend"], ("apt", "flatpak"))
+            self.assertIn(app["backend"], ("apt", "flatpak", "github"))
             self.assertTrue(app["summary"]["en"] and app["summary"]["pt"], app["id"])
             if app["backend"] == "apt":
                 self.assertTrue(app["packages"], app["id"])
+            elif app["backend"] == "github":
+                self.assertRegex(app["repo"], r"^[\w.-]+/[\w.-]+$")
             else:
                 self.assertTrue(app["app"].count(".") >= 2, app["id"])
+
+
+class LocalAppsTest(unittest.TestCase):
+    """Escolha do arquivo certo no GitHub Releases e leitura de .deb/AppImage."""
+
+    def test_pick_asset(self):
+        from konaro import localapps
+        assets = [{"name": n} for n in ("app_1.0_arm64.deb", "app_1.0_amd64.deb", "app-1.0.AppImage",
+                                        "app-1.0.exe", "app-1.0-arm64.AppImage", "app_1.0_amd64.deb.sha256")]
+        self.assertEqual(localapps.pick_asset(assets), ("deb", {"name": "app_1.0_amd64.deb"}))
+        self.assertEqual(localapps.pick_asset(assets, ("appimage", "deb"))[1]["name"], "app-1.0.AppImage")
+        self.assertEqual(localapps.pick_asset([{"name": "setup.exe"}]), (None, None))
+
+    def test_not_appimage(self):
+        import tempfile
+        from konaro import localapps, packagekit
+        with tempfile.NamedTemporaryFile(suffix=".AppImage") as fh:
+            fh.write(b"not an elf file at all" * 4)
+            fh.flush()
+            with self.assertRaises(packagekit.PackageError):
+                localapps._squashfs_offset(fh.name)
 
 
 class MigrateTest(unittest.TestCase):

@@ -355,6 +355,75 @@ Rectangle {
         }
     }
 
+    // ------------------------------------------------ sessão (ambiente gráfico)
+    // Canto inferior esquerdo: escolher Wayland, X11 ou outro ambiente instalado
+    // (ex.: GNOME, Xfce). Só aparece quando há mais de uma opção.
+    function sessionLabel(name) {
+        return (name || "").replace("Plasma", "Konaro")
+    }
+    Text {
+        id: sessionButton
+        visible: sessionRepeater.count > 1
+        anchors.left: parent.left
+        anchors.bottom: parent.bottom
+        anchors.margins: 18 * root.unit
+        property string current: ""
+        text: "▴  " + (current || root.t("Sessão", "Session"))
+        color: Qt.rgba(1, 1, 1, 0.85)
+        font.family: "Inter"
+        font.pixelSize: 12 * root.unit
+        MouseArea {
+            anchors.fill: parent; anchors.margins: -8
+            cursorShape: Qt.PointingHandCursor
+            onClicked: sessionMenu.visible = !sessionMenu.visible
+        }
+    }
+    Rectangle {
+        id: sessionMenu
+        visible: false
+        anchors.left: parent.left
+        anchors.bottom: sessionButton.top
+        anchors.leftMargin: 12 * root.unit
+        anchors.bottomMargin: 8 * root.unit
+        width: 240 * root.unit
+        height: sessionColumn.implicitHeight + 12 * root.unit
+        radius: 12 * root.unit
+        color: Qt.rgba(0.96, 0.96, 0.97, 0.86)
+        border.color: Qt.rgba(1, 1, 1, 0.5)
+        z: 10
+        Column {
+            id: sessionColumn
+            anchors.fill: parent
+            anchors.margins: 6 * root.unit
+            Repeater {
+                id: sessionRepeater
+                model: sessionModel
+                delegate: Rectangle {
+                    width: sessionColumn.width
+                    height: 34 * root.unit
+                    radius: 7 * root.unit
+                    readonly property bool sel: index === root.sessionIndex
+                    color: hovS.hovered ? "#0A84FF" : "transparent"
+                    HoverHandler { id: hovS }
+                    Component.onCompleted: if (sel) sessionButton.current = root.sessionLabel(model.name)
+                    onSelChanged: if (sel) sessionButton.current = root.sessionLabel(model.name)
+                    Text {
+                        anchors.verticalCenter: parent.verticalCenter
+                        x: 12 * root.unit
+                        text: (parent.sel ? "✓  " : "    ") + root.sessionLabel(model.name)
+                        color: hovS.hovered ? "white" : "#1d1d1f"
+                        font.family: "Inter"
+                        font.pixelSize: 14 * root.unit
+                    }
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: { root.sessionIndex = index; sessionMenu.visible = false; password.forceActiveFocus() }
+                    }
+                }
+            }
+        }
+    }
+
     Text {
         id: hint
         anchors.horizontalCenter: parent.horizontalCenter
@@ -390,7 +459,7 @@ Rectangle {
     MouseArea {
         anchors.fill: parent
         z: -1
-        onClicked: { powerMenu.visible = false; password.forceActiveFocus() }
+        onClicked: { powerMenu.visible = false; sessionMenu.visible = false; password.forceActiveFocus() }
     }
 
     Component.onCompleted: password.forceActiveFocus()

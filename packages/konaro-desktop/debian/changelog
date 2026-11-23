@@ -1,3 +1,11 @@
+konaro-desktop (0.1.0~dev9) trixie; urgency=medium
+
+  * Liquid Glass (konaro-glass) no lugar do desfoque padrão, firewall na Central
+    de controle, escolha de sessão na tela de login, sistema identificado como
+    Konaro OS (os-release, issue, GRUB) e 12 novas cores de destaque.
+
+ -- Konaro OS Project <maintainers@konaro.invalid>  Mon, 23 Nov 2026 01:55:38 +0000
+
 konaro-desktop (0.1.0~dev8) trixie; urgency=medium
 
   * fastfetch com logo Konaro, créditos, barra superior enxuta, vidro, animações,

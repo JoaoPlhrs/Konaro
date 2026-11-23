@@ -7,7 +7,7 @@ KScrollPage {
     id: root
     property var ctl
     property int spot: 0
-    readonly property var featured: ["com.valvesoftware.Steam", "com.usebottles.bottles", "libreoffice", "com.spotify.Client"]
+    readonly property var featured: ["com.valvesoftware.Steam", "hydra-launcher", "com.usebottles.bottles", "libreoffice", "com.spotify.Client"]
         .map(id => ctl.appById(id)).filter(a => a !== null)
     readonly property var spotApp: featured.length ? featured[spot % featured.length] : null
 

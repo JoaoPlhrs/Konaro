@@ -19,10 +19,10 @@ strings:
     versionedName:       Konaro OS 0.1
     shortVersionedName:  Konaro 0.1
     bootloaderEntryName: Konaro
-    productUrl:          https://www.debian.org
-    supportUrl:          https://www.debian.org/support
-    knownIssuesUrl:      https://bugs.debian.org
-    releaseNotesUrl:     https://www.debian.org/releases/trixie/releasenotes
+    productUrl:          https://joaoplhrs.github.io/Konaro/
+    supportUrl:          https://github.com/JoaoPlhrs/Konaro
+    knownIssuesUrl:      https://github.com/JoaoPlhrs/Konaro/issues
+    releaseNotesUrl:     https://github.com/JoaoPlhrs/Konaro/blob/main/CHANGELOG.md
 
 sidebar: widget
 navigation: widget

@@ -7,6 +7,10 @@ if [ "$1" = "remove" ] || [ "$1" = "purge" ]; then
 		rm -f "$UI"
 	fi
 	dpkg-divert --package konaro-desktop --remove --rename --divert "$UI.breeze" "$UI" >/dev/null || true
+	for f in /usr/lib/os-release /etc/issue /etc/issue.net; do
+		[ -L "$f" ] && rm -f "$f"
+		dpkg-divert --package konaro-desktop --remove --rename --divert "$f.debian" "$f" >/dev/null || true
+	done
 fi
 #DEBHELPER#
 exit 0

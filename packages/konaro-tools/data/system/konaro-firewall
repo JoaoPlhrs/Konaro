@@ -1,0 +1,13 @@
+#!/bin/sh
+# Konaro OS — liga/desliga o firewall (ufw). Uso: konaro-firewall on|off|status
+# "status" funciona sem senha; "on"/"off" pedem autorização (polkit, via pkexec).
+set -eu
+state() { grep -q '^ENABLED=yes' /etc/ufw/ufw.conf 2>/dev/null && echo on || echo off; }
+case "${1:-status}" in
+	status) state ;;
+	on|off)
+		if [ "$(id -u)" -ne 0 ]; then exec pkexec /usr/lib/konaro/konaro-firewall "$1"; fi
+		if [ "$1" = on ]; then ufw --force enable >/dev/null; else ufw disable >/dev/null; fi
+		state ;;
+	*) echo "uso: konaro-firewall on|off|status" >&2; exit 2 ;;
+esac

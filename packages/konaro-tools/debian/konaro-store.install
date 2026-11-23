@@ -1,4 +1,6 @@
 bin/konaro-store usr/bin/
+bin/konaro-install-file usr/bin/
+data/applications/konaro-install-file.desktop usr/share/applications/
 data/store/catalog.json usr/share/konaro/store/
 data/applications/konaro-store.desktop usr/share/applications/
 data/icons/konaro-store.svg usr/share/icons/hicolor/scalable/apps/

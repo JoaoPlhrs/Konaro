@@ -1,0 +1,7 @@
+# Konaro OS — mantém a tela de login do Konaro (SDDM) ao instalar outros ambientes
+# gráficos (GNOME, Xfce, Cinnamon...): eles trariam o próprio gerenciador de login
+# por "recomendação" e trocariam a tela de login sem a pessoa perceber.
+# Quem quiser mesmo outro gerenciador pode apagar este arquivo.
+Package: gdm3 lightdm lightdm-gtk-greeter slick-greeter lxdm
+Pin: release *
+Pin-Priority: -1

@@ -1,3 +1,9 @@
+konaro-installer (0.1.0~dev9) trixie; urgency=medium
+
+  * Links do instalador apontam para o site e o GitHub do Konaro.
+
+ -- Konaro OS Project <maintainers@konaro.invalid>  Mon, 23 Nov 2026 01:55:38 +0000
+
 konaro-installer (0.1.0~dev8) trixie; urgency=medium
 
   * fastfetch com logo Konaro, créditos, barra superior enxuta, vidro, animações,

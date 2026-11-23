@@ -21,7 +21,8 @@ Description: Konaro OS - shared library for the graphical system tools
 
 Package: konaro-store
 Architecture: all
-Depends: ${misc:Depends}, konaro-common (= ${source:Version}), gir1.2-appstream-1.0, appstream
+Depends: ${misc:Depends}, konaro-common (= ${source:Version}), gir1.2-appstream-1.0, appstream,
+         squashfs-tools, libfuse2t64, desktop-file-utils
 Description: Konaro OS - app store
  Curated catalog of apps and games with categories, search, details
  (source, format and Flatpak permissions), install and removal.

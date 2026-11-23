@@ -74,7 +74,8 @@ do_setup() {
 	echo "==> Instalando ferramentas de build no chroot"
 	in_chroot sh -c 'apt-get update -q && apt-get install -y -q --no-install-recommends \
 		live-build debootstrap dpkg-dev debhelper librsvg2-bin xorriso \
-		squashfs-tools mtools dosfstools ca-certificates shellcheck python3'
+		squashfs-tools mtools dosfstools ca-certificates shellcheck python3 \
+		cmake g++ extra-cmake-modules qt6-base-dev qt6-tools-dev kwin-dev libkf6configwidgets-dev libkf6kcmutils-dev libkf6crash-dev libkf6globalaccel-dev libkf6i18n-dev libkf6kio-dev libkf6service-dev libkf6notifications-dev libkf6widgetsaddons-dev libkf6windowsystem-dev libkf6guiaddons-dev libkdecorations3-dev libepoxy-dev libxcb1-dev libx11-dev libdrm-dev'
 	echo "==> Builder pronto: $BUILDER"
 }
 

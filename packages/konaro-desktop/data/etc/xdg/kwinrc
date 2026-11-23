@@ -7,7 +7,10 @@ ButtonsOnLeft=XIA
 ButtonsOnRight=
 
 [Plugins]
-blurEnabled=true
+# Liquid Glass (pacote konaro-glass) substitui o desfoque padrão do KWin: mesmo
+# desfoque, mais refração nas bordas e cantos arredondados
+blurEnabled=false
+forceblurEnabled=true
 contrastEnabled=true
 # Animações: janelas "escorrem" para o dock ao minimizar (lâmpada mágica), crescem
 # suavemente ao abrir e se deformam de leve ao serem arrastadas (janelas gelatinosas)
@@ -20,6 +23,19 @@ wobblywindowsEnabled=true
 # Desfoque mais forte atrás do que flutua (barra, dock, menus, popups)
 BlurStrength=10
 NoiseStrength=0
+
+[Effect-blurplus]
+# Liquid Glass: desfoque + borda que "dobra a luz" como vidro de verdade
+BlurStrength=10
+NoiseStrength=0
+RefractionStrength=40
+RefractionEdgeSize=24
+RefractionNormalPow=30
+Saturation=1.15
+BlurDecorations=false
+BlurMatching=true
+BlurNonMatching=false
+WindowClasses=
 
 [Effect-wobblywindows]
 # deformação suave (não exagerada) ao arrastar janelas

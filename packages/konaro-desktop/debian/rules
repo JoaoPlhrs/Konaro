@@ -14,6 +14,10 @@ override_dh_auto_build:
 	# versão do Konaro (mostrada pelo fastfetch e em Sobre este sistema)
 	mkdir -p $(GEN)/usr/share/konaro
 	dpkg-parsechangelog -S Version | sed 's/~/-/' > $(GEN)/usr/share/konaro/version
+	# identidade do sistema: os-release e issue do Konaro (ver postinst)
+	sh $(ART)/make-os-release.sh "$$(cat $(GEN)/usr/share/konaro/version)" $(GEN)/usr/lib/konaro
+	# variantes de cor de destaque dos esquemas Konaro (Azul, Roxo, Rosa...)
+	python3 $(ART)/make-color-variants.py data/usr/share/color-schemes $(GEN)/usr/share/color-schemes
 	# som de inicialização (composição original, sintetizada)
 	python3 $(ART)/sounds/make-sounds.py $(GEN)/usr/share/sounds/konaro
 	mkdir -p $(WP)/images $(WP)/images_dark \

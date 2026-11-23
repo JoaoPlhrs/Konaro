@@ -6,3 +6,6 @@ data/apt/konaro.sources etc/apt/sources.list.d/
 bin/konaro-theme usr/bin/
 data/exe/konaro-open-exe usr/lib/konaro/
 data/applications/konaro-exe.desktop usr/share/applications/
+data/system/konaro-firewall usr/lib/konaro/
+data/system/konaro-set-password usr/lib/konaro/
+data/system/org.konaro.system.policy usr/share/polkit-1/actions/

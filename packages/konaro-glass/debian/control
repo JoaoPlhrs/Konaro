@@ -1,0 +1,25 @@
+Source: konaro-glass
+Section: kde
+Priority: optional
+Maintainer: Konaro OS Project <maintainers@konaro.invalid>
+Build-Depends: debhelper-compat (= 13), cmake, extra-cmake-modules, g++,
+ qt6-base-dev, qt6-tools-dev, kwin-dev (>= 4:6.3), kwin-dev (<< 4:6.4),
+ libkf6configwidgets-dev, libkf6kcmutils-dev, libkf6crash-dev,
+ libkf6globalaccel-dev, libkf6i18n-dev, libkf6kio-dev, libkf6service-dev,
+ libkf6notifications-dev, libkf6widgetsaddons-dev, libkf6windowsystem-dev,
+ libkf6guiaddons-dev, libkdecorations3-dev, libepoxy-dev, libxcb1-dev,
+ libx11-dev, libdrm-dev
+Standards-Version: 4.7.2
+Rules-Requires-Root: no
+Homepage: https://github.com/4v3ngR/kwin-effects-glass
+
+Package: konaro-glass
+Architecture: amd64
+Depends: ${shlibs:Depends}, ${misc:Depends}, ${kwin:Depends}
+Description: Liquid Glass effect for KWin (Konaro OS)
+ Blur with refraction at the edges ("Liquid Glass") for the KDE Plasma window
+ manager, with rounded corners and saturation control. Based on the GPL-3
+ "Better Blur"/"Glass" KWin effect, adapted by Konaro OS to KWin 6.3.
+ .
+ The effect uses KWin's private API, so this package is tied to the exact
+ KWin version it was built against.

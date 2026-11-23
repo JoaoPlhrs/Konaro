@@ -1,0 +1,6 @@
+konaro-glass (0.1.0~dev9) trixie; urgency=medium
+
+  * Primeira versão: efeito Liquid Glass (desfoque com refração nas bordas),
+    baseado no efeito GPL-3 kwin-effects-glass, adaptado ao KWin 6.3.6.
+
+ -- Konaro OS Project <maintainers@konaro.invalid>  Mon, 23 Nov 2026 12:00:00 -0300

@@ -1,0 +1,31 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 739a04c..71dd6e9 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -94,7 +94,7 @@ if(BETTERBLUR_X11)
+     endif()
+ endif()
+ 
+-if(${KWin_VERSION} VERSION_LESS 6.4)
++if(${KWin_VERSION} VERSION_LESS 6.3)
+     message(FATAL_ERROR "Better Blur does not support your Plasma version (${KWin_VERSION}). See the README for more information.")
+ endif()
+ 
+diff --git a/src/blur.cpp b/src/blur.cpp
+index d611a5d..010b6ab 100644
+--- a/src/blur.cpp
++++ b/src/blur.cpp
+@@ -850,12 +850,7 @@ void BlurEffect::blur(BlurRenderData &renderInfo, const RenderTarget &renderTarg
+                 return;
+             }
+             auto *context =
+-#ifdef BETTERBLUR_X11
+-                OpenGlContext
+-#else
+-                EglContext
+-#endif
+-                ::currentContext();
++OpenGlContext::currentContext();
+             context->pushFramebuffer(framebuffer.get());
+             glClear(GL_COLOR_BUFFER_BIT);
+             context->popFramebuffer();

@@ -13,4 +13,13 @@ x-scheme-handler/https=firefox-esr.desktop
 application/x-ms-dos-executable=konaro-exe.desktop
 application/x-msi=konaro-exe.desktop
 application/vnd.microsoft.portable-executable=konaro-exe.desktop
+application/vnd.debian.binary-package=konaro-install-file.desktop
+application/vnd.appimage=konaro-install-file.desktop
+application/x-iso9660-appimage=konaro-install-file.desktop
 EOF
+
+# Tela de login: sem sessão anterior, o SDDM começa na sessão Konaro (X11)
+if [ -d /var/lib/sddm ] && [ ! -e /var/lib/sddm/state.conf ]; then
+	printf '[Last]\nSession=/usr/share/xsessions/plasmax11.desktop\n' > /var/lib/sddm/state.conf
+	chown sddm:sddm /var/lib/sddm/state.conf || true
+fi

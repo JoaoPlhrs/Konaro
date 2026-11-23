@@ -1,6 +1,0 @@
-# Konaro OS — aplica a escolha de navegadores feita no instalador.
----
-type:       "job"
-name:       "konarobrowsers"
-interface:  "python"
-script:     "main.py"

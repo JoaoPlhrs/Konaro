@@ -25,8 +25,9 @@ for deb in "$DEBS"/*.deb; do
 done
 
 cd "$APT"
-apt-ftparchive packages pool/main > dists/konaro/main/binary-all/Packages
-cp dists/konaro/main/binary-all/Packages dists/konaro/main/binary-amd64/Packages
+# binary-amd64 tem tudo (amd64 + all); binary-all só os pacotes "all"
+apt-ftparchive packages pool/main > dists/konaro/main/binary-amd64/Packages
+apt-ftparchive --arch all packages pool/main > dists/konaro/main/binary-all/Packages
 for d in binary-all binary-amd64; do
 	gzip -9 -n -k -f "dists/konaro/main/$d/Packages"
 done

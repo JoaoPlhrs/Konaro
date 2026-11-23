@@ -1,8 +1,8 @@
 <p align="center"><img src="docs/assets/banner.png" alt="Konaro OS" width="100%"></p>
 
 <p align="center">
-  <a href="https://gofile.io/d/1wTmBC8V"><img src="https://img.shields.io/badge/⬇_Baixar-0.1.0--dev8-1d1d1f?style=for-the-badge" alt="Baixar"></a>
-  <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/Novidades-build_8-3a3a3c?style=for-the-badge" alt="Novidades"></a>
+  <a href="https://gofile.io/d/4R9OfCPZ"><img src="https://img.shields.io/badge/⬇_Baixar-0.1.0--dev9-1d1d1f?style=for-the-badge" alt="Baixar"></a>
+  <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/Novidades-build_9-3a3a3c?style=for-the-badge" alt="Novidades"></a>
   <a href="docs/STATUS.md"><img src="https://img.shields.io/badge/Testes-24%2F24-28c840?style=for-the-badge" alt="Testes"></a>
 </p>
 <p align="center">
@@ -25,7 +25,8 @@ Visual inspirado no macOS, jeito de usar familiar para quem vem do Windows.</p>
 
 | Versão | Data | Tamanho | O que mudou | Baixar |
 |---|---|---|---|---|
-| **0.1.0-dev8 · build 8** "Detalhes" | 2026-11-22 | 2,8 GB | Tela de bloqueio Konaro de verdade, fastfetch com logo Konaro, animações de janela, vidro mais transparente, som de inicialização, apps "Por que está lento?" e "Restaurar", .exe com Wine automático, KeePassXC | [**⬇ Baixar ISO inteira**](https://gofile.io/d/1wTmBC8V) |
+| **0.1.0-dev9 · build 9** "Vidro" | 2026-11-23 | 2,6 GB | Liquid Glass com refração, Loja com apps do GitHub (Hydra Launcher), .deb e AppImage com dois cliques, senha nas Boas-vindas, firewall na Central de controle, GNOME/Xfce/Cinnamon/MATE e seletor de sessão, sistema identificado como Konaro OS, 12 cores de destaque e 5 temas de ícones | [**⬇ Baixar ISO inteira**](https://gofile.io/d/4R9OfCPZ) |
+| 0.1.0-dev8 · build 8 "Detalhes" | 2026-11-22 | 2,8 GB | Tela de bloqueio Konaro, fastfetch, animações, som de inicialização, "Por que está lento?", "Restaurar", .exe com Wine | [baixar](https://gofile.io/d/1wTmBC8V) (enquanto o Gofile manter) |
 | 0.1.0-dev7 · build 7 "Avatares" | 2026-11-22 | 2,7 GB | Meu Avatar refeito | substituída pela build 8 |
 | 0.1.0-dev6 · build 6 "Leve" | 2026-11-22 | 2,7 GB | Sistema mínimo, Voltar no tempo, repositório próprio, Central de controle, Spotlight, firmware, energia | substituída pela build 7 |
 | 0.1.0-dev1 · build 5 "Mac + Windows" | 2026-11-22 | 4,1 GB | Login estilo macOS, Iniciar, widgets, fontes, Ajuda, Migração, Loja completa, Secure Boot | substituída pela build 6 |
@@ -34,8 +35,8 @@ Visual inspirado no macOS, jeito de usar familiar para quem vem do Windows.</p>
 | 0.1.0-dev1 · build 2 "Ferramentas" | 2026-11-22 | — | Loja, Atualizações, Drivers, Boas-vindas, navegadores, jogos | substituída pela build 3 |
 | 0.1.0-dev1 · build 1 "Fundação" | 2026-11-22 | — | Base Debian 13 + Plasma 6, instalador, identidade | substituída pela build 3 |
 
-Site oficial: **[joaoplhrs.github.io/Konaro](https://joaoplhrs.github.io/Konaro/)** · Detalhes de cada versão em **[CHANGELOG.md](CHANGELOG.md)** · comparativo de desempenho com o Windows 11: **[docs/OTIMIZACAO.md](docs/OTIMIZACAO.md)**. SHA-256 da build 8:
-`5da6c147720f9e4d2272492014ec0e526f1e12cb4ae67c4d128b7e59e7655206`
+Site oficial: **[joaoplhrs.github.io/Konaro](https://joaoplhrs.github.io/Konaro/)** · Detalhes de cada versão em **[CHANGELOG.md](CHANGELOG.md)** · comparativo de desempenho com o Windows 11: **[docs/OTIMIZACAO.md](docs/OTIMIZACAO.md)**. SHA-256 da build 9:
+`9842dcaed392d996982219adce402570f7ca84cd022ac7e1bb98bb4da32645d8`
 
 > ⚠️ **Build de desenvolvimento.** Teste primeiro numa máquina virtual. O que foi e o que
 > não foi testado está em [docs/STATUS.md](docs/STATUS.md).

@@ -1,3 +1,11 @@
+konaro-tools (0.1.0~dev9) trixie; urgency=medium
+
+  * Loja: apps do GitHub (Hydra Launcher e outros), ambientes gráficos e
+    instalar de arquivo; dois cliques em .deb e AppImage; senha, cores de destaque
+    e temas de ícones baixáveis no Boas-vindas; ajudantes de firewall e senha.
+
+ -- Konaro OS Project <maintainers@konaro.invalid>  Mon, 23 Nov 2026 01:55:38 +0000
+
 konaro-tools (0.1.0~dev8) trixie; urgency=medium
 
   * fastfetch com logo Konaro, créditos, barra superior enxuta, vidro, animações,

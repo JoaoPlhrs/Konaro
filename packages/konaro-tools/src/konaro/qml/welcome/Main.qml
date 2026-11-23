@@ -20,7 +20,9 @@ ApplicationWindow {
     property int step: Math.min(startPage, pages.count - 1)
     property bool darkChosen: welcome.dark
     property string fontChosen: welcome.font
-    property string iconsChosen: "breeze"
+    property string iconsChosen: welcome.iconTheme
+    property string accentChosen: welcome.accent
+    property string iconsStatus: ""
     readonly property int total: pages.count
 
     // ---------------------------------------------------------------- componentes de página
@@ -115,8 +117,8 @@ ApplicationWindow {
                         spacing: Theme.s2
                         readonly property bool chosen: modelData.dark === win.darkChosen
                         Rectangle {
-                            Layout.preferredWidth: 300
-                            Layout.preferredHeight: 186
+                            Layout.preferredWidth: 240
+                            Layout.preferredHeight: 150
                             radius: Theme.radiusBlock + 4
                             color: "transparent"
                             border.width: parent.chosen ? 3 : 1
@@ -139,7 +141,49 @@ ApplicationWindow {
                     }
                 }
             }
-            KText { text: t("Icons"); font.weight: Font.DemiBold; Layout.topMargin: Theme.s4 }
+            // cor de destaque (seleção, botões e realces)
+            KText { text: t("Accent color"); font.weight: Font.DemiBold; Layout.topMargin: Theme.s4 }
+            Row {
+                spacing: Theme.s3
+                Repeater {
+                    model: welcome.accents
+                    Rectangle {
+                        readonly property bool chosen: modelData.id === win.accentChosen
+                        width: 30; height: 30; radius: 15
+                        color: modelData.color
+                        border.width: chosen ? 3 : 0
+                        border.color: Theme.paper
+                        Rectangle {
+                            anchors.centerIn: parent
+                            width: parent.width + 6; height: width; radius: width / 2
+                            color: "transparent"
+                            border.width: parent.chosen ? 2 : 0
+                            border.color: modelData.color
+                        }
+                        MouseArea {
+                            anchors.fill: parent
+                            cursorShape: Qt.PointingHandCursor
+                            onClicked: { win.accentChosen = modelData.id; welcome.setAccent(modelData.id) }
+                        }
+                        Accessible.role: Accessible.RadioButton
+                        Accessible.name: modelData.name
+                    }
+                }
+            }
+            Connections {
+                target: welcome
+                function onIconThemeStatus(id, status) {
+                    win.iconsStatus = status === "installing" ? t("Downloading the icon theme…")
+                                    : status === "ok" ? "" : status
+                }
+            }
+        }
+
+        // 2b. ícones e fontes
+        Page {
+            title: t("Icons and fonts")
+            subtitle: t("Pick the icon style and the font used across the system.")
+            KText { text: t("Icons"); font.weight: Font.DemiBold }
             Flow {
                 Layout.fillWidth: true
                 spacing: Theme.s2
@@ -151,7 +195,7 @@ ApplicationWindow {
                         height: 40
                         radius: height / 2
                         color: chosen ? Theme.ink : Theme.fill
-                        KText { id: iconLabel; anchors.centerIn: parent; text: modelData.name; color: parent.chosen ? Theme.inverse : Theme.ink }
+                        KText { id: iconLabel; anchors.centerIn: parent; text: modelData.name + (modelData.installed ? "" : "  ↓"); color: parent.chosen ? Theme.inverse : Theme.ink }
                         MouseArea {
                             anchors.fill: parent
                             cursorShape: Qt.PointingHandCursor
@@ -161,6 +205,11 @@ ApplicationWindow {
                         Accessible.name: modelData.name
                     }
                 }
+            }
+            KText {
+                visible: text !== ""
+                text: win.iconsStatus || (welcome.iconThemes.some(x => !x.installed) ? t("↓ = downloaded when chosen (needs internet)") : "")
+                secondary: true; font.pixelSize: Theme.sizeSmall
             }
             // fonte do sistema: cada opção aparece escrita na própria fonte
             KText { text: t("System font"); font.weight: Font.DemiBold; Layout.topMargin: Theme.s4 }
@@ -242,6 +291,7 @@ ApplicationWindow {
 
         // 4. internet
         Page {
+            id: internetPage
             title: t("Internet")
             subtitle: welcome.online ? t("You are connected to the internet.")
                                      : t("You are not connected to the internet yet. Connect to install apps and receive updates.")
@@ -262,6 +312,97 @@ ApplicationWindow {
                 spacing: Theme.s3
                 KSwitch { onToggled: (on) => welcome.setFeedback(on) }
                 KText { text: t("Share anonymous usage statistics with KDE (optional)"); Layout.fillWidth: true }
+            }
+        }
+
+        // 5b. senha
+        Page {
+            id: pwPage
+            title: t("Your password")
+            subtitle: welcome.live
+                ? t("In the live session there is no password to set (it is “live”). After installing, you can change yours here.")
+                : t("This password unlocks the screen, logs you in and authorizes installs. Choose one that only you know.")
+            property bool busy: false
+            property string message: ""
+            property bool okMsg: false
+            readonly property bool tooShort: pw1.text.length > 0 && pw1.text.length < 6
+            readonly property bool mismatch: pw2.text.length > 0 && pw1.text !== pw2.text
+            Connections {
+                target: welcome
+                function onPasswordResult(ok, msg) {
+                    pwPage.busy = false; pwPage.message = msg; pwPage.okMsg = ok
+                    if (ok) { pw1.text = ""; pw2.text = "" }
+                }
+            }
+            RowLayout {
+                spacing: Theme.s3
+                KIcon { name: "system-users"; Layout.preferredWidth: 40; Layout.preferredHeight: 40 }
+                KText { text: welcome.userName; font.pixelSize: 17; font.weight: Font.DemiBold }
+            }
+            TextField {
+                id: pw1
+                placeholderText: t("New password")
+                Layout.preferredWidth: 360
+                implicitHeight: 40
+                echoMode: TextInput.Password
+                passwordCharacter: "●"
+                color: Theme.ink
+                placeholderTextColor: Theme.stone
+                font.family: Theme.body
+                font.pixelSize: Theme.sizeBody
+                leftPadding: Theme.s3
+                enabled: !welcome.live && !pwPage.busy
+                background: Rectangle {
+                    radius: Theme.radiusControl
+                    color: Theme.surface
+                    border.width: parent.activeFocus ? 2 : 1
+                    border.color: parent.activeFocus ? "#0A84FF" : Theme.hairline
+                }
+            }
+            TextField {
+                id: pw2
+                placeholderText: t("Type it again"); onAccepted: if (saveBtn.enabled) saveBtn.clicked()
+                Layout.preferredWidth: 360
+                implicitHeight: 40
+                echoMode: TextInput.Password
+                passwordCharacter: "●"
+                color: Theme.ink
+                placeholderTextColor: Theme.stone
+                font.family: Theme.body
+                font.pixelSize: Theme.sizeBody
+                leftPadding: Theme.s3
+                enabled: !welcome.live && !pwPage.busy
+                background: Rectangle {
+                    radius: Theme.radiusControl
+                    color: Theme.surface
+                    border.width: parent.activeFocus ? 2 : 1
+                    border.color: parent.activeFocus ? "#0A84FF" : Theme.hairline
+                }
+            }
+            KText {
+                visible: text !== ""
+                text: pwPage.mismatch ? t("The two passwords are different.")
+                      : pwPage.tooShort ? t("Use at least 6 characters.")
+                      : pwPage.message
+                color: (pwPage.mismatch || pwPage.tooShort || (pwPage.message && !pwPage.okMsg)) ? Theme.danger
+                       : Theme.success
+                font.pixelSize: Theme.sizeSmall
+            }
+            RowLayout {
+                spacing: Theme.s3
+                KButton {
+                    id: saveBtn
+                    text: pwPage.busy ? t("Waiting for confirmation…") : t("Change password")
+                    kind: "primary"
+                    enabled: !welcome.live && !pwPage.busy && pw1.text.length >= 6 && pw1.text === pw2.text
+                    onClicked: { pwPage.busy = true; pwPage.message = ""; welcome.setPassword(pw1.text) }
+                }
+                KText { text: t("Your current password will be asked to confirm."); secondary: true; font.pixelSize: Theme.sizeSmall; visible: !welcome.live }
+            }
+            RowLayout {
+                spacing: Theme.s3
+                KSwitch { checked: welcome.lockOnResume; onToggled: (on) => welcome.setLockOnResume(on) }
+                KText { text: t("Ask for the password when the computer wakes up or is left idle"); Layout.fillWidth: true }
             }
         }
 
@@ -370,7 +511,7 @@ ApplicationWindow {
                 onClicked: {
                     if (win.step === win.total - 1) { welcome.finish(again.checked); Qt.quit() }
                     else win.step += 1
-                    if (win.step === 3) welcome.refreshOnline()
+                    if (pages.children[win.step] === internetPage) welcome.refreshOnline()
                 }
             }
         }

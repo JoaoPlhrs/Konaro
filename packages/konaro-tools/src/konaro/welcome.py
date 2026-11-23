@@ -9,6 +9,7 @@ import argparse
 import os
 import subprocess
 import sys
+import threading
 
 from PyQt6.QtCore import QObject, pyqtProperty, pyqtSignal, pyqtSlot
 
@@ -41,6 +42,46 @@ def online():
     return _run("nmcli", "-t", "networking", "connectivity") == "full"
 
 
+ACCENT_FILE = os.path.join(CONFIG_DIR, "accent")
+ICONS_FILE = os.path.join(CONFIG_DIR, "icons")
+ACCENTS = [("", "Graphite", "#3A3A3C"), ("Blue", "Blue", "#0A84FF"), ("Purple", "Purple", "#BF5AF2"),
+           ("Pink", "Pink", "#FF4580"), ("Green", "Green", "#30D158"), ("Orange", "Orange", "#FF9F0A"),
+           ("Teal", "Teal", "#40C8E0")]
+# temas de ícones livres (nenhum copia ícones da Apple ou da Microsoft); os que não
+# vêm instalados são baixados na hora, pela internet
+ICON_THEMES = [
+    {"id": "breeze", "dark": "breeze-dark", "name": "Konaro (default)", "package": ""},
+    {"id": "Papirus", "dark": "Papirus-Dark", "name": "Minimalist", "package": "papirus-icon-theme"},
+    {"id": "Numix-Circle", "dark": "Numix-Circle", "name": "Round", "package": "numix-icon-theme-circle"},
+    {"id": "Suru", "dark": "Suru", "name": "Soft", "package": "suru-icon-theme"},
+    {"id": "elementary-xfce", "dark": "elementary-xfce-dark", "name": "Classic", "package": "elementary-xfce-icon-theme"},
+    {"id": "Moka", "dark": "Moka", "name": "Colorful", "package": "moka-icon-theme"},
+    {"id": "Yaru", "dark": "Yaru-dark", "name": "Warm", "package": "yaru-theme-icon"},
+]
+
+
+def _read(path, default=""):
+    try:
+        with open(path, encoding="utf-8") as fh:
+            return fh.read().strip()
+    except OSError:
+        return default
+
+
+def _write(path, value):
+    os.makedirs(CONFIG_DIR, exist_ok=True)
+    with open(path, "w", encoding="utf-8") as fh:
+        fh.write(value)
+
+
+def icon_theme_for(dark):
+    chosen = _read(ICONS_FILE, "breeze")
+    for theme in ICON_THEMES:
+        if theme["id"] == chosen:
+            return theme["dark"] if dark else theme["id"]
+    return "breeze-dark" if dark else "breeze"
+
+
 def apply_theme(dark):
     """Troca claro/escuro SEM reaplicar o layout da área de trabalho.
 
@@ -48,9 +89,9 @@ def apply_theme(dark):
     perderia os atalhos fixados; por isso aplicamos as partes separadamente.
     O papel de parede Konaro troca sozinho (images_dark) com o esquema escuro.
     """
-    _run("plasma-apply-colorscheme", "KonaroDark" if dark else "KonaroLight")
+    _run("plasma-apply-colorscheme", ("KonaroDark" if dark else "KonaroLight") + _read(ACCENT_FILE))
     _run("plasma-apply-desktoptheme", "konaro")
-    _run(CHANGEICONS, "breeze-dark" if dark else "breeze")
+    _run(CHANGEICONS, icon_theme_for(dark))
     _run("kwriteconfig6", "--file", "kdeglobals", "--group", "KDE", "--key", "LookAndFeelPackage",
          "org.konaro.desktop.dark" if dark else "org.konaro.desktop")
     _run("kwriteconfig6", "--file", "kwinrc", "--group", "org.kde.kdecoration2", "--key", "theme",
@@ -59,7 +100,7 @@ def apply_theme(dark):
 
 
 def current_is_dark():
-    return _run("kreadconfig6", "--file", "kdeglobals", "--group", "General", "--key", "ColorScheme") == "KonaroDark"
+    return _run("kreadconfig6", "--file", "kdeglobals", "--group", "General", "--key", "ColorScheme").startswith("KonaroDark")
 
 
 def set_reduced_animations(reduced):
@@ -78,6 +119,27 @@ def set_feedback(enabled):
          "16" if enabled else "0")
 
 
+SET_PASSWORD = "/usr/lib/konaro/konaro-set-password"
+
+
+def change_password(new):
+    """Troca a senha da própria conta. O polkit pede a senha ATUAL antes."""
+    try:
+        proc = subprocess.run([SET_PASSWORD], input=new + "\n", capture_output=True, text=True, timeout=300)
+    except (OSError, subprocess.SubprocessError) as exc:
+        return False, str(exc)
+    if proc.returncode == 0:
+        return True, ""
+    if proc.returncode in (126, 127):     # pkexec: autorização negada/cancelada
+        return False, "cancelled"
+    return False, (proc.stderr or proc.stdout).strip()
+
+
+def lock_on_resume():
+    return _run("kreadconfig6", "--file", "kscreenlockerrc", "--group", "Daemon", "--key", "LockOnResume",
+                "--default", "true") != "false"
+
+
 def mark_done(done):
     os.makedirs(CONFIG_DIR, exist_ok=True)
     if done:
@@ -90,6 +152,8 @@ class WelcomeBridge(QObject):
     langChanged = pyqtSignal()
     widgetsChanged = pyqtSignal()
     onlineChanged = pyqtSignal()
+    passwordResult = pyqtSignal(bool, str)
+    iconThemeStatus = pyqtSignal(str, str)     # id, "installing" | "ok" | mensagem de erro
 
     def __init__(self):
         super().__init__()
@@ -151,14 +215,55 @@ class WelcomeBridge(QObject):
 
     @pyqtProperty("QVariantList", constant=True)
     def iconThemes(self):
-        themes = [{"id": "breeze", "name": _("Konaro (default)")},
-                  {"id": "Papirus", "name": _("Minimalist")},
-                  {"id": "Papirus-Dark", "name": _("Minimalist dark")}]
-        return [t for t in themes if t["id"] == "breeze" or os.path.isdir("/usr/share/icons/" + t["id"])]
+        return [{"id": t["id"], "name": _(t["name"]),
+                 "installed": not t["package"] or os.path.isdir("/usr/share/icons/" + t["id"])}
+                for t in ICON_THEMES]
+
+    @pyqtProperty(str, constant=True)
+    def iconTheme(self):
+        return _read(ICONS_FILE, "breeze")
 
     @pyqtSlot(str)
-    def setIconTheme(self, theme):
-        _run(CHANGEICONS, theme)
+    def setIconTheme(self, theme_id):
+        theme = next((t for t in ICON_THEMES if t["id"] == theme_id), None)
+        if not theme:
+            return
+
+        def apply():
+            _write(ICONS_FILE, theme_id)
+            _run(CHANGEICONS, icon_theme_for(current_is_dark()))
+
+        if not theme["package"] or os.path.isdir("/usr/share/icons/" + theme_id):
+            apply()
+            self.iconThemeStatus.emit(theme_id, "ok")
+            return
+
+        def work():
+            from . import packagekit
+            self.iconThemeStatus.emit(theme_id, "installing")
+            try:
+                packagekit.install([theme["package"]])
+            except packagekit.PackageError as exc:
+                self.iconThemeStatus.emit(theme_id, str(exc.args[0]))
+                return
+            apply()
+            self.iconThemeStatus.emit(theme_id, "ok")
+        threading.Thread(target=work, daemon=True).start()
+
+    @pyqtProperty("QVariantList", constant=True)
+    def accents(self):
+        return [{"id": a[0], "name": _(a[1]), "color": a[2]} for a in ACCENTS]
+
+    @pyqtProperty(str, constant=True)
+    def accent(self):
+        return _read(ACCENT_FILE)
+
+    @pyqtSlot(str)
+    def setAccent(self, accent):
+        if accent not in [a[0] for a in ACCENTS]:
+            return
+        _write(ACCENT_FILE, accent)
+        _run("plasma-apply-colorscheme", ("KonaroDark" if current_is_dark() else "KonaroLight") + accent)
 
     @pyqtSlot(str)
     def setFont(self, font_id):
@@ -177,6 +282,36 @@ class WelcomeBridge(QObject):
         if desktopwidgets.set_enabled(widget_id, enabled) and self._widgets is not None:
             self._widgets[widget_id] = enabled
         self.widgetsChanged.emit()
+
+    @pyqtSlot(str)
+    def setPassword(self, new):
+        def work():
+            ok, err = change_password(new)
+            if ok:
+                msg = _("Password changed. Use it to log in and to unlock the screen.")
+            elif err == "cancelled":
+                msg = _("The current password was not confirmed. Nothing was changed.")
+            else:
+                msg = _("Could not change the password: {error}").format(error=err or "?")
+            self.passwordResult.emit(ok, msg)
+        threading.Thread(target=work, daemon=True).start()
+
+    @pyqtProperty(bool, constant=True)
+    def lockOnResume(self):
+        return lock_on_resume()
+
+    @pyqtSlot(bool)
+    def setLockOnResume(self, on):
+        _run("kwriteconfig6", "--file", "kscreenlockerrc", "--group", "Daemon", "--key", "LockOnResume",
+             "true" if on else "false")
+        _run("kwriteconfig6", "--file", "kscreenlockerrc", "--group", "Daemon", "--key", "Autolock",
+             "true" if on else "false")
+
+    @pyqtProperty(str, constant=True)
+    def userName(self):
+        import pwd
+        entry = pwd.getpwuid(os.getuid())
+        return (entry.pw_gecos.split(",")[0] or entry.pw_name)
 
     @pyqtSlot()
     def refreshOnline(self):

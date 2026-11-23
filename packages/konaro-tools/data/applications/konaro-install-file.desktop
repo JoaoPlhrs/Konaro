@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Name=Install app
+Name[pt_BR]=Instalar app
+Comment=Install .deb packages and add AppImage apps to the menu
+Comment[pt_BR]=Instala pacotes .deb e coloca apps AppImage no menu
+Exec=konaro-install-file %f
+Icon=system-software-install
+Terminal=false
+NoDisplay=true
+MimeType=application/vnd.debian.binary-package;application/x-deb;application/vnd.appimage;application/x-iso9660-appimage;
+Categories=System;

@@ -707,6 +707,116 @@
       "desktop": "org.kde.partitionmanager.desktop",
       "icon": "partitionmanager",
       "featured": false
+    },
+    {
+      "id": "hydra-launcher",
+      "name": "Hydra Launcher",
+      "summary": {
+        "en": "Game launcher with its own built-in download manager and library.",
+        "pt": "Launcher de jogos com gerenciador de downloads e biblioteca próprios."
+      },
+      "category": "games",
+      "backend": "github",
+      "repo": "hydralauncher/hydra",
+      "prefer": [
+        "deb",
+        "appimage"
+      ],
+      "icon": "applications-games",
+      "featured": true
+    },
+    {
+      "id": "youtube-music-desktop",
+      "name": "YouTube Music (desktop)",
+      "summary": {
+        "en": "Unofficial YouTube Music app with ad blocking and plugins.",
+        "pt": "App não oficial do YouTube Music, com bloqueio de anúncios e plugins."
+      },
+      "category": "multimedia",
+      "backend": "github",
+      "repo": "th-ch/youtube-music",
+      "prefer": [
+        "deb",
+        "appimage"
+      ],
+      "icon": "youtube-music"
+    },
+    {
+      "id": "localsend-gh",
+      "name": "LocalSend",
+      "summary": {
+        "en": "Send files to nearby phones and computers, no cable or internet needed.",
+        "pt": "Envie arquivos para celulares e computadores por perto, sem cabo nem internet."
+      },
+      "category": "utilities",
+      "backend": "github",
+      "repo": "localsend/localsend",
+      "prefer": [
+        "deb",
+        "appimage"
+      ],
+      "icon": "localsend"
+    },
+    {
+      "id": "desktop-gnome",
+      "name": "GNOME",
+      "summary": {
+        "en": "Modern desktop with a clean overview of windows and apps. After installing, log out and pick it in the lower-left corner of the login screen. Konaro's own look stays in the Konaro session.",
+        "pt": "Área de trabalho moderna, com visão geral limpa de janelas e apps. Depois de instalar, saia da sessão e escolha-o no canto inferior esquerdo da tela de login. O visual do Konaro continua na sessão Konaro."
+      },
+      "category": "desktops",
+      "backend": "apt",
+      "packages": [
+        "gnome-session",
+        "gnome-shell",
+        "gnome-control-center",
+        "nautilus",
+        "gnome-console"
+      ],
+      "icon": "start-here-gnome"
+    },
+    {
+      "id": "desktop-xfce",
+      "name": "Xfce",
+      "summary": {
+        "en": "Light and classic desktop, great for older computers. After installing, log out and pick it in the lower-left corner of the login screen. Konaro's own look stays in the Konaro session.",
+        "pt": "Área de trabalho leve e clássica, ótima para computadores antigos. Depois de instalar, saia da sessão e escolha-o no canto inferior esquerdo da tela de login. O visual do Konaro continua na sessão Konaro."
+      },
+      "category": "desktops",
+      "backend": "apt",
+      "packages": [
+        "xfce4",
+        "xfce4-terminal"
+      ],
+      "icon": "xfce4-logo"
+    },
+    {
+      "id": "desktop-cinnamon",
+      "name": "Cinnamon",
+      "summary": {
+        "en": "Traditional desktop with a Windows-like taskbar and start menu. After installing, log out and pick it in the lower-left corner of the login screen. Konaro's own look stays in the Konaro session.",
+        "pt": "Área de trabalho tradicional, com barra de tarefas e menu iniciar parecidos com os do Windows. Depois de instalar, saia da sessão e escolha-o no canto inferior esquerdo da tela de login. O visual do Konaro continua na sessão Konaro."
+      },
+      "category": "desktops",
+      "backend": "apt",
+      "packages": [
+        "cinnamon"
+      ],
+      "icon": "cinnamon"
+    },
+    {
+      "id": "desktop-mate",
+      "name": "MATE",
+      "summary": {
+        "en": "Simple, stable desktop with the classic two-panel layout. After installing, log out and pick it in the lower-left corner of the login screen. Konaro's own look stays in the Konaro session.",
+        "pt": "Área de trabalho simples e estável, no layout clássico de dois painéis. Depois de instalar, saia da sessão e escolha-o no canto inferior esquerdo da tela de login. O visual do Konaro continua na sessão Konaro."
+      },
+      "category": "desktops",
+      "backend": "apt",
+      "packages": [
+        "mate-desktop-environment-core"
+      ],
+      "icon": "mate"
     }
   ]
 }

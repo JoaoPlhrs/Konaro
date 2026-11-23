@@ -2,7 +2,8 @@
 
 Camada de interface sobre backends maduros:
   - pacotes Debian (.deb) via PackageKit;
-  - aplicativos Flatpak via Flathub.
+  - aplicativos Flatpak via Flathub;
+  - apps publicados pelos próprios desenvolvedores no GitHub (.deb ou AppImage).
 O catálogo é uma seleção curada (/usr/share/konaro/store/catalog.json).
 """
 
@@ -14,7 +15,7 @@ import sys
 
 from PyQt6.QtCore import QObject, pyqtProperty, pyqtSignal, pyqtSlot
 
-from . import flatpak, packagekit
+from . import flatpak, localapps, packagekit
 from .i18n import _, pick
 from .worker import Worker, WorkerPool
 
@@ -25,11 +26,12 @@ ORIGINS = {
     "brave": "Brave (official repository)",
     "konaro": "Konaro OS (official)",
     "flathub": "Flathub (community)",
+    "github": "Developer's site (GitHub)",
 }
 CATEGORY_NAMES = {
     "games": "Games", "windows": "Windows apps", "internet": "Internet",
     "productivity": "Productivity", "multimedia": "Multimedia", "graphics": "Graphics",
-    "development": "Development", "utilities": "Utilities",
+    "development": "Development", "utilities": "Utilities", "desktops": "Desktop environments",
 }
 
 
@@ -40,7 +42,7 @@ def load_catalog(path=CATALOG):
     icons_dir = os.path.join(os.path.dirname(path), "icons")
     result = []
     for app in apps:
-        app.setdefault("origin", "flathub" if app["backend"] == "flatpak" else "debian")
+        app.setdefault("origin", {"flatpak": "flathub", "github": "github"}.get(app["backend"], "debian"))
         if app["origin"] == "brave" and not brave_repo and not os.environ.get("KONARO_STORE_ALL"):
             continue  # sem o repositório oficial do Brave, não há de onde instalar
         shipped = os.path.join(icons_dir, app["id"] + ".png")
@@ -48,7 +50,9 @@ def load_catalog(path=CATALOG):
             app["icon"] = shipped   # ícone oficial do app (AppStream), mesmo sem estar instalado
         app["summaryText"] = pick(app["summary"])
         app["originText"] = _(ORIGINS[app["origin"]])
-        app["formatText"] = _("Flatpak (isolated)") if app["backend"] == "flatpak" else _("Debian package (.deb)")
+        app["formatText"] = {"flatpak": _("Flatpak (isolated)"),
+                             "github": _("Latest version from the developer (.deb or AppImage)")}.get(
+            app["backend"], _("Debian package (.deb)"))
         app["categoryText"] = _(CATEGORY_NAMES.get(app["category"], app["category"]))
         result.append(app)
     return result
@@ -65,6 +69,7 @@ class StoreBridge(QObject):
         self._apps = catalog if catalog is not None else load_catalog()
         self._apt = None            # {pacote: instalado?} — None enquanto carrega
         self._flatpak = None        # {app_id: "system"|"user"}
+        self._github = None         # {app_id: registro} dos apps vindos do GitHub
         self._busy_id = ""
         self._progress = -1.0
         self._pool = WorkerPool()
@@ -74,6 +79,10 @@ class StoreBridge(QObject):
 
     # ------------------------------------------------------------ estado
     def _state(self, app):
+        if app["backend"] == "github":
+            if self._github is None:
+                return "unknown"
+            return "installed" if app["id"] in self._github else "available"
         if app["backend"] == "flatpak":
             if self._flatpak is None:
                 return "unknown"
@@ -91,7 +100,7 @@ class StoreBridge(QObject):
         for app in self._apps + self._extra:
             item = dict(app)
             item["state"] = self._state(app)
-            item["canOpen"] = app["backend"] == "flatpak" or bool(app.get("desktop"))
+            item["canOpen"] = app["backend"] in ("flatpak", "github") or bool(app.get("desktop"))
             result.append(item)
         return result
 
@@ -112,10 +121,10 @@ class StoreBridge(QObject):
                 apt = {n: v["installed"] for n, v in packagekit.resolve(names).items()}
             except packagekit.PackageError:
                 apt = {}
-            return apt, flatpak.installed_apps()
+            return apt, flatpak.installed_apps(), localapps.installed_github(self._apps)
 
         def done(result):
-            self._apt, self._flatpak = result
+            self._apt, self._flatpak, self._github = result
             self.appsChanged.emit()
 
         self._pool.start(Worker(check, parent=self), ok=done)
@@ -150,7 +159,9 @@ class StoreBridge(QObject):
         app = self._find(app_id)
         if not app or self._busy_id:
             return
-        if app["backend"] == "flatpak":
+        if app["backend"] == "github":
+            self._operation(app, localapps.install_github, (app,), _("{name} was installed.").format(name=app["name"]))
+        elif app["backend"] == "flatpak":
             self._operation(app, flatpak.install, (app["app"],), _("{name} was installed.").format(name=app["name"]))
         else:
             self._operation(app, packagekit.install, (app["packages"],), _("{name} was installed.").format(name=app["name"]))
@@ -160,7 +171,9 @@ class StoreBridge(QObject):
         app = self._find(app_id)
         if not app or self._busy_id:
             return
-        if app["backend"] == "flatpak":
+        if app["backend"] == "github":
+            self._operation(app, localapps.remove_github, (app,), _("{name} was removed.").format(name=app["name"]))
+        elif app["backend"] == "flatpak":
             scope = (self._flatpak or {}).get(app["app"], "system")
             self._operation(app, flatpak.uninstall, (app["app"], scope), _("{name} was removed.").format(name=app["name"]))
         else:
@@ -172,7 +185,13 @@ class StoreBridge(QObject):
         app = self._find(app_id)
         if not app:
             return
-        if app["backend"] == "flatpak":
+        if app["backend"] == "github":
+            rec = (self._github or {}).get(app_id, {})
+            target = rec.get("desktop") if rec.get("kind") == "appimage" \
+                else localapps.deb_desktop_file(rec.get("package", ""))
+            if target:
+                launch("kioclient", "exec", target)
+        elif app["backend"] == "flatpak":
             launch("flatpak", "run", app["app"])
         elif app.get("desktop"):
             open_desktop_app(app["desktop"])
@@ -247,6 +266,14 @@ class StoreBridge(QObject):
     def browseCategory(self, category):
         from . import catalog
         self._load_extra("browse:" + category, catalog.browse, category)
+
+    @pyqtSlot()
+    def installFromFile(self):
+        """Escolher um .deb ou AppImage baixado da internet e instalar."""
+        from .launcher import launch
+        launch("sh", "-c", 'f=$(kdialog --title "%s" --getopenfilename "$HOME/Downloads" '
+               '"*.deb *.AppImage *.appimage|%s") && [ -n "$f" ] && exec konaro-install-file "$f"'
+               % (_("Install from a file"), _("Apps (.deb, AppImage)")))
 
     @pyqtSlot()
     def openUpdater(self):

@@ -50,4 +50,9 @@ done
 
 grep -q 'packagechooser@fonts' /etc/calamares/settings.conf || fail "página de fontes ausente no Calamares"
 
+# Identidade Konaro e Liquid Glass
+grep -q '^ID=konaro' /usr/lib/os-release || fail "os-release não é o do Konaro"
+grep -q '^ID_LIKE=debian' /usr/lib/os-release || fail "os-release sem ID_LIKE=debian"
+ls /usr/lib/x86_64-linux-gnu/qt6/plugins/kwin/effects/plugins/forceblur.so >/dev/null 2>&1 || fail "efeito Liquid Glass ausente"
+
 echo "konaro-checks: OK"

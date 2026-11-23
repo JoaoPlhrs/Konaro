@@ -30,7 +30,8 @@ ApplicationWindow {
         { id: "multimedia", label: i18n.tr("Multimedia"), icon: "applications-multimedia-symbolic" },
         { id: "graphics", label: i18n.tr("Graphics"), icon: "applications-graphics-symbolic" },
         { id: "development", label: i18n.tr("Development"), icon: "applications-development-symbolic" },
-        { id: "utilities", label: i18n.tr("Utilities"), icon: "applications-utilities-symbolic" }
+        { id: "utilities", label: i18n.tr("Utilities"), icon: "applications-utilities-symbolic" },
+        { id: "desktops", label: i18n.tr("Desktop environments"), icon: "preferences-desktop-theme-global" }
     ]
 
     // ---------------------------------------------------------------- ajudantes
@@ -85,7 +86,7 @@ ApplicationWindow {
 
     onAppsChanged: if (currentApp) currentApp = appById(currentApp.id)
     // categorias: além dos apps curados, mostra o catálogo completo daquela categoria
-    onPageChanged: if (categories.some(c => c.id === page && c.id !== "home" && c.id !== "windows")) store.browseCategory(page)
+    onPageChanged: if (categories.some(c => c.id === page && c.id !== "home" && c.id !== "windows" && c.id !== "desktops")) store.browseCategory(page)
 
     Component.onCompleted: {
         if (startup.app && appById(startup.app)) showApp(appById(startup.app))
@@ -148,6 +149,12 @@ ApplicationWindow {
                     text: i18n.tr("Updates")
                     iconName: "system-software-update-symbolic"
                     onClicked: store.openUpdater()
+                }
+                KNavItem {
+                    Layout.fillWidth: true
+                    text: i18n.tr("Install from a file")
+                    iconName: "document-open-symbolic"
+                    onClicked: store.installFromFile()
                 }
             }
         }

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE policyconfig PUBLIC "-//freedesktop//DTD PolicyKit Policy Configuration 1.0//EN"
+ "http://www.freedesktop.org/standards/PolicyKit/1/policyconfig.dtd">
+<policyconfig>
+  <vendor>Konaro OS</vendor>
+  <action id="org.konaro.firewall">
+    <description>Turn the firewall on or off</description>
+    <description xml:lang="pt_BR">Ligar ou desligar o firewall</description>
+    <message>Authentication is required to change the firewall</message>
+    <message xml:lang="pt_BR">Digite sua senha para mudar o firewall</message>
+    <defaults>
+      <allow_any>auth_admin</allow_any>
+      <allow_inactive>auth_admin</allow_inactive>
+      <allow_active>auth_admin_keep</allow_active>
+    </defaults>
+    <annotate key="org.freedesktop.policykit.exec.path">/usr/lib/konaro/konaro-firewall</annotate>
+  </action>
+  <action id="org.konaro.set-password">
+    <description>Change your password</description>
+    <description xml:lang="pt_BR">Trocar a sua senha</description>
+    <message>Type your current password to change it</message>
+    <message xml:lang="pt_BR">Digite a senha atual para trocá-la</message>
+    <defaults>
+      <allow_any>auth_self</allow_any>
+      <allow_inactive>auth_self</allow_inactive>
+      <allow_active>auth_self</allow_active>
+    </defaults>
+    <annotate key="org.freedesktop.policykit.exec.path">/usr/lib/konaro/konaro-set-password</annotate>
+  </action>
+</policyconfig>

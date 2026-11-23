@@ -41,6 +41,8 @@ PlasmoidItem {
     property int battery: -1             // -1 = sem bateria
     property string batteryState: ""
     property int batteryHealth: -1
+    property bool firewallOn: true
+    property bool firewallBusy: false
 
     Plasmoid.icon: "configure"
     toolTipMainText: t("Central de controle", "Control Center")
@@ -85,6 +87,7 @@ PlasmoidItem {
             dnd = out.length > 0 && new Date(out) > new Date()
         })
         sh("powerprofilesctl get 2>/dev/null", out => profile = out)
+        if (!firewallBusy) sh("/usr/lib/konaro/konaro-firewall status", out => firewallOn = out !== "off")
         sh("wpctl get-volume @DEFAULT_AUDIO_SINK@ 2>/dev/null", out => {
             const m = out.match(/Volume:\s*([0-9.]+)/)
             if (m) volume = Math.min(1, parseFloat(m[1]))
@@ -118,6 +121,11 @@ PlasmoidItem {
            + (on ? "'2099-12-31T23:59:59'" : "--delete"))
     }
     function setDark(on) { dark = on; sh("konaro-theme " + (on ? "dark" : "light")) }
+    // pede a senha (polkit); se a pessoa cancelar, o estado volta ao real
+    function setFirewall(on) {
+        firewallOn = on; firewallBusy = true
+        sh("/usr/lib/konaro/konaro-firewall " + (on ? "on" : "off"), () => { firewallBusy = false; refresh() })
+    }
     function setProfile(p) { profile = p; sh("powerprofilesctl set " + p, refresh) }
     function setVolume(v) { volume = v; sh("wpctl set-volume @DEFAULT_AUDIO_SINK@ " + v.toFixed(2)) }
     function toggleMute() { muted = !muted; sh("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle") }
@@ -303,6 +311,21 @@ PlasmoidItem {
                             onToggled: root.setDark(!root.dark)
                         }
                     }
+                }
+            }
+
+            // firewall: protege contra conexões de fora; desligar só se algum
+            // programa (jogo em rede local, servidor) precisar
+            Tile {
+                Layout.fillWidth: true; Layout.preferredHeight: 56
+                Row2 {
+                    anchors.fill: parent; anchors.margins: 12
+                    icon: root.firewallOn ? "security-high" : "security-low"; on: root.firewallOn
+                    title: "Firewall"
+                    sub: root.firewallBusy ? root.t("Aguardando a senha…", "Waiting for password…")
+                         : root.firewallOn ? root.t("Ligado · protegendo contra conexões de fora", "On · blocking incoming connections")
+                         : root.t("Desligado · computador menos protegido", "Off · computer less protected")
+                    onToggled: if (!root.firewallBusy) root.setFirewall(!root.firewallOn)
                 }
             }
 

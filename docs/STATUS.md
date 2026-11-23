@@ -17,6 +17,25 @@ Três níveis de teste:
    efêmero) e testa serviços, PackageKit, Flatpak, jogos e as interfaces. **24/24 ok.**
 3. **`test-vm.sh`** — boot completo da ISO no QEMU (UEFI), com capturas de tela.
 
+## Build 9 (2026-11-23) — Liquid Glass, Loja GitHub, .deb/AppImage, senha, firewall, sessões, identidade, temas
+
+ISO `konaro-os-0.1.0-dev9-amd64.iso` · 2,6 GB · 1.830 pacotes · SHA-256 `9842dcae…a32645d8` · https://gofile.io/d/4R9OfCPZ
+
+| Item | Estado | Como foi verificado |
+|---|---|---|
+| Liquid Glass (pacote konaro-glass, efeito `forceblur` com refração) | 🟡 | Compilado contra o KWin 6.3.6; sessão Plasma real (contêiner, OpenGL llvmpipe): o KWin **carrega** o efeito e o Iniciar aparece desfocado. A refração nas bordas não foi medida visualmente; hardware real não testado. O pacote é preso à versão exata do KWin (precisa ser recompilado quando o Debian atualizar o KWin) |
+| Loja: apps do GitHub Releases (Hydra, YouTube Music, LocalSend) | 🟡 | Escolha do arquivo (.deb amd64 / AppImage x86_64) testada (teste unitário). O download real do GitHub não foi testado (API do GitHub bloqueada nesta sessão) |
+| .deb com dois cliques / Instalar de um arquivo | ✅ | Instalação de um .deb solto pelo PackageKit no sistema da imagem (`sl`) |
+| AppImage com dois cliques | ✅ | AppImage sintético: nome, ícone e atalho extraídos sem executar o arquivo; arquivo movido para ~/Aplicativos |
+| Senha nas Boas-vindas | 🟡 | Página renderizada; ajudante pkexec + polkit (auth_self) instalado. Troca real de senha não executada (precisa de sessão com polkit) |
+| Firewall na Central de controle | ✅ | Ajudante liga/desliga o ufw no sistema da imagem; botão na Central (renderização não capturada) |
+| Seletor de sessão na tela de login | ✅ | `sddm-greeter --test-mode` com duas sessões: menu aparece e marca a escolhida; padrão = Konaro (X11) via state.conf |
+| GNOME / Xfce / Cinnamon / MATE na Loja | 🟡 | Categoria renderizada; gerenciadores de login alheios bloqueados por pin do APT. Instalação real não executada |
+| Sistema identificado como Konaro OS | ✅ | os-release (ID=konaro, ID_LIKE=debian), /etc/issue e GRUB_DISTRIBUTOR conferidos na imagem; checagem no build. A pasta EFI do sistema instalado segue o instalador ("Konaro") |
+| 12 cores de destaque e temas de ícones baixáveis | 🟡 | Esquemas gerados e página renderizada; download de tema de ícones não executado |
+| Boot completo em VM com Secure Boot | ✅ | QEMU + OVMF secboot até a área de trabalho e as Boas-vindas (11 passos) |
+| Testes | ✅ | `verify-iso` OK · `test-system` 19/19 · lint + 14 testes unitários |
+
 ## Build 5 (2026-11-22) — login, Iniciar, widgets, fontes, Ajuda, Migração, Loja completa, Secure Boot
 
 | Item | Estado | Como foi verificado |

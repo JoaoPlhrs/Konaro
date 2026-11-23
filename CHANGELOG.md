@@ -1,14 +1,30 @@
 # Histórico de versões
 
-Todas as versões do Konaro OS, da mais nova para a mais antiga. A ISO mais recente está inteira em [**https://gofile.io/d/1wTmBC8V**](https://gofile.io/d/1wTmBC8V).
+Todas as versões do Konaro OS, da mais nova para a mais antiga. A ISO mais recente está inteira em [**https://gofile.io/d/4R9OfCPZ**](https://gofile.io/d/4R9OfCPZ).
 
 Legenda: ✨ novo · 🎨 visual · 🐛 correção · ⚠️ limitação conhecida
 
 ---
 
-## 0.1.0-dev8 · build 8 — "Detalhes" · 2026-11-22 · **atual**
+## 0.1.0-dev9 · build 9 — "Vidro" · 2026-11-23 · **atual**
 
-ISO **inteira**: [**baixar no Gofile**](https://gofile.io/d/1wTmBC8V) · `konaro-os-0.1.0-dev8-amd64.iso` · 2,8 GB · SHA-256
+ISO **inteira**: [**baixar no Gofile**](https://gofile.io/d/4R9OfCPZ) · `konaro-os-0.1.0-dev9-amd64.iso` · 2,6 GB · SHA-256
+`9842dcaed392d996982219adce402570f7ca84cd022ac7e1bb98bb4da32645d8`
+
+- ✨ **Liquid Glass**: o desfoque do sistema agora tem **refração nas bordas** (o vidro "dobra a luz" nas beiradas), com mais cor por trás. Efeito livre (GPL-3) adaptado pelo Konaro ao KWin do sistema.
+- ✨ **Loja com mais fontes**: apps publicados pelos próprios desenvolvedores no **GitHub** — **Hydra Launcher**, YouTube Music (desktop) e LocalSend. A Loja baixa sempre a versão mais nova (.deb ou AppImage).
+- ✨ **Instalar .deb e AppImage com dois cliques** (ou pela Loja > *Instalar de um arquivo*): o .deb é instalado com as dependências; o AppImage vai para a pasta Aplicativos e ganha ícone no menu — sem precisar de terminal.
+- ✨ **Senha nas Boas-vindas**: troque a senha já no primeiro uso e escolha se ela é pedida ao voltar da suspensão.
+- ✨ **Firewall na Central de controle**: liga e desliga com um toque (pede a senha).
+- ✨ **Outros ambientes gráficos**: nova seção da Loja com **GNOME, Xfce, Cinnamon e MATE**, e a tela de login ganhou o **seletor de sessão** (Wayland, X11 ou outro ambiente) no canto inferior esquerdo. A tela de login do Konaro é mantida.
+- ✨ **O sistema se chama Konaro OS** em todo lugar: "Sobre este sistema", fastfetch, terminal de login (`/etc/issue`), menu de inicialização (GRUB) e links do instalador. Continua compatível com programas feitos para Debian 13.
+- 🎨 **12 novas aparências**: cores de destaque Azul, Roxo, Rosa, Verde, Laranja e Turquesa (claro e escuro), além do Grafite padrão.
+- 🎨 **Novos temas de ícones**: Redondo, Suave, Clássico, Colorido e Acolhedor (baixados na hora ao escolher), além de Konaro e Minimalista. Nova página **Ícones e fontes** nas Boas-vindas.
+- Testes: `verify-iso` OK · teste de sistema 19/19 · instalação de .deb solto via PackageKit, firewall liga/desliga, identidade Konaro e efeito Liquid Glass conferidos na imagem · TESTVM.
+
+## 0.1.0-dev8 · build 8 — "Detalhes" · 2026-11-22
+
+ISO **inteira**: [baixar no Gofile](https://gofile.io/d/1wTmBC8V) · `konaro-os-0.1.0-dev8-amd64.iso` · 2,8 GB · SHA-256
 `5da6c147720f9e4d2272492014ec0e526f1e12cb4ae67c4d128b7e59e7655206`
 
 - ✨ **Tela de bloqueio Konaro de verdade**: é a tela do sistema ao bloquear e ao voltar da suspensão — data e hora grandes, foto, nome e senha em pílula de vidro, sobre o papel de parede do sistema. A autenticação continua sendo a do KDE.

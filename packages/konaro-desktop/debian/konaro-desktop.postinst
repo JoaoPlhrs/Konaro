@@ -10,5 +10,23 @@ if [ "$1" = "configure" ]; then
 		ln -sf /usr/share/konaro/lockscreen/LockScreenUi.qml "$UI"
 	fi
 fi
+# Identidade do sistema: os-release, /etc/issue e /etc/issue.net passam a ser os do
+# Konaro (os originais do Debian ficam guardados com o sufixo .debian).
+if [ "$1" = "configure" ]; then
+	for f in /usr/lib/os-release /etc/issue /etc/issue.net; do
+		dpkg-divert --package konaro-desktop --add --rename --divert "$f.debian" "$f" >/dev/null
+		ln -sf "/usr/lib/konaro/$(basename "$f")" "$f"
+	done
+	# o live-build deixa /etc/os-release como cópia; volta a ser um link
+	if [ ! -L /etc/os-release ]; then
+		ln -sf ../usr/lib/os-release /etc/os-release
+	fi
+fi
+# Tela de login: sem sessão anterior, começa na sessão Konaro (o SDDM lembra a
+# última sessão em state.conf e não tem opção de "sessão padrão")
+if [ "$1" = "configure" ] && [ -d /var/lib/sddm ] && [ ! -e /var/lib/sddm/state.conf ]; then
+	printf '[Last]\nSession=/usr/share/xsessions/plasmax11.desktop\n' > /var/lib/sddm/state.conf
+	chown sddm:sddm /var/lib/sddm/state.conf 2>/dev/null || true
+fi
 #DEBHELPER#
 exit 0
