@@ -29,7 +29,7 @@ A primeira versão do Konaro com nome de constelação: **Fênix**. Sai em duas 
 
 ## 0.1.0-dev9 · build 9 — "Vidro" · 2026-11-23
 
-ISO **inteira**: [baixar no Gofile](https://gofile.io/d/4R9OfCPZ) · `konaro-os-0.1.0-dev9-amd64.iso` · 2,6 GB · SHA-256
+ISO: (download encerrado — substituída pela Fênix) · `konaro-os-0.1.0-dev9-amd64.iso` · 2,6 GB · SHA-256
 `9842dcaed392d996982219adce402570f7ca84cd022ac7e1bb98bb4da32645d8`
 
 - ✨ **Liquid Glass**: o desfoque do sistema agora tem **refração nas bordas** (o vidro "dobra a luz" nas beiradas), com mais cor por trás. Efeito livre (GPL-3) adaptado pelo Konaro ao KWin do sistema.
@@ -45,7 +45,7 @@ ISO **inteira**: [baixar no Gofile](https://gofile.io/d/4R9OfCPZ) · `konaro-os-
 
 ## 0.1.0-dev8 · build 8 — "Detalhes" · 2026-11-22
 
-ISO **inteira**: [baixar no Gofile](https://gofile.io/d/1wTmBC8V) · `konaro-os-0.1.0-dev8-amd64.iso` · 2,8 GB · SHA-256
+ISO: (download encerrado — substituída pela Fênix) · `konaro-os-0.1.0-dev8-amd64.iso` · 2,8 GB · SHA-256
 `5da6c147720f9e4d2272492014ec0e526f1e12cb4ae67c4d128b7e59e7655206`
 
 - ✨ **Tela de bloqueio Konaro de verdade**: é a tela do sistema ao bloquear e ao voltar da suspensão — data e hora grandes, foto, nome e senha em pílula de vidro, sobre o papel de parede do sistema. A autenticação continua sendo a do KDE.

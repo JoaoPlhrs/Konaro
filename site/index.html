@@ -72,6 +72,7 @@ h2{font-size:clamp(28px,4vw,42px);letter-spacing:-.025em;margin:0 0 10px;line-he
 
 /* downloads */
 .release{background:var(--surface);border:1px solid var(--hairline);border-radius:var(--radius);padding:22px 24px;display:grid;grid-template-columns:1fr auto;gap:8px 24px;align-items:center;margin-bottom:12px}
+.history{margin-top:24px;border:1px solid var(--line,#d2d2d7);border-radius:14px;padding:14px 18px}.history summary{cursor:pointer;font-weight:600}.history ul{margin:10px 0 0;padding-left:18px;line-height:1.6}
 .release.current{border:2px solid var(--ink)}
 .release h3{margin:0;font-size:19px}
 .release .tag{display:inline-block;margin-left:8px;font-size:12px;font-weight:700;background:var(--green);color:#063;padding:2px 10px;border-radius:999px;vertical-align:2px}
@@ -149,7 +150,7 @@ footer .made{margin-left:auto}
   <section id="downloads">
     <div class="wrap">
       <h2>Downloads</h2>
-      <p class="sub">Todas as versões, da mais nova para a mais antiga. Baixe sempre a mais recente. Cada ISO é um arquivo só; confira o código SHA-256 depois de baixar.</p>
+      <p class="sub">Duas edições da versão Fênix: escolha a Lite se o seu computador for antigo. Cada ISO é um arquivo só; confira o código SHA-256 depois de baixar.</p>
 
       <div class="release current">
         <div><h3>0.1.0 “Fênix”<span class="tag">Atual</span></h3>
@@ -163,39 +164,20 @@ footer .made{margin-left:auto}
         <code>SHA-256 504b09255b95d5960e28d19b2aa5aa0b7024b05dc75f4e7ca0a06af2145e52ca</code>
         <a class="btn primary act" href="https://gofile.io/d/vGj27CVP">Baixar</a>
       </div>
-      <div class="release">
-        <div><h3>0.1.0-dev9 · build 9 “Vidro”</h3>
-        <p>Liquid Glass com refração nas bordas, Loja com apps do GitHub (Hydra Launcher e outros), .deb e AppImage com dois cliques, senha nas Boas-vindas, firewall na Central de controle, GNOME, Xfce, Cinnamon e MATE com seletor de sessão, sistema identificado como Konaro OS, 12 cores de destaque e novos temas de ícones. 2,6 GB · 23/11/2026</p></div>
-        <code>SHA-256 9842dcaed392d996982219adce402570f7ca84cd022ac7e1bb98bb4da32645d8</code>
-        <a class="btn secondary act" href="https://gofile.io/d/4R9OfCPZ">Baixar</a>
-      </div>
-      <div class="release">
-        <div><h3>0.1.0-dev8 · build 8 “Detalhes”</h3>
-        <p>Tela de bloqueio Konaro, fastfetch com logo, animações de janela, vidro mais transparente, som de inicialização, apps “Por que está lento?” e “Restaurar”, .exe com Wine automático e gerenciador de senhas. 2,8 GB · 22/11/2026</p></div>
-        <code>SHA-256 5da6c147720f9e4d2272492014ec0e526f1e12cb4ae67c4d128b7e59e7655206</code>
-        <a class="btn secondary act" href="https://gofile.io/d/1wTmBC8V">Baixar</a>
-      </div>
-      <div class="release">
-        <div><h3>0.1.0-dev7 · build 7 “Avatares”</h3><p>Meu Avatar refeito: personagens com volume, cores em amostras e miniaturas de cada parte. 2,7 GB</p></div>
-        <code>SHA-256 3e03e19c9c534cfa1fa591833c99ebff36aeadbb51c49062bbe447a5c39b3974</code>
-        <a class="btn secondary act" href="https://gofile.io/d/O996OXic">Baixar</a>
-      </div>
-      <div class="release">
-        <div><h3>0.1.0-dev6 · build 6 “Leve”</h3><p>Sistema mínimo (só Firefox), Voltar no tempo, repositório próprio, Central de controle, Spotlight, firmware e modos de energia. 2,7 GB</p></div>
-        <code>SHA-256 6f03eddc48efe9e827a46808f67d25f2982aa39d7506d24392ac5b8b25e636f6</code>
-        <a class="btn secondary act" href="https://gofile.io/d/xAf862BJ">Baixar</a>
-      </div>
-      <div class="release">
-        <div><h3>0.1.0-dev1 · build 5 “Mac + Windows”</h3><p>Login estilo macOS, Iniciar em tela cheia, widgets, fontes, Ajuda, Migração do Windows, Loja completa e Secure Boot. 4,1 GB</p></div>
-        <code>SHA-256 f3b7559b656f749a0097962b444a06619799f9de65910c2aea6248b398f97fe9</code>
-        <a class="btn secondary act" href="https://gofile.io/d/IuvlFwTS">Baixar</a>
-      </div>
-      <div class="release">
-        <div><h3>0.1.0-dev1 · build 4 “Boot Konaro”</h3><p>Tela de carregamento com o logo Konaro. 4,0 GB</p></div>
-        <code>SHA-256 02a60c7cde3b21e81eb6a7327ca95e95e18d6ec40f6c26a3057cf1a2f24b113a</code>
-        <a class="btn secondary act" href="https://gofile.io/d/TgNSuXQ7">Baixar</a>
-      </div>
-      <p class="note">As builds 1 a 3 foram internas e não têm download público. Os arquivos ficam hospedados no Gofile; se um link deixar de funcionar, use a versão atual. Histórico completo no <a href="https://github.com/JoaoPlhrs/Konaro/blob/main/CHANGELOG.md">CHANGELOG</a>.</p>
+      <details class="history">
+        <summary>Versões anteriores (só para consulta)</summary>
+        <p>As builds de desenvolvimento não ficam mais disponíveis para baixar: tudo o que elas tinham está na Fênix. O que mudou em cada uma continua aqui e no CHANGELOG.</p>
+        <ul>
+          <li><strong>0.1.0-dev9 · build 9 “Vidro”</strong> — Liquid Glass com refração nas bordas, Loja com apps do GitHub (Hydra Launcher e outros), .deb e AppImage com dois cliques, senha nas Boas-vindas, firewall na Central de controle, GNOME, Xfce, Cinnamon e MATE com seletor de sessão, sistema identificado como Konaro OS, 12 cores de destaque e novos temas de ícones. 2,6 GB · 23/11/2026</li>
+          <li><strong>0.1.0-dev8 · build 8 “Detalhes”</strong> — Tela de bloqueio Konaro, fastfetch com logo, animações de janela, vidro mais transparente, som de inicialização, apps “Por que está lento?” e “Restaurar”, .exe com Wine automático e gerenciador de senhas. 2,8 GB · 22/11/2026</li>
+          <li><strong>0.1.0-dev7 · build 7 “Avatares”</strong> — Meu Avatar refeito: personagens com volume, cores em amostras e miniaturas de cada parte. 2,7 GB</li>
+          <li><strong>0.1.0-dev6 · build 6 “Leve”</strong> — Sistema mínimo (só Firefox), Voltar no tempo, repositório próprio, Central de controle, Spotlight, firmware e modos de energia. 2,7 GB</li>
+          <li><strong>0.1.0-dev1 · build 5 “Mac + Windows”</strong> — Login estilo macOS, Iniciar em tela cheia, widgets, fontes, Ajuda, Migração do Windows, Loja completa e Secure Boot. 4,1 GB</li>
+          <li><strong>0.1.0-dev1 · build 4 “Boot Konaro”</strong> — Tela de carregamento com o logo Konaro. 4,0 GB</li>
+          <li><strong>builds 1 a 3</strong> — fundação, ferramentas e visual elegante (internas)</li>
+        </ul>
+      </details>
+      <p class="note">Os arquivos ficam hospedados no Gofile. Histórico completo, com tudo o que mudou em cada versão, no <a href="https://github.com/JoaoPlhrs/Konaro/blob/main/CHANGELOG.md">CHANGELOG</a>.</p>
     </div>
   </section>
 
