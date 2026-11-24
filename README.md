@@ -1,8 +1,9 @@
 <p align="center"><img src="docs/assets/banner.png" alt="Konaro OS" width="100%"></p>
 
 <p align="center">
-  <a href="https://gofile.io/d/4R9OfCPZ"><img src="https://img.shields.io/badge/⬇_Baixar-0.1.0--dev9-1d1d1f?style=for-the-badge" alt="Baixar"></a>
-  <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/Novidades-build_9-3a3a3c?style=for-the-badge" alt="Novidades"></a>
+  <a href="https://gofile.io/d/mfNalg4T"><img src="https://img.shields.io/badge/⬇_Baixar-Fênix_0.1.0-1d1d1f?style=for-the-badge" alt="Baixar Fênix"></a>
+  <a href="https://gofile.io/d/vGj27CVP"><img src="https://img.shields.io/badge/⬇_Baixar-Fênix_Lite-6e6e73?style=for-the-badge" alt="Baixar Fênix Lite"></a>
+  <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/Novidades-Fênix-3a3a3c?style=for-the-badge" alt="Novidades"></a>
   <a href="docs/STATUS.md"><img src="https://img.shields.io/badge/Testes-24%2F24-28c840?style=for-the-badge" alt="Testes"></a>
 </p>
 <p align="center">
@@ -25,7 +26,9 @@ Visual inspirado no macOS, jeito de usar familiar para quem vem do Windows.</p>
 
 | Versão | Data | Tamanho | O que mudou | Baixar |
 |---|---|---|---|---|
-| **0.1.0-dev9 · build 9** "Vidro" | 2026-11-23 | 2,6 GB | Liquid Glass com refração, Loja com apps do GitHub (Hydra Launcher), .deb e AppImage com dois cliques, senha nas Boas-vindas, firewall na Central de controle, GNOME/Xfce/Cinnamon/MATE e seletor de sessão, sistema identificado como Konaro OS, 12 cores de destaque e 5 temas de ícones | [**⬇ Baixar ISO inteira**](https://gofile.io/d/4R9OfCPZ) |
+| 🔥 **0.1.0 "Fênix"** | 2026-11-23 | 2,4 GB | Primeira versão com nome. Tudo da build 9 (Liquid Glass, Loja com GitHub, .deb/AppImage, senha, firewall, sessões, temas) e o Wine fora da ISO | [**⬇ Baixar Fênix**](https://gofile.io/d/mfNalg4T) |
+| 🔥 **0.1.0 "Fênix Lite"** | 2026-11-23 | 1,8 GB | Edição para **computadores antigos** (ex.: 2007, 3 GB de RAM): mesmo visual, memória comprimida, sem efeitos pesados, Firefox leve, funciona em placas de vídeo antigas | [**⬇ Baixar Fênix Lite**](https://gofile.io/d/vGj27CVP) |
+| 0.1.0-dev9 · build 9 "Vidro" | 2026-11-23 | 2,6 GB | Liquid Glass com refração, Loja com apps do GitHub (Hydra Launcher), .deb e AppImage com dois cliques, senha nas Boas-vindas, firewall na Central de controle, GNOME/Xfce/Cinnamon/MATE e seletor de sessão, sistema identificado como Konaro OS, 12 cores de destaque e 5 temas de ícones | substituída pela Fênix |
 | 0.1.0-dev8 · build 8 "Detalhes" | 2026-11-22 | 2,8 GB | Tela de bloqueio Konaro, fastfetch, animações, som de inicialização, "Por que está lento?", "Restaurar", .exe com Wine | [baixar](https://gofile.io/d/1wTmBC8V) (enquanto o Gofile manter) |
 | 0.1.0-dev7 · build 7 "Avatares" | 2026-11-22 | 2,7 GB | Meu Avatar refeito | substituída pela build 8 |
 | 0.1.0-dev6 · build 6 "Leve" | 2026-11-22 | 2,7 GB | Sistema mínimo, Voltar no tempo, repositório próprio, Central de controle, Spotlight, firmware, energia | substituída pela build 7 |
@@ -35,8 +38,7 @@ Visual inspirado no macOS, jeito de usar familiar para quem vem do Windows.</p>
 | 0.1.0-dev1 · build 2 "Ferramentas" | 2026-11-22 | — | Loja, Atualizações, Drivers, Boas-vindas, navegadores, jogos | substituída pela build 3 |
 | 0.1.0-dev1 · build 1 "Fundação" | 2026-11-22 | — | Base Debian 13 + Plasma 6, instalador, identidade | substituída pela build 3 |
 
-Site oficial: **[joaoplhrs.github.io/Konaro](https://joaoplhrs.github.io/Konaro/)** · Detalhes de cada versão em **[CHANGELOG.md](CHANGELOG.md)** · comparativo de desempenho com o Windows 11: **[docs/OTIMIZACAO.md](docs/OTIMIZACAO.md)**. SHA-256 da build 9:
-`9842dcaed392d996982219adce402570f7ca84cd022ac7e1bb98bb4da32645d8`
+Site oficial: **[joaoplhrs.github.io/Konaro](https://joaoplhrs.github.io/Konaro/)** · Detalhes de cada versão em **[CHANGELOG.md](CHANGELOG.md)** · comparativo de desempenho com o Windows 11: **[docs/OTIMIZACAO.md](docs/OTIMIZACAO.md)**. SHA-256 — Fênix: `018b3422aa6af2c1a5a8ca4d36371b014f2fc73e1b0a2f0a901fb3585bc3e1bd` · Fênix Lite: `504b09255b95d5960e28d19b2aa5aa0b7024b05dc75f4e7ca0a06af2145e52ca`. Qual escolher? Veja **[docs/EDICOES.md](docs/EDICOES.md)**.
 
 > ⚠️ **Build de desenvolvimento.** Teste primeiro numa máquina virtual. O que foi e o que
 > não foi testado está em [docs/STATUS.md](docs/STATUS.md).

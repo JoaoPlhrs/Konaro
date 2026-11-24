@@ -1,0 +1,16 @@
+# Konaro OS Fênix Lite — gerenciador de janelas mais leve para computadores antigos.
+# Mesmo visual do Konaro (botões semáforo, tema, dock); sem os efeitos caros para
+# placas de vídeo antigas (vidro/desfoque e janelas gelatinosas).
+[Plugins]
+blurEnabled=false
+forceblurEnabled=false
+contrastEnabled=false
+wobblywindowsEnabled=false
+magiclampEnabled=true
+scaleEnabled=true
+slidingpopupsEnabled=false
+
+[Compositing]
+# animações mais curtas
+AnimationDurationFactor=0.6
+WindowsBlockCompositing=true

@@ -1,0 +1,26 @@
+#!/bin/sh
+# Konaro OS Fênix Lite — marca a edição e deixa o sistema mais leve.
+set -e
+
+# edição (o konaro-lite já instala este arquivo; aqui garante as ligações)
+mkdir -p /etc/konaro
+echo lite > /etc/konaro/edition
+for f in os-release issue issue.net; do
+	t=/usr/lib/$f; [ "$f" = os-release ] || t=/etc/$f
+	ln -sf "/usr/lib/konaro/$f-lite" "$t"
+done
+ln -sf ../usr/lib/os-release /etc/os-release
+
+# firmware de servidores e de placas de vídeo recentes (RTX/datacenter), que um
+# computador antigo não tem: ~400 MB a menos
+apt-get purge -y -q firmware-netronome firmware-marvell-prestera \
+	firmware-nvidia-tesla-535-gsp firmware-nvidia-graphics >/dev/null 2>&1 || true
+
+# serviços que um notebook antigo quase nunca usa (modem 3G embutido e
+# relatórios de disco em segundo plano continuam disponíveis para ligar)
+systemctl disable ModemManager.service >/dev/null 2>&1 || true
+systemctl disable fwupd-refresh.timer >/dev/null 2>&1 || true
+
+# menos gravações no disco: diário do sistema com tamanho máximo menor
+mkdir -p /etc/systemd/journald.conf.d
+printf '[Journal]\nSystemMaxUse=100M\n' > /etc/systemd/journald.conf.d/konaro-lite.conf

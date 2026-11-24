@@ -1,0 +1,11 @@
+#!/bin/sh
+# Ao remover a edição Lite, o sistema volta a se identificar como a edição normal.
+set -e
+if [ "$1" = "remove" ] || [ "$1" = "purge" ]; then
+	for f in os-release issue issue.net; do
+		t=/usr/lib/$f; [ "$f" = os-release ] || t=/etc/$f
+		[ -L "$t" ] && [ -e "/usr/lib/konaro/$f" ] && ln -sf "/usr/lib/konaro/$f" "$t"
+	done
+fi
+#DEBHELPER#
+exit 0

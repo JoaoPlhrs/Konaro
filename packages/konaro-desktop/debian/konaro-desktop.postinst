@@ -13,9 +13,12 @@ fi
 # Identidade do sistema: os-release, /etc/issue e /etc/issue.net passam a ser os do
 # Konaro (os originais do Debian ficam guardados com o sufixo .debian).
 if [ "$1" = "configure" ]; then
+	# edição Lite (computadores antigos): /etc/konaro/edition contém "lite"
+	sfx=""
+	if grep -qs '^lite' /etc/konaro/edition; then sfx="-lite"; fi
 	for f in /usr/lib/os-release /etc/issue /etc/issue.net; do
 		dpkg-divert --package konaro-desktop --add --rename --divert "$f.debian" "$f" >/dev/null
-		ln -sf "/usr/lib/konaro/$(basename "$f")" "$f"
+		ln -sf "/usr/lib/konaro/$(basename "$f")$sfx" "$f"
 	done
 	# o live-build deixa /etc/os-release como cópia; volta a ser um link
 	if [ ! -L /etc/os-release ]; then

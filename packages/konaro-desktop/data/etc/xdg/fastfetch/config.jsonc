@@ -12,7 +12,7 @@
   "modules": [
     "title",
     "separator",
-    { "type": "command", "key": "Sistema", "text": "echo \"Konaro OS $(cat /usr/share/konaro/version 2>/dev/null) · base Debian $(cat /etc/debian_version)\"" },
+    { "type": "command", "key": "Sistema", "text": ". /etc/os-release; echo \"$PRETTY_NAME $VERSION_ID · base Debian $(cat /etc/debian_version)\"" },
     { "type": "host", "key": "Computador" },
     { "type": "kernel", "key": "Kernel" },
     { "type": "uptime", "key": "Ligado há" },

@@ -27,3 +27,12 @@ Description: Konaro OS desktop identity for KDE Plasma
  .
  Defaults are installed in /etc/xdg and apply to users that have not
  customized their own settings.
+
+Package: konaro-lite
+Architecture: all
+Depends: ${misc:Depends}, konaro-desktop (= ${source:Version}), systemd-zram-generator, mesa-utils
+Description: Konaro OS Fênix Lite settings for older computers
+ Makes Konaro lighter on old hardware (e.g. 2007 laptops with 2-3 GB of RAM)
+ while keeping its look: compressed memory (zram), no glass/blur or wobbly
+ effects, shorter animations, no background file indexing, a lighter Firefox,
+ and automatic software rendering on graphics cards without OpenGL 2.

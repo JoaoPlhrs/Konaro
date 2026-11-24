@@ -1,3 +1,12 @@
+konaro-desktop (0.1.0) trixie; urgency=medium
+
+  * Konaro OS 0.1.0 "Fênix": nome da versão no sistema (os-release, Sobre este
+    sistema, fastfetch). Novo pacote konaro-lite: edição Fênix Lite para
+    computadores antigos (zram, efeitos leves, sem indexação, Firefox leve e
+    desenho por software em placas sem OpenGL 2), com o mesmo visual.
+
+ -- Konaro OS Project <maintainers@konaro.invalid>  Mon, 23 Nov 2026 23:38:05 +0000
+
 konaro-desktop (0.1.0~dev9) trixie; urgency=medium
 
   * Liquid Glass (konaro-glass) no lugar do desfoque padrão, firewall na Central

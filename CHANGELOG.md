@@ -1,14 +1,35 @@
 # Histórico de versões
 
-Todas as versões do Konaro OS, da mais nova para a mais antiga. A ISO mais recente está inteira em [**https://gofile.io/d/4R9OfCPZ**](https://gofile.io/d/4R9OfCPZ).
+Todas as versões do Konaro OS, da mais nova para a mais antiga. Versão atual: **0.1.0 "Fênix"** — [Fênix](https://gofile.io/d/mfNalg4T) e [Fênix Lite](https://gofile.io/d/vGj27CVP) (computadores antigos).
 
 Legenda: ✨ novo · 🎨 visual · 🐛 correção · ⚠️ limitação conhecida
 
 ---
 
-## 0.1.0-dev9 · build 9 — "Vidro" · 2026-11-23 · **atual**
+## 🔥 0.1.0 "Fênix" · 2026-11-23 · **atual** — primeira versão com nome
 
-ISO **inteira**: [**baixar no Gofile**](https://gofile.io/d/4R9OfCPZ) · `konaro-os-0.1.0-dev9-amd64.iso` · 2,6 GB · SHA-256
+A primeira versão do Konaro com nome de constelação: **Fênix**. Sai em duas edições, com o mesmo visual e os mesmos apps.
+
+| Edição | Para quem | Baixar | Tamanho | SHA-256 |
+|---|---|---|---|---|
+| **Fênix** | computadores com 4 GB de RAM ou mais | [**⬇ Gofile**](https://gofile.io/d/mfNalg4T) | 2,4 GB | `018b3422aa6af2c1a5a8ca4d36371b014f2fc73e1b0a2f0a901fb3585bc3e1bd` |
+| **Fênix Lite** | computadores antigos (ex.: notebook de 2007 com 3 GB de RAM) | [**⬇ Gofile**](https://gofile.io/d/vGj27CVP) | 1,8 GB | `504b09255b95d5960e28d19b2aa5aa0b7024b05dc75f4e7ca0a06af2145e52ca` |
+
+- 🔥 **Nome Fênix** no sistema: "Sobre este sistema", fastfetch, tela de login em modo texto e o nome do arquivo da ISO.
+- ✨ **Fênix Lite**, a edição para computadores antigos. Mantém o design do Konaro e todos os apps do Konaro, mas:
+  - liga a **memória comprimida** (zram), que rende como se o computador tivesse bem mais RAM;
+  - painéis **sólidos**, sem o vidro e sem as janelas gelatinosas, que pesam em placas de vídeo antigas;
+  - **animações mais curtas** e sem indexação de arquivos em segundo plano;
+  - **Firefox mais leve** e menos gravações no disco;
+  - em placas de vídeo **sem OpenGL 2** (ex.: Intel GMA 950), a interface e o login são desenhados pelo processador e funcionam mesmo assim;
+  - saem pacotes pesados dispensáveis num PC antigo: fontes de idiomas raros, cofres criptografados, backup Kup, ibus, Vulkan, firmware de servidores, temas de ícones extras, KeePassXC e fwupd. Tudo continua instalável pela Loja.
+- 🐛 **O Wine não vem mais dentro da ISO.** Desde a build 6 ele entrava por engano (~740 MB). Agora ele vem só quando você instala "Jogos e apps do Windows" pela Loja ou abre um .exe.
+- Requisitos da Lite: processador de **64 bits** (Core 2 Duo, Pentium Dual-Core T23xx/T3xxx, Athlon 64/Turion 64 ou mais novo), 2 GB de RAM (3 GB recomendado) e 20 GB de disco. Processadores só de 32 bits não funcionam, porque o Debian 13 não tem mais versão de 32 bits. Detalhes em [docs/EDICOES.md](docs/EDICOES.md).
+- Testes: Fênix — `verify-iso` OK · teste de sistema 19/19 · boot em VM com Secure Boot até a área de trabalho. Fênix Lite — `verify-iso` OK · teste de sistema 19/19 · sessão Plasma real com as configurações leves ativas (sem vidro, sem janelas gelatinosas). Nenhuma das duas foi testada em computador físico ainda.
+
+## 0.1.0-dev9 · build 9 — "Vidro" · 2026-11-23
+
+ISO **inteira**: [baixar no Gofile](https://gofile.io/d/4R9OfCPZ) · `konaro-os-0.1.0-dev9-amd64.iso` · 2,6 GB · SHA-256
 `9842dcaed392d996982219adce402570f7ca84cd022ac7e1bb98bb4da32645d8`
 
 - ✨ **Liquid Glass**: o desfoque do sistema agora tem **refração nas bordas** (o vidro "dobra a luz" nas beiradas), com mais cor por trás. Efeito livre (GPL-3) adaptado pelo Konaro ao KWin do sistema.

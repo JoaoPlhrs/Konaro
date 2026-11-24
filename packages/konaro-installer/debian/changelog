@@ -1,3 +1,9 @@
+konaro-installer (0.1.0) trixie; urgency=medium
+
+  * Konaro OS 0.1.0 "Fênix" (primeira versão com nome).
+
+ -- Konaro OS Project <maintainers@konaro.invalid>  Mon, 23 Nov 2026 23:38:05 +0000
+
 konaro-installer (0.1.0~dev9) trixie; urgency=medium
 
   * Links do instalador apontam para o site e o GitHub do Konaro.

@@ -1,0 +1,26 @@
+# Fênix Lite — pacotes pesados que entrariam só por "recomendação" de outros e não
+# fazem falta num computador antigo. Continuam instaláveis depois, se a pessoa quiser.
+
+# fontes extras (milhares de idiomas raros); as fontes Noto principais e as de
+# chinês/japonês/coreano básicas continuam
+Package: fonts-noto-extra fonts-noto-ui-extra fonts-noto-cjk-extra
+Pin: release *
+Pin-Priority: -1
+
+# cofres criptografados, backup e entrada de idiomas asiáticos do Plasma
+Package: plasma-vault cryfs kup-backup bup ibus ibus-data
+Pin: release *
+Pin-Priority: -1
+
+# ferramentas de compilação, Vulkan (placas antigas não têm) e efeito de vidro
+Package: build-essential mesa-vulkan-drivers konaro-glass konaro-gaming
+Pin: release *
+Pin-Priority: -1
+
+# (firmware de servidores e de placas recentes: o live-build pede todos os pacotes
+# de firmware; a Lite os remove no hook 0700, depois de instalados)
+
+# temas de ícones grandes, gerenciador de senhas e firmware via internet (LVFS)
+Package: papirus-icon-theme keepassxc-full fwupd kaccounts-providers
+Pin: release *
+Pin-Priority: -1

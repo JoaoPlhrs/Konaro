@@ -1,0 +1,4 @@
+# Fênix Lite: sem indexação de arquivos em segundo plano (pesa no disco rígido antigo).
+# A busca por apps e configurações continua funcionando.
+[Basic Settings]
+Indexing-Enabled=false

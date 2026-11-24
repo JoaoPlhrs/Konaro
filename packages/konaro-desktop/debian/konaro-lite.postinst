@@ -1,0 +1,11 @@
+#!/bin/sh
+# Konaro OS Fênix Lite — o sistema passa a se identificar como "Fênix Lite".
+set -e
+if [ "$1" = "configure" ]; then
+	for f in os-release issue issue.net; do
+		t=/usr/lib/$f; [ "$f" = os-release ] || t=/etc/$f
+		[ -e "/usr/lib/konaro/$f-lite" ] && ln -sf "/usr/lib/konaro/$f-lite" "$t"
+	done
+fi
+#DEBHELPER#
+exit 0

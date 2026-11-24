@@ -6,11 +6,12 @@
 #   sudo ./scripts/build-iso.sh --clean    # descarta diretório de trabalho e cache antes
 #   sudo ./scripts/build-iso.sh --resume   # continua um build interrompido (após corrigir
 #                                          # um hook), sem refazer os estágios concluídos
+#   sudo ./scripts/build-iso.sh --edition lite   # edição Lite (computadores antigos)
 #
 # Variáveis opcionais: KONARO_MIRROR, KONARO_SECURITY_MIRROR, KONARO_APT_PROXY, KONARO_BRAVE_MIRROR,
 # KONARO_LIVE_LOCALE, KONARO_LIVE_KEYBOARD, KONARO_LIVE_TIMEZONE (ver live/auto/config).
 #
-# Saída: build/iso/konaro-os-<versão>-amd64.hybrid.iso + .sha256 + .packages
+# Saída: build/iso/konaro-os-<nome>[-<edição>]-<versão>-amd64.hybrid.iso + .sha256 + .packages
 set -eu
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
@@ -32,14 +33,28 @@ if [ -r /etc/os-release ]; then
 	fi
 fi
 
-if [ "${1:-}" = "--clean" ] && [ -d "$WORK" ]; then
+case " $* " in *" --clean "*) CLEAN=1 ;; *) CLEAN=0 ;; esac
+if [ "$CLEAN" -eq 1 ] && [ -d "$WORK" ]; then
 	echo "==> Limpando diretório de trabalho (inclui o cache de pacotes)"
 	if cd "$WORK"; then lb clean --purge >/dev/null 2>&1 || true; cd "$ROOT"; fi
 	rm -rf "${WORK:?}"
 fi
 
 RESUME=0
-[ "${1:-}" = "--resume" ] && RESUME=1
+EDITION=""      # vazio = edição normal; "lite" = Fênix Lite (computadores antigos)
+while [ $# -gt 0 ]; do
+	case "$1" in
+		--resume) RESUME=1 ;;
+		--edition) EDITION="${2:-}"; shift ;;
+		--clean) ;;
+		*) echo "ERRO: opção desconhecida: $1" >&2; exit 2 ;;
+	esac
+	shift
+done
+if [ -n "$EDITION" ] && [ ! -d "$ROOT/live/editions/$EDITION" ]; then
+	echo "ERRO: edição desconhecida: $EDITION (veja live/editions/)" >&2
+	exit 2
+fi
 
 if [ "$RESUME" -eq 0 ]; then
 	echo "==> 1/4 Pacotes próprios"
@@ -55,8 +70,32 @@ rm -rf "$WORK/auto" "$WORK/config"
 cp -a "$ROOT/live/auto" "$WORK/auto"
 cp -a "$ROOT/live/config" "$WORK/config"
 cp "$ROOT/VERSION" "$ROOT/build/VERSION"
+cp "$ROOT/packages/konaro-desktop/artwork/codename" "$ROOT/build/CODENAME"
+printf '%s\n' "$EDITION" > "$ROOT/build/EDITION"
+# Edição (ex.: lite): tira pacotes das listas (remove.list) e acrescenta a
+# configuração própria dela (listas, preferências do APT, hooks)
+if [ -n "$EDITION" ]; then
+	ED="$ROOT/live/editions/$EDITION"
+	echo "    edição: $EDITION"
+	if [ -f "$ED/remove.list" ]; then
+		grep -v '^#' "$ED/remove.list" | while read -r p; do
+			[ -n "$p" ] && sed -i "/^$p\$/d" "$WORK"/config/package-lists/*.list.chroot*
+		done
+	fi
+	cp -a "$ED/config/." "$WORK/config/"
+fi
+# Pacotes próprios: SÓ os que as listas pedem. O live-build instala todo .deb que
+# estiver em packages.chroot (foi assim que o Wine entrou por engano até a build 9).
 mkdir -p "$WORK/config/packages.chroot"
-cp "$ROOT"/build/packages/*.deb "$WORK/config/packages.chroot/"
+wanted="$(cat "$WORK"/config/package-lists/*.list.chroot* | sed 's/#.*//' | tr -s ' \t' '\n')"
+for deb in "$ROOT"/build/packages/*.deb; do
+	name="$(dpkg-deb -f "$deb" Package)"
+	if printf '%s\n' "$wanted" | grep -qx "$name"; then
+		cp "$deb" "$WORK/config/packages.chroot/"
+	fi
+done
+echo "    pacotes próprios na imagem:"
+for deb in "$WORK"/config/packages.chroot/*.deb; do echo "      $(basename "$deb")"; done
 # A splash do menu de boot vem do pacote konaro-desktop (fonte única da arte)
 cp "$ROOT/packages/konaro-desktop/artwork/grub-splash.svg" "$WORK/config/bootloaders/splash.svg"
 

@@ -7,7 +7,7 @@ cd "$ROOT"
 rc=0
 
 echo "==> shellcheck"
-shellcheck -s sh scripts/*.sh live/auto/* live/config/hooks/normal/*.hook.chroot packages/konaro-installer/data/usr/lib/live/config/* || rc=1
+shellcheck -s sh scripts/*.sh live/auto/* live/config/hooks/normal/*.hook.chroot live/editions/*/config/hooks/normal/*.hook.chroot packages/konaro-installer/data/usr/lib/live/config/* || rc=1
 
 echo "==> JSON"
 find packages -name '*.json' -exec python3 -m json.tool {} \; >/dev/null || { echo "JSON inválido"; rc=1; }
