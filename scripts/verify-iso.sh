@@ -18,13 +18,19 @@ rc=0
 ok()   { echo "  ok    $*"; }
 bad()  { echo "  FALHA $*"; rc=1; }
 
+# Edição de 32 bits (Lite 32): boot só por BIOS, sem UEFI/Secure Boot, kernel 686-pae
+case "$(basename "$ISO")" in *i386*) ARCH=i386 ;; *) ARCH=amd64 ;; esac
+echo "==> Arquitetura: $ARCH"
+
 echo "==> Estrutura da ISO"
 xorriso -indev "$ISO" -find / -type f 2>/dev/null > "$TMP/files"
-for f in /live/filesystem.squashfs /live/vmlinuz /live/initrd.img /boot/grub/grub.cfg /EFI/boot/bootx64.efi; do
+EFIFILE=/EFI/boot/bootx64.efi; [ "$ARCH" = i386 ] && EFIFILE=""
+for f in /live/filesystem.squashfs /live/vmlinuz /live/initrd.img /boot/grub/grub.cfg $EFIFILE; do
 	# kernel e initrd levam a versão no nome (ex.: /live/vmlinuz-6.12...)
 	if grep -q "^'\{0,1\}$f" "$TMP/files"; then ok "$f*"; else bad "ausente: $f"; fi
 done
 xorriso -indev "$ISO" -report_el_torito plain 2>/dev/null | grep -qi "BIOS" && ok "El Torito BIOS" || bad "sem boot BIOS"
+if [ "$ARCH" = amd64 ]; then
 xorriso -indev "$ISO" -report_el_torito plain 2>/dev/null | grep -qi "UEFI" && ok "El Torito UEFI" || bad "sem boot UEFI"
 # Secure Boot: o carregador UEFI da ISO tem que ser o shim assinado (não um GRUB sem assinatura)
 TMPEFI=$(mktemp -d)
@@ -36,6 +42,7 @@ else
 fi
 [ -f "$TMPEFI/boot/grubx64.efi" ] && ok "Secure Boot: GRUB assinado presente (grubx64.efi)" || bad "Secure Boot: grubx64.efi ausente"
 rm -r "$TMPEFI"
+fi
 
 echo "==> Extraindo arquivos selecionados do squashfs"
 xorriso -osirrox on -indev "$ISO" -extract /live/filesystem.squashfs "$TMP/fs.sqfs" >/dev/null 2>&1
@@ -78,7 +85,7 @@ grep -q '^ENABLED=yes' "$R/etc/ufw/ufw.conf" && ok "ufw habilitado" || bad "ufw.
 [ -f "$TMP/grub/splash.png" ] && ok "fundo do menu de boot" || bad "grub splash.png"
 
 echo "==> Navegador, Flathub e ferramentas"
-grep -qx i386 "$R/var/lib/dpkg/arch" && ok "arquitetura i386 (Wine/Steam 32 bits)" || bad "i386 não habilitado"
+{ [ "$ARCH" = i386 ] || grep -qx i386 "$R/var/lib/dpkg/arch"; } && ok "arquitetura i386 (Wine/Steam 32 bits / sistema de 32 bits)" || bad "i386 não habilitado"
 grep -q 'packagechooser@fonts' "$R/etc/calamares/settings.conf" && ok "instalador: página Fonte" || bad "página Fonte"
 grep -q '^  - konarofonts$' "$R/etc/calamares/settings.conf" && ok "instalador: aplica a fonte" || bad "konarofonts"
 grep -q 'contrib non-free non-free-firmware' "$R/usr/share/calamares/helpers/calamares-sources-final" && ok "fontes finais com contrib/non-free" || bad "sources-final"
@@ -93,7 +100,7 @@ done
 
 echo "==> Pacotes"
 for p in konaro-desktop konaro-installer konaro-common konaro-store konaro-updater konaro-drivers konaro-welcome \
-	plasma-workspace kwin-wayland sddm calamares dolphin linux-image-amd64 packagekit firefox-esr; do
+	plasma-workspace kwin-wayland sddm calamares dolphin "linux-image-$([ "$ARCH" = i386 ] && echo 686-pae || echo amd64)" packagekit firefox-esr; do
 	if awk -v p="$p" '$1=="Package:"{n=$2} $1=="Status:" && n==p && /installed/{f=1} END{exit !f}' "$R/var/lib/dpkg/status"; then
 		ok "$p"
 	else

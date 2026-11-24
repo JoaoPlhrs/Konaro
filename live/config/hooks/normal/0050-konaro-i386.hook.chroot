@@ -3,5 +3,7 @@
 # Nada de 32 bits vem instalado (imagem mínima); a arquitetura fica pronta para o
 # pacote "Jogos e apps do Windows" (Wine 32 bits, Steam), instalável pela Loja.
 set -e
+# na edição de 32 bits (Lite 32) o i386 já é a arquitetura do sistema
+if [ "$(dpkg --print-architecture)" = i386 ]; then exit 0; fi
 dpkg --add-architecture i386
 dpkg --print-foreign-architectures | grep -qx i386

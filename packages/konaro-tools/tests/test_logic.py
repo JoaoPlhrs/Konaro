@@ -127,6 +127,20 @@ class CatalogTest(unittest.TestCase):
                 self.assertTrue(app["app"].count(".") >= 2, app["id"])
 
 
+class Store32Test(unittest.TestCase):
+    """Em 32 bits a Loja mostra só apps do Debian (Flathub/GitHub não têm 32 bits)."""
+
+    def test_32bit_hides_flatpak_and_github(self):
+        from konaro import store
+        os.environ["KONARO_ARCH"] = "i386"
+        try:
+            apps = store.load_catalog(CATALOG)
+        finally:
+            del os.environ["KONARO_ARCH"]
+        self.assertTrue(apps)
+        self.assertTrue(all(a["backend"] == "apt" for a in apps))
+
+
 class LocalAppsTest(unittest.TestCase):
     """Escolha do arquivo certo no GitHub Releases e leitura de .deb/AppImage."""
 

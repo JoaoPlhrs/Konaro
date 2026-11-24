@@ -1,3 +1,10 @@
+konaro-tools (0.1.1) trixie; urgency=medium
+
+  * Loja: em sistemas de 32 bits (Fênix Lite 32) mostra só apps do Debian
+    (Flathub e GitHub não publicam versões de 32 bits).
+
+ -- Konaro OS Project <maintainers@konaro.invalid>  Tue, 24 Nov 2026 01:19:01 +0000
+
 konaro-tools (0.1.0) trixie; urgency=medium
 
   * Konaro OS 0.1.0 "Fênix" (primeira versão com nome).

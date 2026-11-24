@@ -73,16 +73,25 @@ cp "$ROOT/VERSION" "$ROOT/build/VERSION"
 cp "$ROOT/packages/konaro-desktop/artwork/codename" "$ROOT/build/CODENAME"
 printf '%s\n' "$EDITION" > "$ROOT/build/EDITION"
 # Edição (ex.: lite): tira pacotes das listas (remove.list) e acrescenta a
-# configuração própria dela (listas, preferências do APT, hooks)
-if [ -n "$EDITION" ]; then
-	ED="$ROOT/live/editions/$EDITION"
-	echo "    edição: $EDITION"
+# configuração própria dela (listas, preferências do APT, hooks). Uma edição pode
+# partir de outra (arquivo "base", ex.: lite32 parte da lite) e trocar a
+# arquitetura (arquivo "arch", padrão amd64).
+apply_edition() {
+	ED="$ROOT/live/editions/$1"
+	if [ -f "$ED/base" ]; then apply_edition "$(cat "$ED/base")"; ED="$ROOT/live/editions/$1"; fi
+	echo "    edição: $1"
 	if [ -f "$ED/remove.list" ]; then
 		grep -v '^#' "$ED/remove.list" | while read -r p; do
 			[ -n "$p" ] && sed -i "/^$p\$/d" "$WORK"/config/package-lists/*.list.chroot*
 		done
 	fi
-	cp -a "$ED/config/." "$WORK/config/"
+	[ -d "$ED/config" ] && cp -a "$ED/config/." "$WORK/config/"
+	[ -f "$ED/arch" ] && cp "$ED/arch" "$ROOT/build/ARCH"
+	return 0
+}
+echo amd64 > "$ROOT/build/ARCH"
+if [ -n "$EDITION" ]; then
+	apply_edition "$EDITION"
 fi
 # Pacotes próprios: SÓ os que as listas pedem. O live-build instala todo .deb que
 # estiver em packages.chroot (foi assim que o Wine entrou por engano até a build 9).

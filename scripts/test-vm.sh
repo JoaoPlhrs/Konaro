@@ -9,6 +9,8 @@
 #                        para testar o instalador. Só arquivos de imagem, nunca /dev/*.
 #   --boot-disk          inicia pelo disco virtual (testar o sistema já instalado)
 #   --ram MB             memória da VM (padrão 4096)
+#   --cpu MODELO         modelo de processador do QEMU (ex.: coreduo = Core Duo de 32 bits,
+#                        para testar a edição Fênix Lite 32)
 #   --headless           sem janela; grava capturas de tela periódicas
 #   --shots DIR          diretório das capturas (padrão build/vm/shots)
 #   --interval SEC       intervalo entre capturas (padrão 30)
@@ -20,7 +22,7 @@ set -eu
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 VMDIR="$ROOT/build/vm"
-UEFI=0; SECURE=0; DISK=""; BOOT_DISK=0; RAM=4096; HEADLESS=0
+UEFI=0; SECURE=0; DISK=""; BOOT_DISK=0; RAM=4096; HEADLESS=0; CPU=""
 SHOTS="$VMDIR/shots"; INTERVAL=30; DURATION=900; ISO=""
 
 while [ $# -gt 0 ]; do
@@ -30,6 +32,7 @@ while [ $# -gt 0 ]; do
 		--disk) DISK="$2"; shift ;;
 		--boot-disk) BOOT_DISK=1 ;;
 		--ram) RAM="$2"; shift ;;
+		--cpu) CPU="$2"; shift ;;
 		--headless) HEADLESS=1 ;;
 		--shots) SHOTS="$2"; shift ;;
 		--interval) INTERVAL="$2"; shift ;;
@@ -52,12 +55,12 @@ set -- -m "$RAM" -smp 2 -device virtio-vga -device qemu-xhci -device usb-tablet 
 	-audiodev none,id=snd0 -device intel-hda -device hda-output,audiodev=snd0
 
 if [ -w /dev/kvm ]; then
-	set -- "$@" -enable-kvm -cpu host
+	set -- "$@" -enable-kvm -cpu "${CPU:-host}"
 else
 	echo "AVISO: /dev/kvm indisponível — usando emulação TCG (lenta)." >&2
 	# Com "-cpu max" sob TCG, o renderizador por software do Mesa (llvmpipe) chegou a
 	# derrubar o KWin (falha dentro do código JIT); uma CPU sem AVX é mais estável.
-	set -- "$@" -accel tcg,thread=multi -cpu Nehalem
+	set -- "$@" -accel tcg,thread=multi -cpu "${CPU:-Nehalem}"
 fi
 
 if [ "$UEFI" -eq 1 ]; then

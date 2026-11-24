@@ -1,0 +1,16 @@
+# Do Debian 12, SÓ o kernel de 32 bits e o que o acompanha. Nada mais vem de lá.
+Package: *
+Pin: release n=bookworm
+Pin-Priority: -1
+
+Package: *
+Pin: release n=bookworm-security
+Pin-Priority: -1
+
+Package: linux-image-* linux-headers-* linux-kbuild-* linux-compiler-*
+Pin: release n=bookworm
+Pin-Priority: 500
+
+Package: linux-image-* linux-headers-* linux-kbuild-* linux-compiler-*
+Pin: release n=bookworm-security
+Pin-Priority: 500

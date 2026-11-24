@@ -100,11 +100,11 @@ fi
 echo "== Flatpak"
 check "Flathub configurado (HTTPS)" "flatpak remotes --system -d | grep -q 'https://dl.flathub.org/repo/'"
 check "biblioteca Konaro lista apps Flatpak" "python3 -c 'from konaro import flatpak; a = flatpak.installed_apps(); print(a); assert a == {} or isinstance(a, dict)'"
-check "catálogo do Flathub (AppStream) presente" "test -d /var/lib/flatpak/appstream/flathub/x86_64/active"
+check "catálogo do Flathub (AppStream) presente (em 32 bits o Flathub não tem apps)" "[ \"\$(dpkg --print-architecture)\" = i386 ] || test -d /var/lib/flatpak/appstream/flathub/x86_64/active"
 check "imagem mínima: só o Firefox de navegador" "! dpkg -s brave-browser >/dev/null 2>&1 && ! flatpak info --system com.valvesoftware.Steam >/dev/null 2>&1"
 
 echo "== 32 bits pronto para jogos"
-check "arquitetura i386 habilitada" "dpkg --print-foreign-architectures | grep -qx i386"
+check "arquitetura i386 (habilitada, ou é o próprio sistema de 32 bits)" "dpkg --print-foreign-architectures | grep -qx i386 || [ \"\$(dpkg --print-architecture)\" = i386 ]"
 
 echo "== Drivers"
 check "análise de hardware (konaro-drivers --list)" "konaro-drivers --list"

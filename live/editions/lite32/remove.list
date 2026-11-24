@@ -1,0 +1,4 @@
+# 32 bits: sem UEFI/Secure Boot (computadores de 32 bits usam BIOS)
+shim-signed
+grub-efi-amd64-signed
+mokutil

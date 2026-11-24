@@ -14,7 +14,7 @@ APT="$REPO/apt"
 POOL="$APT/pool/main"
 DIST="$APT/dists/konaro"
 
-mkdir -p "$POOL" "$DIST/main/binary-all" "$DIST/main/binary-amd64"
+mkdir -p "$POOL" "$DIST/main/binary-all" "$DIST/main/binary-amd64" "$DIST/main/binary-i386"
 # guarda só a versão mais nova de cada pacote (o repositório fica pequeno)
 for deb in "$DEBS"/*.deb; do
 	name="$(dpkg-deb -f "$deb" Package)"
@@ -28,7 +28,9 @@ cd "$APT"
 # binary-amd64 tem tudo (amd64 + all); binary-all só os pacotes "all"
 apt-ftparchive packages pool/main > dists/konaro/main/binary-amd64/Packages
 apt-ftparchive --arch all packages pool/main > dists/konaro/main/binary-all/Packages
-for d in binary-all binary-amd64; do
+# binary-i386 (Fênix Lite 32): os pacotes "all" (o efeito de vidro é só amd64)
+apt-ftparchive --arch i386 packages pool/main > dists/konaro/main/binary-i386/Packages
+for d in binary-all binary-amd64 binary-i386; do
 	gzip -9 -n -k -f "dists/konaro/main/$d/Packages"
 done
 apt-ftparchive \
@@ -36,7 +38,7 @@ apt-ftparchive \
 	-o APT::FTPArchive::Release::Label="Konaro OS" \
 	-o APT::FTPArchive::Release::Suite="konaro" \
 	-o APT::FTPArchive::Release::Codename="konaro" \
-	-o APT::FTPArchive::Release::Architectures="amd64 all" \
+	-o APT::FTPArchive::Release::Architectures="amd64 i386 all" \
 	-o APT::FTPArchive::Release::Components="main" \
 	-o APT::FTPArchive::Release::Description="Konaro OS packages" \
 	release dists/konaro > dists/konaro/Release

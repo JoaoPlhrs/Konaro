@@ -21,8 +21,11 @@ if [ -n "$PROXY" ]; then
 	export http_proxy="$PROXY"
 fi
 
-# Catálogo do Flathub (AppStream) para a busca completa da Loja funcionar offline
-flatpak update --system --appstream flathub
+# Catálogo do Flathub (AppStream) para a busca completa da Loja funcionar offline.
+# Em 32 bits (Lite 32) o Flathub não tem apps: a Loja mostra só os do Debian.
+if [ "$(dpkg --print-architecture)" = amd64 ]; then
+	flatpak update --system --appstream flathub
+fi
 
 if [ -n "$PROXY" ]; then
 	flatpak remote-modify --system --url=https://dl.flathub.org/repo/ flathub

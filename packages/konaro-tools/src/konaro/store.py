@@ -35,6 +35,12 @@ CATEGORY_NAMES = {
 }
 
 
+def is_32bit():
+    """Sistema de 32 bits (edição Fênix Lite 32)."""
+    import platform
+    return platform.machine() in ("i386", "i486", "i586", "i686") or os.environ.get("KONARO_ARCH") == "i386"
+
+
 def load_catalog(path=CATALOG):
     with open(path, encoding="utf-8") as fh:
         apps = json.load(fh)["apps"]
@@ -45,6 +51,8 @@ def load_catalog(path=CATALOG):
         app.setdefault("origin", {"flatpak": "flathub", "github": "github"}.get(app["backend"], "debian"))
         if app["origin"] == "brave" and not brave_repo and not os.environ.get("KONARO_STORE_ALL"):
             continue  # sem o repositório oficial do Brave, não há de onde instalar
+        if is_32bit() and app["backend"] in ("flatpak", "github"):
+            continue  # Flathub e GitHub não publicam versões de 32 bits (Lite 32)
         shipped = os.path.join(icons_dir, app["id"] + ".png")
         if os.path.exists(shipped):
             app["icon"] = shipped   # ícone oficial do app (AppStream), mesmo sem estar instalado

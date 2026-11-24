@@ -1,6 +1,6 @@
 # Histórico de versões
 
-Todas as versões do Konaro OS, da mais nova para a mais antiga. Versão atual: **0.1.0 "Fênix"** — [Fênix](https://gofile.io/d/mfNalg4T) e [Fênix Lite](https://gofile.io/d/vGj27CVP) (computadores antigos).
+Todas as versões do Konaro OS, da mais nova para a mais antiga. Versão atual: **0.1.0 "Fênix"** — [Fênix](https://gofile.io/d/mfNalg4T), [Fênix Lite](https://gofile.io/d/vGj27CVP) e [Fênix Lite 32](https://gofile.io/d/fTNK6oQ8) (computadores antigos).
 
 Legenda: ✨ novo · 🎨 visual · 🐛 correção · ⚠️ limitação conhecida
 
@@ -8,12 +8,13 @@ Legenda: ✨ novo · 🎨 visual · 🐛 correção · ⚠️ limitação conhec
 
 ## 🔥 0.1.0 "Fênix" · 2026-11-23 · **atual** — primeira versão com nome
 
-A primeira versão do Konaro com nome de constelação: **Fênix**. Sai em duas edições, com o mesmo visual e os mesmos apps.
+A primeira versão do Konaro com nome de constelação: **Fênix**. Sai em três edições, com o mesmo visual e os mesmos apps.
 
 | Edição | Para quem | Baixar | Tamanho | SHA-256 |
 |---|---|---|---|---|
 | **Fênix** | computadores com 4 GB de RAM ou mais | [**⬇ Gofile**](https://gofile.io/d/mfNalg4T) | 2,4 GB | `018b3422aa6af2c1a5a8ca4d36371b014f2fc73e1b0a2f0a901fb3585bc3e1bd` |
-| **Fênix Lite** | computadores antigos (ex.: notebook de 2007 com 3 GB de RAM) | [**⬇ Gofile**](https://gofile.io/d/vGj27CVP) | 1,8 GB | `504b09255b95d5960e28d19b2aa5aa0b7024b05dc75f4e7ca0a06af2145e52ca` |
+| **Fênix Lite** | computadores antigos de 64 bits (ex.: notebook de 2007 com 3 GB de RAM) | [**⬇ Gofile**](https://gofile.io/d/vGj27CVP) | 1,8 GB | `504b09255b95d5960e28d19b2aa5aa0b7024b05dc75f4e7ca0a06af2145e52ca` |
+| **Fênix Lite 32** | computadores antigos de **32 bits** (Pentium 4, Pentium M, Core Duo, Atom) | [**⬇ Gofile**](https://gofile.io/d/fTNK6oQ8) | 1,8 GB | `cbf569a0193583cfc9ed264265cc54ffeedfca5803e0a5364a302f4b54ae3cd7` |
 
 - 🔥 **Nome Fênix** no sistema: "Sobre este sistema", fastfetch, tela de login em modo texto e o nome do arquivo da ISO.
 - ✨ **Fênix Lite**, a edição para computadores antigos. Mantém o design do Konaro e todos os apps do Konaro, mas:
@@ -23,8 +24,9 @@ A primeira versão do Konaro com nome de constelação: **Fênix**. Sai em duas 
   - **Firefox mais leve** e menos gravações no disco;
   - em placas de vídeo **sem OpenGL 2** (ex.: Intel GMA 950), a interface e o login são desenhados pelo processador e funcionam mesmo assim;
   - saem pacotes pesados dispensáveis num PC antigo: fontes de idiomas raros, cofres criptografados, backup Kup, ibus, Vulkan, firmware de servidores, temas de ícones extras, KeePassXC e fwupd. Tudo continua instalável pela Loja.
+- ✨ **Fênix Lite 32**: a mesma Fênix Lite (KDE Plasma 6, Debian 13, visual e apps do Konaro) para processadores de **32 bits**. Como o Debian 13 não tem mais kernel de 32 bits, só o kernel vem do Debian 12 (Linux 6.1 LTS, com atualizações de segurança até 2028). Inicia por BIOS ou UEFI (sem Secure Boot). Na Loja aparecem só os apps do Debian, porque Flathub e GitHub não publicam versões de 32 bits.
 - 🐛 **O Wine não vem mais dentro da ISO.** Desde a build 6 ele entrava por engano (~740 MB). Agora ele vem só quando você instala "Jogos e apps do Windows" pela Loja ou abre um .exe.
-- Requisitos da Lite: processador de **64 bits** (Core 2 Duo, Pentium Dual-Core T23xx/T3xxx, Athlon 64/Turion 64 ou mais novo), 2 GB de RAM (3 GB recomendado) e 20 GB de disco. Processadores só de 32 bits não funcionam, porque o Debian 13 não tem mais versão de 32 bits. Detalhes em [docs/EDICOES.md](docs/EDICOES.md).
+- Requisitos da Lite: processador de **64 bits** (Core 2 Duo, Pentium Dual-Core T23xx/T3xxx, Athlon 64/Turion 64 ou mais novo), 2 GB de RAM (3 GB recomendado) e 20 GB de disco. Para processadores de 32 bits, use a **Fênix Lite 32**. Detalhes em [docs/EDICOES.md](docs/EDICOES.md).
 - Testes: Fênix — `verify-iso` OK · teste de sistema 19/19 · boot em VM com Secure Boot até a área de trabalho. Fênix Lite — `verify-iso` OK · teste de sistema 19/19 · sessão Plasma real com as configurações leves ativas (sem vidro, sem janelas gelatinosas). Boot da Lite em VM com **BIOS antiga e 3 GB de RAM** até a área de trabalho: com Boas-vindas e Konsole abertos, 1,1 GB ainda disponível e 2,9 GB de memória comprimida (zram) prontos (no modo live parte da RAM guarda o próprio sistema; instalado sobra mais). Nenhuma das duas foi testada em computador físico ainda.
 
 ## 0.1.0-dev9 · build 9 — "Vidro" · 2026-11-23

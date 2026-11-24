@@ -1,0 +1,5 @@
+# Konaro OS Fênix Lite 32 — o Debian 13 não tem kernel de 32 bits. O kernel vem do
+# Debian 12 (linux 6.1, LTS com atualizações de segurança até 2028). Só o kernel:
+# todo o resto do sistema continua sendo do Debian 13 (ver bookworm-kernel.pref).
+deb http://deb.debian.org/debian bookworm main non-free-firmware
+deb http://security.debian.org/debian-security bookworm-security main non-free-firmware

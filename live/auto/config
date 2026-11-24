@@ -22,6 +22,18 @@ KONARO_NAME_FS="$(printf '%s' "$KONARO_CODENAME" | sed 's/á/a/g; s/à/a/g; s/â
 KONARO_IMAGE="konaro-os${KONARO_NAME_FS:+-$KONARO_NAME_FS}${KONARO_EDITION:+-$KONARO_EDITION}-${KONARO_VERSION_FS}"
 KONARO_LABEL="$(printf 'KONARO_%s%s_%s' "$KONARO_NAME_FS" "${KONARO_EDITION:+_$KONARO_EDITION}" "$KONARO_VERSION_FS" | tr '[:lower:]' '[:upper:]' | cut -c1-32)"
 
+# Arquitetura (gravada por scripts/build-iso.sh conforme a edição). Em 32 bits
+# (i386) o Debian 13 não tem kernel nem instalador: o kernel vem do Debian 12
+# (686-pae, com atualizações de segurança até 2028) e o boot é só BIOS.
+KONARO_ARCH="$(cat "$(dirname "$0")/../../ARCH" 2>/dev/null || echo amd64)"
+if [ "$KONARO_ARCH" = i386 ]; then
+	KONARO_FLAVOURS="686-pae"; KONARO_BOOTLOADERS="grub-pc grub-efi"; KONARO_SECUREBOOT="disable"
+	KONARO_ARCH_APPEND=" forcepae"
+else
+	KONARO_FLAVOURS="amd64"; KONARO_BOOTLOADERS="grub-pc grub-efi"; KONARO_SECUREBOOT="enable"
+	KONARO_ARCH_APPEND=""
+fi
+
 KONARO_MIRROR="${KONARO_MIRROR:-http://deb.debian.org/debian}"
 KONARO_SECURITY_MIRROR="${KONARO_SECURITY_MIRROR:-http://security.debian.org/debian-security}"
 
@@ -38,15 +50,15 @@ fi
 lb config noauto \
 	--mode debian \
 	--distribution trixie \
-	--architectures amd64 \
-	--linux-flavours amd64 \
+	--architectures "${KONARO_ARCH}" \
+	--linux-flavours "${KONARO_FLAVOURS}" \
 	--archive-areas "main non-free non-free-firmware" \
 	--security true \
 	--updates true \
 	--apt-recommends true \
 	--binary-image iso-hybrid \
-	--bootloaders "grub-pc grub-efi" \
-	--uefi-secure-boot enable \
+	--bootloaders "${KONARO_BOOTLOADERS}" \
+	--uefi-secure-boot "${KONARO_SECUREBOOT}" \
 	--debian-installer none \
 	--firmware-chroot true \
 	--firmware-binary false \
@@ -62,6 +74,6 @@ lb config noauto \
 	--iso-publisher "Konaro OS Project" \
 	--iso-preparer "live-build; see konaro-os/docs/BUILDING.md" \
 	--iso-volume "${KONARO_LABEL}" \
-	--bootappend-live "boot=live components quiet splash hostname=konaro username=konaro user-fullname=Konaro locales=${KONARO_LIVE_LOCALE} keyboard-layouts=${KONARO_LIVE_KEYBOARD} timezone=${KONARO_LIVE_TIMEZONE}" \
-	--bootappend-live-failsafe "boot=live components memtest noapic noapm nodma nomce nosmp nosplash nomodeset vga=788 hostname=konaro username=konaro" \
+	--bootappend-live "boot=live components quiet splash hostname=konaro username=konaro user-fullname=Konaro locales=${KONARO_LIVE_LOCALE} keyboard-layouts=${KONARO_LIVE_KEYBOARD} timezone=${KONARO_LIVE_TIMEZONE}${KONARO_ARCH_APPEND}" \
+	--bootappend-live-failsafe "boot=live components memtest noapic noapm nodma nomce nosmp nosplash nomodeset vga=788 hostname=konaro username=konaro${KONARO_ARCH_APPEND}" \
 	"$@"
