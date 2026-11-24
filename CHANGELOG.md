@@ -25,7 +25,7 @@ A primeira versão do Konaro com nome de constelação: **Fênix**. Sai em duas 
   - saem pacotes pesados dispensáveis num PC antigo: fontes de idiomas raros, cofres criptografados, backup Kup, ibus, Vulkan, firmware de servidores, temas de ícones extras, KeePassXC e fwupd. Tudo continua instalável pela Loja.
 - 🐛 **O Wine não vem mais dentro da ISO.** Desde a build 6 ele entrava por engano (~740 MB). Agora ele vem só quando você instala "Jogos e apps do Windows" pela Loja ou abre um .exe.
 - Requisitos da Lite: processador de **64 bits** (Core 2 Duo, Pentium Dual-Core T23xx/T3xxx, Athlon 64/Turion 64 ou mais novo), 2 GB de RAM (3 GB recomendado) e 20 GB de disco. Processadores só de 32 bits não funcionam, porque o Debian 13 não tem mais versão de 32 bits. Detalhes em [docs/EDICOES.md](docs/EDICOES.md).
-- Testes: Fênix — `verify-iso` OK · teste de sistema 19/19 · boot em VM com Secure Boot até a área de trabalho. Fênix Lite — `verify-iso` OK · teste de sistema 19/19 · sessão Plasma real com as configurações leves ativas (sem vidro, sem janelas gelatinosas). Nenhuma das duas foi testada em computador físico ainda.
+- Testes: Fênix — `verify-iso` OK · teste de sistema 19/19 · boot em VM com Secure Boot até a área de trabalho. Fênix Lite — `verify-iso` OK · teste de sistema 19/19 · sessão Plasma real com as configurações leves ativas (sem vidro, sem janelas gelatinosas). Boot da Lite em VM com **BIOS antiga e 3 GB de RAM** até a área de trabalho: com Boas-vindas e Konsole abertos, 1,1 GB ainda disponível e 2,9 GB de memória comprimida (zram) prontos (no modo live parte da RAM guarda o próprio sistema; instalado sobra mais). Nenhuma das duas foi testada em computador físico ainda.
 
 ## 0.1.0-dev9 · build 9 — "Vidro" · 2026-11-23
 
