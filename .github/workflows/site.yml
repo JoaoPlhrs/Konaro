@@ -1,4 +1,7 @@
 # Publica o site do Konaro OS (pasta site/) no GitHub Pages a cada alteração.
+# Dois jobs separados (como no modelo oficial do GitHub): com o envio e a publicação
+# no mesmo job, a publicação às vezes procurava o pacote do site antes de o GitHub
+# registrá-lo e falhava com "No artifacts named github-pages were found".
 name: Site
 on:
   push:
@@ -11,18 +14,22 @@ permissions:
   id-token: write
 concurrency:
   group: pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
           path: site
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
       - id: deployment
         uses: actions/deploy-pages@v4
