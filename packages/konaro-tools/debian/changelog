@@ -1,3 +1,10 @@
+konaro-tools (0.1.3) trixie; urgency=medium
+
+  * Loja: buscar ou abrir uma categoria fechava a Loja desde que entraram os
+    apps do GitHub (Hydra e outros). Corrigido e coberto por teste.
+
+ -- Konaro OS Project <maintainers@konaro.invalid>  Wed, 25 Nov 2026 10:32:18 +0000
+
 konaro-tools (0.1.2) trixie; urgency=medium
 
   * Correções: a Loja não fecha mais (catálogo leve, sem duplicar o Flathub;

@@ -56,6 +56,7 @@ lb config noauto \
 	--security true \
 	--updates true \
 	--apt-recommends true \
+	--apt-source-archives false \
 	--binary-image iso-hybrid \
 	--bootloaders "${KONARO_BOOTLOADERS}" \
 	--uefi-secure-boot "${KONARO_SECUREBOOT}" \

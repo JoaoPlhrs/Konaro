@@ -66,6 +66,20 @@ def load_catalog(path=CATALOG):
     return result
 
 
+def skip_keys(apps):
+    """Identificadores dos apps do catálogo curado, para a busca completa não repeti-los.
+    Cada tipo de app tem o seu: pacote (apt), id Flatpak ou só o id (GitHub). Antes,
+    um app do GitHub (sem "app") fazia a Loja fechar ao buscar ou abrir uma categoria."""
+    skip = set()
+    for a in apps:
+        skip.add(a["id"])
+        if a["backend"] == "apt" and a.get("packages"):
+            skip.add(a["packages"][0])
+        elif a["backend"] == "flatpak" and a.get("app"):
+            skip.add(a["app"])
+    return skip
+
+
 class StoreBridge(QObject):
     appsChanged = pyqtSignal()
     busyChanged = pyqtSignal()
@@ -242,13 +256,7 @@ class StoreBridge(QObject):
         self._extra_key = key
         self._loading_more = True
         self.busyChanged.emit()
-        skip = set()
-        for a in self._apps:
-            skip.add(a["id"])
-            if a["backend"] == "apt":
-                skip.add(a["packages"][0])
-            else:
-                skip.add(a["app"])
+        skip = skip_keys(self._apps)
 
         def work(progress=None):
             from . import catalog

@@ -26,7 +26,9 @@ def friendly_error(details):
     if any(k in text for k in ("not authorized", "authorization", "dismissed", "cancelled", "canceled")):
         return _("The operation was cancelled or the password was not confirmed.")
     if any(k in text for k in ("offline", "no network", "network", "could not resolve", "failed to fetch",
-                               "temporary failure")):
+                               "temporary failure", "could not connect", "unable to connect", "connection refused",
+                               "connection timed out", "not (yet) available", "no route to host",
+                               "unable to fetch", "could not download")):
         return _("No internet connection. Connect to a network and try again.")
     if any(k in text for k in ("lock", "another transaction", "in use", "already running")):
         return _("Another installation or update is already running. Wait for it to finish and try again.")
@@ -117,16 +119,30 @@ def lists_empty():
 def install(names, progress=None):
     # Sem lista de pacotes (sessão live) ou pacote ausente da lista: atualiza a lista
     # primeiro (baixa da internet) e tenta de novo, em vez de dizer "não encontrado".
+    refresh_error = None
+
+    def try_refresh():
+        # um repositório fora do ar não pode impedir a instalação: o PackageKit
+        # atualiza os outros e devolve erro; seguimos e só falhamos se o pacote
+        # continuar sem aparecer
+        nonlocal refresh_error
+        try:
+            refresh(progress=progress)
+        except PackageError as exc:
+            refresh_error = exc
+
     if lists_empty():
-        refresh(progress=progress)
+        try_refresh()
     info = resolve(names)
     if any(not info.get(n) or (not info[n]["id"] and not info[n]["installed"]) for n in names if n):
-        refresh(progress=progress)
+        try_refresh()
         info = resolve(names)
     ids = []
     for name in names:
         entry = info.get(name)
         if not entry or (not entry["id"] and not entry["installed"]):
+            if refresh_error is not None and lists_empty():
+                raise refresh_error          # ex.: sem internet: a mensagem certa é essa
             raise PackageError(_("The package was not found in the configured sources."), name)
         if not entry["installed"]:
             ids.append(entry["id"])

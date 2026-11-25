@@ -1,20 +1,43 @@
 # Histórico de versões
 
-Todas as versões do Konaro OS, da mais nova para a mais antiga. Versão atual: **0.1.0 "Fênix"** — [Fênix](https://gofile.io/d/mfNalg4T), [Fênix Lite](https://gofile.io/d/vGj27CVP) e [Fênix Lite 32](https://gofile.io/d/fTNK6oQ8) (computadores antigos).
+Todas as versões do Konaro OS, da mais nova para a mais antiga. Versão atual: **0.1.1 "Fênix"** — [Fênix](https://gofile.io/d/IMrf2TPM), [Fênix Lite](https://gofile.io/d/WWvc6XnI) e [Fênix Lite 32](https://gofile.io/d/42gKQkbY) (computadores antigos).
 
 Legenda: ✨ novo · 🎨 visual · 🐛 correção · ⚠️ limitação conhecida
 
 ---
 
-## 🔥 0.1.0 "Fênix" · 2026-11-23 · **atual** — primeira versão com nome
+## 🔥 0.1.1 "Fênix" (correções) · 2026-11-25 · **atual**
+
+Correções importantes. Se você baixou a 0.1.0, baixe a 0.1.1. Quem já instalou recebe as correções pelas **Atualizações do Konaro**.
+
+| Edição | Para quem | Baixar | Tamanho | SHA-256 |
+|---|---|---|---|---|
+| **Fênix** | computadores com 4 GB de RAM ou mais | [**⬇ Gofile**](https://gofile.io/d/IMrf2TPM) | 2,4 GB | `030d7025131a75331b7b2fa3e2fceab883cfc12542b8c13546e91188855ef1db` |
+| **Fênix Lite** | computadores antigos de 64 bits | [**⬇ Gofile**](https://gofile.io/d/WWvc6XnI) | 1,7 GB | `01b82a740d0ff6a25a27d662485e238becf2b482cfd973ceb863f3b74ecba396` |
+| **Fênix Lite 32** | computadores antigos de 32 bits | [**⬇ Gofile**](https://gofile.io/d/42gKQkbY) | 1,8 GB | `f9cb5733e8e90d8c33ccda12eac50e96a2dac028bbe328d34a99a5fd5b0ec8ee` |
+
+- 🐛 **A Loja fechava ao buscar ou abrir uma categoria.** Esse erro existia desde a chegada dos apps do GitHub (Hydra e outros). Está corrigido e coberto por teste.
+- 🐛 **Apps que não abriam e tela preta depois de alguns minutos.** Em computadores e máquinas virtuais com pouca memória, a RAM acabava e o sistema fechava programas à força, inclusive a área de trabalho. Agora:
+  - todas as edições têm **memória comprimida (zram)**;
+  - a Loja usa ~30 MB em vez de ~550 MB ao buscar, porque o catálogo vem pronto na imagem e não é mais carregado duas vezes;
+  - um erro inesperado não fecha mais os apps do Konaro.
+- 🐛 **Em máquina virtual a tela ficava preta.** A economia de energia desligava a tela e suspendia o sistema, e a máquina virtual não acordava. Numa máquina virtual o Konaro agora não desliga a tela nem suspende, e só bloqueia a tela depois de 15 minutos.
+- ✨ **Modo leve automático sem aceleração 3D** (ex.: VirtualBox sem 3D): sem vidro e sem efeitos pesados, para não deixar tudo lento. Com placa de vídeo de verdade, nada muda.
+- 🐛 **Baixar pela internet não funcionava** (temas de ícones, ambientes gráficos, apps, Wine). A imagem vinha sem a lista de pacotes. Agora o Konaro baixa a lista antes de instalar, mesmo que um repositório esteja fora do ar. Sem internet, ele avisa isso claramente.
+- 🐛 **Senha nas Boas-vindas:** funciona também na sessão live. No sistema instalado, a senha da Carteira do KDE (senhas de Wi-Fi) é atualizada junto.
+- 🎨 **Chapéus do avatar:** o gorro e o boné agora cobrem a cabeça inteira, sem cabelo aparecendo por cima e sem esconder as sobrancelhas.
+- ✨ Com menos de 3 GB de RAM, as Boas-vindas sugerem a Fênix Lite.
+- Testes: Fênix, Fênix Lite e Fênix Lite 32 — `verify-iso` OK e teste de sistema 19/19 nas três; numa sessão Plasma real: apps abrem, a Loja abre as categorias (90 apps em Jogos) e fica aberta, modo leve automático sem 3D, instalar com a lista de pacotes vazia funciona e, sem internet, a mensagem certa aparece.
+
+## 🔥 0.1.0 "Fênix" · 2026-11-23 — primeira versão com nome
 
 A primeira versão do Konaro com nome de constelação: **Fênix**. Sai em três edições, com o mesmo visual e os mesmos apps.
 
 | Edição | Para quem | Baixar | Tamanho | SHA-256 |
 |---|---|---|---|---|
-| **Fênix** | computadores com 4 GB de RAM ou mais | [**⬇ Gofile**](https://gofile.io/d/mfNalg4T) | 2,4 GB | `018b3422aa6af2c1a5a8ca4d36371b014f2fc73e1b0a2f0a901fb3585bc3e1bd` |
-| **Fênix Lite** | computadores antigos de 64 bits (ex.: notebook de 2007 com 3 GB de RAM) | [**⬇ Gofile**](https://gofile.io/d/vGj27CVP) | 1,8 GB | `504b09255b95d5960e28d19b2aa5aa0b7024b05dc75f4e7ca0a06af2145e52ca` |
-| **Fênix Lite 32** | computadores antigos de **32 bits** (Pentium 4, Pentium M, Core Duo, Atom) | [**⬇ Gofile**](https://gofile.io/d/fTNK6oQ8) | 1,8 GB | `cbf569a0193583cfc9ed264265cc54ffeedfca5803e0a5364a302f4b54ae3cd7` |
+| **Fênix** | computadores com 4 GB de RAM ou mais | substituída pela 0.1.1 | 2,4 GB | `018b3422aa6af2c1a5a8ca4d36371b014f2fc73e1b0a2f0a901fb3585bc3e1bd` |
+| **Fênix Lite** | computadores antigos de 64 bits (ex.: notebook de 2007 com 3 GB de RAM) | substituída pela 0.1.1 | 1,8 GB | `504b09255b95d5960e28d19b2aa5aa0b7024b05dc75f4e7ca0a06af2145e52ca` |
+| **Fênix Lite 32** | computadores antigos de **32 bits** (Pentium 4, Pentium M, Core Duo, Atom) | substituída pela 0.1.1 | 1,8 GB | `cbf569a0193583cfc9ed264265cc54ffeedfca5803e0a5364a302f4b54ae3cd7` |
 
 - 🔥 **Nome Fênix** no sistema: "Sobre este sistema", fastfetch, tela de login em modo texto e o nome do arquivo da ISO.
 - ✨ **Fênix Lite**, a edição para computadores antigos. Mantém o design do Konaro e todos os apps do Konaro, mas:

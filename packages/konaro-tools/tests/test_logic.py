@@ -127,6 +127,29 @@ class CatalogTest(unittest.TestCase):
                 self.assertTrue(app["app"].count(".") >= 2, app["id"])
 
 
+class OfflineMessageTest(unittest.TestCase):
+    """Sem internet, a mensagem tem que dizer isso (não "Algo deu errado")."""
+
+    def test_offline_messages(self):
+        from konaro import i18n, packagekit
+        expected = i18n._("No internet connection. Connect to a network and try again.")
+        for detail in ("E: https://deb.debian.org/debian trixie InRelease is not (yet) available (Could not connect to 127.0.0.1:9 (127.0.0.1). - connect (111: Connection refused))",
+                       "Cannot download packages whilst offline"):
+            self.assertEqual(packagekit.friendly_error(detail), expected)
+
+
+class StoreSearchTest(unittest.TestCase):
+    """Buscar e abrir categorias não pode quebrar com apps do GitHub no catálogo."""
+
+    def test_skip_keys_all_backends(self):
+        from konaro import store
+        apps = store.load_catalog(CATALOG)
+        self.assertTrue(any(a["backend"] == "github" for a in apps))
+        keys = store.skip_keys(apps)
+        self.assertIn("hydra-launcher", keys)
+        self.assertIn("com.valvesoftware.Steam", keys)
+
+
 class Store32Test(unittest.TestCase):
     """Em 32 bits a Loja mostra só apps do Debian (Flathub/GitHub não têm 32 bits)."""
 

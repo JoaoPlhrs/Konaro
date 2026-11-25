@@ -1,9 +1,9 @@
 <p align="center"><img src="docs/assets/banner.png" alt="Konaro OS" width="100%"></p>
 
 <p align="center">
-  <a href="https://gofile.io/d/mfNalg4T"><img src="https://img.shields.io/badge/⬇_Baixar-Fênix_0.1.0-1d1d1f?style=for-the-badge" alt="Baixar Fênix"></a>
-  <a href="https://gofile.io/d/vGj27CVP"><img src="https://img.shields.io/badge/⬇_Baixar-Fênix_Lite-6e6e73?style=for-the-badge" alt="Baixar Fênix Lite"></a>
-  <a href="https://gofile.io/d/fTNK6oQ8"><img src="https://img.shields.io/badge/⬇_Baixar-Fênix_Lite_32_bits-8e8e93?style=for-the-badge" alt="Baixar Fênix Lite 32"></a>
+  <a href="https://gofile.io/d/IMrf2TPM"><img src="https://img.shields.io/badge/⬇_Baixar-Fênix_0.1.1-1d1d1f?style=for-the-badge" alt="Baixar Fênix"></a>
+  <a href="https://gofile.io/d/WWvc6XnI"><img src="https://img.shields.io/badge/⬇_Baixar-Fênix_Lite-6e6e73?style=for-the-badge" alt="Baixar Fênix Lite"></a>
+  <a href="https://gofile.io/d/42gKQkbY"><img src="https://img.shields.io/badge/⬇_Baixar-Fênix_Lite_32_bits-8e8e93?style=for-the-badge" alt="Baixar Fênix Lite 32"></a>
   <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/Novidades-Fênix-3a3a3c?style=for-the-badge" alt="Novidades"></a>
   <a href="docs/STATUS.md"><img src="https://img.shields.io/badge/Testes-24%2F24-28c840?style=for-the-badge" alt="Testes"></a>
 </p>
@@ -27,9 +27,10 @@ Visual inspirado no macOS, jeito de usar familiar para quem vem do Windows.</p>
 
 | Versão | Data | Tamanho | O que mudou | Baixar |
 |---|---|---|---|---|
-| 🔥 **0.1.0 "Fênix"** | 2026-11-23 | 2,4 GB | Primeira versão com nome. Tudo da build 9 (Liquid Glass, Loja com GitHub, .deb/AppImage, senha, firewall, sessões, temas) e o Wine fora da ISO | [**⬇ Baixar Fênix**](https://gofile.io/d/mfNalg4T) |
-| 🔥 **0.1.0 "Fênix Lite"** | 2026-11-23 | 1,8 GB | Edição para **computadores antigos** (ex.: 2007, 3 GB de RAM): mesmo visual, memória comprimida, sem efeitos pesados, Firefox leve, funciona em placas de vídeo antigas | [**⬇ Baixar Fênix Lite**](https://gofile.io/d/vGj27CVP) |
-| 🔥 **0.1.0 "Fênix Lite 32"** | 2026-11-24 | 1,8 GB | A mesma Fênix Lite para computadores de **32 bits** (Pentium 4, Pentium M, Core Duo, Atom) | [**⬇ Baixar Fênix Lite 32**](https://gofile.io/d/fTNK6oQ8) |
+| 🔥 **0.1.1 "Fênix"** | 2026-11-25 | 2,4 GB | Correções: a Loja não fecha mais, apps abrem e a tela não fica preta com pouca memória (zram), downloads funcionam na sessão live, senha nas Boas-vindas, chapéus do avatar, modo leve sem 3D | [**⬇ Baixar Fênix**](https://gofile.io/d/IMrf2TPM) |
+| 🔥 **0.1.1 "Fênix Lite"** | 2026-11-25 | 1,7 GB | Edição para **computadores antigos** (ex.: 2007, 3 GB de RAM): mesmo visual, memória comprimida, sem efeitos pesados, Firefox leve, funciona em placas de vídeo antigas | [**⬇ Baixar Fênix Lite**](https://gofile.io/d/WWvc6XnI) |
+| 🔥 **0.1.1 "Fênix Lite 32"** | 2026-11-25 | 1,8 GB | A mesma Fênix Lite para computadores de **32 bits** (Pentium 4, Pentium M, Core Duo, Atom) | [**⬇ Baixar Fênix Lite 32**](https://gofile.io/d/42gKQkbY) |
+| 0.1.0 "Fênix" (Fênix, Lite e Lite 32) | 2026-11-23 | 1,8–2,4 GB | Primeira versão com nome | substituída pela 0.1.1 |
 | 0.1.0-dev9 · build 9 "Vidro" | 2026-11-23 | 2,6 GB | Liquid Glass com refração, Loja com apps do GitHub (Hydra Launcher), .deb e AppImage com dois cliques, senha nas Boas-vindas, firewall na Central de controle, GNOME/Xfce/Cinnamon/MATE e seletor de sessão, sistema identificado como Konaro OS, 12 cores de destaque e 5 temas de ícones | substituída pela Fênix |
 | 0.1.0-dev8 · build 8 "Detalhes" | 2026-11-22 | 2,8 GB | Tela de bloqueio Konaro, fastfetch, animações, som de inicialização, "Por que está lento?", "Restaurar", .exe com Wine | substituída pela Fênix |
 | 0.1.0-dev7 · build 7 "Avatares" | 2026-11-22 | 2,7 GB | Meu Avatar refeito | substituída pela build 8 |
@@ -40,7 +41,7 @@ Visual inspirado no macOS, jeito de usar familiar para quem vem do Windows.</p>
 | 0.1.0-dev1 · build 2 "Ferramentas" | 2026-11-22 | — | Loja, Atualizações, Drivers, Boas-vindas, navegadores, jogos | substituída pela build 3 |
 | 0.1.0-dev1 · build 1 "Fundação" | 2026-11-22 | — | Base Debian 13 + Plasma 6, instalador, identidade | substituída pela build 3 |
 
-Site oficial: **[joaoplhrs.github.io/Konaro](https://joaoplhrs.github.io/Konaro/)** · Detalhes de cada versão em **[CHANGELOG.md](CHANGELOG.md)** · comparativo de desempenho com o Windows 11: **[docs/OTIMIZACAO.md](docs/OTIMIZACAO.md)**. SHA-256 — Fênix: `018b3422aa6af2c1a5a8ca4d36371b014f2fc73e1b0a2f0a901fb3585bc3e1bd` · Fênix Lite: `504b09255b95d5960e28d19b2aa5aa0b7024b05dc75f4e7ca0a06af2145e52ca` · Fênix Lite 32: `cbf569a0193583cfc9ed264265cc54ffeedfca5803e0a5364a302f4b54ae3cd7`. Qual escolher? Veja **[docs/EDICOES.md](docs/EDICOES.md)**.
+Site oficial: **[joaoplhrs.github.io/Konaro](https://joaoplhrs.github.io/Konaro/)** · Detalhes de cada versão em **[CHANGELOG.md](CHANGELOG.md)** · comparativo de desempenho com o Windows 11: **[docs/OTIMIZACAO.md](docs/OTIMIZACAO.md)**. SHA-256 — Fênix: `030d7025131a75331b7b2fa3e2fceab883cfc12542b8c13546e91188855ef1db` · Fênix Lite: `01b82a740d0ff6a25a27d662485e238becf2b482cfd973ceb863f3b74ecba396` · Fênix Lite 32: `f9cb5733e8e90d8c33ccda12eac50e96a2dac028bbe328d34a99a5fd5b0ec8ee`. Qual escolher? Veja **[docs/EDICOES.md](docs/EDICOES.md)**.
 
 > ⚠️ **Build de desenvolvimento.** Teste primeiro numa máquina virtual. O que foi e o que
 > não foi testado está em [docs/STATUS.md](docs/STATUS.md).
