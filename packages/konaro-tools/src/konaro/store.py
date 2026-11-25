@@ -78,6 +78,7 @@ class StoreBridge(QObject):
         self._apt = None            # {pacote: instalado?} — None enquanto carrega
         self._flatpak = None        # {app_id: "system"|"user"}
         self._github = None         # {app_id: registro} dos apps vindos do GitHub
+        self._lists_fetched = False
         self._busy_id = ""
         self._progress = -1.0
         self._pool = WorkerPool()
@@ -134,6 +135,19 @@ class StoreBridge(QObject):
         def done(result):
             self._apt, self._flatpak, self._github = result
             self.appsChanged.emit()
+            # sessão live: a imagem vem sem a lista de pacotes; baixa em segundo plano
+            # (uma vez) para que instalar e buscar apps do Debian funcionem
+            if not self._lists_fetched and packagekit.lists_empty():
+                self._lists_fetched = True
+                self._pool.start(Worker(fetch_lists, parent=self), ok=lambda _r: self.refresh())
+
+        def fetch_lists(progress=None):
+            try:
+                packagekit.refresh()
+            except packagekit.PackageError:
+                pass   # sem internet: tenta de novo ao instalar
+            from . import catalog
+            catalog.reset()
 
         self._pool.start(Worker(check, parent=self), ok=done)
 

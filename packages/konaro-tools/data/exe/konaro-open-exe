@@ -10,7 +10,9 @@ if ! command -v wine >/dev/null 2>&1; then
 		--yesno "Para abrir programas do Windows, o Konaro precisa do Wine.\n\nInstalar agora o pacote \"Jogos e apps do Windows\"? Leva alguns minutos e precisa de internet." \
 		|| exit 0
 	kdialog --title "Programa do Windows" --passivepopup "Instalando o suporte a programas do Windows… o programa abre sozinho ao terminar." 10 &
-	if ! pkcon install -y konaro-gaming >/tmp/konaro-open-exe.log 2>&1; then
+	# a lista de pacotes pode estar vazia (sessão live): atualiza antes de instalar
+	pkcon refresh >/tmp/konaro-open-exe.log 2>&1 || true
+	if ! pkcon install -y konaro-gaming >>/tmp/konaro-open-exe.log 2>&1; then
 		kdialog --title "Programa do Windows" --error "Não foi possível instalar o Wine. Verifique a internet e tente de novo pela Loja Konaro (Apps do Windows)."
 		exit 1
 	fi

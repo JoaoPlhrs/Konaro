@@ -107,8 +107,22 @@ def resolve(names, progress=None):
     return found
 
 
+def lists_empty():
+    """A lista de pacotes do sistema está vazia? (acontece na sessão live: a imagem
+    vem sem as listas para ficar menor). Sem ela nada pode ser instalado."""
+    import glob
+    return not glob.glob("/var/lib/apt/lists/*_Packages*")
+
+
 def install(names, progress=None):
+    # Sem lista de pacotes (sessão live) ou pacote ausente da lista: atualiza a lista
+    # primeiro (baixa da internet) e tenta de novo, em vez de dizer "não encontrado".
+    if lists_empty():
+        refresh(progress=progress)
     info = resolve(names)
+    if any(not info.get(n) or (not info[n]["id"] and not info[n]["installed"]) for n in names if n):
+        refresh(progress=progress)
+        info = resolve(names)
     ids = []
     for name in names:
         entry = info.get(name)

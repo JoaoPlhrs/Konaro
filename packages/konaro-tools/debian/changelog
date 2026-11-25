@@ -1,3 +1,13 @@
+konaro-tools (0.1.2) trixie; urgency=medium
+
+  * Correções: a Loja não fecha mais (catálogo leve, sem duplicar o Flathub;
+    erros não derrubam os apps); instalar pela Loja, Boas-vindas e .exe funciona
+    na sessão live (baixa a lista de pacotes antes); senha nas Boas-vindas
+    funciona também na sessão live e atualiza a Carteira do KDE; chapéus do
+    avatar ajustados; aviso de pouca memória sugerindo a Fênix Lite.
+
+ -- Konaro OS Project <maintainers@konaro.invalid>  Wed, 25 Nov 2026 10:06:03 +0000
+
 konaro-tools (0.1.1) trixie; urgency=medium
 
   * Loja: em sistemas de 32 bits (Fênix Lite 32) mostra só apps do Debian

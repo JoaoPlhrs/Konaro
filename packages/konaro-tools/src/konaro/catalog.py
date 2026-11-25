@@ -3,7 +3,7 @@
 A página Início continua curada (catalog.json); a busca e as categorias somam a
 ela o catálogo completo, lido dos metadados AppStream que já estão no sistema:
 - Debian: /var/lib/swcatalog (baixado pelo apt junto com as listas de pacotes);
-- Flathub: /var/lib/flatpak/appstream/flathub/x86_64/active (baixado pelo Flatpak).
+- Flathub: /var/lib/flatpak/appstream/flathub/<arquitetura>/active (baixado pelo Flatpak).
 Tudo é lido localmente; ícones remotos só são mostrados se houver internet.
 """
 
@@ -12,7 +12,6 @@ import threading
 
 from .i18n import _
 
-FLATHUB_DATA = "/var/lib/flatpak/appstream/flathub/x86_64/active"
 CATEGORY_MAP = {
     "games": ["Game"],
     "internet": ["Network", "WebBrowser", "Email", "Chat"],
@@ -39,12 +38,20 @@ def pool():
     with _lock:
         if _pool is None:
             AppStream = _appstream()
+            # O AppStream já carrega o Flathub sozinho (LOAD_FLATPAK); adicioná-lo de
+            # novo como "local extra" duplicava o catálogo e dobrava a memória. O cache
+            # pronto vem na imagem (/var/cache/swcatalog), então carregar é rápido e leve.
             p = AppStream.Pool()
-            if os.path.isdir(FLATHUB_DATA):
-                p.add_extra_data_location(FLATHUB_DATA, AppStream.FormatStyle.CATALOG)
             p.load(None)
             _pool = p
         return _pool
+
+
+def reset():
+    """Esquece o catálogo carregado (depois de baixar a lista de pacotes)."""
+    global _pool
+    with _lock:
+        _pool = None
 
 
 def _category(cats):

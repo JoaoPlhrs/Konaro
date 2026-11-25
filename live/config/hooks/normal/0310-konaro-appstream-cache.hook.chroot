@@ -1,0 +1,14 @@
+#!/bin/sh
+# Konaro OS — cache do catálogo de apps (AppStream) pronto na imagem.
+# Sem ele, a primeira busca na Loja montava o cache na memória (mais de 500 MB e
+# ~10 s), o que derrubava a Loja em computadores com pouca RAM. Com o cache pronto,
+# a busca usa ~30 MB. Depois de cada "apt update" o próprio AppStream refaz o cache.
+set -e
+for l in pt_BR.UTF-8 en_US.UTF-8; do
+	sed -i "s/^# *\(${l} UTF-8\)/\1/" /etc/locale.gen
+done
+locale-gen >/dev/null 2>&1 || true
+for l in pt_BR.UTF-8 en_US.UTF-8; do
+	LANG=$l LC_ALL=$l appstreamcli refresh-cache --force >/dev/null 2>&1 || true
+done
+ls /var/cache/swcatalog/cache/*.xb >/dev/null

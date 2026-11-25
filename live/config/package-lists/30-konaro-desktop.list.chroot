@@ -53,3 +53,8 @@ timeshift
 
 # Tema de ícones minimalista (escolhível nas Boas-vindas)
 papirus-icon-theme
+# Memória comprimida (zram) em todas as edições: evita que apps e a área de trabalho
+# sejam fechados à força quando a RAM acaba (ex.: máquina virtual com 2 GB)
+systemd-zram-generator
+# detecção da placa de vídeo (modo leve automático sem aceleração 3D)
+mesa-utils

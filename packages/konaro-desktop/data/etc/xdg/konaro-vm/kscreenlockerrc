@@ -1,0 +1,3 @@
+# Konaro OS — em máquina virtual o bloqueio automático só vem depois de 15 minutos.
+[Daemon]
+Timeout=15

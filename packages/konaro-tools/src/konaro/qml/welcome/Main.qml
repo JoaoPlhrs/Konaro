@@ -101,6 +101,16 @@ ApplicationWindow {
                     KButton { text: t("Install Konaro OS"); kind: "primary"; onClicked: welcome.install() }
                 }
             }
+            // pouca memória na edição normal: sugere a Fênix Lite
+            KText {
+                visible: welcome.memoryHint !== ""
+                text: "⚠  " + t(welcome.memoryHint).replace("{gb}", welcome.memoryGb)
+                color: Theme.danger
+                font.pixelSize: Theme.sizeSmall
+                Layout.topMargin: Theme.s3
+                Layout.maximumWidth: 640
+                Layout.fillWidth: true
+            }
             Item { Layout.fillHeight: true }
         }
 
@@ -320,7 +330,7 @@ ApplicationWindow {
             id: pwPage
             title: t("Your password")
             subtitle: welcome.live
-                ? t("In the live session there is no password to set (it is “live”). After installing, you can change yours here.")
+                ? t("In the live session the password only lasts until you shut down (the current one is “live”). After installing, the one you choose here is permanent.")
                 : t("This password unlocks the screen, logs you in and authorizes installs. Choose one that only you know.")
             property bool busy: false
             property string message: ""
@@ -351,7 +361,7 @@ ApplicationWindow {
                 font.family: Theme.body
                 font.pixelSize: Theme.sizeBody
                 leftPadding: Theme.s3
-                enabled: !welcome.live && !pwPage.busy
+                enabled: !pwPage.busy
                 background: Rectangle {
                     radius: Theme.radiusControl
                     color: Theme.surface
@@ -371,7 +381,7 @@ ApplicationWindow {
                 font.family: Theme.body
                 font.pixelSize: Theme.sizeBody
                 leftPadding: Theme.s3
-                enabled: !welcome.live && !pwPage.busy
+                enabled: !pwPage.busy
                 background: Rectangle {
                     radius: Theme.radiusControl
                     color: Theme.surface
@@ -394,10 +404,10 @@ ApplicationWindow {
                     id: saveBtn
                     text: pwPage.busy ? t("Waiting for confirmation…") : t("Change password")
                     kind: "primary"
-                    enabled: !welcome.live && !pwPage.busy && pw1.text.length >= 6 && pw1.text === pw2.text
+                    enabled: !pwPage.busy && pw1.text.length >= 6 && pw1.text === pw2.text
                     onClicked: { pwPage.busy = true; pwPage.message = ""; welcome.setPassword(pw1.text) }
                 }
-                KText { text: t("Your current password will be asked to confirm."); secondary: true; font.pixelSize: Theme.sizeSmall; visible: !welcome.live }
+                KText { text: t("Your current password will be asked to confirm."); secondary: true; font.pixelSize: Theme.sizeSmall }
             }
             RowLayout {
                 spacing: Theme.s3

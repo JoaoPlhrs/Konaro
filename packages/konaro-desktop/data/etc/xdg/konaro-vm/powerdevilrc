@@ -1,0 +1,20 @@
+# Konaro OS — em máquina virtual (VirtualBox, VMware, QEMU...): sem desligar a tela
+# e sem suspender por inatividade. Muitas máquinas virtuais não conseguem "acordar"
+# o sistema depois disso e a tela fica preta para sempre.
+# Ativado por /etc/xdg/plasma-workspace/env/06-konaro-vm.sh.
+[AC][Display]
+DimDisplayWhenIdle=false
+TurnOffDisplayWhenIdle=false
+
+[AC][SuspendAndShutdown]
+AutoSuspendAction=0
+
+[Battery][Display]
+DimDisplayWhenIdle=false
+TurnOffDisplayWhenIdle=false
+
+[Battery][SuspendAndShutdown]
+AutoSuspendAction=0
+
+[LowBattery][SuspendAndShutdown]
+AutoSuspendAction=0

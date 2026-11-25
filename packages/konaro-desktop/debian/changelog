@@ -1,3 +1,11 @@
+konaro-desktop (0.1.1) trixie; urgency=medium
+
+  * Correções: memória comprimida (zram) em todas as edições; modo leve
+    automático sem aceleração 3D; em máquina virtual, sem desligar a tela nem
+    suspender (a tela ficava preta); chapéus do avatar no lugar certo.
+
+ -- Konaro OS Project <maintainers@konaro.invalid>  Wed, 25 Nov 2026 10:06:03 +0000
+
 konaro-desktop (0.1.0) trixie; urgency=medium
 
   * Konaro OS 0.1.0 "Fênix": nome da versão no sistema (os-release, Sobre este

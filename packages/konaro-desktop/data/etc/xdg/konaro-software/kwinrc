@@ -1,0 +1,13 @@
+# Konaro OS — modo leve automático quando não há aceleração 3D (o processador
+# desenha a tela: máquina virtual sem 3D, placa sem driver). O vidro, o contraste e
+# as janelas gelatinosas pesariam demais e deixariam abrir apps muito lento.
+# Ativado por /etc/xdg/plasma-workspace/env/05-konaro-gpu.sh.
+[Plugins]
+blurEnabled=false
+forceblurEnabled=false
+contrastEnabled=false
+wobblywindowsEnabled=false
+slidingpopupsEnabled=false
+
+[Compositing]
+AnimationDurationFactor=0.6

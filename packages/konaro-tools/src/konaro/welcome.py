@@ -23,6 +23,14 @@ LNF = "/usr/share/plasma/look-and-feel/%s/contents/previews/preview.png"
 CHANGEICONS = "/usr/lib/x86_64-linux-gnu/libexec/plasma-changeicons"
 
 
+def _mem_kb():
+    try:
+        with open("/proc/meminfo", encoding="utf-8") as fh:
+            return int(fh.readline().split()[1])
+    except (OSError, ValueError, IndexError):
+        return 0
+
+
 def is_live():
     try:
         with open("/proc/cmdline", encoding="utf-8") as fh:
@@ -135,6 +143,21 @@ def change_password(new):
     return False, (proc.stderr or proc.stdout).strip()
 
 
+def update_wallet():
+    """A Carteira do KDE (senhas de Wi-Fi) abre com a senha de login. Ao trocar a
+    senha, abre a janela do KDE para trocar a da carteira também; senão ela pediria
+    a senha antiga no próximo login. Devolve True se a janela foi aberta."""
+    wallet = os.path.expanduser("~/.local/share/kwalletd/kdewallet.kwl")
+    if not os.path.exists(wallet):
+        return False
+    try:
+        subprocess.Popen(["qdbus6", "org.kde.kwalletd6", "/modules/kwalletd6", "org.kde.KWallet.changePassword",
+                          "kdewallet", "0", "konaro-welcome"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        return True
+    except OSError:
+        return False
+
+
 def lock_on_resume():
     return _run("kreadconfig6", "--file", "kscreenlockerrc", "--group", "Daemon", "--key", "LockOnResume",
                 "--default", "true") != "false"
@@ -163,6 +186,19 @@ class WelcomeBridge(QObject):
     @pyqtProperty(str, notify=langChanged)
     def lang(self):
         return i18n.LANG
+
+    @pyqtProperty(str, constant=True)
+    def memoryGb(self):
+        return "%.1f" % (_mem_kb() / 1048576.0)
+
+    @pyqtProperty(str, constant=True)
+    def memoryHint(self):
+        """Edição normal com menos de 3 GB de RAM: sugere a Fênix Lite."""
+        lite = os.path.exists("/etc/xdg/konaro-lite")
+        if lite or _mem_kb() == 0 or _mem_kb() >= 3 * 1024 * 1024 - 200 * 1024:
+            return ""
+        return ("This computer has {gb} GB of memory. Konaro Fênix Lite, made for computers "
+                "like this one, will run much better.")
 
     @pyqtProperty(bool, constant=True)
     def live(self):
@@ -289,6 +325,8 @@ class WelcomeBridge(QObject):
             ok, err = change_password(new)
             if ok:
                 msg = _("Password changed. Use it to log in and to unlock the screen.")
+                if update_wallet():
+                    msg += " " + _("Also confirm it in the KDE Wallet window, where Wi-Fi passwords are kept.")
             elif err == "cancelled":
                 msg = _("The current password was not confirmed. Nothing was changed.")
             else:

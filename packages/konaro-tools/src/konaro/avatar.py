@@ -385,16 +385,23 @@ def svg(o, crop="full"):
 
     # chapéus e acessórios de cabeça
     hw = o["headwear"]
-    if hw == 1:   # gorro
-        p.append('<path d="M110,190 C110,60 402,60 402,190 Z" fill="#3C6FD8"/>')
-        p.append('<rect x="100" y="172" width="312" height="48" rx="24" fill="#2D56AE"/>')
-        for x in range(130, 400, 26):
-            p.append('<path d="M%d,180 L%d,212" stroke="white" stroke-width="4" opacity="0.18"/>' % (x, x))
-        p.append('<circle cx="256" cy="64" r="30" fill="#F2F2F7"/>')
-    elif hw == 2:  # boné
-        p.append('<path d="M118,196 C118,76 394,76 394,196 C320,176 192,176 118,196 Z" fill="#E5484D"/>')
-        p.append('<path d="M120,196 C190,176 322,176 392,196 C380,218 132,218 120,196 Z" fill="#B8323A"/>')
-        p.append('<circle cx="256" cy="86" r="9" fill="#B8323A"/>')
+    if hw == 1:   # gorro: cobre o alto da cabeça inteiro (e o cabelo que sobe acima)
+        p.append('<path d="M94,178 C86,82 162,14 256,12 C350,14 426,82 418,178 Z" fill="#3C6FD8"/>')
+        p.append('<path d="M150,70 C190,44 236,36 256,36" fill="none" stroke="white" stroke-width="10" stroke-linecap="round" opacity="0.16"/>')
+        for x in range(150, 380, 34):   # nervuras do tricô
+            p.append('<path d="M%d,%d C%d,100 %d,130 %d,160" fill="none" stroke="#2D56AE" stroke-width="5" opacity="0.5"/>'
+                     % (x, 50 if 200 < x < 312 else 74, x + (x - 256) * 0.05, x + (x - 256) * 0.08, x + (x - 256) * 0.1))
+        p.append('<rect x="86" y="146" width="340" height="48" rx="24" fill="#2D56AE"/>')
+        for x in range(110, 410, 22):
+            p.append('<path d="M%d,154 L%d,186" stroke="white" stroke-width="4" opacity="0.18"/>' % (x, x))
+        p.append('<circle cx="256" cy="18" r="28" fill="#F2F2F7"/><circle cx="246" cy="10" r="10" fill="white" opacity="0.6"/>')
+    elif hw == 2:  # boné: copa cobrindo a cabeça e aba para a frente
+        p.append('<path d="M104,176 C96,80 170,24 256,22 C342,24 416,80 408,176 C330,158 182,158 104,176 Z" fill="#E5484D"/>')
+        p.append('<path d="M256,24 L256,160" stroke="#C93A40" stroke-width="5" opacity="0.6"/>')
+        p.append('<path d="M150,66 C190,40 228,34 252,34" fill="none" stroke="white" stroke-width="10" stroke-linecap="round" opacity="0.18"/>')
+        p.append('<path d="M100,176 C180,156 332,156 412,176 C426,190 410,204 394,202 C320,188 192,188 118,202 C102,204 86,190 100,176 Z" fill="#B8323A"/>')
+        p.append('<path d="M122,192 C200,180 312,180 390,192" fill="none" stroke="white" stroke-width="3" opacity="0.2"/>')
+        p.append('<circle cx="256" cy="26" r="10" fill="#B8323A"/>')
     elif hw == 3:  # fone de ouvido
         p.append('<path d="M108,240 C100,90 412,90 404,240" fill="none" stroke="#2C2C30" stroke-width="16" stroke-linecap="round"/>')
         for cx in (108, 404):

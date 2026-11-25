@@ -103,8 +103,26 @@ class GlowProvider(QQuickImageProvider):
         return image, image.size()
 
 
+def _keep_running(app_id):
+    """Erro inesperado num botão ou numa tarefa não fecha mais o app: no PyQt6 o
+    padrão é abortar o programa inteiro. O erro vai para ~/.cache/konaro/<app>.log."""
+    import traceback
+
+    def hook(kind, value, tb):
+        try:
+            d = os.path.join(os.path.expanduser("~/.cache"), "konaro")
+            os.makedirs(d, exist_ok=True)
+            with open(os.path.join(d, app_id + ".log"), "a", encoding="utf-8") as fh:
+                fh.write("".join(traceback.format_exception(kind, value, tb)) + "\n")
+        except OSError:
+            pass
+        traceback.print_exception(kind, value, tb)
+    sys.excepthook = hook
+
+
 def run(app_id, title, qml_file, context=None, screenshot=None, size=None, providers=None):
     """Cria a aplicação, publica os objetos de `context` no QML e executa."""
+    _keep_running(app_id)
     if os.environ.get("QT_QPA_PLATFORM") == "offscreen":
         QQuickWindow.setGraphicsApi(QSGRendererInterface.GraphicsApi.Software)
     # Os componentes Konaro desenham o próprio visual; o estilo "Basic" evita que o
