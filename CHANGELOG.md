@@ -27,7 +27,7 @@ Correções importantes. Se você baixou a 0.1.0, baixe a 0.1.1. Quem já instal
 - 🐛 **Senha nas Boas-vindas:** funciona também na sessão live. No sistema instalado, a senha da Carteira do KDE (senhas de Wi-Fi) é atualizada junto.
 - 🎨 **Chapéus do avatar:** o gorro e o boné agora cobrem a cabeça inteira, sem cabelo aparecendo por cima e sem esconder as sobrancelhas.
 - ✨ Com menos de 3 GB de RAM, as Boas-vindas sugerem a Fênix Lite.
-- Testes: Fênix, Fênix Lite e Fênix Lite 32 — `verify-iso` OK e teste de sistema 19/19 nas três; numa sessão Plasma real: apps abrem, a Loja abre as categorias (90 apps em Jogos) e fica aberta, modo leve automático sem 3D, instalar com a lista de pacotes vazia funciona e, sem internet, a mensagem certa aparece.
+- Testes: Fênix, Fênix Lite e Fênix Lite 32 — `verify-iso` OK e teste de sistema 19/19 nas três; numa sessão Plasma real: apps abrem, a Loja abre as categorias (90 apps em Jogos) e fica aberta, modo leve automático sem 3D, instalar com a lista de pacotes vazia funciona e, sem internet, a mensagem certa aparece; boot da Fênix numa máquina virtual com **só 2 GB de RAM**: área de trabalho, aviso de pouca memória nas Boas-vindas e Loja aberta em Jogos (90 apps) sem fechar.
 
 ## 🔥 0.1.0 "Fênix" · 2026-11-23 — primeira versão com nome
 
